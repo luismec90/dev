@@ -1,0 +1,86 @@
+/*!
+ * Start Bootstrap - Shop Homepage HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+body {
+    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+    color: #828282;
+    background-color: #eee;
+}
+
+.slide-image {
+    width: 100%;
+}
+
+.carousel-holder {
+    margin-bottom: 30px;
+}
+
+.carousel-control,
+.item {
+    border-radius: 4px;
+}
+
+.caption {
+    height: 130px;
+    overflow: hidden;
+}
+
+.caption h4 {
+    white-space: nowrap;
+}
+
+.thumbnail img {
+    width: 100%;
+}
+
+.ratings {
+    padding-right: 10px;
+    padding-left: 10px;
+    color: #d17581;
+}
+
+.thumbnail {
+    padding: 0;
+}
+
+.thumbnail .caption-full {
+    padding: 9px;
+    color: #333;
+}
+
+footer {
+    margin: 50px 0;
+}
+#map{
+    min-height:500px;
+}
+#contenedor{
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    padding-top: 15px;
+}
+.navbar {
+    background-color: #414141;
+    color: #ffffff;
+    border-radius: 0;
+}
+footer {
+    background-color: #414141;
+    height: 60px;
+    margin-top: 50px;
+    margin-bottom: 0;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color:#fff;
+}
+h2.titulo{
+    margin-top:0;
+    padding-bottom: 10px;
+    border-bottom:2px #d00b01 solid;
+}

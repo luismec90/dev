@@ -1,0 +1,32 @@
+#header{
+    border-top: 2px solid #e74c3c;
+}
+
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 155px;
+    height: 34px;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    display: block;
+    cursor: pointer;
+}
+
+.alert  [data-growl="message"]{
+    margin-right: 20px;
+}
+.alert-success {
+    background-color: #00bc8c;
+    border-color: #00bc8c;
+    color: #ffffff;
+}
+.alert-danger {
+    background-color: #e74c3c;
+    border-color: #e74c3c;
+    color: #ffffff;
+}
+.input-group .form-control{
+    z-index: 0;
+}

@@ -1,0 +1,348 @@
+#global-authorization {
+    text-align: left;
+}
+#global-authorization .inner-box {
+    *zoom: 1;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    overflow: hidden;
+    margin: 0 auto;
+    width: 350px;
+    border: 1px solid #D3D3D3;
+    background-color: #fff;
+}
+#global-authorization .inner-box:before,
+#global-authorization .inner-box:after {
+    content: "";
+    display: table;
+}
+#global-authorization .inner-box:after {
+    clear: both;
+}
+#global-authorization .inner-box:before,
+#global-authorization .inner-box:after {
+    content: "";
+    display: table;
+}
+#global-authorization .inner-box:after {
+    clear: both;
+}
+#global-authorization .inner-box .close {
+    color: #fff;
+    margin: -32px 0 0 464px;
+}
+#global-authorization h3 {
+    font-size: 21px;
+    padding: 15px 0;
+}
+#global-authorization .modal-tabs {
+    *zoom: 1;
+    width: 100%;
+}
+#global-authorization .modal-tabs:before,
+#global-authorization .modal-tabs:after {
+    content: "";
+    display: table;
+}
+#global-authorization .modal-tabs:after {
+    clear: both;
+}
+#global-authorization .modal-tabs:before,
+#global-authorization .modal-tabs:after {
+    content: "";
+    display: table;
+}
+#global-authorization .modal-tabs:after {
+    clear: both;
+}
+#global-authorization .modal-tabs a {
+    background-color: #DDD;
+    color: #636363;
+    float: left;
+    display: block;
+    width: 50%;
+    height: 50px;
+    text-align: center;
+    font-size: 18px;
+    padding-top: 15px;
+    font-weight: 200;
+    border-bottom: 1px solid #ccc;
+}
+#global-authorization .modal-tabs a.active {
+    background-color: #fff;
+    color: #000;
+    border-bottom: none;
+}
+#global-authorization .modal-tabs a:hover {
+    text-decoration: none;
+}
+#global-authorization .modal-tabs a.signup {
+    border-right: 1px solid #ccc;
+}
+#global-authorization .message {
+    -webkit-transition: all 2s all ease-out;
+    -moz-transition: all 2s all ease-out;
+    transition: all 2s all ease-out;
+    text-align: center;
+    color: #fff;
+    font-size: 17px;
+    overflow: hidden;
+    max-height: 0;
+    margin-bottom: 30px;
+}
+#global-authorization .message p {
+    padding: 9px 20px;
+}
+#global-authorization .message.error {
+    background-color: #df4444;
+    border-bottom: 1px solid #b03333;
+    text-shadow: 2px 2px 2px #b03333;
+}
+#global-authorization .message.success {
+    background-color: #2a804a;
+    border-bottom: 1px solid #1d6337;
+    text-shadow: 2px 2px 2px #1d6337;
+}
+#global-authorization .message.show {
+    max-height: 80px;
+}
+#global-authorization .form-box {
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    clear: both;
+    margin: 0 auto;
+    padding: 0 28px;
+}
+#global-authorization .form-box p {
+    font-size: 17px;
+    font-weight: 200;
+    margin-bottom: 15px;
+}
+#global-authorization .form-box .row {
+    *zoom: 1;
+    clear: both;
+    margin: 0 0 10px;
+    position: relative;
+    border: 1px solid #ccc;
+}
+#global-authorization .form-box .row:before,
+#global-authorization .form-box .row:after {
+    content: "";
+    display: table;
+}
+#global-authorization .form-box .row:after {
+    clear: both;
+}
+#global-authorization .form-box .row:before,
+#global-authorization .form-box .row:after {
+    content: "";
+    display: table;
+}
+#global-authorization .form-box .row:after {
+    clear: both;
+}
+#global-authorization .form-box .row [class^="icon-"],
+#global-authorization .form-box .row [class*="icon-"] {
+    position: absolute;
+    padding: 12px;
+    font-size: 16px;
+    width: 40px;
+    height: 100%;
+    background: #f1f1f1;
+    text-align: center;
+    border-right: 1px solid #ccc;
+}
+#global-authorization .form-box .row p {
+    cursor: pointer;
+    font-size: 15px;
+    padding: 15px 10px 15px 10px;
+    width: 97px;
+    text-align: right;
+    background-color: #f6f6f6;
+}
+#global-authorization .form-box .row input {
+    background: #f5f6f7;
+    padding: 12px 12px 12px 50px;
+    font-size: 16px;
+    width: 100%;
+    height: 100%;
+}
+#global-authorization .form-box .row label {
+    width: 100%;
+    border: 1px solid #ccc;
+}
+#global-authorization .form-box .row:last-child {
+    margin-bottom: 0;
+}
+#global-authorization .forgot-password {
+    color: #8d8d8d;
+}
+#global-authorization .submit-button {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    font-size: 17px;
+    max-width: 550px;
+    background: #5598dc;
+    padding: 10px 34px;
+    height: 40px;
+    text-align: center;
+    color: #fff;
+    display: block;
+    width: 85%;
+    margin: 15px auto 28px;
+    font-weight: 200;
+}
+#global-authorization .submit-button.inactive {
+    background-position: 10px 12px;
+}
+#global-authorization .submit-button:hover {
+    background: #6aa5e0;
+    text-decoration: none;
+}
+#global-authorization .social-login {
+    clear: both;
+    text-align: center;
+    width: 85%;
+    margin: 0 auto;
+    padding: 0 0 15px;
+    margin-bottom: 24px;
+}
+#global-authorization .social-login .facebook,
+#global-authorization .social-login .google {
+    display: inline-block;
+    width: 100% !important;
+    font-size: 14px !important;
+    margin: 0 auto 10px;
+    display: block !important;
+}
+#global-authorization .social-login .facebook div,
+#global-authorization .social-login .google div {
+    font-weight: 200;
+    padding-top: 12px !important;
+}
+#global-authorization .social-login .facebook {
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    -webkit-transition: all all 200ms ease-out;
+    -moz-transition: all all 200ms ease-out;
+    transition: all all 200ms ease-out;
+    *zoom: 1;
+    background-color: #324d8f;
+    font-size: 20px;
+    color: #fff;
+    padding: 0 0 0 15px;
+    font-size: 16px;
+    width: 235px;
+}
+#global-authorization .social-login .facebook:before,
+#global-authorization .social-login .facebook:after {
+    content: "";
+    display: table;
+}
+#global-authorization .social-login .facebook:after {
+    clear: both;
+}
+#global-authorization .social-login .facebook:before,
+#global-authorization .social-login .facebook:after {
+    content: "";
+    display: table;
+}
+#global-authorization .social-login .facebook:after {
+    clear: both;
+}
+#global-authorization .social-login .facebook i {
+    margin-right: 15px;
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+    float: left;
+    padding: 9px 15px 8px 0;
+    font-size: 22px;
+}
+#global-authorization .social-login .facebook div {
+    float: left;
+    padding: 9px 0 10px;
+}
+#global-authorization .social-login .facebook:hover {
+    background-color: #4f6aad;
+    text-decoration: none;
+}
+#global-authorization .social-login .google {
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    -webkit-transition: all all 200ms ease-out;
+    -moz-transition: all all 200ms ease-out;
+    transition: all all 200ms ease-out;
+    *zoom: 1;
+    background: #d03324;
+    cursor: pointer;
+    font-size: 20px;
+    color: #fff;
+    padding: 0 0 0 15px;
+    font-size: 16px;
+    width: 235px;
+    padding-left: 12px;
+}
+#global-authorization .social-login .google:before,
+#global-authorization .social-login .google:after {
+    content: "";
+    display: table;
+}
+#global-authorization .social-login .google:after {
+    clear: both;
+}
+#global-authorization .social-login .google:before,
+#global-authorization .social-login .google:after {
+    content: "";
+    display: table;
+}
+#global-authorization .social-login .google:after {
+    clear: both;
+}
+#global-authorization .social-login .google i {
+    margin-right: 15px;
+    float: left;
+    padding: 9px 15px 8px 0;
+    font-size: 22px;
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+}
+#global-authorization .social-login .google div {
+    float: left;
+    padding: 9px 0 10px;
+}
+#global-authorization .social-login .google:hover {
+    background-color: #F36456 !important;
+    text-decoration: none;
+}
+#global-authorization .social-login .google:active {
+    -moz-box-shadow: inset 0 0 10px 0 rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: inset 0 0 10px 0 rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 0 10px 0 rgba(0, 0, 0, 0.5);
+    border-collapse: separate;
+}
+#global-authorization .social-login .google i {
+    padding-right: 8px;
+}
+@media (max-width: 720px) {
+    #global-authorization {
+        padding-top: 40px;
+    }
+}
