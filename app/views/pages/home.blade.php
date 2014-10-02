@@ -21,10 +21,12 @@
 <section class="section section-center section-cta">
     <div class="container">
         <h2 class="section-title"><span>Listo para comenzar?</span></h2>
-        <p>Nimo te permite estar afiliado a distintos establecimientos y recibir grandes beneficios,
-            Sistema de puntos por compras realizadas
+        <p>Nimo te permite acceder a descuentos exclusivos ofrecidos por tiendas aliadas pertenecientes a nuestra red.
             Promociones exclusivas
-            Pedidos a domicilio
+            Pedidos a domicilio.
+            <!--            estar afiliado a distintos establecimientos y recibir grandes beneficios,
+                        Sistema de puntos por compras realizadas
+            -->            
         </p>
         <div class="main-action row">
             <div class="col-md-3 col-md-offset-3 col-sm-4 col-sm-offset-2"><a href="#" class="smooth-scroll btn btn-lg btn-block btn-danger">Registrarme</a></div>
@@ -41,29 +43,40 @@
             <div class="col-md-4 col-sm-6">
                 <div class="icon-wrap"><img src="{{ asset('assets/images/icon-bag-flat.png') }}" alt=""></div>
                 <h4>Comprando</h4>
-                <p>Por cada compra que realices en nuestros establecimientos afiliados recibiras puntos, los cuales podras redimir en los mismos establecimiento</p>
+                <p>Por cada compra que realices en nuestros establecimientos afiliados recibiras puntos, los cuales podras utilizar en compras futuras.</p> 
+            </div>
+            <!-- los mismos establecimientos-->
+
+            <div class="col-md-4 col-sm-6">
+                <div class="icon-wrap"><img src="{{ asset('assets/images/icon-delivery-flat.png') }}" alt=""></div>
+                <h4>A domicilio</h4>
+                <p>Podras ordernar a domicilio en las tiendas afiliadas que presten el servicio. </p>
+            </div>
+
+            <div class="col-md-4 col-sm-6">
+                <div class="icon-wrap"><img src="{{ asset('assets/images/icon-ticket-flat.png') }}" alt=""></div>
+                <h4>Tiendas</h4>
+                <p>Conoce las tiendas pertenecientes a nuestra red y sus alianzas, productos, promociones, valoraciones de los usuarios y localización. </p>
+<!--                <p>Cada establecimiento afiliado tiene su página web donde puedes encontrar sus productos/servicios, valoraciones de los usuarios y localización. </p>
+                Cada establecimiento afiliado tiene su respectiva página web en la cual puedes encontrar todo tipo de información como fotos de los productos/servicios, valoraciones de los usuarios, localización. -->
+            </div>
+
+            <!--            <div class="col-md-4 col-sm-6">
+                            <div class="icon-wrap"><img src="{{ asset('assets/images/icon-chrome-flat.png') }}" alt=""></div>
+                            <h4>Página web</h4>
+                            <p>Cada establecimiento afiliado tiene su página web donde puedes encontrar sus productos/servicios, valoraciones de los usuarios y localización. </p>
+                            Cada establecimiento afiliado tiene su respectiva página web en la cual puedes encontrar todo tipo de información como fotos de los productos/servicios, valoraciones de los usuarios, localización. 
+                        </div>-->
+            <div class="col-md-4 col-sm-6">
+                <div class="icon-wrap"><img src="{{ asset('assets/images/icon-comments-flat.png') }}" alt=""></div>
+                <h4>Valoraciones</h4>
+                <p>Podras valorar tus productos o servicos preferidos, tambien puedes ver las valoraciones realizadas por los demás usuarios.</p>
             </div>
 
             <div class="col-md-4 col-sm-6">
                 <div class="icon-wrap"><img src="{{ asset('assets/images/icon-calculator-flat.png') }}" alt=""></div>
                 <h4>Historico</h4>
-                <p>Podras llevar control de cuanto has consumido en cada establecimiento</p>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <div class="icon-wrap"><img src="{{ asset('assets/images/icon-chrome-flat.png') }}" alt=""></div>
-                <h4>Página web</h4>
-                <p>Cada establecimiento afiliado tiene su respectiva página web en la cual puedes encontrar todo tipo de información como fotos de los productos/servicios, valoraciones de los usuarios, localización. </p>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <div class="icon-wrap"><img src="{{ asset('assets/images/icon-comments-flat.png') }}" alt=""></div>
-                <h4>Valoraciones</h4>
-                <p>Podras valorar tus productos o servicos preferidos, tambien puedes ver las valoraciones realizads por los demas usuarios.</p>
-            </div>
-
-            <div class="col-md-4 col-sm-6">
-                <div class="icon-wrap"><img src="{{ asset('assets/images/icon-delivery-flat.png') }}" alt=""></div>
-                <h4>A domicilio</h4>
-                <p>Podras ordernar a domicilio en los establecimientos afiliados que presten el servicio </p>
+                <p>Podras llevar control de cuanto has consumido en cada establecimiento.</p>
             </div>
 
 
