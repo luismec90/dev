@@ -22,7 +22,6 @@ class SocialNetworksController extends \BaseController
 
             // Send a request with it
             $result = json_decode($fb->request('/me'), true);
-
             $user = User::where('email', $result['email'])->first();
             if (is_null($user)) {
                 $user = new User;

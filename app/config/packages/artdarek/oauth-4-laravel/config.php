@@ -24,7 +24,7 @@ return array(
         'Facebook' => array(
             'client_id' => '293418254150119',
             'client_secret' => '061da568d4cd3242c34041d6aca9afe7',
-            'scope' => array(),
+            'scope' => array('email', 'read_friendlists', 'user_online_presence'),
         ),
         'Google' => array(
             'client_id' => '1012187077382-jn5504bi7bl6ja0ket7ikvjaa3tbe1o0.apps.googleusercontent.com',
