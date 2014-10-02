@@ -2,21 +2,51 @@
 
 @section('content')
 
-<section id="carousel-1" class="carousel slide section-slide" data-ride="carousel">
+<div id="carousel-1" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
-        <div class="item active" style="background: url({{ asset('assets/images/bg-1.jpg') }}) no-repeat center;">
-            <div class="container"><img src="{{ asset('assets/images/typo-1.png') }}" alt="First slide"></div>
+        <div class="item active">
+            <img src="http://www.autobodyconcept.com/sites/default/files/choosing_3.jpg" alt="First slide">
         </div>
-        <div class="item" style="background: url({{ asset('assets/images/bg-2.jpg') }}) no-repeat center;">
-            <div class="container"><img src="{{ asset('assets/images/typo-2.png') }}" alt="First slide"></div>
+        <div class="item">
+            <img src="http://4.bp.blogspot.com/-ArtLfiVq6VM/Tt997t_10UI/AAAAAAAABJw/XErHAFEn5SQ/s1600/cropped11.jpg" alt="Second slide">
         </div>
-        <div class="item" style="background: url({{ asset('assets/images/bg-3.jpg') }}) no-repeat center;">
-            <div class="container"><img src="{{ asset('assets/images/typo-3.png') }}" alt="First slide"></div>
+        <div class="item">
+            <img src="http://oldrichmondinn.com/wp-content/uploads/2012/08/cheesecake.jpg" alt="Third slide">
         </div>
     </div>
-    <a class="left carousel-control" href="#carousel-1" data-slide="prev"><span class="fa fa-chevron-left"></span></a>
-    <a class="right carousel-control" href="#carousel-1" data-slide="next"><span class="fa fa-chevron-right"></span></a>
-</section>
+</div>
+
+    <div class="main-text hidden-xs">
+        <div class="col-md-12 text-center">
+            <h1> Encuentra establecimientos afiliados cercanos</h1>
+            <h3>
+            Que deseas hacer hoy?
+            </h3>
+            <div class="row">
+                <br>
+                <br>
+                <div class="col-sm-2 col-sm-offset-4">
+                    <input type="text" placeholder="Lugar" class="form-control">
+                </div>
+                <div class="col-sm-2">
+                    <select class="form-control">
+                        <option>Actividad</option>
+                        <option>Comer</option>
+                        <option>Comprar Ropa</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <br>
+                <br>
+                <div class="col-xs-2 col-xs-offset-5 text-center">
+                    <button class="btn btn-primary btn-lg btn-block">Buscar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
 <section class="section section-center section-cta">
     <div class="container">
