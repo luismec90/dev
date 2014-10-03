@@ -24,6 +24,7 @@ class DeliveriesController extends \BaseController
             return Redirect::back()->withInput()->withErrors($validation);
         }
 
+        $product=Product::find(Input::get('product'))->firstOrFail();
 
         $delivery = new Delivery;
         $delivery->product_id = Input::get('product');
@@ -33,14 +34,16 @@ class DeliveriesController extends \BaseController
         $delivery->note = Input::get('note');
         $delivery->save();
 
-       /* Mail::send('emails.verify', ['confirmation_code' => $confirmation_code], function ($message) {
-            $message->to(Input::get('email'), Input::get('first_name'))
-                ->subject('Verificar email');
-        }); */
+        $shop = Shop::where('link', $shop_link)->firstOrFail();
+
+        Mail::send('emails.shops.delivery',['product'=>$product], function ($message) use ($shop) {
+            $message->to($shop->email, Auth::user()->first_name)
+                ->subject('Pedido realizado');
+        });
 
         Flash::success('Su orden ha sido tomada correctamente!!');
 
-        return Redirect::route('');
+        return Redirect::route('shop_path',[$shop_link]);
     }
 
 

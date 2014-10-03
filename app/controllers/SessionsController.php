@@ -17,14 +17,15 @@ class SessionsController extends \BaseController
             return Redirect::back()->withInput();
         }
         Flash::success('Bienvenido nuevamente');
-        return Redirect::back();
+
+        return Redirect::intended();
     }
 
     public function destroy()
     {
         Auth::logout();
 
-        return Redirect::back();
+        return Redirect::intended();
     }
 
 }
