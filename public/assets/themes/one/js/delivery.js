@@ -1,12 +1,12 @@
 $(function () {
     $("#category").change(function () {
         var valor = $(this).val();
-        console.log(eval('category_' + valor));
-        $("#product").html(eval('category_' + valor));
         if(valor!=""){
-            $("#product").prop("disabled",false);
+            $("#product").html(eval('category_' + valor));
+            $("#product").removeAttr("readonly");
         }else{
-            $("#product").prop("disabled",true);
+            $("#product").html("");
+            $("#product").attr("readonly",'true');
         }
     });
 });
