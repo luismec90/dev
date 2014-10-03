@@ -20,11 +20,12 @@ class Product extends \Eloquent
         return $this->hasMany('Review');
     }
 
-    public function pathImage($cover = false)
+    public function pathImage($cover, $category_id, $product_id)
     {
+        $product_id = 1;//Mientras
         if ($cover)
-            return asset("shops/{$this->category->shop_id}/products/1/cover.jpg");
-        return asset("shops/{$this->category->shop_id}/products/1/mini.jpg");
+            return asset("shops/$category_id/products/$product_id/cover.jpg");
+        return asset("shops/$category_id/products/$product_id/mini.jpg");
     }
 
     public function price()
@@ -34,9 +35,9 @@ class Product extends \Eloquent
 
     public function recalculateRating($rating)
     {
-        $reviews = $this->reviews()->notSpam()->approved();
+        $reviews = $this->reviews();
         $avgRating = $reviews->avg('rating');
-        $this->rating_cache = round($avgRating,1);
+        $this->rating_cache = round($avgRating, 1);
         $this->rating_count = $reviews->count();
         $this->save();
     }

@@ -52,7 +52,6 @@
         {{ HTML::script('assets/js/jquery.isotope.min.js?v=1.5.26') }}
         {{ HTML::script('assets/js/jquery.singlePageNav.min.js') }}
         {{ HTML::script('assets/libs/bootstrap-growl/bootstrap-growl.min.js') }}
-        {{ HTML::script('assets/themes/one/js/localization.js') }}
         {{ HTML::script('assets/themes/one/js/main.js') }}
 
         @section('js')

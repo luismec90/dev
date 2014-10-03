@@ -10,7 +10,7 @@ class ProductsController extends \BaseController
         $product = Product::where('name', $product_name)->firstOrFail();
         $reviews = $product->reviews()->with('user')->orderBy('created_at', 'desc')->paginate(20);
 
-        return View::make('shops.themes.one.product', compact('shop', 'category', 'product', 'reviews', 'reviews'));
+        return View::make('shops.pages.product', compact('shop', 'category', 'product', 'reviews', 'reviews'));
     }
 
     public function adminEdit($shop_name, $category_name, $product_name)
@@ -34,8 +34,14 @@ class ProductsController extends \BaseController
         return Redirect::route('admin_edit_product_path', [$shop_name, $category_name, $product->name]);
     }
 
-    public function saveReview($product_id)
+    public function saveReview($shop_link, $category_name, $product_name, $product_id)
     {
+        if (!Auth::check()) {
+            Flash::error('Debes estar autentificado para hacer una valoración');
+
+            return Redirect::route('product_path', [$shop_link, $category_name, $product_name]);
+        }
+
         $input = array(
             'comment' => Input::get('comment'),
             'rating' => Input::get('rating')
@@ -44,14 +50,18 @@ class ProductsController extends \BaseController
         $review = new Review;
 
         // Validate that the user's input corresponds to the rules specified in the review model
-        $validator = Validator::make($input, $review->getCreateRules());
+        $validator = Validator::make($input, Review::$rules);
 
         // If input passes validation - store the review in DB, otherwise return to product page with error message
         if ($validator->passes()) {
             $review->storeReviewForProduct($product_id, $input['comment'], $input['rating']);
-        //    return Redirect::to('products/' . $product_id . '#reviews-anchor')->with('review_posted', true);
+
+            Flash::success('Gracias por valorar este producto');
+
+            return Redirect::route('product_path', [$shop_link, $category_name, $product_name]);
         }
 
-      //  return Redirect::to('products/' . $product_id . '#reviews-anchor')->withErrors($validator)->withInput();
+        return Redirect::route('product_path', [$shop_link, $category_name, $product_name])->withErrors($validator);
+
     }
 }
