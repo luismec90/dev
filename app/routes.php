@@ -53,7 +53,8 @@ Route::group(array('prefix' => '{shop_link}'), function () {
 
     Route::post('{category}/{product}/{id}review', array('as' => 'review_path', 'uses' => 'ProductsController@saveReview'));
 
-    Route::get('/domicilios', array('as' => 'delivery_path', 'uses' => 'ShopsController@indexDelivery'));
+    Route::get('/domicilios', array('before' => 'auth','as' => 'delivery_path', 'uses' => 'DeliveriesController@create'));
+    Route::post('/domicilios', array('before' => 'auth','as' => 'delivery_path', 'uses' => 'DeliveriesController@store'));
 
 
 

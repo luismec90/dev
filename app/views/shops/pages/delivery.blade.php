@@ -1,7 +1,16 @@
 @extends('shops.layouts.default')
 
+
+@section('css')
+{{ HTML::style('assets/libs/bootstrapvalidator/css/bootstrapValidator.min.css') }}
+{{ HTML::style('assets/css/registro.css') }}
+@stop
+
 @section('js')
-  {{HTML::script('assets/themes/one/js/delivery.js')}}
+{{ HTML::script('assets/libs/bootstrapvalidator/js/bootstrapValidator.js') }}
+{{ HTML::script('assets/libs/bootstrapvalidator/js/language/es_ES.js') }}
+{{ HTML::script('assets/js/validation.js') }}
+{{ HTML::script('assets/themes/one/js/delivery.js')}}
 <script>
     @foreach($shop->categories as $category)
         var category_{{ $category->id }}="<option value=''>Seleccionar...</option>";
@@ -12,6 +21,7 @@
 
 </script>
 @stop
+
 @section('content')
 
 <div class="row">
@@ -23,32 +33,39 @@
 <div class="row">
 
     <div class="col-md-6 col-lg-offset-3">
+
         @include('layouts.partials.errors')
 
-                    {{ Form::open(['route'=>'register_path','class'=>'validate']) }}
+                    {{ Form::open(['route'=>['delivery_path',$shop->link],'class'=>'validate']) }}
 
                     <!-- User Form Input -->
                     <div class="form-group">
                     {{ Form::label('category','Comprador:') }}
-                        <input tyoe="text" readonly="true" class="form-control" value="{{ Auth::user()->first_name." ". Auth::user()->last_name }}">
+                        <input tyoe="text" disabled="true" class="form-control" value="{{ Auth::user()->first_name." ". Auth::user()->last_name }}">
                     </div>
 
                     <!-- Email Form Input -->
                     <div class="form-group">
                     {{ Form::label('category','Email:') }}
-                        <input type="email" readonly="true" class="form-control" value="{{ Auth::user()->email }}">
+                        <input type="email" disabled="true" class="form-control" value="{{ Auth::user()->email }}">
+                    </div>
+
+                    <!-- Phone Form Input -->
+                    <div class="form-group">
+                    {{ Form::label('category','Télefono:') }}
+                    {{ Form::text('phone',null,['class'=>'form-control','required'=>'true']) }}
                     </div>
 
                     <!-- Category Form Input -->
                     <div class="form-group">
                     {{ Form::label('category','Categoria:') }}
-                    {{ Form::select('category',$selectCategories,null,['class'=>'form-control']) }}
+                    {{ Form::select('category',$selectCategories,null,['class'=>'form-control','required'=>'true']) }}
                     </div>
 
                     <!-- Product Form Input -->
                     <div class="form-group">
                     {{ Form::label('product','Producto:') }}
-                    {{ Form::select('product',[''=>''],null,['class'=>'form-control','required'=>true,'readonly'=>true]) }}
+                    {{ Form::select('product',[''=>''],null,['class'=>'form-control','required'=>'true','readonly'=>'true']) }}
                     </div>
 
                     <!-- Address Form Input -->
