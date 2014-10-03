@@ -60,8 +60,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface
     ];
 
 
-
-
     public function shops()
     {
         return $this->belongsToMany('Shop')->withPivot('role');
@@ -78,8 +76,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface
 
     public function rutaAvatar()
     {
-        return asset('users/avatars/'.$this->avatar);
+        return asset('users/avatars/' . $this->avatar);
     }
 
+    public function reviews()
+    {
+        return $this->hasMany('Review');
+    }
 
 }

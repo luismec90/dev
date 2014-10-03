@@ -3,42 +3,62 @@
 @section('js')
 <script src="http://maps.google.com/maps/api/js?sensor=false&callback=iniciar"></script>
 {{ HTML::script('assets/themes/one/js/localization.js') }}
+<script>
+function iniciar() {
+
+    var myLatlng = new google.maps.LatLng( {{ $shop->lat }}, {{ $shop->lng }} );
+
+    var mapOptions = {
+        center: myLatlng,
+        zoom: 16,
+        mapTypeId: google.maps.MapTypeId.ROADMAP};
+    var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+    // To add the marker to the map, use the 'map' property
+    var marker = new google.maps.Marker({
+        position: myLatlng,
+        map: map,
+        title: "{{ $shop->name }}"
+    });
+}
+</script>
 @stop
 @section('content')
 
-
-<h2 class='titulo'>Localización</h2>
-
+<div class="row">
+    <div class="col-sm-10">
+        <h2 class="titulo">Localización</h2>
+    </div>
+    <div class="col-sm-2">
+    <br>
+        <button class="btn btn-primary btn-block">Afiliarse </button>
+        <br>
+    </div>
+</div>
 <div class="row">
 
     <div class="col-md-8">
         <div id="map"></div>
     </div>
     <div class="col-md-4">
-        <h3>Contact Details</h3>
+        <h3>Detalles de contacto</h3>
         <p>
-            3481 Melrose Place<br>Beverly Hills, CA 90210<br>
+            {{ $shop->street_address }}<br>
         </p>
         <p><i class="fa fa-phone"></i> 
-            <abbr title="Phone">P</abbr>: (123) 456-7890</p>
+            <abbr title="Phone">Fijo</abbr>: {{ $shop->phone }}</p>
+        <p><i class="fa fa-mobile"></i>
+                    <abbr title="Phone">Celular</abbr>: {{ $shop->cell  }}</p>
         <p><i class="fa fa-envelope-o"></i> 
-            <abbr title="Email">E</abbr>: <a href="mailto:name@example.com">name@example.com</a>
+            <abbr title="Email">Email</abbr>: <a href="mailto:{{ $shop->email }}">{{ $shop->email }}</a>
         </p>
         <p><i class="fa fa-clock-o"></i> 
-            <abbr title="Hours">H</abbr>: Monday - Friday: 9:00 AM to 5:00 PM</p>
+            <abbr title="Hours">Horario</abbr>: {{ $shop->schedule }}</p>
         <ul class="list-unstyled list-inline list-social-icons">
             <li>
-                <a href="#"><i class="fa fa-facebook-square fa-2x"></i></a>
+                <a href="{{ $shop->facebook }}" target="_blank"><i class="fa fa-facebook-square fa-2x"></i></a>
             </li>
-            <li>
-                <a href="#"><i class="fa fa-linkedin-square fa-2x"></i></a>
-            </li>
-            <li>
-                <a href="#"><i class="fa fa-twitter-square fa-2x"></i></a>
-            </li>
-            <li>
-                <a href="#"><i class="fa fa-google-plus-square fa-2x"></i></a>
-            </li>
+
         </ul>
     </div>
 </div>

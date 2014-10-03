@@ -45,7 +45,16 @@
             </div>
         </div>
     </div>
-
+    <div class="main-text show-xs">
+         <div class="col-xs-12 text-center">
+                    <h4> Encuentra establecimientos afiliados cercanos</h4>
+                    <div class="row">
+                        <div class="col-xs-12 text-center">
+                            <button class="btn btn-primary btn-lg btn-block">Buscar</button>
+                        </div>
+                    </div>
+                </div>
+    </div>
 
 
 <section class="section section-center section-cta">

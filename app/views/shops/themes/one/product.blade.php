@@ -1,19 +1,94 @@
-@extends('......layouts.default')
+@extends('shops.layouts.default')
+@section('js')
+  {{HTML::script('assets/themes/one/js/expanding.js')}}
+  {{HTML::script('assets/themes/one/js/starrr.js')}}
+
+  <script type="text/javascript">
+    $(function(){
+
+      // initialize the autosize plugin on the review text area
+      $('#new-review').autosize({append: "\n"});
+
+      var reviewBox = $('#post-review-box');
+      var newReview = $('#new-review');
+      var openReviewBtn = $('#open-review-box');
+      var closeReviewBtn = $('#close-review-box');
+      var ratingsField = $('#ratings-hidden');
+
+      openReviewBtn.click(function(e)
+      {
+        reviewBox.slideDown(400, function()
+          {
+            $('#new-review').trigger('autosize.resize');
+            newReview.focus();
+          });
+        openReviewBtn.fadeOut(100);
+        closeReviewBtn.show();
+      });
+
+      closeReviewBtn.click(function(e)
+      {
+        e.preventDefault();
+        reviewBox.slideUp(300, function()
+          {
+            newReview.focus();
+            openReviewBtn.fadeIn(200);
+          });
+        closeReviewBtn.hide();
+
+      });
+
+      // If there were validation errors we need to open the comment form programmatically
+      @if($errors->first('comment') || $errors->first('rating'))
+        openReviewBtn.click();
+      @endif
+
+      // Bind the change event for the star rating - store the rating value in a hidden field
+      $('.starrr').on('starrr:change', function(e, value){
+        ratingsField.val(value);
+      });
+    });
+  </script>
+@stop
+
+@section('styles')
+  <style type="text/css">
+
+     /* Enhance the look of the textarea expanding animation */
+     .animated {
+        -webkit-transition: height 0.2s;
+        -moz-transition: height 0.2s;
+        transition: height 0.2s;
+      }
+
+      .stars {
+        margin: 20px 0;
+        font-size: 24px;
+        color: #d17581;
+      }
+  </style>
+@stop
 
 @section('content')
 <div class="row">
-    @include('......layouts.partials.products_menu')
+    <div class="col-lg-12">
+       <h2 class="section-title"><span>{{ $product->name }}</span></h2>
+    <br>
+    </div>
+</div>
+<div class="row">
+    @include('shops.layouts.partials.products_menu')
     
     <div class="col-md-9">
        
         <div class="thumbnail">
-            <img src="http://www.dailygourmet.com.hk/wp-content/uploads/2013/05/ribeye.jpg" alt="">
+            <img src="{{ $product->pathImage(true)   }}" alt="">
              
             <div class="caption-full">
-                <h4 class="pull-right">$24.99</h4>
+                <h4 class="pull-right">{{ $product->price() }}</h4>
                 <h4><a>{{$product->name}} <button class="btn btn-primary btn-sm">Pedir a domicilio</button> <button  class="btn btn-primary btn-sm">Compartir en Facebook</button></a></h4>
-                <p>{{$product->short_description}}</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                <p>{{$product->description}}</p>
+
             </div>
             <div class="ratings">
                 <p class="pull-right">{{$product->rating_count}} {{ Str::plural('review', $product->rating_count);}}</p>
@@ -26,91 +101,66 @@
             </div>
         </div>
         
-        <div class="well" id="reviews-anchor">
-           
-            <div class="row" id="post-review-box">
-                <div class="col-md-12">
-                  <form method="POST" action="http://laravel-shop.gopagoda.com/products/5" accept-charset="UTF-8"><input name="_token" type="hidden" value="EoyikqdGU0tNPaPaqIlN3QmZ8mYIdrOBG8pacMmk">                  <input id="ratings-hidden" name="rating" type="hidden">                  <textarea rows="5" id="new-review" class="form-control animated" placeholder="Ingrese su valoración..." name="comment" cols="50" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 54px;"></textarea>                  <div class="text-right">
-                    <div class="stars starrr" data-rating="0"><span class="glyphicon .glyphicon-star-empty glyphicon-star-empty"></span><span class="glyphicon .glyphicon-star-empty glyphicon-star-empty"></span><span class="glyphicon .glyphicon-star-empty glyphicon-star-empty"></span><span class="glyphicon .glyphicon-star-empty glyphicon-star-empty"></span><span class="glyphicon .glyphicon-star-empty glyphicon-star-empty"></span></div>
-                    <br>
-                    <a href="#" class="btn btn-danger" id="close-review-box" style="margin-right: 10px;"> <span class="glyphicon glyphicon-remove"></span> Cancelar</a>
-                    <button class="btn btn-success" type="submit"> Enviar</button>
-                  </div>
-                </form>                </div>
-              </div>
+                    <div class="well" id="reviews-anchor">
+                      <div class="row">
+                        <div class="col-md-12">
+                          @if(Session::get('errors'))
+                            <div class="alert alert-danger">
+                              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                               <h5>There were errors while submitting this review:</h5>
+                               @foreach($errors->all('<li>:message</li>') as $message)
+                                  {{$message}}
+                               @endforeach
+                            </div>
+                          @endif
+                          @if(Session::has('review_posted'))
+                            <div class="alert alert-success">
+                              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                              <h5>Your review has been posted!</h5>
+                            </div>
+                          @endif
+                          @if(Session::has('review_removed'))
+                            <div class="alert alert-success">
+                              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                              <h5>Your review has been removed!</h5>
+                            </div>
+                          @endif
+                        </div>
+                      </div>
+                      <div class="text-right">
+                        <a href="#reviews-anchor" id="open-review-box" class="btn btn-primary">Dejar un comentario</a>
+                      </div>
+                      <div class="row" id="post-review-box" style="display:none;">
+                        <div class="col-md-12">
+                          {{Form::open(['route'=>['review_path',$product->id]])}}
+                          {{Form::hidden('rating', null, array('id'=>'ratings-hidden'))}}
+                          {{Form::textarea('comment', null, array('rows'=>'5','id'=>'new-review','class'=>'form-control animated','placeholder'=>'Ingrese su comentario...'))}}
+                          <div class="text-right">
+                            <div class="stars starrr" data-rating="{{Input::old('rating',0)}}"></div>
+                            <a href="#" class="btn btn-danger" id="close-review-box" style="display:none; margin-right:10px;"> <span class="glyphicon glyphicon-remove"></span>Cancelar</a>
+                            <button class="btn btn-primary" type="submit">Enviar</button>
+                          </div>
+                        {{Form::close()}}
+                        </div>
+                      </div>
 
-            <hr>
-            <div class="row">
-                <div class="col-md-12">
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star-empty"></span>
-                    <span class="glyphicon glyphicon-star-empty"></span>
+                      @foreach($reviews as $review)
+                      <hr>
+                        <div class="row">
+                          <div class="col-md-12">
+                            @for ($i=1; $i <= 5 ; $i++)
+                              <span class="glyphicon glyphicon-star{{ ($i <= $review->rating) ? '' : '-empty'}}"></span>
+                            @endfor
 
-                    Anonymous <span class="pull-right">Hace 2 horas</span> 
+                            {{ $review->user ? $review->user->first_name : 'Anonymous'}} <span class="pull-right">{{$review->timeago}}</span>
 
-                    <p>Johny Poo was here</p>
-                </div>
-            </div>
-            <hr>
-            <div class="row">
-                <div class="col-md-12">
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
+                            <p>{{{$review->comment}}}</p>
+                          </div>
+                        </div>
+                      @endforeach
+                      {{ $reviews->links(); }}
+                    </div>
 
-                    Anonymous <span class="pull-right">Hace 10 horas</span> 
-
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incid</p>
-                </div>
-            </div>
-            <hr>
-            <div class="row">
-                <div class="col-md-12">
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-
-                    Anonymous <span class="pull-right">Hace 2 dias</span> 
-
-                     <p>Lorem ipsum dolor sit amet,  incid</p>
-                </div>
-            </div>
-            <hr>
-            <div class="row">
-                <div class="col-md-12">
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-
-                    Anonymous <span class="pull-right">Hace 5 meses</span> 
-
-                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incid</p>
-                </div>
-            </div>
-            <hr>
-            <div class="row">
-                <div class="col-md-12">
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-
-                    Anonymous <span class="pull-right">Hace 1 año</span> 
-
-                     <p>Lorem ipsum dolor sit </p>
-                </div>
-            </div>
-            <hr>
-        </div>
     </div>
 
 </div>

@@ -12,14 +12,17 @@ class CategoriesTableSeeder extends Seeder {
             
         }
         Category::create([
+            'id'=>1,
             'shop_id' => 1,
             'name' => 'Categoría 1'
         ]);
         Category::create([
+            'id'=>2,
             'shop_id' => 1,
             'name' => 'Categoría 2'
         ]);
         Category::create([
+            'id'=>3,
             'shop_id' =>1,
             'name' => 'Categoría 3'
         ]);

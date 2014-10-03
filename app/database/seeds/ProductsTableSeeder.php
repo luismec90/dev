@@ -9,14 +9,16 @@ class ProductsTableSeeder extends Seeder {
         $faker = Faker::create();
 
 
-        Product::create([
-            'category_id' => 1,
-            'name' => 'Producto 1'
-        ]);
-        Product::create([
-            'category_id' => 1,
-            'name' => 'Producto 2'
-        ]);
+
+        foreach (range(1, 50) as $index) {
+            Product::create([
+                'category_id' => $index%3+1,
+                'name' => $faker->name,
+                'description' => $faker->text,
+                'price'=> $faker->randomNumber(5)
+            ]);
+
+        }
     }
 
 }

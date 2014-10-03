@@ -1,5 +1,4 @@
 <header id="header" class="site-header">
-
     <nav id="navbar" class="site-navbar navbar navbar-static-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
@@ -14,20 +13,14 @@
                     <li class="@if(Route::currentRouteName()=='home') {{ "active"}} @endif">
                         <a href="{{ route('home') }}">Inicio</a>
                     </li>
+                    <li class="@if(Route::currentRouteName()=='search_path') {{ "active"}} @endif">
+                        <a href="{{ route('search_path') }}">Búsqueda</a>
+                    </li>
                     <li class="@if(Route::currentRouteName()=='contact_path') {{ "active"}} @endif">
                         <a href="{{ route('contact_path') }}">Contacto</a>
                     </li>
                 </ul>
-
                 @include('layouts.partials.login')
-                <!--<ul id="navigation" class="nav navbar-nav navbar-right">
-                    <li class="@if(Route::currentRouteName()=='register_path') {{ "active"}} @endif">
-                        <a href="{{ route('register_path') }}">Registro</a>
-                    </li>
-                    <li class="@if(Route::currentRouteName()=='login_path') {{ "active"}} @endif">
-                        <a href="{{ route('login_path') }}">Entrar</a>
-                    </li>
-                </ul> -->
             </div>
         </div>
     </nav>
