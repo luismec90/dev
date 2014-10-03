@@ -16,6 +16,9 @@
                    <li class="@if(Route::currentRouteName()=='category_path') {{ "active"}} @endif">
                        <a href="{{ route('category_path',[$shop->link,$shop->categories[0]->name]) }}">Categorías</a>
                    </li>
+                   <li class="@if(Route::currentRouteName()=='delivery_path') {{ "active"}} @endif">
+                      <a href="{{ route('delivery_path',[$shop->link ])}}">Domicilios </a>
+                  </li>
                    <li class="@if(Route::currentRouteName()=='localization_path') {{ "active"}} @endif">
                        <a href="{{ route('localization_path',$shop->link) }}">Localización</a>
                    </li>

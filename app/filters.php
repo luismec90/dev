@@ -36,7 +36,9 @@ Route::filter('auth', function() {
         if (Request::ajax()) {
             return Response::make('Unauthorized', 401);
         } else {
-            return Redirect::guest('/');
+            Flash::error('Debes autentificarte para proceder');
+
+            return Redirect::guest('entrar');
         }
     }
 });

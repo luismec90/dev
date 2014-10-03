@@ -86,7 +86,7 @@
              
             <div class="caption-full">
                 <h4 class="pull-right">{{ $product->price() }}</h4>
-                <h4><a>{{$product->name}}</a> <button id="boton-pedir-domicilio"  class="btn btn-primary btn-sm">Pedir a domicilio</button> <button  class="btn btn-primary btn-sm">Compartir en Facebook</button></h4>
+                <h4><a>{{$product->name}}</a> <button id="boton-pedir-domicilio"  class="btn btn-primary btn-sm" {{ Auth::check() ? '':'disabled'; }}>Pedir a domicilio</button> </h4>
                 <p>{{$product->description}}</p>
 
             </div>
@@ -128,7 +128,8 @@
             </div>
           </div>
           <div class="text-right">
-            <a  id="open-review-box" class="btn btn-primary">Dejar un comentario</a>
+
+            <a  id="open-review-box" class="btn btn-primary" {{ Auth::check() ? '':'disabled'; }}>Dejar un comentario</a>
           </div>
           <div class="row" id="post-review-box" style="display:none;">
             <div class="col-md-12">
