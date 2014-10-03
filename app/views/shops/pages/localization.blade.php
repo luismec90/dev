@@ -2,7 +2,7 @@
 
 @section('js')
 <script src="http://maps.google.com/maps/api/js?sensor=false&callback=iniciar"></script>
-{{ HTML::script('assets/themes/one/js/localization.js') }}
+
 <script>
 function iniciar() {
 
@@ -26,13 +26,9 @@ function iniciar() {
 @section('content')
 
 <div class="row">
-    <div class="col-sm-10">
-        <h2 class="titulo">Localización</h2>
-    </div>
-    <div class="col-sm-2">
+    <div class="col-lg-12">
+       <h2 class="section-title"><span>Localización</span></h2>
     <br>
-        <button class="btn btn-primary btn-block">Afiliarse </button>
-        <br>
     </div>
 </div>
 <div class="row">

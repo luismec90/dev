@@ -22,6 +22,15 @@ body {
 #map{
     height: 400px;
 }
+html, body, #map-canvas  {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+#map-canvas {
+    width:500px;
+    height:480px;
+}
 .product .thumbnail{
     height: 315px;
 }
@@ -67,4 +76,25 @@ a:hover{
 }
 .shop-title{
     color: #e74c3c;
+}
+
+.stars {
+    margin: 20px 0;
+    font-size: 24px;
+    color: #d17581;
+    cursor:pointer;
+}
+
+.alert  [data-growl="message"]{
+    margin-right: 20px;
+}
+.alert-success {
+    background-color: #00bc8c;
+    border-color: #00bc8c;
+    color: #ffffff;
+}
+.alert-danger {
+    background-color: #e74c3c;
+    border-color: #e74c3c;
+    color: #ffffff;
 }

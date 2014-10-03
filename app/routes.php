@@ -44,14 +44,25 @@ Route::get('login_twitter', array('before' => 'guest', 'as' => 'login_twitter_pa
 Route::get('login_google', array('before' => 'guest', 'as' => 'login_google_path', 'uses' => 'SocialNetworksController@loginWithGoogle'));
 
 /* Reviews */
-Route::post('producto/{id}/review', array('before' => 'auth', 'as' => 'review_path', 'uses' => 'ProductsController@saveReview'));
-
 
 
 Route::group(array('prefix' => '{shop_link}'), function () {
 
     Route::get('/', array('as' => 'shop_path', 'uses' => 'ShopsController@show'));
     Route::get('/localizacion', array('as' => 'localization_path', 'uses' => 'ShopsController@localization'));
+
+    Route::post('{category}/{product}/{id}review', array('as' => 'review_path', 'uses' => 'ProductsController@saveReview'));
+
+    Route::get('/domicilios', array('as' => 'delivery_path', 'uses' => 'ShopsController@indexDelivery'));
+
+
+
+
+
+
+
+
+
 
 
     Route::get('/categorias', array('before' => 'auth|admin', 'as' => 'admin_category_path', 'uses' => 'ShopsController@adminCategories'));

@@ -2,6 +2,12 @@
 
 class Review extends \Eloquent
 {
+
+    public static $rules = [
+        'comment' => 'required',
+        'rating' => 'required|integer|between:1,5'
+    ];
+
     public function user()
     {
         return $this->belongsTo('User');
@@ -23,7 +29,7 @@ class Review extends \Eloquent
     {
         $product = Product::find($productID);
 
-        //$this->user_id = Auth::user()->id;
+        $this->user_id = Auth::user()->id;
         $this->comment = $comment;
         $this->rating = $rating;
         $product->reviews()->save($this);

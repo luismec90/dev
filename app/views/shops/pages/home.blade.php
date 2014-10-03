@@ -81,125 +81,16 @@
             <h2 class="section-title"><span>Lo más destacado</span></h2>
         </div>
 
-        <div class="col-sm-4 col-lg-4 col-md-4">
-            <div class="thumbnail">
-                <img src="http://www.cafecapuano.com/sites/default/files/201308/Banners_precontent_footers_food_steak-003.jpg" alt="">
-                <div class="caption">
-                    <h4 class="pull-right">$24.99</h4>
-                    <h4>  <a href="http://dev.app:8000/@ShopA/Categor%C3%ADa%201/Producto%201">Primer Producto</a>
-                    </h4>
-                    <p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
-                </div>
-                <div class="ratings">
-                    <p class="pull-right">15 reviews</p>
-                    <p>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                    </p>
-                </div>
-            </div>
-        </div>
 
-        <div class="col-sm-4 col-lg-4 col-md-4">
-            <div class="thumbnail">
-                <img src="http://www.vietsunmagazine.com/cache/com_zoo/images/IMG_320_2fcef98fee7e89111dfc00ede3694d38.jpg" alt="">
-                <div class="caption">
-                    <h4 class="pull-right">$64.99</h4>
-                    <h4><a href="#">Second Product</a>
-                    </h4>
-                    <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </div>
-                <div class="ratings">
-                    <p class="pull-right">12 reviews</p>
-                    <p>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
-                    </p>
-                </div>
+            @foreach($popularProducts as $product)
+            <div class="product col-sm-3 col-lg-3 col-md-3">
+                @include('shops.layouts.partials.preview_product',['category'=>$product->category])
             </div>
-        </div>
+            @endforeach
 
-        <div class="col-sm-4 col-lg-4 col-md-4">
-            <div class="thumbnail">
-                <img src="http://bdtrading.ie/images/images-2.jpg" alt="">
-                <div class="caption">
-                    <h4 class="pull-right">$74.99</h4>
-                    <h4><a href="#">Third Product</a>
-                    </h4>
-                    <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </div>
-                <div class="ratings">
-                    <p class="pull-right">31 reviews</p>
-                    <p>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm-4 col-lg-4 col-md-4">
-            <div class="thumbnail">
-                <img src="http://www.brake.eu/images/home3.jpg" alt="">
-                <div class="caption">
-                    <h4 class="pull-right">$84.99</h4>
-                    <h4><a href="#">Fourth Product</a>
-                    </h4>
-                    <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </div>
-                <div class="ratings">
-                    <p class="pull-right">6 reviews</p>
-                    <p>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm-4 col-lg-4 col-md-4">
-            <div class="thumbnail">
-                <img src="http://96bda424cfcc34d9dd1a-0a7f10f87519dba22d2dbc6233a731e5.r41.cf2.rackcdn.com/BionicBody/VeggieWraps.jpg" alt="">
-                <div class="caption">
-                    <h4 class="pull-right">$94.99</h4>
-                    <h4><a href="#">Fifth Product</a>
-                    </h4>
-                    <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </div>
-                <div class="ratings">
-                    <p class="pull-right">18 reviews</p>
-                    <p>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <!--            <div class="col-sm-4 col-lg-4 col-md-4">
-                        <h4><a href="#">Like this template?</a>
-                        </h4>
-                        <p>If you like this template, then check out <a target="_blank" href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">this tutorial</a> on how to build a working review system for your online store!</p>
-                        <a class="btn btn-primary" target="_blank" href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">View Tutorial</a>
-                    </div>-->
 
     </div>
-    <div class="section row">
+   {{-- <div class="section row">
         <div class="col-lg-12">
              <h2 class="section-title"><span>Servicios</span></h2>
         </div>
@@ -316,6 +207,6 @@
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo itaque ipsum sit harum.</p>
                 </div>
             </div>
-        </div>
+        </div>--}}
     </div>
 @stop
