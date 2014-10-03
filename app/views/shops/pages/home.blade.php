@@ -23,6 +23,7 @@
                 <h3>Lorem ipsum dolor sit amet</h3>
             </div>
         </div>
+
         <div class="item">
             <img src="http://www.startoursbelize.com/wp-content/uploads/2012/12/restaurant.png" alt="...">
             <div class="carousel-caption">
