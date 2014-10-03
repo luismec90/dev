@@ -16,35 +16,35 @@
     </div>
 </div>
 
-    <div class="main-text hidden-xs">
-        <div class="col-md-12 text-center">
-            <h1> Encuentra establecimientos afiliados cercanos</h1>
-            <h3>
+<div class="main-text hidden-xs">
+    <div class="col-md-12 text-center">
+        <h1> Encuentra establecimientos afiliados cercanos</h1>
+        <h3>
             Que deseas hacer hoy?
-            </h3>
-            <div class="row">
-                <br>
-                <br>
-                <div class="col-sm-2 col-sm-offset-4">
-                    <input type="text" placeholder="Lugar" class="form-control">
-                </div>
-                <div class="col-sm-2">
-                    <select class="form-control">
-                        <option>Actividad</option>
-                        <option>Comer</option>
-                        <option>Comprar Ropa</option>
-                    </select>
-                </div>
+        </h3>
+        <div class="row">
+            <br>
+            <br>
+            <div class="col-sm-2 col-sm-offset-4">
+                <input type="text" placeholder="Lugar" class="form-control">
             </div>
-            <div class="row">
-                <br>
-                <br>
-                <div class="col-xs-2 col-xs-offset-5 text-center">
-                    <button class="btn btn-primary btn-lg btn-block">Buscar</button>
-                </div>
+            <div class="col-sm-2">
+                <select class="form-control">
+                    <option>Actividad</option>
+                    <option>Comer</option>
+                    <option>Comprar Ropa</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <br>
+            <br>
+            <div class="col-xs-2 col-xs-offset-5 text-center">
+                <button class="btn btn-primary btn-lg btn-block">Buscar</button>
             </div>
         </div>
     </div>
+</div>
 
 
 
@@ -52,10 +52,10 @@
     <div class="container">
         <h2 class="section-title"><span>Listo para comenzar?</span></h2>
         <p>Nimo te permite acceder a descuentos exclusivos ofrecidos por tiendas aliadas pertenecientes a nuestra red.
-            Promociones exclusivas
-            Pedidos a domicilio.
-            <!--            estar afiliado a distintos establecimientos y recibir grandes beneficios,
-                        Sistema de puntos por compras realizadas
+            <!--            Promociones exclusivas
+                        Pedidos a domicilio.
+                                    estar afiliado a distintos establecimientos y recibir grandes beneficios,
+                                    Sistema de puntos por compras realizadas
             -->            
         </p>
         <div class="main-action row">
@@ -70,26 +70,51 @@
         <h2 class="section-title"><span>Como funciona?</span></h2>
         <div class="row">
 
-            <div class="col-md-4 col-sm-6">
-                <div class="icon-wrap"><img src="{{ asset('assets/images/icon-bag-flat.png') }}" alt=""></div>
-                <h4>Comprando</h4>
-                <p>Por cada compra que realices en nuestros establecimientos afiliados recibiras puntos, los cuales podras utilizar en compras futuras.</p> 
-            </div>
-            <!-- los mismos establecimientos-->
+            <div class="row">
+                <div class="col-md-4 col-sm-6">
+                    <div class="icon-wrap"><img src="{{ asset('assets/images/icon-bag-flat.png') }}" alt=""></div>
+                    <h4>Comprando</h4>
+                    <p>Por cada compra que realices en nuestros establecimientos afiliados recibiras puntos, los cuales podras utilizar en compras futuras.</p> 
+                </div>
 
-            <div class="col-md-4 col-sm-6">
-                <div class="icon-wrap"><img src="{{ asset('assets/images/icon-delivery-flat.png') }}" alt=""></div>
-                <h4>A domicilio</h4>
-                <p>Podras ordernar a domicilio en las tiendas afiliadas que presten el servicio. </p>
+                <!-- los mismos establecimientos-->
+
+                <div class="col-md-4 col-sm-6">
+                    <div class="icon-wrap"><img src="{{ asset('assets/images/icon-ticket-flat.png') }}" alt=""></div>
+                    <h4>Tiendas</h4>
+                    <p>Conoce las tiendas pertenecientes a nuestra red y sus alianzas, productos, promociones, valoraciones de los usuarios y localización. </p>
+    <!--                <p>Cada establecimiento afiliado tiene su página web donde puedes encontrar sus productos/servicios, valoraciones de los usuarios y localización. </p>
+                    Cada establecimiento afiliado tiene su respectiva página web en la cual puedes encontrar todo tipo de información como fotos de los productos/servicios, valoraciones de los usuarios, localización. -->
+                </div>
+
+                <div class="col-md-4 col-sm-6">
+                    <div class="icon-wrap"><img src="{{ asset('assets/images/icon-delivery-flat.png') }}" alt=""></div>
+                    <h4>A domicilio</h4>
+                    <p>Podras ordernar a domicilio en las tiendas afiliadas que presten el servicio. </p>
+                </div>
             </div>
 
-            <div class="col-md-4 col-sm-6">
-                <div class="icon-wrap"><img src="{{ asset('assets/images/icon-ticket-flat.png') }}" alt=""></div>
-                <h4>Tiendas</h4>
-                <p>Conoce las tiendas pertenecientes a nuestra red y sus alianzas, productos, promociones, valoraciones de los usuarios y localización. </p>
-<!--                <p>Cada establecimiento afiliado tiene su página web donde puedes encontrar sus productos/servicios, valoraciones de los usuarios y localización. </p>
-                Cada establecimiento afiliado tiene su respectiva página web en la cual puedes encontrar todo tipo de información como fotos de los productos/servicios, valoraciones de los usuarios, localización. -->
+            <div class="row">
+                <div class="col-md-4 col-sm-6">
+                    <div class="icon-wrap"><img src="{{ asset('assets/images/icon-comments-flat.png') }}" alt=""></div>
+                    <h4>Valoraciones</h4>
+                    <p>Podras valorar tus productos o servicos preferidos y conocer la opinión de los demás usuarios.</p>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="icon-wrap"><img src="{{ asset('assets/images/icon-easel-flat.png') }}" alt=""></div>
+                    <h4>Estadisticas</h4>
+                    <p>Recommendaciones ajustadas a tu estilo, basados en estadisticas de uso.</p>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="icon-wrap"><img src="{{ asset('assets/images/icon-calculator-flat.png') }}" alt=""></div>
+                    <h4>Historico</h4>
+                    <p>Podras llevar control de cuanto has consumido en cada establecimiento.</p>
+                </div>
             </div>
+
+
+
+
 
             <!--            <div class="col-md-4 col-sm-6">
                             <div class="icon-wrap"><img src="{{ asset('assets/images/icon-chrome-flat.png') }}" alt=""></div>
@@ -97,31 +122,17 @@
                             <p>Cada establecimiento afiliado tiene su página web donde puedes encontrar sus productos/servicios, valoraciones de los usuarios y localización. </p>
                             Cada establecimiento afiliado tiene su respectiva página web en la cual puedes encontrar todo tipo de información como fotos de los productos/servicios, valoraciones de los usuarios, localización. 
                         </div>-->
-            <div class="col-md-4 col-sm-6">
-                <div class="icon-wrap"><img src="{{ asset('assets/images/icon-comments-flat.png') }}" alt=""></div>
-                <h4>Valoraciones</h4>
-                <p>Podras valorar tus productos o servicos preferidos, tambien puedes ver las valoraciones realizadas por los demás usuarios.</p>
-            </div>
-
-            <div class="col-md-4 col-sm-6">
-                <div class="icon-wrap"><img src="{{ asset('assets/images/icon-calculator-flat.png') }}" alt=""></div>
-                <h4>Historico</h4>
-                <p>Podras llevar control de cuanto has consumido en cada establecimiento.</p>
-            </div>
 
 
-            <div class="col-md-4 col-sm-6">
-                <div class="icon-wrap"><img src="{{ asset('assets/images/icon-easel-flat.png') }}" alt=""></div>
-                <h4>Estadisticas</h4>
-                <p>Recommendaciones ajustadas a tu estilo, basados en estadisticas de uso.</p>
-            </div>
+
+
         </div>
     </div>
 </section>
 
 <section id="portfolio" class="section section-portfolio">
     <div class="container">
-        <h2 class="section-title"><span>Establcimientos afiliados destacados.</span></h2>
+        <h2 class="section-title"><span>Establecimientos afiliados destacados.</span></h2>
         <ul id="filters">
             <li><a href="#" data-filter="*">Todo</a></li>
             <li>/</li>

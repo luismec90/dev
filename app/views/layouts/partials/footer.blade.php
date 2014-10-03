@@ -6,44 +6,48 @@
 
                 <aside class="widget col-md-3 col-sm-6">
                     <h5 class="widget-title">Acerca de</h5>
-                    <p>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptate rerum voluptates. <a href="#">Read more</a></p>
+                    <p>Generar beneficios para los consumidores por medio de la interconectividad da sentido y valor agregado
+                        a nuestro servicio.<a href="#">Read more</a></p>
                 </aside>
 
                 <aside class="widget col-md-3 col-sm-6">
                     <h5 class="widget-title">Contacto</h5>
-                    <div class="textwidget">
-                        <div class="adr">
-                            <div class="street-address">416 Water St.</div>
-                            <span class="locality">New York</span>,
-                            <abbr class="region" title="New York">NY</abbr>,
-                            <span class="postal-code">10002</span>,
-                            <span class="country-name">U.S.A</span>
-                        </div>
-                        <div>Phone: <span class="tel">+1.123.456.7890</span></div>
-                        <div>Website: <a class="url" href="http://google.com">http://google.com</a></div>
-                    </div>
+                    <p>Para cualquier inquietud o comentario, escribenos a: <a>luismec90@gmail.com</a> ó <a>juangiraldo222@gmail.com</a><p> 
+                </aside>
+
+                <!--                    <div class="textwidget">
+                                        <div class="adr">
+                                            <div class="street-address">416 Water St.</div>
+                                            <span class="locality">New York</span>,
+                                            <abbr class="region" title="New York">NY</abbr>,
+                                            <span class="postal-code">10002</span>,
+                                            <span class="country-name">U.S.A</span>
+                                        </div>
+                                        <div>Phone: <span class="tel">+1.123.456.7890</span></div>
+                                        <div>Website: <a class="url" href="http://google.com">http://google.com</a></div>
+                                    </div>-->
                 </aside>
 
                 <aside class="widget col-md-3 col-sm-6">
-                    <h5 class="widget-title">Necistas ayuda</h5>
-                    <p>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptate rerum voluptates. <a href="#">Read more</a></p>
+                    <h5 class="widget-title">Necesitas ayuda</h5>
+                    <p>Para conocer el funcionamiento de nuestras promociones dirígite a la sección. <a href="#">FAQ</a></p>
                 </aside>
 
-                <aside class="widget col-md-3 col-sm-6">
-                    <h5 class="widget-title">Get in touch</h5>
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Your Email">
-                        <span class="input-group-btn">
-                            <button class="btn btn-danger" type="button"><i class="fa fa-arrow-right"></i></button>
-                        </span>
-                    </div>
-                    <ul class="social-links">
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                    </ul>
-                </aside>
+                <!--                <aside class="widget col-md-3 col-sm-6">
+                                    <h5 class="widget-title">Get in touch</h5>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Your Email">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-danger" type="button"><i class="fa fa-arrow-right"></i></button>
+                                        </span>
+                                    </div>
+                                    <ul class="social-links">
+                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                                    </ul>
+                                </aside>-->
 
             </div>
         </div>
