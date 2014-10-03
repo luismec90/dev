@@ -13,6 +13,9 @@
 /* Home */
 Route::get('/', array('as' => 'home', 'uses' => 'PagesController@home'));
 
+/* Search */
+Route::get('/busqueda', array('as' => 'search_path', 'uses' => 'SearchesController@index'));
+
 /* Contact */
 Route::get('/contacto', array('as' => 'contact_path', 'uses' => 'PagesController@contact'));
 
@@ -20,6 +23,7 @@ Route::get('/contacto', array('as' => 'contact_path', 'uses' => 'PagesController
 Route::get('registro', array('before' => 'guest', 'as' => 'register_path', 'uses' => 'RegistrationController@create'));
 Route::post('registro', array('before' => 'guest', 'as' => 'register_path', 'uses' => 'RegistrationController@store'));
 Route::get('register/verify/{confirmationCode}', ['as' => 'confirmation_path', 'uses' => 'RegistrationController@confirm']);
+
 /* Sesiones */
 Route::get('entrar', array('before' => 'guest', 'as' => 'login_path', 'uses' => 'SessionsController@create'));
 Route::post('entrar', array('before' => 'guest', 'as' => 'login_path', 'uses' => 'SessionsController@store'));
@@ -39,8 +43,8 @@ Route::get('login_facebook', array('before' => 'guest', 'as' => 'login_facebook_
 Route::get('login_twitter', array('before' => 'guest', 'as' => 'login_twitter_path', 'uses' => 'SocialNetworksController@loginWithTwitter'));
 Route::get('login_google', array('before' => 'guest', 'as' => 'login_google_path', 'uses' => 'SocialNetworksController@loginWithGoogle'));
 
-
-
+/* Reviews */
+Route::post('producto/{id}/review', array('before' => 'auth', 'as' => 'review_path', 'uses' => 'ProductsController@saveReview'));
 
 
 

@@ -17,6 +17,15 @@ class CreateShopsTable extends Migration
             $table->increments('id');
             $table->string('name', 32)->unique();
             $table->string('link', 64)->unique();
+            $table->string('about', 2048);
+            $table->string('lat');
+            $table->string('lng');
+            $table->string('street_address');
+            $table->string('phone');
+            $table->string('cell');
+            $table->string('email');
+            $table->string('schedule');
+            $table->string('facebook');
             $table->timestamps();
         });
     }

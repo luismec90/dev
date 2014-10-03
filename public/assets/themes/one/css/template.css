@@ -8323,7 +8323,6 @@ button.close
         display:none!important
     }
 
-
 }
 @media (min-width:768px) and (max-width:991px)
 {
@@ -8428,13 +8427,11 @@ img
 .jumbotron
 {
     margin-bottom:0;
-    background:url(../../images/bg-1.jpg) #1abc9c
 }
 .page-header
 {
     margin:0;
     padding:30px 0;
-    background:url(../../images/bg-1.jpg) #1abc9c;
     color:#fff;
     border:none
 }
@@ -8492,7 +8489,7 @@ img
 }
 .section
 {
-    padding:60px 0
+    padding-bottom:40px;
 }
 @media (max-width:991px)
 {

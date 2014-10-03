@@ -15,7 +15,11 @@ class CreateProductsTable extends Migration {
             $table->increments('id');
             $table->integer('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
-            $table->string('name', 64)->unique();
+            $table->string('name', 64);
+            $table->string('description', 1024);
+            $table->string('price');
+            $table->float('rating_cache');
+            $table->integer('rating_count');
             $table->timestamps();
         });
     }

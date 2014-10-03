@@ -34,7 +34,7 @@
 {
     padding: 20px 0;
     position: absolute;
-    top: 150px;
+    top: 120px;
     width: 100%;
     background: rgba(0, 0, 0, 0.4);
     color: #fff;
@@ -47,4 +47,23 @@
 #carousel-1 img{
     opacity: 0.7;
     filter: alpha(opacity=40); /* For IE8 and earlier */
+    min-height: 150px;
+}
+@media (max-width: 767px) {
+    .show-xs {
+        display: block !important
+    }
+    .main-text{
+        padding-top: 0;
+        top:70px;
+    }
+}
+
+@media (min-width: 768px) {
+    .show-xs {
+        display: none !important
+    }
+    #carousel-1 img{
+        min-height: 450px;
+    }
 }
