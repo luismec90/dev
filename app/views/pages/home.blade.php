@@ -51,12 +51,7 @@
 <section class="section section-center section-cta">
     <div class="container">
         <h2 class="section-title"><span>Listo para comenzar?</span></h2>
-        <p>Nimo te permite acceder a descuentos exclusivos ofrecidos por tiendas aliadas pertenecientes a nuestra red.
-            Promociones exclusivas
-            Pedidos a domicilio.
-            <!--            estar afiliado a distintos establecimientos y recibir grandes beneficios,
-                        Sistema de puntos por compras realizadas
-            -->            
+        <p>LinkingShops es una red de tiendas aliadas, que ofrecen descuentos exclusivos a sus clientes como trato preferencial.       
         </p>
         <div class="main-action row">
             <div class="col-md-3 col-md-offset-3 col-sm-4 col-sm-offset-2"><a href="#" class="smooth-scroll btn btn-lg btn-block btn-danger">Registrarme</a></div>
@@ -80,7 +75,7 @@
                 <div class="col-md-4 col-sm-6">
                     <div class="icon-wrap"><img src="{{ asset('assets/images/offer.png') }}" alt=""></div>
                     <h4>Descuentos</h4>
-                    <p>A través de Nimo podrés obtener descuentos exclusivos al comprar en las tiendas de nuestra red</p>
+                    <p>A través de LinkingShops podrés obtener descuentos exclusivos al comprar en las tiendas de nuestra red.</p>
                 </div>
                 <div class="col-md-4 col-sm-6">
                     <div class="icon-wrap"><img src="{{ asset('assets/images/icon-ticket-flat.png') }}" alt=""></div>
@@ -100,12 +95,12 @@
                 <div class="col-md-4 col-sm-6">
                     <div class="icon-wrap"><img src="{{ asset('assets/images/icon-delivery-flat.png') }}" alt=""></div>
                     <h4>A domicilio</h4>
-                    <p>Podras ordernar a domicilio en las tiendas afiliadas que presten el servicio. </p>
+                    <p>Podrás ordernar a domicilio en las tiendas afiliadas que presten el servicio. </p>
                 </div>
                 <div class="col-md-4 col-sm-6">
                     <div class="icon-wrap"><img src="{{ asset('assets/images/icon-comments-flat.png') }}" alt=""></div>
                     <h4>Valoraciones</h4>
-                    <p>Podras valorar tus productos preferidos y ver las valoraciones de los demás usuarios.</p>
+                    <p>Podras conocer la opinión de los demás usuarios y valorar tus productos preferidos.</p>
                 </div>
                 <div class="col-md-4 col-sm-6">
                     <div class="icon-wrap"><img src="{{ asset('assets/images/icon-easel-flat.png') }}" alt=""></div>
