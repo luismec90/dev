@@ -10,32 +10,24 @@
 <div id="carousel-1" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
-        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-        <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
-        <li data-target="#carousel-example-generic" data-slide-to="2" class=""></li>
+    @@for ($i = 0; $i < $shop->covers->count(); $i++)
+        <li data-target="#carousel-1" data-slide-to="{{ $i }}" class="{{ $shop->covers[$i]->current==1 ? 'active' : '';}}"></li>
+    @endfor
+
     </ol>
 
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
-        <div class="item active">
-            <img src="http://snagovclub.ro/wp-content/uploads/2014/01/header_restaurante.jpg" alt="...">
-            <div class="carousel-caption">
-                <h3>Lorem ipsum dolor sit amet</h3>
-            </div>
+        @foreach($shop->covers as $cover)
+        <div class="item {{ $cover->current==1 ? 'active' : '';}}">
+            <img src="{{ $cover->pathImage($shop->id) }}" alt="...">
+            @if( $cover->caption!="")
+                <div class="carousel-caption">
+                    <h3>{{ $cover->caption }}</h3>
+                </div>
+            @endif
         </div>
-
-        <div class="item">
-            <img src="http://www.startoursbelize.com/wp-content/uploads/2012/12/restaurant.png" alt="...">
-            <div class="carousel-caption">
-                <h1>Lorem ipsum dolor sit amet</h1>
-            </div>
-        </div>
-        <div class="item">
-            <img src="http://media.dinner-deals.com/topTens/romanticRestaurant.jpg" alt="...">
-            <div class="carousel-caption">
-                <h1>Lorem ipsum dolor sit amet</h1>
-            </div>
-        </div>
+        @endforeach
 
     </div>
 
@@ -51,29 +43,10 @@
     <div class="section row">
     <br>
         <div class="col-lg-12">
-         <h2 class="section-title"><span>Bienvenido</span></h2>
+         <h2 class="section-title"><span>Acerca</span></h2>
         </div>
         <div class="col-lg-12">
-
-            <ul id="myTab" class="nav nav-tabs nav-justified">
-                <li class="active"><a href="#service-one" data-toggle="tab"><i class="fa fa-support"></i> Acerca de</a>
-                </li>
-                <li class=""><a href="#service-two" data-toggle="tab"><i class="fa fa-support"></i> Vision</a>
-                </li>
-            </ul>
-
-            <div id="myTabContent" class="tab-content">
-                <div class="tab-pane fade active in" id="service-one">
-                    <h4>Lorem ipsum dolor</h4>
-                    {{ $shop->about }}
-                </div>
-                <div class="tab-pane fade" id="service-two">
-                    <h4>Lorem ipsum dolor</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae repudiandae fugiat illo cupiditate excepturi esse officiis consectetur, laudantium qui voluptatem. Ad necessitatibus velit, accusantium expedita debitis impedit rerum totam id. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus quibusdam recusandae illum, nesciunt, architecto, saepe facere, voluptas eum incidunt dolores magni itaque autem neque velit in. At quia quaerat asperiores.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae repudiandae fugiat illo cupiditate excepturi esse officiis consectetur, laudantium qui voluptatem. Ad necessitatibus velit, accusantium expedita debitis impedit rerum totam id. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus quibusdam recusandae illum, nesciunt, architecto, saepe facere, voluptas eum incidunt dolores magni itaque autem neque velit in. At quia quaerat asperiores.</p>
-                </div>
-            </div>
-
+            {{ $shop->about }}
         </div>
     </div>
     <div class="section row">
