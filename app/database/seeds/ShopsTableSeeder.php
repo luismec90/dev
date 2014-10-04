@@ -15,6 +15,7 @@ class ShopsTableSeeder extends Seeder
         }
         Shop::create([
             'id' => 1,
+            'town_id'=>491,
             'name' => 'Restaurante Noma',
             'link' => 'restaurantenoma',
             'about' => $faker->paragraph($nb = 10),
@@ -30,6 +31,7 @@ class ShopsTableSeeder extends Seeder
 
         Shop::create([
             'id' => 2,
+            'town_id'=>491,
             'name' => "Pacho's Pizaa",
             'link' => 'pachospizza',
             'about' => $faker->paragraph($nb = 10),

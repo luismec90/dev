@@ -1,5 +1,14 @@
 @extends('layouts.default')
 
+@section('js')
+{{ HTML::script('assets/libs/select2/select2.js') }}
+@stop
+
+@section('css')
+{{ HTML::style('assets/libs/select2/select2.css') }}
+{{ HTML::style('assets/libs/select2/select2-bootstrap.css') }}
+@stop
+
 @section('content')
 
 <div id="carousel-1" class="carousel slide" data-ride="carousel">
@@ -26,13 +35,19 @@
             <br>
             <br>
             <div class="col-sm-2 col-sm-offset-4">
-                <input type="text" placeholder="Lugar" class="form-control">
+                <select id="town" class="form-control">
+                <option></option>
+                    @foreach($towns as $town)
+                        <option value="{{ $town->id }}">{{ $town->name }}</option>
+                    @endforeach
+                </select>
             </div>
             <div class="col-sm-2">
-                <select class="form-control">
-                    <option>Actividad</option>
-                    <option>Comer</option>
-                    <option>Comprar Ropa</option>
+                <select id="activity" class="form-control">
+                    <option></option>
+                        @foreach($activities as $activity)
+                            <option value="{{ $activity->id }}">{{ $activity->name }}</option>
+                        @endforeach
                 </select>
             </div>
         </div>

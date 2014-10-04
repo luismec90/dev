@@ -76,4 +76,21 @@ $(function () {
         var label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
         input.parent().parent().siblings("input").val(label);
     });
+
+   /* $( "#where" ).autocomplete({
+        source: "search/autocomplete",
+        minLength: 3,
+        select: function(event, ui) {
+            $('#where').val(ui.item.value);
+        }
+    });*/
+    $("#town").select2({
+        placeholder: "Seleccione una ciudad",
+        allowClear: true
+    });
+
+    $("#activity").select2({
+        placeholder: "Seleccione una actividad",
+        allowClear: true
+    });
 });

@@ -10,7 +10,7 @@
 
         <title>
             @section('title')
-            App
+            LinkingShops
             @show
         </title>
         {{ HTML::style('assets/libs/animate/animate.css') }}

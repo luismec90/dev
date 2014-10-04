@@ -50,7 +50,7 @@ class ProductsController extends \BaseController
         $review = new Review;
 
         // Validate that the user's input corresponds to the rules specified in the review model
-        $validator = Validator::make($input, Review::$rules);
+        $validator = Validator::make($input, Review::$rules,Review::$validationMessages);
 
         // If input passes validation - store the review in DB, otherwise return to product page with error message
         if ($validator->passes()) {

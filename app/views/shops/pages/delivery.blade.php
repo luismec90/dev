@@ -19,6 +19,12 @@
         @endforeach
     @endforeach
 
+     var selectedProductId=null;
+     var selectedProductCategoryId=null;
+    @if(!is_null($selectedProduct))
+        selectedProductId="{{ $selectedProduct->id }}";
+        selectedProductCategoryId="{{ $selectedProduct->category_id }}";
+    @endif
 </script>
 @stop
 
