@@ -1,7 +1,7 @@
 <footer id="footer" class="site-footer">
     <div class="container">
 
-        <div id="sidebar-footer-1">
+        <div id="sidebar-footer-2">
             <div class="row">
 
                 <aside class="widget col-sm-3 col-mdcol-sm-6">

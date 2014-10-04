@@ -72,15 +72,15 @@
                     <p>Por cada compra que realices en nuestros establecimientos afiliados recibiras puntos, los cuales podras utilizar en compras futuras.</p> 
                 </div>
                 <!-- los mismos establecimientos-->
-                <div class="col-md-4 col-sm-6">
+                <div class="col-md-1 col-sm-6">
                     <div class="icon-wrap"><img src="{{ asset('assets/images/offer.png') }}" alt=""></div>
                     <h4>Descuentos</h4>
-                    <p>A través de LinkingShops podrés obtener descuentos exclusivos al comprar en las tiendas de nuestra red.</p>
+                    <p>A través de LinkingShops podrás obtener descuentos exclusivos al comprar en las tiendas de nuestra red.</p>
                 </div>
-                <div class="col-md-4 col-sm-6">
+                <div class="col-md-1 col-sm-6">
                     <div class="icon-wrap"><img src="{{ asset('assets/images/icon-ticket-flat.png') }}" alt=""></div>
                     <h4>Tiendas</h4>
-                    <p>Conoce las tiendas pertenecientes a nuestra red, sus alianzas, productos, promociones, y localización. </p>
+                    <p>Conoce nuestra red de tiendas, sus alianzas, <br> promociones, y localización. </p>
     <!--                <p>Cada establecimiento afiliado tiene su página web donde puedes encontrar sus productos/servicios, valoraciones de los usuarios y localización. </p>
                     Cada establecimiento afiliado tiene su respectiva página web en la cual puedes encontrar todo tipo de información como fotos de los productos/servicios, valoraciones de los usuarios, localización. -->
                 </div>
