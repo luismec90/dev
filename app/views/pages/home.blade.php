@@ -51,7 +51,7 @@
 <section class="section section-center section-cta">
     <div class="container">
         <h2 class="section-title"><span>Listo para comenzar?</span></h2>
-        <p>LinkingShops es una red de tiendas aliadas, que ofrecen descuentos exclusivos a sus clientes como trato preferencial.       
+        <p>LinkingShops es una red de tiendas aliadas para ofrecer descuentos exclusivos a sus clientes como trato preferencial.       
         </p>
         <div class="main-action row">
             <div class="col-md-3 col-md-offset-3 col-sm-4 col-sm-offset-2"><a href="#" class="smooth-scroll btn btn-lg btn-block btn-danger">Registrarme</a></div>
