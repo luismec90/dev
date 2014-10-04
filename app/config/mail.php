@@ -28,7 +28,7 @@ return array(
 	|
 	*/
 
-	'host' => 'smtp.gmail.com',
+	'host' => 'smtp.webfaction.com',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -54,7 +54,7 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => 'luismec90@gmail.com', 'name' => 'Luis Montoya'),
+	'from' => array('address' => 'soporte@linkingshops.com', 'name' => 'LinkingShops'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return array(
 	|
 	*/
 
-	'username' => 'luismec90@gmail.com',
+	'username' => 'linkingshops',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return array(
 	|
 	*/
 
-	'password' => 'tereamoflakit4',
+	'password' => 'luis5484175',
 
 	/*
 	|--------------------------------------------------------------------------

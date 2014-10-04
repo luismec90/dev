@@ -23,7 +23,7 @@ class ShopsTableSeeder extends Seeder
             'street_address' => $faker->address,
             'phone' => $faker->phoneNumber,
             'cell' => $faker->phoneNumber,
-            'email' => $faker->freeEmail,
+            'email' => 'luismec90@gmail.com',
             'schedule' => ' Lu - Ju: 11:00 AM to 7:00 PM, Vi - Do: 11:00 AM to 10:00 PM ',
             'facebook' => 'https://www.facebook.com/Noma.restaurant'
         ]);
@@ -38,7 +38,7 @@ class ShopsTableSeeder extends Seeder
             'street_address' => $faker->address,
             'phone' => $faker->phoneNumber,
             'cell' => $faker->phoneNumber,
-            'email' => $faker->freeEmail,
+            'email' => 'luismec90@gmail.com',
             'schedule' => 'https://www.facebook.com/Noma.restaurant'
         ]);
     }
