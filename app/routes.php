@@ -18,6 +18,7 @@ Route::get('/busqueda', array('as' => 'search_path', 'uses' => 'SearchesControll
 
 /* Contact */
 Route::get('/contacto', array('as' => 'contact_path', 'uses' => 'PagesController@contact'));
+Route::post('/contacto', array('as' => 'contact_path', 'uses' => 'PagesController@sendContact'));
 
 /* Register */
 Route::get('registro', array('before' => 'guest', 'as' => 'register_path', 'uses' => 'RegistrationController@create'));

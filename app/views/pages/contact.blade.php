@@ -2,7 +2,6 @@
 
 @section('css')
 {{ HTML::style('assets/libs/bootstrapvalidator/css/bootstrapValidator.min.css') }}
-{{ HTML::style('assets/css/registro.css') }}
 @stop
 
 @section('js')
@@ -12,43 +11,54 @@
 @stop
 
 @section('content')
-<section id="contact" class="section section-center section-contact">
+<section id="contact" class="section  section-contact">
     <div class="container">
         <h2 class="section-title"><span>Contacto</span></h2>
-        <p> Deja tu mensaje y te contactaremos a la brevedad.</p>
+        <p class="text-center"> Deja tu mensaje y te contactaremos a la brevedad.</p>
         <div class="main-action">
-            <form method="post" action="contact.php" name="contactform" id="contactform">
-                <div class="results"></div>
+
+            @include('layouts.partials.errors')
+
+           {{ Form::open(['route'=>'contact_path','class'=>'validate']) }}
                 <div class="row">
+
                     <div class="col-sm-6">
+                        <!-- Message Form Input -->
                         <div class="form-group">
-                            <label class="sr-only">Mensaje</label>
-                            <textarea name="message" class="form-control" placeholder="Mensaje" style="height: 181px" rows="6" required></textarea>
+                            {{ Form::label('message','Mensaje:') }}
+                            {{ Form::textarea('message',null,['class'=>'form-control','rows'=>'11','required'=>'required']) }}
                         </div>
+
                     </div>
                     <div class="col-sm-6">
+                        <!-- Subject Form Input -->
                         <div class="form-group">
-                            <label class="sr-only">Asunto</label>
-                            <input name="subject" type="text" class="form-control" placeholder="Asunto" required>
+                            {{ Form::label('message','Asunto:') }}
+                            {{ Form::text('subject',null,['class'=>'form-control','required'=>'required']) }}
                         </div>
+
+                        <!-- Name Form Input -->
                         <div class="form-group">
-                            <label class="sr-only">Nombre</label>
-                            <input name="name" type="text" class="form-control" placeholder="Nombre" required>
+                            {{ Form::label('message','Nombre:') }}
+                            {{ Form::text('name',null,['class'=>'form-control','required'=>'required']) }}
                         </div>
+
+                        <!-- Email Form Input -->
                         <div class="form-group">
-                            <label class="sr-only">Email</label>
-                            <input name="email" type="email" class="form-control" placeholder="Email" required>
+                            {{ Form::label('email','Email:') }}
+                            {{ Form::email('email',null,['class'=>'form-control','required'=>'required']) }}
                         </div>
+
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-3 col-sm-3 col-xs-12">
-                                    <button id="submit" type="submit" class="btn btn-primary btn-block">Enviar</button>
+                                    {{ Form::submit('Enviar',['class'=>'btn btn-primary btn-block']) }}
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </form>
+             {{ Form::close() }}
         </div>
     </div>
 </section>
