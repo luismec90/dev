@@ -17,4 +17,18 @@ class Shop extends \Eloquent {
         return $this->hasMany('Cover');
     }
 
+    public function town() {
+        return $this->belongsTo('Town');
+    }
+
+    public function activities()
+    {
+        return $this->belongsToMany('Activity');
+    }
+
+    public function pathPreviwImage()
+    {
+        return asset("shops/{$this->id}/{$this->image_preview}");
+    }
+
 }

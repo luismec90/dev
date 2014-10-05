@@ -9,6 +9,8 @@ class DatabaseSeeder extends Seeder {
      */
     public function run() {
         Eloquent::unguard();
+        $this->call('TownsTableSeeder');
+        $this->call('ActivitiesTableSeeder');
         $this->call('RolesTableSeeder');
         $this->call('UsersTableSeeder');
         $this->call('ShopsTableSeeder');
@@ -17,6 +19,8 @@ class DatabaseSeeder extends Seeder {
         $this->call('ProductsTableSeeder');
         $this->call('ReviewsTableSeeder');
         $this->call('CoversTableSeeder');
+        $this->call('ActivitiesShopsTableSeeder');
+
     }
 
 }

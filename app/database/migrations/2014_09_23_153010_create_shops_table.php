@@ -15,8 +15,11 @@ class CreateShopsTable extends Migration
     {
         Schema::create('shops', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('town_id')->unsigned();
+            $table->foreign('town_id')->references('id')->on('towns')->onDelete('cascade');
             $table->string('name', 32)->unique();
             $table->string('link', 64)->unique();
+            $table->string('image_preview',20);
             $table->string('about', 2048);
             $table->string('lat');
             $table->string('lng');

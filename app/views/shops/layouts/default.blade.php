@@ -31,7 +31,7 @@
     </head>
     <body>
         <div id="page">
-            @include('shops.layouts.partials.header')
+            @include('layouts.partials.header')
 
             <main id="main" class="site-main">
                 <div id="contenedor" class="container">

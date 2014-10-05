@@ -7,6 +7,10 @@ class Review extends \Eloquent
         'comment' => 'required',
         'rating' => 'required|integer|between:1,5'
     ];
+    public static $validationMessages = [
+        'comment.required' => 'El campo comentario es obligatorio',
+        'rating.required' => 'El campo valoración es obligatorio'
+    ];
 
     public function user()
     {

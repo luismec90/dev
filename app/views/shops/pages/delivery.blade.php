@@ -19,20 +19,28 @@
         @endforeach
     @endforeach
 
+     var selectedProductId=null;
+     var selectedProductCategoryId=null;
+    @if(!is_null($selectedProduct))
+        selectedProductId="{{ $selectedProduct->id }}";
+        selectedProductCategoryId="{{ $selectedProduct->category_id }}";
+    @endif
 </script>
 @stop
 
 @section('content')
 
+
 <div class="row">
     <div class="col-lg-12">
-       <h2 class="section-title"><span>Domicilios</span></h2>
+       <h2 class="shop-title section-title"><span>{{ $shop->name }}</span></h2>
     <br>
     </div>
 </div>
 <div class="row">
+    @include('shops.layouts.partials.left_menu')
 
-    <div class="col-md-6 col-lg-offset-3">
+    <div class="col-md-9">
 
         @include('layouts.partials.errors')
 

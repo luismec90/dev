@@ -43,17 +43,16 @@ Route::get('login_facebook', array('before' => 'guest', 'as' => 'login_facebook_
 Route::get('login_twitter', array('before' => 'guest', 'as' => 'login_twitter_path', 'uses' => 'SocialNetworksController@loginWithTwitter'));
 Route::get('login_google', array('before' => 'guest', 'as' => 'login_google_path', 'uses' => 'SocialNetworksController@loginWithGoogle'));
 
-/* Reviews */
-
 
 Route::group(array('prefix' => '{shop_link}'), function () {
 
     Route::get('/', array('as' => 'shop_path', 'uses' => 'ShopsController@show'));
     Route::get('/localizacion', array('as' => 'localization_path', 'uses' => 'ShopsController@localization'));
 
-    Route::post('{category}/{product}/{id}review', array('as' => 'review_path', 'uses' => 'ProductsController@saveReview'));
+    Route::post('{category}/{product}/{id}/review', array('as' => 'review_path', 'uses' => 'ProductsController@saveReview'));
 
-    Route::get('/domicilios', array('before' => 'auth','as' => 'delivery_path', 'uses' => 'DeliveriesController@create'));
+    Route::get('/domicilios/', array('before' => 'auth','as' => 'delivery_path', 'uses' => 'DeliveriesController@create'));
+    Route::get('/domicilios/{product_id}', array('before' => 'auth','as' => 'product_delivery_path', 'uses' => 'DeliveriesController@create'));
     Route::post('/domicilios', array('before' => 'auth','as' => 'delivery_path', 'uses' => 'DeliveriesController@store'));
 
 

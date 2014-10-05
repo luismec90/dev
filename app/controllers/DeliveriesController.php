@@ -4,8 +4,10 @@ class DeliveriesController extends \BaseController
 {
 
 
-    public function create($shop_link)
+    public function create($shop_link,$product_id=null)
     {
+        $selectedProduct=Product::find($product_id);
+
         $shop = Shop::with('categories', 'categories.products')->where('link', $shop_link)->firstOrFail();
 
         $selectCategories[""] = "Seleccionar...";
@@ -13,7 +15,7 @@ class DeliveriesController extends \BaseController
             $selectCategories[$category->id] = $category->name;
         }
 
-        return View::make('shops.pages.delivery', compact('shop', 'selectCategories'));
+        return View::make('shops.pages.delivery', compact('shop', 'selectCategories','selectedProduct'));
     }
 
 

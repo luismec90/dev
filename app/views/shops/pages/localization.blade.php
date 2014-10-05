@@ -25,13 +25,18 @@ function iniciar() {
 @stop
 @section('content')
 
+
 <div class="row">
     <div class="col-lg-12">
-       <h2 class="section-title"><span>Localización</span></h2>
+       <h2 class="shop-title section-title"><span>{{ $shop->name }}</span></h2>
     <br>
     </div>
 </div>
 <div class="row">
+    @include('shops.layouts.partials.left_menu')
+
+    <div class="col-md-9">
+    <div class="row">
 
     <div class="col-md-8">
         <div id="map"></div>
@@ -57,6 +62,7 @@ function iniciar() {
 
         </ul>
     </div>
+      </div>
 </div>
 <br>
 @stop

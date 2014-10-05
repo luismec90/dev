@@ -1,15 +1,15 @@
 @extends('layouts.default')
 
 @section('css')
-{{ HTML::style('assets/libs/bootstrapvalidator/css/bootstrapValidator.min.css') }}
-{{ HTML::style('assets/css/registro.css') }}
+{{ HTML::style('assets/libs/select2/select2.css') }}
+{{ HTML::style('assets/libs/select2/select2-bootstrap.css') }}
 @stop
 
 @section('js')
-{{ HTML::script('assets/libs/bootstrapvalidator/js/bootstrapValidator.js') }}
-{{ HTML::script('assets/libs/bootstrapvalidator/js/language/es_ES.js') }}
-{{ HTML::script('assets/js/validation.js') }}
+    {{ HTML::script('assets/libs/select2/select2.js') }}
+    {{ HTML::script('assets/js/search.js') }}
 @stop
+
 
 @section('content')
 <section id="contact" class="section section-center section-contact">
@@ -17,50 +17,57 @@
         <h2 class="section-title"><span>Búsqueda</span></h2>
         <div class="main-action">
             <div class="row">
-             <div class="row">
                 <div class="col-md-12 text-center">
-                    <h4>
-                    Que deseas hacer hoy?
-                    </h4>
-                    <div class="row">
-                        <br>
-                        <div class="col-sm-2 col-sm-offset-3">
-                            <input type="text" placeholder="Lugar" class="form-control">
-                        </div>
-                        <div class="col-sm-2">
-                            <select class="form-control">
-                                <option>Actividad</option>
-                                <option>Comer</option>
-                                <option>Comprar Ropa</option>
-                            </select>
-                        </div>
-                        <div class="col-sm-2">
-                            <button class="btn btn-primary btn-block">Buscar</button>
-                        </div>
-                    </div>
-            </div>
+                    @include('layouts.partials.search')
                 </div>
+            </div>
             <div class="row">
-            <br><br>
-             <div class="col-xs-12">
-                @if(isset($shops))
-                    <table class="table table-striped">
+                <br><br>
+                <div class="col-xs-12">
+                    @if(!empty($shops) && $shops->count())
+                        <fieldset>  <legend>Resultados</legend>
+                        @foreach($shops as $shop)
+                            <div class="row">
+                                <img class="col-sm-2" src="{{ $shop->pathPreviwImage() }}">
+                                <div class="col-sm-10">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <h4 class="text-left">
+                                            {{ $shop->name }}
+                                            <a href="{{ route('shop_path',$shop->link) }}" class="btn btn-primary btn-sm">Ver página web </a>
+                                            <a href="{{ route('localization_path',$shop->link) }}" class="btn btn-primary btn-sm">Localización </a>
+                                            <a href="{{ route('delivery_path',$shop->link) }}"class="btn btn-primary btn-sm">Domicilios </a>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12 text-left">
+                                            {{ $shop->about }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                        @endforeach
+
+                        {{-- <table class="table table-striped">
                         <tr>
-                            <td>Tienda</td>
-                            <td>info</td>
-                            <td>Sitio web</td>
+                        <td>Tienda</td>
+                        <td>info</td>
+                        <td>Sitio web</td>
                         </tr>
                         @foreach($shops as $shop)
-                            <tr>
-                                <td>{{ $shop->name }}</td>
-                                <td></td>
-                                <td>{{ link_to_route('shop_path','Ver',[$shop->link]) }}</td>
-                            </tr>
+                        <tr>
+                        <td>{{ $shop->name }}</td>
+                        <td></td>
+                        <td>{{ link_to_route('shop_path','Ver',[$shop->link]) }}</td>
+                        </tr>
                         @endforeach
-                    </table>
-                @endif
+                        </table> --}}
+                        </fieldset>
+                    @endif
+                </div>
             </div>
-             </div>
         </div>
     </div>
 </section>

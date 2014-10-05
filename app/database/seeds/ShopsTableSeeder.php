@@ -15,8 +15,10 @@ class ShopsTableSeeder extends Seeder
         }
         Shop::create([
             'id' => 1,
+            'town_id'=>491,
             'name' => 'Restaurante Noma',
             'link' => 'restaurantenoma',
+            'image_preview'=>'preview.jpg',
             'about' => $faker->paragraph($nb = 10),
             'lat' => '6.172831',
             'lng' => '-75.333458',
@@ -30,8 +32,10 @@ class ShopsTableSeeder extends Seeder
 
         Shop::create([
             'id' => 2,
+            'town_id'=>491,
             'name' => "Pacho's Pizaa",
             'link' => 'pachospizza',
+            'image_preview'=>'preview.jpg',
             'about' => $faker->paragraph($nb = 10),
             'lat' => '6.172831',
             'lng' => '-75.333458',

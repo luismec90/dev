@@ -6,6 +6,10 @@
     <br>
     </div>
 </div>
+<div class="row">
+    @include('shops.layouts.partials.left_menu')
+  	<div class="col-md-9">
+
 
 <div id="carousel-1" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
@@ -56,7 +60,7 @@
 
 
             @foreach($popularProducts as $product)
-            <div class="product col-sm-3 col-lg-3 col-md-3">
+            <div class="product col-sm-4 col-lg-4 col-md-4">
                 @include('shops.layouts.partials.preview_product',['category'=>$product->category])
             </div>
             @endforeach
@@ -182,4 +186,5 @@
             </div>
         </div>--}}
     </div>
+</div>
 @stop

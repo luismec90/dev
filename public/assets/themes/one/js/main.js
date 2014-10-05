@@ -76,7 +76,9 @@ $(function () {
         var label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
         input.parent().parent().siblings("input").val(label);
     });
-
+    $('a.tree-toggler').click(function () {
+        $(this).parent().children('ul.tree').toggle(300);
+    });
 
 
 });
