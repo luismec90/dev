@@ -26,4 +26,9 @@ class Shop extends \Eloquent {
         return $this->belongsToMany('Activity');
     }
 
+    public function pathPreviwImage()
+    {
+        return asset("shops/{$this->id}/{$this->image_preview}");
+    }
+
 }

@@ -1,13 +1,16 @@
 @extends('layouts.default')
 
-@section('js')
-{{ HTML::script('assets/libs/select2/select2.js') }}
+@section('css')
+    {{ HTML::style('assets/libs/select2/select2.css') }}
+    {{ HTML::style('assets/libs/select2/select2-bootstrap.css') }}
 @stop
 
-@section('css')
-{{ HTML::style('assets/libs/select2/select2.css') }}
-{{ HTML::style('assets/libs/select2/select2-bootstrap.css') }}
+@section('js')
+    {{ HTML::script('assets/libs/select2/select2.js') }}
+    {{ HTML::script('assets/js/search.js') }}
 @stop
+
+
 
 @section('content')
 
@@ -28,35 +31,8 @@
 <div class="main-text hidden-xs">
     <div class="col-md-12 text-center">
         <h1> Encuentra establecimientos afiliados cercanos</h1>
-        <h3>
-            Que deseas hacer hoy?
-        </h3>
-        <div class="row">
-            <br>
-            <br>
-            <div class="col-sm-2 col-sm-offset-4">
-                <select id="town" class="form-control">
-                <option></option>
-                    @foreach($towns as $town)
-                        <option value="{{ $town->id }}">{{ $town->name }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="col-sm-2">
-                <select id="activity" class="form-control">
-                    <option></option>
-                        @foreach($activities as $activity)
-                            <option value="{{ $activity->id }}">{{ $activity->name }}</option>
-                        @endforeach
-                </select>
-            </div>
-        </div>
-        <div class="row">
-            <br>
-            <br>
-            <div class="col-xs-2 col-xs-offset-5 text-center">
-                <button class="btn btn-primary btn-lg btn-block">Buscar</button>
-            </div>
+        <div class="container">
+            @include('layouts.partials.search')
         </div>
     </div>
 </div>

@@ -98,3 +98,20 @@ a:hover{
     border-color: #e74c3c;
     color: #ffffff;
 }
+.glyphicon { margin-right:10px; }
+.panel-body { padding:0px; }
+.panel-body table tr td { padding-left: 15px }
+.panel-body .table {margin-bottom: 0px; }
+
+.nav-list {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 0;
+}
+a.tree-toggler{
+    cursor:pointer;
+}
+li.active a, .nav-pills li.active a:hover, .nav-pills li.active a:focus {
+    color: #fff;
+    background-color: #1abc9c;
+}
