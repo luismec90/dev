@@ -22,7 +22,7 @@ class Product extends \Eloquent
 
     public function pathImage($cover, $category_id, $product_id)
     {
-        $product_id = 1;//Mientras
+    //$product_id = 1;
         if ($cover)
             return asset("shops/$category_id/products/$product_id/cover.jpg");
         return asset("shops/$category_id/products/$product_id/mini.jpg");
