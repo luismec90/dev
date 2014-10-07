@@ -1,10 +1,5 @@
 <div class="col-md-3">
-    <div class="row">
-            <div class="col-sm-8 col-sm-offset-2">
-                <button class="btn btn-info btn-block">Afiliarse</button>
-                <br>
-            </div>
-        </div>
+
     <div  class="well">
         <ul class="nav nav-pills nav-stacked">
             <li class="{{ Route::currentRouteName()=='shop_path' ? 'active':'' }}">
@@ -26,6 +21,11 @@
                 <a href="{{ route('localization_path',$shop->link) }}">Localización</a>
             </li>
         </ul>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+           @include('shops.layouts.partials.member-form')
+        </div>
     </div>
 
 </div>

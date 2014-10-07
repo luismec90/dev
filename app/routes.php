@@ -56,7 +56,9 @@ Route::group(array('prefix' => '{shop_link}'), function () {
     Route::get('/domicilios/{product_id}', array('before' => 'auth','as' => 'product_delivery_path', 'uses' => 'DeliveriesController@create'));
     Route::post('/domicilios', array('before' => 'auth','as' => 'delivery_path', 'uses' => 'DeliveriesController@store'));
 
+    Route::post('afiliarse', array('as' => 'member_path', 'uses' => 'MembersController@store'));
 
+    Route::delete('afiliarse', array('as' => 'member_path', 'uses' => 'MembersController@destroy'));
 
 
 

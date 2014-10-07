@@ -84,8 +84,8 @@ Route::filter('csrf', function() {
 
 /* Cutsom filters */
 Route::filter('admin', function($route) {
-    $shop_name = $route->getParameter('shop');
-    if (!Auth::user()->isAdmin($shop_name)) {
+    $shop_link = $route->getParameter('shop_link');
+    if (!Auth::user()->isAdmin($shop_link)) {
         return Redirect::home();
     }
 });
