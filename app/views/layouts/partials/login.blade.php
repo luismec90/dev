@@ -1,10 +1,6 @@
 <ul id="navigation" class="nav navbar-nav navbar-right">
     @if(Auth::check())
-    @if(isset($shop) && Auth::user()->isAdmin($shop->id))
-        <li class="@if(Route::currentRouteName()=='bill_path') {{ 'active'}} @endif">
-            <a href="{{ route('bill_path',$shop->link) }}">Administración</a>
-        </li>
-        @endif
+
         <li> @include('layouts.partials.avatar')</li>
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -13,6 +9,9 @@
             <ul class="dropdown-menu">
                 <li class="@if(Route::currentRouteName()=='profile_path') {{ "active"}} @endif">
                     <a href="{{ route('profile_path') }}">Mi perfil</a>
+                </li>
+                <li class="@if(Route::currentRouteName()=='summary_path') {{ "active"}} @endif">
+                    <a href="{{ route('summary_path') }}">Mi saldo</a>
                 </li>
                 <li class="divider"></li>
                 @if(false && isset($shop))

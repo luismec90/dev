@@ -20,6 +20,8 @@ Route::get('/busqueda', array('as' => 'search_path', 'uses' => 'SearchesControll
 Route::get('/contacto', array('as' => 'contact_path', 'uses' => 'PagesController@contact'));
 Route::post('/contacto', array('as' => 'contact_path', 'uses' => 'PagesController@sendContact'));
 
+Route::get('saldo', array('before' => 'auth', 'as' => 'summary_path', 'uses' => 'PagesController@balance'));
+
 /* Register */
 Route::get('registro', array('before' => 'guest', 'as' => 'register_path', 'uses' => 'RegistrationController@create'));
 Route::post('registro', array('before' => 'guest', 'as' => 'register_path', 'uses' => 'RegistrationController@store'));
@@ -43,6 +45,7 @@ Route::post('perfil/password', array('before' => 'auth', 'as' => 'update_passwor
 Route::get('login_facebook', array('before' => 'guest', 'as' => 'login_facebook_path', 'uses' => 'SocialNetworksController@loginWithFacebook'));
 Route::get('login_twitter', array('before' => 'guest', 'as' => 'login_twitter_path', 'uses' => 'SocialNetworksController@loginWithTwitter'));
 Route::get('login_google', array('before' => 'guest', 'as' => 'login_google_path', 'uses' => 'SocialNetworksController@loginWithGoogle'));
+
 
 
 Route::group(array('prefix' => '{shop_link}'), function () {

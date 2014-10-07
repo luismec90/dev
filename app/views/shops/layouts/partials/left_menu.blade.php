@@ -20,6 +20,14 @@
             <li class="{{ Route::currentRouteName()=='localization_path' ? 'active':'' }}">
                 <a href="{{ route('localization_path',$shop->link) }}">Localización</a>
             </li>
+            <hr>
+            @if(isset($shop) && Auth::user()->isAdmin($shop->id))
+                <li class="@if(Route::currentRouteName()=='bill_path') {{ 'active'}} @endif">
+                    <a href="{{ route('bill_path',$shop->link) }}">Realizar venta</a>
+                </li>
+            @endif
+
+
         </ul>
     </div>
     <div class="row">
