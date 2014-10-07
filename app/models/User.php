@@ -67,7 +67,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface
 
     public function isAdmin($shop_id)
     {
-
         $shop = $this->shops()->where('shop_id', $shop_id)->where('role', 1)->get();
         if ($shop->count())
             return true;

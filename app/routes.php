@@ -47,6 +47,13 @@ Route::get('login_google', array('before' => 'guest', 'as' => 'login_google_path
 
 Route::group(array('prefix' => '{shop_link}'), function () {
 
+    /*Zona de administracion*/
+    Route::group(array('prefix' => 'admin'), function () {
+        Route::get('/', array('before' => 'auth|admin','as' => 'bill_path', 'uses' => 'BillsController@create'));
+        Route::post('/', array('before' => 'auth|admin','as' => 'bill_path', 'uses' => 'BillsController@store'));
+    });
+
+
     Route::get('/', array('as' => 'shop_path', 'uses' => 'ShopsController@show'));
     Route::get('/localizacion', array('as' => 'localization_path', 'uses' => 'ShopsController@localization'));
 
@@ -61,10 +68,14 @@ Route::group(array('prefix' => '{shop_link}'), function () {
     Route::delete('afiliarse', array('as' => 'member_path', 'uses' => 'MembersController@destroy'));
 
 
+    Route::get('/{category}', array('as' => 'category_path', 'uses' => 'CategoriesController@show'));
+    Route::get('/{category}/{product}', array('as' => 'product_path', 'uses' => 'ProductsController@show'));
 
 
 
 
+
+/*
 
 
 
@@ -82,8 +93,8 @@ Route::group(array('prefix' => '{shop_link}'), function () {
 
 
     Route::get('/contacto', array('as' => 'contact_shop_path', 'uses' => 'ShopsController@contact'));
-    Route::get('/{category}', array('as' => 'category_path', 'uses' => 'CategoriesController@show'));
-    Route::get('/{category}/{product}', array('as' => 'product_path', 'uses' => 'ProductsController@show'));
+
+*/
 });
 
 
