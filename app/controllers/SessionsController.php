@@ -6,6 +6,7 @@ class SessionsController extends \BaseController
 
     public function create()
     {
+        Session::put('previous_url', URL::previous());
         return View::make('pages.login');
     }
 
@@ -18,14 +19,14 @@ class SessionsController extends \BaseController
         }
         Flash::success('Bienvenido nuevamente');
 
-        return Redirect::intended();
+        return Redirect::to(Session::get('previous_url'));
     }
 
     public function destroy()
     {
         Auth::logout();
 
-        return Redirect::intended();
+        return Redirect::back();
     }
 
 }

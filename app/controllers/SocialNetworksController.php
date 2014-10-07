@@ -41,7 +41,7 @@ class SocialNetworksController extends \BaseController
                 return Redirect::route('update_password_path')->withErrors(['message' => 'Por favor configure su contraseña']);
             }
 
-            return Redirect::intended();
+            return Redirect::to(Session::get('previous_url'));
 
 
         } // if not ask for permission first
@@ -93,7 +93,8 @@ class SocialNetworksController extends \BaseController
             if ($user->password == "") {
                 return Redirect::route('update_password_path')->withErrors(['message' => 'Por favor establesca su contraseña']);
             }
-            return Redirect::intended();
+
+            return Redirect::to(Session::get('previous_url'));
 
         } // if not ask for permission first
         else {

@@ -65,10 +65,18 @@ class User extends Eloquent implements UserInterface, RemindableInterface
         return $this->belongsToMany('Shop')->withPivot('role');
     }
 
-    public function isAdmin($shop_name)
+    public function isAdmin($shop_id)
     {
-        $shop = Shop::where('name', $shop_name)->firstOrFail();
-        $shop = $this->shops()->where('shop_id', $shop->id)->where('role', 1)->get();
+
+        $shop = $this->shops()->where('shop_id', $shop_id)->where('role', 1)->get();
+        if ($shop->count())
+            return true;
+        return false;
+    }
+
+    public function isMember($shop_id)
+    {
+        $shop = $this->shops()->where('shop_id', $shop_id)->where('role', 2)->get();
         if ($shop->count())
             return true;
         return false;
