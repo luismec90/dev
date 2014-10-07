@@ -19,12 +19,12 @@ class CategoriesTableSeeder extends Seeder {
         Category::create([
             'id'=>2,
             'shop_id' => 1,
-            'name' => 'Tradicional'
+            'name' => 'Picadas'
         ]);
         Category::create([
             'id'=>3,
             'shop_id' =>1,
-            'name' => 'Típica'
+            'name' => 'Ensaladas'
         ]);
     }
 
