@@ -13,7 +13,7 @@ class CoversTableSeeder extends Seeder {
             'id'=>1,
             'shop_id' => "1",
             'image' => '1.jpg',
-            'caption' => 'Hola Mundo 1',
+            'caption' => 'jhasgdhjsadg',
             'current'=>1
         ]);
 
