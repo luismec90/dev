@@ -43,7 +43,7 @@
     <div class="container">
         <h2 class="section-title"><span>Listo para comenzar?</span></h2>
 
-        <p>LinkingShops es una red de tiendas aliadas para ofrecer descuentos exclusivos a sus clientes.
+        <p>LinkingShops es una red de tiendas, aliadas para ofrecer descuentos exclusivos a sus clientes.
 
         </p>
         <div class="main-action row text-center">
@@ -58,23 +58,22 @@
         <h2 class="section-title"><span>Como funciona?</span></h2>
         <div class="row">
             <div class="col-md-4 col-sm-6">
+                <div class="icon-wrap"><img src="{{ asset('assets/images/payment4.png') }}" alt=""></div>
+                <h4>Puntos</h4>
+                <p>Por cada compra que realices<br> en nuestros establecimientos recibirás<br> saldo a tu favor para compras futuras.</p> 
+            </div>
+            <div class="col-md-4 col-sm-6">
                 <div class="icon-wrap"><img src="{{ asset('assets/images/icon-bag-flat.png') }}" alt=""></div>
                 <h4>Comprando</h4>
-                <p>Por cada compra que realices en nuestros establecimientos afiliados recibiras puntos, los cuales podras utilizar en compras futuras.</p> 
+                <p>A través de nuestra página encontrarás <br> productos y servicios de todo tipo, incluyendo<br>  comidas y vestuario a tu gusto.</p> 
             </div>
             <!-- los mismos establecimientos-->
             <div class="col-md-4 col-sm-6">
                 <div class="icon-wrap"><img src="{{ asset('assets/images/offer.png') }}" alt=""></div>
                 <h4>Descuentos</h4>
-                <p>A través de LinkingShops podrás obtener descuentos exclusivos al comprar en las tiendas de nuestra red.</p>
+                <p>Con LinkingShops obtendrás <br>descuentos exclusivos al comprar <br> en las tiendas de nuestra red.</p>
             </div>
-            <div class="col-md-4 col-sm-6">
-                <div class="icon-wrap"><img src="{{ asset('assets/images/icon-ticket-flat.png') }}" alt=""></div>
-                <h4>Tiendas</h4>
-                <p>Conoce nuestra red de tiendas, sus alianzas, <br> promociones, y localización. </p>
-<!--                <p>Cada establecimiento afiliado tiene su página web donde puedes encontrar sus productos/servicios, valoraciones de los usuarios y localización. </p>
-                Cada establecimiento afiliado tiene su respectiva página web en la cual puedes encontrar todo tipo de información como fotos de los productos/servicios, valoraciones de los usuarios, localización. -->
-            </div>
+            
         </div>
         
         
@@ -86,19 +85,21 @@
                     </div>-->
         <div class="row">
             <div class="col-md-4 col-sm-6">
+                <div class="icon-wrap"><img src="{{ asset('assets/images/icon-ticket-flat.png') }}" alt=""></div>
+                <h4>Tiendas</h4>
+                <p>Conoce nuestra red de tiendas <br>con sus alianzas, promociones y localización. </p>
+<!--                <p>Cada establecimiento afiliado tiene su página web donde puedes encontrar sus productos/servicios, valoraciones de los usuarios y localización. </p>
+                Cada establecimiento afiliado tiene su respectiva página web en la cual puedes encontrar todo tipo de información como fotos de los productos/servicios, valoraciones de los usuarios, localización. -->
+            </div>
+            <div class="col-md-4 col-sm-6">
                 <div class="icon-wrap"><img src="{{ asset('assets/images/icon-delivery-flat.png') }}" alt=""></div>
                 <h4>A domicilio</h4>
-                <p>Podrás ordernar a domicilio en las tiendas afiliadas que presten el servicio. </p>
+                <p>Podrás ordernar a domicilio <br>en las tiendas afiliadas que presten el servicio. </p>
             </div>
             <div class="col-md-4 col-sm-6">
                 <div class="icon-wrap"><img src="{{ asset('assets/images/icon-comments-flat.png') }}" alt=""></div>
                 <h4>Valoraciones</h4>
-                <p>Podras conocer la opinión de los demás usuarios y valorar tus productos preferidos.</p>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <div class="icon-wrap"><img src="{{ asset('assets/images/icon-easel-flat.png') }}" alt=""></div>
-                <h4>Estadisticas</h4>
-                <p>Recommendaciones ajustadas a tu estilo, basados en estadisticas de uso.</p>
+                <p>Compra los mejores productos,<br> conociendo la opinión de los demás usuarios<br>acerca de sus compras y valora también<br>tus productos preferidos.</p>
             </div>
         </div>
     </div>
@@ -252,13 +253,13 @@
                 </div>
                 <div class="item">
                     <blockquote>
-                         <p>Es genial que me devuelvan una parte del dinero para usuarlo en futuras compras   </p>
+                         <p>Es genial que me devuelvan dinero para compras futuras </p>
                         <small> <cite title="Source Title">Juan Diego Girldo</cite></small>
                     </blockquote>
                 </div>
                 <div class="item">
                     <blockquote>
-                         <p>Suscribirme a las tiendas me ha permitido estar al tanto de las mejores promociones </p>
+                         <p>Suscribirme a las tiendas me ha permitido conocer las mejores promociones </p>
                         <small> <cite title="Source Title">Andres Pineda</cite></small>
                     </blockquote>
                 </div>

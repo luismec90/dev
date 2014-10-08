@@ -19,7 +19,7 @@
                     <h5 class="widget-title">Siguenos</h5>
                     <ul class="social-links">
                         <li><a href="https://www.facebook.com/pages/LinkingShops/718923711522269" target="_blank"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="https://twitter.com/LinkingShops"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="https://twitter.com/LinkingShops" target="_blank"><i class="fa fa-twitter"></i></a></li>
                     </ul>
                 </aside>
 
