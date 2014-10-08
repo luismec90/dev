@@ -87,6 +87,10 @@ Route::filter('admin', function($route) {
     $shop_link = $route->getParameter('shop_link');
     $shop=Shop::where('link', $shop_link)->firstOrFail();
     if (!Auth::user()->isAdmin($shop->id)) {
-        return Redirect::home();
+        if (Request::ajax()) {
+            return Response::make('Unauthorized', 401);
+        } else {
+            return Redirect::home();
+        }
     }
 });

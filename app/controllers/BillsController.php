@@ -36,6 +36,8 @@ class BillsController extends \BaseController
         $products = Input::get('products');
         $amounts = Input::get('amounts');
         $costs = Input::get('costs');
+        $balance = Input::get('balance');
+        $code = Input::get('code');
 
         if (!$products || !$amounts || !$costs) {
             Flash::error('Ha ocurrido un error, asegurate de llenar todos los campos');
@@ -43,6 +45,21 @@ class BillsController extends \BaseController
             return Redirect::back();
         }
 
+        $discount=0;
+        if($balance!=0 && is_numeric($balance)){
+            if(Auth::user()->email==$email && Auth::user()->code==$code){
+                $avalibleBalance=Auth::user()->saldo($shop->id);
+                if($balance>$avalibleBalance){
+                    Flash::error('Ha saldo a descontar no puede ser mayor que el saldo disponible');
+                    return Redirect::back();
+                }
+            }else{
+                Flash::error('Código de verificación incorrecto');
+                return Redirect::back();
+            }
+        }else{
+            $balance=0;
+        }
 
         $user = User::where('email', $email)->first();
 
@@ -56,9 +73,10 @@ class BillsController extends \BaseController
         $bill = new Bill;
         $bill->shop_id = $shop->id;
         $bill->user_id = $user->id;
+        $bill->redeemed=$balance;
         $bill->save();
 
-        $total_cost = 0;
+        $total_cost = -$balance;
 
         for ($i = 0; $i < sizeof($products); $i++) {
 

@@ -92,7 +92,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface
     }
     public function saldo($shop_id)
     {
-        $shop=DB::table('bills')->select(DB::raw('sum(retribution) as retribution'))
+        $shop=DB::table('bills')->select(DB::raw('sum(retribution-redeemed) as retribution'))
             ->where('shop_id', $shop_id)
             ->where('user_id', $this->id)
             ->first();

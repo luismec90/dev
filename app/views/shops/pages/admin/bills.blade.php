@@ -53,11 +53,43 @@
             <div class="col-md-10 ">
                 <!-- Email Form Input -->
                 <div class="form-group">
-                    {{ Form::label('category','Email del comprador:') }}
-                    {{ Form::email('email',null,['class'=>'form-control','required'=>'true']) }}
+                    {{ Form::label('email','Email del comprador:') }}
+                    {{ Form::email('email',null,['id'=>'email','class'=>'form-control','required'=>'true']) }}
                 </div>
             </div>
         </div>
+        <div id="retribution-zone" >
+             <div class="row ocultar1 ocultar">
+                <div class="col-md-10 ">
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input id="check-balance" type="checkbox" data-retribution="0">
+                                El usuario <em id="nombre-usuario" class="text-info"></em> tiene disponibles $ <em id="info-balance" class="text-info"></em>. ¿Desea redimirlos?
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row ocultar2 ocultar">
+                <div class="col-md-5">
+                    <!-- Email Form Input -->
+                    <div class="form-group">
+                        {{ Form::label('balance','Saldo a redimir:') }}
+                        {{ Form::text('balance',0,['id'=>'balance','class'=>'form-control','required'=>'true']) }}
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <!-- Email Form Input -->
+                    <div class="form-group">
+                        {{ Form::label('code','Código de verificación') }}
+                        {{ Form::text('code',0,['id'=>'code','class'=>'form-control','required'=>'true']) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div id="products">
             <div class="row item">
                     <div class="col-md-10">
