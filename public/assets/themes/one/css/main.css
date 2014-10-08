@@ -115,3 +115,7 @@ li.active a, .nav-pills li.active a:hover, .nav-pills li.active a:focus {
     color: #fff;
     background-color: #1abc9c;
 }
+#saldo{
+    padding: 10px 15px;
+    margin: 0 0 0 5px;
+}

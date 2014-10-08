@@ -12,4 +12,8 @@ class Bill extends \Eloquent {
         'email.required' => 'El campo email es obligatorio',
         'email.email' => 'El campo email no es válido'
     ];
+
+    public function purchases() {
+        return $this->hasMany('Purchase');
+    }
 }

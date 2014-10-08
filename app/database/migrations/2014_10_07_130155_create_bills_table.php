@@ -21,6 +21,8 @@ class CreateBillsTable extends Migration {
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->float('total_cost');
             $table->integer('retribution');
+            $table->integer('delivery_id')->unsigned()->nullable();
+            $table->foreign('delivery_id')->references('id')->on('deliveries')->onDelete('cascade');
 			$table->timestamps();
 		});
 	}

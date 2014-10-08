@@ -50,7 +50,7 @@ class PagesController extends BaseController {
     {
 
         $shops=DB::table('shops')->join('bills', 'shops.id', '=', 'bills.shop_id')->select(DB::raw('shops.*,shops.name,sum(bills.retribution) as retribution'))
-            ->where('bills.user_id', 1)
+            ->where('bills.user_id', Auth::user()->id)
             ->groupBy('shops.id')
             ->get();
 

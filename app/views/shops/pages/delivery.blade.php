@@ -12,10 +12,17 @@
 {{ HTML::script('assets/js/validation.js') }}
 {{ HTML::script('assets/themes/one/js/delivery.js')}}
 <script>
+
+    var item='<div class="row item"> <div class="col-md-10"> <div class="well well-sm"> <div class="row"> <div class="col-sm-4"> <div class="form-group"> {{ Form::label("category","Categoria:") }} {{ Form::select("categories[]",$selectCategories,null,["class"=>"form-control categoria","required"=>"true"]) }} </div> </div> <div class="col-sm-4"> <div class="form-group"> {{ Form::label("product","Producto:") }} {{ Form::select("products[]",[""=>""],null,["class"=>"form-control producto","required"=>"true","readonly"=>"true"]) }} </div> </div> <div class="col-sm-2"> <div class="form-group"> {{ Form::label("amounts","Cantidad:") }} {{ Form::number("amounts[]",1,["class"=>"form-control cantidad","required"=>"true"]) }} </div> </div> <div class="col-sm-2"> <div class="form-group"> {{ Form::label("cost","Costo:") }} {{ Form::text("costs[]",null,["class"=>"form-control costo","readonly"=>"true"]) }} </div> </div> </div> </div> </div> <div class="col-md-2"> <a class="btn btn-danger remove"> <i class="fa fa-minus"></i> </a> </div> </div>';
+
+    var retribution="{{ $shop->retribution }}";
+
     @foreach($shop->categories as $category)
         var category_{{ $category->id }}="<option value=''>Seleccionar...</option>";
         @foreach($category->products as $product)
-            category_{{ $category->id }}+="<option value='{{ $product->id }}'>{{ $product->name }}</option>"
+            @if($product->delivery_service)
+                category_{{ $category->id }}+="<option value='{{ $product->id }}' data-price='{{ $product->price }}'>{{ $product->name }}</option>";
+            @endif
         @endforeach
     @endforeach
 
@@ -42,61 +49,138 @@
 
     <div class="col-md-9">
 
-        @include('layouts.partials.errors')
+        <div class="row">
+             <div class="col-md-10">
+                @include('layouts.partials.errors')
+            </div>
+        </div>
 
-                    {{ Form::open(['route'=>['delivery_path',$shop->link],'class'=>'validate']) }}
+        {{ Form::open(['route'=>['delivery_path',$shop->link],'class'=>'validate']) }}
 
-                    <!-- User Form Input -->
-                    <div class="form-group">
+        <div class="row">
+            <div class="col-md-10 ">
+                <div class="form-group">
                     {{ Form::label('category','Comprador:') }}
-                        <input tyoe="text" disabled="true" class="form-control" value="{{ Auth::user()->first_name." ". Auth::user()->last_name }}">
-                    </div>
+                    <input tyoe="text" disabled="true" class="form-control" value="{{ Auth::user()->first_name." ". Auth::user()->last_name }}">
+                </div>
+            </div>
+        </div>
 
-                    <!-- Email Form Input -->
-                    <div class="form-group">
+        <div class="row">
+            <div class="col-md-10 ">
+                <!-- Email Form Input -->
+                <div class="form-group">
                     {{ Form::label('category','Email:') }}
-                        <input type="email" disabled="true" class="form-control" value="{{ Auth::user()->email }}">
-                    </div>
+                    <input type="email" disabled="true" class="form-control" value="{{ Auth::user()->email }}">
+                </div>
+            </div>
+        </div>
 
-                    <!-- Phone Form Input -->
-                    <div class="form-group">
+        <div class="row">
+            <div class="col-md-10 ">
+                <!-- Phone Form Input -->
+                <div class="form-group">
                     {{ Form::label('category','Télefono:') }}
                     {{ Form::text('phone',null,['class'=>'form-control','required'=>'true']) }}
-                    </div>
+                </div>
+            </div>
+        </div>
 
-                    <!-- Category Form Input -->
+        <div id="products">
+        <div class="row item">
+        <div class="col-md-10">
+        <div class="well well-sm">
+            <div class="row">
+                <div class="col-sm-4">
+
                     <div class="form-group">
                     {{ Form::label('category','Categoria:') }}
-                    {{ Form::select('category',$selectCategories,null,['class'=>'form-control','required'=>'true']) }}
+                    {{ Form::select('categories[]',$selectCategories,null,['class'=>'form-control categoria','required'=>'true']) }}
                     </div>
+                </div>
+                <div class="col-sm-4">
 
-                    <!-- Product Form Input -->
                     <div class="form-group">
                     {{ Form::label('product','Producto:') }}
-                    {{ Form::select('product',[''=>''],null,['class'=>'form-control','required'=>'true','readonly'=>'true']) }}
+                    {{ Form::select('products[]',[''=>''],null,['class'=>'form-control producto','required'=>'true','readonly'=>'true']) }}
                     </div>
-
-                    <!-- Address Form Input -->
-                    <div class="form-group">
-                    {{ Form::label('birth_date','Dirección:') }}
-                    {{ Form::text('address',null,['class'=>'form-control','required'=>'required']) }}
-                    </div>
-
-                    <!-- Note Form Input -->
-                    <div class="form-group">
-                    {{ Form::label('birth_date','Notas adicionales:') }}
-                    {{ Form::textarea('note',null,['class'=>'form-control','rows'=>'5']) }}
-                    </div>
-
-
+                </div>
+                <div class="col-sm-2">
 
                     <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-3 col-sm-3 col-xs-12">
-                            {{ Form::submit('Enviar',['class'=>'btn btn-primary btn-block']) }}
-                        </div>
+                    {{ Form::label('product','Cantidad:') }}
+                    {{ Form::number('amounts[]',1,['class'=>'form-control cantidad','required'=>'true']) }}
                     </div>
+                </div>
+                <div class="col-sm-2">
+
+                    <div class="form-group">
+                    {{ Form::label('cost','Costo:') }}
+                    {{ Form::text('costs[]',null,['class'=>'form-control costo','readonly'=>'true']) }}
                     </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="col-md-2">
+        <a class="btn btn-info add">
+            <i class="fa fa-plus"></i>
+        </a>
+        </div>
+        </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2 col-md-offset-6">
+                <!-- Total Form Input -->
+                <div class="form-group">
+                    {{ Form::label('category','Saldo ganado:') }}
+                    {{ Form::text('retribution',0,['id'=>'retribution','class'=>'form-control','readonly'=>'true']) }}
+                </div>
+            </div>
+            <div class="col-md-2 ">
+                 <!-- Total Form Input -->
+                <div class="form-group">
+                    {{ Form::label('category','Total a pagar:') }}
+                    {{ Form::text('total',0,['id'=>'total','class'=>'form-control','readonly'=>'true']) }}
+                </div>
+            </div>
+        </div>
+
+<div class="row">
+    <div class="col-md-10 ">
+        <!-- Address Form Input -->
+        <div class="form-group">
+            {{ Form::label('birth_date','Dirección:') }}
+            {{ Form::text('address',null,['class'=>'form-control','required'=>'required']) }}
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-10 ">
+        <!-- Note Form Input -->
+        <div class="form-group">
+            {{ Form::label('birth_date','Notas adicionales:') }}
+            {{ Form::textarea('note',null,['class'=>'form-control','rows'=>'5']) }}
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-md-10 ">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    {{ Form::submit('Enviar',['class'=>'btn btn-primary btn-block']) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
                     {{ Form::close() }}
     </div>

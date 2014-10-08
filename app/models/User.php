@@ -90,5 +90,14 @@ class User extends Eloquent implements UserInterface, RemindableInterface
     {
         return $this->hasMany('Review');
     }
+    public function saldo($shop_id)
+    {
+        $shop=DB::table('bills')->select(DB::raw('sum(retribution) as retribution'))
+            ->where('shop_id', $shop_id)
+            ->where('user_id', $this->id)
+            ->first();
+
+        return empty($shop->retribution) ? 0 : $shop->retribution;
+    }
 
 }

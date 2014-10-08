@@ -2,14 +2,18 @@
 
 
 @section('css')
-
+{{ HTML::style('assets/libs/bootstrapvalidator/css/bootstrapValidator.min.css') }}
+{{ HTML::style('assets/css/registro.css') }}
 @stop
 
 @section('js')
 {{ HTML::script('assets/themes/one/js/bill.js')}}
+{{ HTML::script('assets/libs/bootstrapvalidator/js/bootstrapValidator.js') }}
+{{ HTML::script('assets/libs/bootstrapvalidator/js/language/es_ES.js') }}
+{{ HTML::script('assets/js/validation.js') }}
 <script>
 
-    var item='<div class="row item"> <div class="col-md-10"> <div class="well well-sm"> <div class="row"> <div class="col-sm-4"> <div class="form-group"> {{ Form::label("category","Categoria:") }} {{ Form::select("categories[]",$selectCategories,null,["class"=>"form-control categoria","required"=>"true"]) }} </div> </div> <div class="col-sm-4"> <div class="form-group"> {{ Form::label("product","Producto:") }} {{ Form::select("products[]",[""=>""],null,["class"=>"form-control producto","required"=>"true","readonly"=>"true"]) }} </div> </div> <div class="col-sm-2"> <div class="form-group"> {{ Form::label("amounts","Cantidad:") }} {{ Form::number("amounts[]",1,["class"=>"form-control cantidad","required"=>"true"]) }} </div> </div> <div class="col-sm-2"> <div class="form-group"> {{ Form::label("cost","Costo:") }} {{ Form::text("costs[]",null,["class"=>"form-control costo","required"=>"true"]) }} </div> </div> </div> </div> </div> <div class="col-md-2"> <a class="btn btn-danger remove"> <i class="fa fa-minus"></i> </a> </div> </div>';
+    var item='<div class="row item"> <div class="col-md-10"> <div class="well well-sm"> <div class="row"> <div class="col-sm-4"> <div class="form-group"> {{ Form::label("category","Categoria:") }} {{ Form::select("categories[]",$selectCategories,null,["class"=>"form-control categoria","required"=>"true"]) }} </div> </div> <div class="col-sm-4"> <div class="form-group"> {{ Form::label("product","Producto:") }} {{ Form::select("products[]",[""=>""],null,["class"=>"form-control producto","required"=>"true","readonly"=>"true"]) }} </div> </div> <div class="col-sm-2"> <div class="form-group"> {{ Form::label("amounts","Cantidad:") }} {{ Form::number("amounts[]",1,["class"=>"form-control cantidad","required"=>"true"]) }} </div> </div> <div class="col-sm-2"> <div class="form-group"> {{ Form::label("cost","Costo:") }} {{ Form::text("costs[]",null,["class"=>"form-control costo"]) }} </div> </div> </div> </div> </div> <div class="col-md-2"> <a class="btn btn-danger remove"> <i class="fa fa-minus"></i> </a> </div> </div>';
 
     var retribution="{{ $shop->retribution }}";
 
@@ -39,7 +43,7 @@
     <div class="col-md-9">
 
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-10">
                 @include('layouts.partials.errors')
             </div>
         </div>
@@ -84,7 +88,7 @@
 
                                     <div class="form-group">
                                     {{ Form::label('cost','Costo:') }}
-                                    {{ Form::text('costs[]',null,['class'=>'form-control costo','required'=>'true']) }}
+                                    {{ Form::text('costs[]',null,['class'=>'form-control costo']) }}
                                     </div>
                                 </div>
                             </div>
@@ -114,7 +118,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-10 ">
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-3 col-sm-3 col-xs-12">
