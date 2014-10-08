@@ -7,8 +7,8 @@
         <h2>Verify Your Email Address</h2>
 
         <div>
-            Thanks for creating an account with the verification demo app.
-            Please follow the link below to verify your email address
+            Gracias por crear su cuenta en nuestra red LinkingShops.
+            Por favor haga click en el link a continuación para verificar su dirección de correo.
             {{ URL::to('register/verify/' . $confirmation_code) }}.<br/>
 
         </div>
