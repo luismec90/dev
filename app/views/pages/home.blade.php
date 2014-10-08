@@ -42,11 +42,13 @@
 <section class="section section-center section-cta">
     <div class="container">
         <h2 class="section-title"><span>Listo para comenzar?</span></h2>
-        <p>LinkingShops es una red de tiendas aliadas para ofrecer descuentos exclusivos a sus clientes.       
+
+        <p>LinkingShops es una red de tiendas aliadas para ofrecer descuentos exclusivos a sus clientes.
+
         </p>
-        <div class="main-action row">
-            <div class="col-md-3 col-md-offset-3 col-sm-4 col-sm-offset-2"><a href="#" class="smooth-scroll btn btn-lg btn-block btn-danger">Registrarme</a></div>
-            <div class="col-md-3 col-sm-4"><a href="#" class="smooth-scroll btn btn-lg btn-block btn-default">Establecimientos afiliados</a></div>
+        <div class="main-action row text-center">
+            <div class="col-md-4 col-md-offset-4"><a href="{{ route('register_path') }}" class="smooth-scroll btn btn-lg btn-block btn-danger">Registrate de forma gratuita</a></div>
+           {{-- <div class="col-md-3 col-sm-4"><a href="#" class="smooth-scroll btn btn-lg btn-block btn-default">Establecimientos afiliados</a></div>--}}
         </div>
     </div>
 </section>
@@ -102,7 +104,7 @@
     </div>
 </div>
 </section>
-
+{{--
 <section id="portfolio" class="section section-portfolio">
     <div class="container">
         <h2 class="section-title"><span>Establcimientos afiliados destacados.</span></h2>
@@ -234,8 +236,9 @@
         </div>
     </div>
 </div>
+--}}
 
-<section id="testimonials" class="section section-center section-hilite section-testimonial">
+<section id="testimonials" class="section section-center section-testimonial">
     <div class="container">
         <h2 class="section-title"><span>Que opinan los usuarios?</span></h2>
         <i class="fa fa-quote-left fa-3x"></i>
@@ -243,20 +246,20 @@
             <div class="carousel-inner">
                 <div class="item active">
                     <blockquote>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                        <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+                        <p>Excelente idea, espero que se sigan afliliando más tiendas </p>
+                        <small> <cite title="Source Title">Alejandro Montoya</cite></small>
                     </blockquote>
                 </div>
                 <div class="item">
                     <blockquote>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                        <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+                         <p>Es genial que me devuelvan una parte del dinero para usuarlo en futuras compras   </p>
+                        <small> <cite title="Source Title">Juan Diego Girldo</cite></small>
                     </blockquote>
                 </div>
                 <div class="item">
                     <blockquote>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                        <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+                         <p>Suscribirme a las tiendas me ha permitido estar al tanto de las mejores promociones </p>
+                        <small> <cite title="Source Title">Andres Pineda</cite></small>
                     </blockquote>
                 </div>
             </div>
