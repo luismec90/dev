@@ -88,8 +88,9 @@ class BillsController extends \BaseController
         $bill->retribution = $retribution;
         $bill->save();
 
+        $title="Se ha realizado la siguiente compra";
 
-        Mail::send('emails.shops.admin.bill',compact('shop','products','amounts','costs','total_cost','retribution'), function ($message) use ($user) {
+        Mail::send('emails.shops.admin.bill',compact('shop','bill','title'), function ($message) use ($user) {
             $message->to($user->email, Auth::user()->first_name)
                 ->subject('Compra realizada');
         });

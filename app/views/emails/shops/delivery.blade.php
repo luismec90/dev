@@ -1,58 +1,59 @@
+@extends('emails.layout')
 
-<!DOCTYPE html>
-<html lang="es-EN">
-    <head>
-        <meta charset="utf-8">
-    </head>
-    <body>
-        <h2>{{ $title }}</h2>
+@section('content')
 
-        <table>
+    <center><h2>{{ $title }}</h2></center>
+
+<div>
+       <table width="540" align="center" cellpadding="0" cellspacing="0" border="0" style="border: 1px solid #ddd; border-spacing: 0; border-collapse: collapse;" class="devicewidthinner">
             <tr>
-                <td>Cliente</td>
-                <td>{{ Auth::user()->first_name.' '.Auth::user()->last_name }}</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">Cliente</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">{{ Auth::user()->first_name.' '.Auth::user()->last_name }}</td>
             </tr>
              <tr>
-                <td>Email</td>
-                <td> {{ Auth::user()->email }}</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">Email</td>
+                <td style="border: 1px solid #ddd; padding: 8px;"> {{ Auth::user()->email }}</td>
             </tr>
             <tr>
-                <td>Télefono</td>
-                <td>{{ Input::get('phone') }}</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">Télefono</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">{{ Input::get('phone') }}</td>
             </tr>
             <tr>
-                <td>Dirección</td>
-                <td>{{ Input::get('address') }}</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">Dirección</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">{{ Input::get('address') }}</td>
             </tr>
             <tr>
-                <td>Notas adicionales</td>
-                <td>{{ Input::get('note') }}</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">Notas adicionales</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">{{ Input::get('note') }}</td>
             </tr>
         </table>
+</div>
+<br><br>
+<div>
 
-        <table>
+<table width="540" align="center" cellpadding="0" cellspacing="0" border="0" style="border: 1px solid #ddd; border-spacing: 0; border-collapse: collapse;" class="devicewidthinner">
             <tr>
-                <td>Producto</td>
-                <td>Cantidad</td>
-                <td>Precio</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">Producto</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">Cantidad</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">Precio</td>
             </tr>
             @foreach($bill->purchases as $purchase)
              <tr>
-                <td>{{ $purchase->product_name }}</td>
-                <td>{{ $purchase->amount }}</td>
-                <td>$ {{ $purchase->cost }}</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">{{ $purchase->product_name }}</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">{{ $purchase->amount }}</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">$ {{ $purchase->cost }}</td>
              </tr>
             @endforeach
             <tr>
-                <td> </td>
-                <td>Saldo ganado:</td>
-                <td>$ {{ $bill->retribution }}</td>
+                <td style="border: 1px solid #ddd; padding: 8px;"> </td>
+                <td style="border: 1px solid #ddd; padding: 8px;">Saldo ganado:</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">$ {{ $bill->retribution }}</td>
             </tr>
             <tr>
-                <td> </td>
-                <td>Total:</td>
-                <td>$ {{ $bill->total_cost }}</td>
+                <td style="border: 1px solid #ddd; padding: 8px;"> </td>
+                <td style="border: 1px solid #ddd; padding: 8px;">Total:</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">$ {{ $bill->total_cost }}</td>
             </tr>
-        </table>
-    </body>
-</html>
+</table>
+</div>
+@stop
