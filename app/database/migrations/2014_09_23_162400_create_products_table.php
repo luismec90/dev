@@ -18,6 +18,7 @@ class CreateProductsTable extends Migration {
             $table->string('name', 64);
             $table->string('description', 1024);
             $table->string('price');
+            $table->boolean('delivery_service')->default(0);
             $table->float('rating_cache');
             $table->integer('rating_count');
             $table->timestamps();

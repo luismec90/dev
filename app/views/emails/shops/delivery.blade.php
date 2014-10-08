@@ -1,10 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="es-EN">
     <head>
         <meta charset="utf-8">
     </head>
     <body>
-        <h2>Se ha realizado el siguinete pedido</h2>
+        <h2>{{ $title }}</h2>
 
         <table>
             <tr>
@@ -20,16 +21,37 @@
                 <td>{{ Input::get('phone') }}</td>
             </tr>
             <tr>
-                <td>Producto</td>
-                <td>{{ $product->name }}</td>
-            </tr>
-            <tr>
                 <td>Dirección</td>
                 <td>{{ Input::get('address') }}</td>
             </tr>
             <tr>
                 <td>Notas adicionales</td>
                 <td>{{ Input::get('note') }}</td>
+            </tr>
+        </table>
+
+        <table>
+            <tr>
+                <td>Producto</td>
+                <td>Cantidad</td>
+                <td>Precio</td>
+            </tr>
+            @foreach($bill->purchases as $purchase)
+             <tr>
+                <td>{{ $purchase->product_name }}</td>
+                <td>{{ $purchase->amount }}</td>
+                <td>$ {{ $purchase->cost }}</td>
+             </tr>
+            @endforeach
+            <tr>
+                <td> </td>
+                <td>Saldo ganado:</td>
+                <td>$ {{ $bill->retribution }}</td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td>Total:</td>
+                <td>$ {{ $bill->total_cost }}</td>
             </tr>
         </table>
     </body>

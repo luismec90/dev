@@ -67,7 +67,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface
 
     public function isAdmin($shop_id)
     {
-
         $shop = $this->shops()->where('shop_id', $shop_id)->where('role', 1)->get();
         if ($shop->count())
             return true;
@@ -90,6 +89,15 @@ class User extends Eloquent implements UserInterface, RemindableInterface
     public function reviews()
     {
         return $this->hasMany('Review');
+    }
+    public function saldo($shop_id)
+    {
+        $shop=DB::table('bills')->select(DB::raw('sum(retribution) as retribution'))
+            ->where('shop_id', $shop_id)
+            ->where('user_id', $this->id)
+            ->first();
+
+        return empty($shop->retribution) ? 0 : $shop->retribution;
     }
 
 }

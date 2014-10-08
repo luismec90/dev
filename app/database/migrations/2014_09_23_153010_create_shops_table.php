@@ -19,6 +19,7 @@ class CreateShopsTable extends Migration
             $table->foreign('town_id')->references('id')->on('towns')->onDelete('cascade');
             $table->string('name', 32)->unique();
             $table->string('link', 64)->unique();
+            $table->float('retribution');
             $table->string('image_preview',20);
             $table->string('about', 2048);
             $table->string('lat');

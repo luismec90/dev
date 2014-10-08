@@ -6,7 +6,7 @@ class ShopsController extends \BaseController
     public function show($shop_link)
     {
         $shop = Shop::with('categories', 'covers')->where('link', $shop_link)->firstOrFail();
-        $popularProducts = Product::with('category')->orderBy('rating_cache', 'desc')->take(5)->get();
+        $popularProducts = Product::with('category')->orderBy('rating_cache', 'desc')->take(9)->get();
 
         return View::make('shops.pages.home', compact('shop', 'popularProducts'));
     }

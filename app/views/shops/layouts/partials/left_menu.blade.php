@@ -1,7 +1,14 @@
 <div class="col-md-3">
 
+    @if(Auth::check() && !Auth::user()->isAdmin($shop->id))
+            <div class="alert well-sm alert-warning">
+            <b>Saldo: $ {{ Auth::user()->saldo($shop->id) }} </b>
+            </div>
+    @endif
+
     <div  class="well">
         <ul class="nav nav-pills nav-stacked">
+
             <li class="{{ Route::currentRouteName()=='shop_path' ? 'active':'' }}">
                 <a href="{{ route('shop_path',$shop->link) }}">Inicio</a>
             </li>
@@ -20,6 +27,13 @@
             <li class="{{ Route::currentRouteName()=='localization_path' ? 'active':'' }}">
                 <a href="{{ route('localization_path',$shop->link) }}">Localización</a>
             </li>
+            @if(isset($shop) && Auth::check() &&  Auth::user()->isAdmin($shop->id))
+                <hr>
+                <li class="@if(Route::currentRouteName()=='bill_path') {{ 'active'}} @endif">
+                    <a href="{{ route('bill_path',$shop->link) }}">Realizar venta</a>
+                </li>
+            @endif
+
         </ul>
     </div>
     <div class="row">

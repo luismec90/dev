@@ -15,6 +15,7 @@ class ProductsTableSeeder extends Seeder {
                 'category_id' => 1,
                 'name' => "Asado Personal",
                 'description' => "350 gr del mejor Angus Argentino. Grado de cocción según preferencia del cliente.",
+                'delivery_service'=>1,
                 'price'=> 14900
             ]);
             
@@ -22,6 +23,7 @@ class ProductsTableSeeder extends Seeder {
                 'category_id' => 1,
                 'name' => "Costillas Barbacoa",
                 'description' => "Tiernas costillas de cerdo con salsa barbacoa.",
+                'delivery_service'=>1,
                 'price'=> 13900
             ]);
             
@@ -43,6 +45,7 @@ class ProductsTableSeeder extends Seeder {
                 'category_id' => 1,
                 'name' => "Asado Grupal",
                 'description' => "Asado tamaño grupal, variado, con múltiples tipos de carne. Incluye chorizo, morcilla y adiciones según preferencia del comprador ",
+                'delivery_service'=>1,
                 'price'=> 49900
             ]);
             
@@ -72,6 +75,7 @@ class ProductsTableSeeder extends Seeder {
                 'category_id' => 2,
                 'name' => "Picada Salami",
                 'description' => "Picada elaborada exclusivamente con el mejor salami argentino.",
+                'delivery_service'=>1,
                 'price'=> 7900
             ]);
             
@@ -86,6 +90,7 @@ class ProductsTableSeeder extends Seeder {
                 'category_id' => 3,
                 'name' => "Ensalada Templada",
                 'description' => "Incluye lechuga, picatostes, tomates cherry, bacon y salsa.",
+                'delivery_service'=>1,
                 'price'=> 9900
             ]);
             
@@ -93,6 +98,7 @@ class ProductsTableSeeder extends Seeder {
                 'category_id' => 3,
                 'name' => "Ensalada César",
                 'description' => "Incluye pollo a la parrilla, tomate, lechuga, maíz, picatostes, queso parmesano y salsa césar.",
+                'delivery_service'=>1,
                 'price'=> 7900
             ]);
             

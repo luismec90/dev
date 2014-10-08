@@ -1,12 +1,5 @@
 $(function () {
 
-    if (selectedProductCategoryId != null && selectedProductId != null) {
-        $("#category").val(selectedProductCategoryId);
-        $("#product").html(eval('category_' + selectedProductCategoryId))
-        $("#product").val(selectedProductId);
-        $("#product").removeAttr("readonly");
-    }
-
     $("#products a.add").click(function () {
         $("#products").append(item);
     });
@@ -21,13 +14,13 @@ $(function () {
 
         var selectProduct = $(this).parent().parent().parent().find("select.producto");
         var valor = $(this).val();
-        if (valor != "") {
-            selectProduct.html(eval('category_' + valor));
-            selectProduct.removeAttr("readonly");
-        } else {
-            selectProduct.html("");
-            selectProduct.attr("readonly", 'true');
-        }
+         if (valor != "") {
+             selectProduct.html(eval('category_' + valor));
+             selectProduct.removeAttr("readonly");
+         } else {
+             selectProduct.html("");
+             selectProduct.attr("readonly", 'true');
+         }
 
         $(this).parent().parent().parent().find("input.costo").val("");
         actualizarTotal();
