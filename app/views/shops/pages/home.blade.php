@@ -15,7 +15,7 @@
     <!-- Indicators -->
     <ol class="carousel-indicators">
     @@for ($i = 0; $i < $shop->covers->count(); $i++)
-        <li data-target="#carousel-1" data-slide-to="{{ $i }}" class="{{ $shop->covers[$i]->current==1 ? 'active' : '';}}"></li>
+        <li data-target="#carousel-1" data-slide-to="{{ $i }}" class="{{ ->covers[$i]->current==1 ? 'active' : '';}$shop}"></li>
     @endfor
 
     </ol>
