@@ -18,16 +18,15 @@
                 <aside class="widget col-md-4 col-sm-6">
                     <h5 class="widget-title">Siguenos</h5>
                     <ul class="social-links">
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                        <li><a href="https://www.facebook.com/pages/LinkingShops/718923711522269" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="https://twitter.com/LinkingShops"><i class="fa fa-twitter"></i></a></li>
                     </ul>
                 </aside>
 
             </div>
         </div>
 
-        <div class="copyright"><p>© 2014 Company, Inc.<br /></p></div>
+        <div class="copyright"><p>Copyright © 2014 LinkingShops<br /></p></div>
 
     </div>
 </footer>

@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="luismec90@gmail.com">
-        <link href="{{ asset('assets/images/general/favicon.png') }}" rel="icon" type="image/x-icon">
+        <link href="{{ asset('assets/images/favicon.png') }}" rel="icon" type="image/x-icon">
 
         <title>
             @section('title')

@@ -38,7 +38,7 @@ class SocialNetworksController extends \BaseController
             }
             Auth::login($user);
             if ($user->password == "") {
-                return Redirect::route('update_password_path')->withErrors(['message' => 'Por favor configure su contraseña']);
+              //  return Redirect::route('update_password_path')->withErrors(['message' => 'Por favor configure su contraseña']);
             }
 
             return Redirect::to(Session::get('previous_url'));
@@ -91,7 +91,7 @@ class SocialNetworksController extends \BaseController
             }
             Auth::login($user);
             if ($user->password == "") {
-                return Redirect::route('update_password_path')->withErrors(['message' => 'Por favor establesca su contraseña']);
+               // return Redirect::route('update_password_path')->withErrors(['message' => 'Por favor establesca su contraseña']);
             }
 
             return Redirect::to(Session::get('previous_url'));
