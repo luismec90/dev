@@ -75,7 +75,7 @@
         </div>
         <div id="global-authorization" class="col-sm-6">
             <div class="social-login">
-                <a href="{{ route('login_facebook_path') }}" class="facebook"><i class="fa fa-facebook"></i><div>Registrarse usando Facebook</div></a>
+                <a href="{{ route('login_facebook_path') }}" class="facebook"><i class="fa fa-facebook"></i><div>Entrar usando Facebook</div></a>
                 <a href="{{ route('login_google_path') }}" class="google"><i class="fa fa-google-plus"></i><div>Entrar usando Google</div></a>
             </div>
         </div>

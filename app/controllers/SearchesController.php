@@ -7,7 +7,7 @@ class SearchesController extends BaseController
     {
         $selectedTown = Input::get('town');
         $selectedActivity = Input::get('activity');
-        if ($selectedTown || $selectedActivity)
+        if ($selectedTown || $selectedActivity) {
             $shops = Shop::whereHas('activities', function ($q) use ($selectedActivity) {
                 if ($selectedActivity)
                     $q->where('activities.id', $selectedActivity);
@@ -15,6 +15,9 @@ class SearchesController extends BaseController
                 if ($selectedTown)
                     $q->where('town_id', $selectedTown);
             })->get();
+        }else{
+            $shops = Shop::all();
+        }
 
         $towns = Town::orderBy('name')->get();
         $activities = Activity::orderBy('name')->get();

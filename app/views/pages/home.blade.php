@@ -47,8 +47,8 @@
 
         </p>
         <div class="main-action row text-center">
-            <div class="col-md-4 col-md-offset-4"><a href="{{ route('register_path') }}" class="smooth-scroll btn btn-lg btn-block btn-danger">Registrate de forma gratuita</a></div>
-           {{-- <div class="col-md-3 col-sm-4"><a href="#" class="smooth-scroll btn btn-lg btn-block btn-default">Establecimientos afiliados</a></div>--}}
+            <div class="col-md-3 col-md-offset-3"><a href="{{ route('register_path') }}" class="smooth-scroll btn btn-lg btn-block btn-danger">Registrate de forma gratuita</a></div>
+         <div class="col-md-3 col-sm-4"><a href="{{ route('listshops_path') }}" class="smooth-scroll btn btn-lg btn-block btn-default">Establecimientos afiliados</a></div>
         </div>
     </div>
 </section>

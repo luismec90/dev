@@ -48,7 +48,6 @@ class PagesController extends BaseController {
 
     public function balance()
     {
-
         $shops=DB::table('shops')->join('bills', 'shops.id', '=', 'bills.shop_id')->select(DB::raw('shops.*,shops.name,sum(bills.retribution) as retribution'))
             ->where('bills.user_id', Auth::user()->id)
             ->groupBy('shops.id')
@@ -57,4 +56,11 @@ class PagesController extends BaseController {
         return View::make('pages.balance',compact('shops'));
     }
 
+
+    public function listShops()
+    {
+        $shops=Shop::all();
+
+        return View::make('pages.listShops',compact('shops'));
+    }
 }

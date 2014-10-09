@@ -20,6 +20,10 @@ Route::get('/busqueda', array('as' => 'search_path', 'uses' => 'SearchesControll
 Route::get('/contacto', array('as' => 'contact_path', 'uses' => 'PagesController@contact'));
 Route::post('/contacto', array('as' => 'contact_path', 'uses' => 'PagesController@sendContact'));
 
+/* Listar establecimiento */
+Route::get('listar', array('before' => 'auth', 'as' => 'listshops_path', 'uses' => 'PagesController@listShops'));
+
+/* Mis sistios */
 Route::get('saldo', array('before' => 'auth', 'as' => 'summary_path', 'uses' => 'PagesController@balance'));
 
 /* Register */
