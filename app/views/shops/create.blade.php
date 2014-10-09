@@ -1,1 +1,0 @@
-/home/vagrant/code/dev/app/views/shops/create.blade.php

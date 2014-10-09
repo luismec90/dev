@@ -11,7 +11,7 @@ class CreateCategoriesTable extends Migration {
      * @return void
      */
     public function up() {
-        Schema::create('categories', function(Blueprint $table) {
+        Schema::create('category', function(Blueprint $table) {
             $table->increments('id');
             $table->integer('shop_id')->unsigned();
             $table->foreign('shop_id')->references('id')->on('shops')->onDelete('cascade');
@@ -26,7 +26,7 @@ class CreateCategoriesTable extends Migration {
      * @return void
      */
     public function down() {
-        Schema::drop('categories');
+        Schema::drop('category');
     }
 
 }

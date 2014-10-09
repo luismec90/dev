@@ -12,11 +12,7 @@
                     <a href="{{ route('summary_path') }}">Mis sitios</a>
                 </li>
                 <li class="divider"></li>
-                @if(false && isset($shop))
-                    @if(Auth::user()->isAdmin($shop->id))
-                        <li>{{ link_to_route('admin_category_path','Categorías',[$shop->name]) }}</li>
-                    @endif
-                @endif
+
                 <li>{{ link_to_route('logout_path','Salir') }}</li>
             </ul>
         </li>

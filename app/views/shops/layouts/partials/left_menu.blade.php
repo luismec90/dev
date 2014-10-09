@@ -32,6 +32,11 @@
                 <li class="@if(Route::currentRouteName()=='bill_path') {{ 'active'}} @endif">
                     <a href="{{ route('bill_path',$shop->link) }}">Realizar venta</a>
                 </li>
+
+                 <li class="@if(Route::currentRouteName()=='admin_category_path') {{ 'active'}} @endif">
+                    <a href="{{ route('admin_category_path',$shop->link) }}">Categorias y productos</a>
+                </li>
+
             @endif
 
         </ul>

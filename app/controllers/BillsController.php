@@ -12,7 +12,6 @@ class BillsController extends \BaseController
     public function create($shop_link)
     {
 
-
         $shop = Shop::with('categories', 'categories.products')->where('link', $shop_link)->firstOrFail();
 
         $selectCategories[""] = "Seleccionar...";
