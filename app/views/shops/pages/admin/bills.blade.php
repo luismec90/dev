@@ -91,49 +91,45 @@
 
         <div id="products">
             <div class="row item">
-                    <div class="col-md-10">
-                        <div class="well well-sm">
-                            <div class="row">
-                                <div class="col-sm-4">
-
-                                    <div class="form-group">
-                                    {{ Form::label('category','Categoria:') }}
-                                    {{ Form::select('category',$selectCategories,null,['class'=>'form-control categoria','required'=>'true']) }}
-                                    </div>
+                <div class="col-md-10">
+                    <div class="well well-sm">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                {{ Form::label('category','Categoria:') }}
+                                {{ Form::select('category',$selectCategories,null,['class'=>'form-control categoria','required'=>'true']) }}
                                 </div>
-                                <div class="col-sm-4">
-
-                                    <div class="form-group">
-                                    {{ Form::label('product','Producto:') }}
-                                    {{ Form::select('products[]',[''=>''],null,['class'=>'form-control producto','required'=>'true','readonly'=>'true']) }}
-                                    </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                {{ Form::label('product','Producto:') }}
+                                {{ Form::select('products[]',[''=>''],null,['class'=>'form-control producto','required'=>'true','readonly'=>'true']) }}
                                 </div>
-                                <div class="col-sm-2">
-
-                                    <div class="form-group">
-                                    {{ Form::label('product','Cantidad:') }}
-                                    {{ Form::number('amounts[]',1,['class'=>'form-control cantidad','required'=>'true']) }}
-                                    </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="form-group">
+                                {{ Form::label('product','Cantidad:') }}
+                                {{ Form::number('amounts[]',1,['class'=>'form-control cantidad','required'=>'true']) }}
                                 </div>
-                                <div class="col-sm-2">
-
-                                    <div class="form-group">
-                                    {{ Form::label('cost','Costo:') }}
-                                    {{ Form::text('costs[]',null,['class'=>'form-control costo']) }}
-                                    </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="form-group">
+                                {{ Form::label('cost','Costo:') }}
+                                {{ Form::text('costs[]',null,['class'=>'form-control costo']) }}
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-2">
-                        <a class="btn btn-info add">
-                            <i class="fa fa-plus"></i>
-                        </a>
-                    </div>
                 </div>
+                <div class="col-md-2">
+                    <a class="btn btn-info add">
+                        <i class="fa fa-plus"></i>
+                    </a>
+                </div>
+            </div>
         </div>
         <div class="row">
-        <div class="col-md-2 col-md-offset-6">
+            <div class="col-md-2 col-md-offset-6">
                 <!-- Total Form Input -->
                 <div class="form-group">
                     {{ Form::label('category','Saldo ganado:') }}
@@ -162,5 +158,4 @@
         {{ Form::close() }}
     </div>
 </div>
-<br>
 @stop

@@ -13,7 +13,7 @@
 {{ HTML::script('assets/themes/one/js/delivery.js')}}
 <script>
 
-    var item='<div class="row item"> <div class="col-md-10"> <div class="well well-sm"> <div class="row"> <div class="col-sm-4"> <div class="form-group"> {{ Form::label("category","Categoria:") }} {{ Form::select(category,$selectCategories,null,["class"=>"form-control categoria","required"=>"true"]) }} </div> </div> <div class="col-sm-4"> <div class="form-group"> {{ Form::label("product","Producto:") }} {{ Form::select("products[]",[""=>""],null,["class"=>"form-control producto","required"=>"true","readonly"=>"true"]) }} </div> </div> <div class="col-sm-2"> <div class="form-group"> {{ Form::label("amounts","Cantidad:") }} {{ Form::number("amounts[]",1,["class"=>"form-control cantidad","required"=>"true"]) }} </div> </div> <div class="col-sm-2"> <div class="form-group"> {{ Form::label("cost","Costo:") }} {{ Form::text("costs[]",null,["class"=>"form-control costo","readonly"=>"true"]) }} </div> </div> </div> </div> </div> <div class="col-md-2"> <a class="btn btn-danger remove"> <i class="fa fa-minus"></i> </a> </div> </div>';
+    var item='<div class="row item"> <div class="col-md-10"> <div class="well well-sm"> <div class="row"> <div class="col-sm-4"> <div class="form-group"> {{ Form::label("category","Categoria:") }} {{ Form::select("category",$selectCategories,null,["class"=>"form-control categoria","required"=>"true"]) }} </div> </div> <div class="col-sm-4"> <div class="form-group"> {{ Form::label("product","Producto:") }} {{ Form::select("products[]",[""=>""],null,["class"=>"form-control producto","required"=>"true","readonly"=>"true"]) }} </div> </div> <div class="col-sm-2"> <div class="form-group"> {{ Form::label("amounts","Cantidad:") }} {{ Form::number("amounts[]",1,["class"=>"form-control cantidad","required"=>"true"]) }} </div> </div> <div class="col-sm-2"> <div class="form-group"> {{ Form::label("cost","Costo:") }} {{ Form::text("costs[]",null,["class"=>"form-control costo","readonly"=>"true"]) }} </div> </div> </div> </div> </div> <div class="col-md-2"> <a class="btn btn-danger remove"> <i class="fa fa-minus"></i> </a> </div> </div>';
 
     var retribution="{{ $shop->retribution }}";
 
@@ -95,7 +95,7 @@
 
                     <div class="form-group">
                     {{ Form::label('category','Categoria:') }}
-                    {{ Form::select(category,$selectCategories,null,['class'=>'form-control categoria','required'=>'true']) }}
+                    {{ Form::select('category',$selectCategories,null,['class'=>'form-control categoria','required'=>'true']) }}
                     </div>
                 </div>
                 <div class="col-sm-4">

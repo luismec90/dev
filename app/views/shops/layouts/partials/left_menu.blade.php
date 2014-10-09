@@ -33,12 +33,10 @@
                     <a href="{{ route('bill_path',$shop->link) }}">Realizar venta</a>
                 </li>
 
-                 <li class="@if(Route::currentRouteName()=='admin_category_path') {{ 'active'}} @endif">
+                 <li class="@if(Route::currentRouteName()=='admin_category_path' || Route::currentRouteName()=='admin_edit_category_path') {{ 'active'}} @endif">
                     <a href="{{ route('admin_category_path',$shop->link) }}">Categorias y productos</a>
                 </li>
-
             @endif
-
         </ul>
     </div>
     <div class="row">
@@ -46,5 +44,4 @@
            @include('shops.layouts.partials.member-form')
         </div>
     </div>
-
 </div>

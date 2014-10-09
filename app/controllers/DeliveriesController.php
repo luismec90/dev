@@ -8,7 +8,7 @@ class DeliveriesController extends \BaseController
     {
         $selectedProduct=Product::find($product_id);
 
-        $shop = Shop::with('category', 'category.products')->where('link', $shop_link)->firstOrFail();
+        $shop = Shop::with('categories', 'categories.products')->where('link', $shop_link)->firstOrFail();
 
         $selectCategories[""] = "Seleccionar...";
         foreach ($shop->categories as $category) {

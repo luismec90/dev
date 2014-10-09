@@ -5,7 +5,7 @@ class ProductsController extends \BaseController
 
     public function show($shop_link, $category_name, $product_name)
     {
-        $shop = Shop::with('category')->where('link', $shop_link)->firstOrFail();
+        $shop = Shop::with('categories')->where('link', $shop_link)->firstOrFail();
         $category = Category::with('products')->where('name', $category_name)->firstOrFail();
         $product = Product::where('name', $product_name)->firstOrFail();
         $reviews = $product->reviews()->with('user')->orderBy('created_at', 'desc')->paginate(20);

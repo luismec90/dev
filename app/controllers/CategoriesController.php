@@ -20,14 +20,14 @@ class CategoriesController extends \BaseController {
 
 
     public function show($shop_link, $category_name) {
-        $shop = Shop::with(['category', 'category.products'])->where('link', $shop_link)->firstOrFail();
+        $shop = Shop::with(['categories', 'categories.products'])->where('link', $shop_link)->firstOrFail();
         $category = Category::with('products')->where('name', $category_name)->firstOrFail();
 
         return View::make('shops.pages.category', compact('shop', 'category'));
     }
 
     public function adminShow($shop_name, $category_name) {
-        $shop = Shop::with(['category', 'category.products'])->where('name', $shop_name)->firstOrFail();
+        $shop = Shop::with(['categories', 'categories.products'])->where('name', $shop_name)->firstOrFail();
         $category = Category::with('products')->where('name', $category_name)->firstOrFail();
 
         return View::make('shops.themes.admin.category.show', compact('shop', 'category'));
@@ -37,7 +37,7 @@ class CategoriesController extends \BaseController {
         $shop = Shop::with(['categories', 'categories.products'])->where('link', $shop_link)->firstOrFail();
         $category = Category::findOrFail($category_id);
 
-        return View::make('shops.themes.admin.category.edit', compact('shop', 'category'));
+        return View::make('shops.pages.admin.category.edit', compact('shop', 'category'));
     }
 
     public function update($shop_link, $category_id) {
