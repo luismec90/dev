@@ -122,3 +122,30 @@ li.active a, .nav-pills li.active a:hover, .nav-pills li.active a:focus {
 #retribution-zone .ocultar{
     display:none;
 }
+h3.no-margin{
+    margin:0;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 155px;
+    height: 34px;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    display: block;
+    cursor: pointer;
+}
+
+#photo1-product {
+ width: 320px;
+ height: 150px;
+ background-size: 320px 150px;
+    background-image: url(http://placehold.it/320x150);
+}
+#photo2-product {
+    width: 900px;
+    height: 500px;
+    background-size: 900px 500px;
+    background-image: url(http://placehold.it/900x500);
+}

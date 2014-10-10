@@ -3,6 +3,116 @@
 class ProductsController extends \BaseController
 {
 
+    public function index($shop_link,$category_id)
+    {
+        $shop = Shop::where('link', $shop_link)->firstOrFail();
+        $category = Category::with('products')->where('id', $category_id)->where('shop_id',$shop->id)->firstOrFail();
+
+        return View::make('shops.pages.admin.product.index', compact('shop','category'));
+    }
+
+    public function create($shop_link,$category_id)
+    {
+        $shop = Shop::where('link', $shop_link)->firstOrFail();
+        $category = Category::where('id', $category_id)->where('shop_id',$shop->id)->firstOrFail();
+        return View::make('shops.pages.admin.product.create', compact('shop','category'));
+    }
+
+
+    public function store($shop_link,$category_id)
+    {
+        $validation = Validator::make(Input::all(), Product::$rules, Product::$validationMessages);
+        if ($validation->fails()) {
+            return Redirect::back()->withInput()->withErrors($validation);
+        }
+
+        $shop = Shop::where('link', $shop_link)->firstOrFail();
+        $category = Category::where('id',$category_id)->where('shop_id', $shop->id)->first();
+        $product=Product::where('name',Input::get('name'))->where('category_id',$category->id)->first();
+
+        if (!is_null($product)) {
+            $errors = new Illuminate\Support\MessageBag;
+            $errors->add('message', 'El nombre del producto debe ser único');
+
+            return Redirect::back()->withInput()->withErrors($errors);
+        }
+
+
+        $product = new Product;
+        $product->category_id = $category->id;
+        $product->name = Input::get('name');
+        $product->description = Input::get('description');
+        $product->price = Input::get('price');
+        if(Input::has('delivery_service')){
+            $product->delivery_service="1";
+        }else{
+            $product->delivery_service="0";
+        }
+        $product->save();
+
+        Flash::success('Producto creado correctamente');
+
+        return Redirect::route('admin_products_path',[$shop->link,$category->id]);
+    }
+
+    public function edit($shop_link, $category_id,$product_id)
+    {
+        $shop = Shop::where('link', $shop_link)->firstOrFail();
+        $category = Category::where('id', $category_id)->where('shop_id',$shop->id)->firstOrFail();
+        $product=Product::where('id', $product_id)->where('category_id',$category->id)->firstOrFail();
+
+        return View::make('shops.pages.admin.product.edit', compact('shop', 'category','product'));
+    }
+
+    public function update($shop_link, $category_id,$product_id)
+    {
+        $validation = Validator::make(Input::all(), Product::$rules, Product::$validationMessages);
+        if ($validation->fails()) {
+            return Redirect::back()->withInput()->withErrors($validation);
+        }
+
+        $shop = Shop::where('link', $shop_link)->firstOrFail();
+        $category = Category::where('id',$category_id)->where('shop_id', $shop->id)->first();
+        $product=Product::where('id','<>',$product_id)->where('name',Input::get('name'))->where('category_id',$category->id)->first();
+
+        if (!is_null($product)) {
+            $errors = new Illuminate\Support\MessageBag;
+            $errors->add('message', 'El nombre del producto debe ser único');
+
+            return Redirect::back()->withInput()->withErrors($errors);
+        }
+
+        $product = Product::where('id', $product_id)->where('category_id', $category->id)->firstOrFail();
+        $product->name = Input::get('name');
+        $product->description = Input::get('description');
+        $product->price = Input::get('price');
+        if(Input::has('delivery_service')){
+            $product->delivery_service="1";
+        }else{
+            $product->delivery_service="0";
+        }
+        $product->save();
+
+        Flash::success('Producto actualizado correctamente');
+
+        return Redirect::back();
+    }
+
+
+    public function destroy($shop_link, $category_id,$product_id)
+    {
+        $shop = Shop::where('link', $shop_link)->firstOrFail();
+        $category = Category::where('id', $category_id)->where('shop_id',$shop->id)->firstOrFail();
+        $product=Product::where('id', $product_id)->where('category_id',$category->id)->firstOrFail();
+        $product->delete();
+
+        Flash::success('Producto eliminado correctamente');
+
+        return Redirect::route('admin_products_path',[$shop->link,$category->id]);
+    }
+
+
+
     public function show($shop_link, $category_name, $product_name)
     {
         $shop = Shop::with('categories')->where('link', $shop_link)->firstOrFail();

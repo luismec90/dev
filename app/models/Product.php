@@ -3,10 +3,19 @@
 class Product extends \Eloquent
 {
 
-    // Add your validation rules here
     public static $rules = [
-        // 'title' => 'required'
+        'name' => 'required',
+        'description' => 'required',
+        'price'=>'required|numeric'
     ];
+
+    public static $validationMessages = [
+        'name.required' => 'El campo nombre es obligatorio',
+        'description.required' => 'El campo descripción es obligatorio',
+        'price.required' => 'El campo precio es obligatorio',
+        'price.numeric' => 'El campo precio debe ser un número',
+    ];
+
     // Don't forget to fill this array
     protected $fillable = [];
 

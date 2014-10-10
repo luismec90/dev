@@ -32,53 +32,64 @@
             </div>
         </div>
 
-    <div class="row">
-        <div class="col-xs-10">
-            <a href="{{ URL::route('admin_category_path',$shop->link) }}" class="btn btn-primary" title=""><i class="fa fa-reply"></i> Volver atras</a>
-            <button class="btn btn-danger pull-right" data-toggle="modal" data-target="#modal-eliminar-categoria">
-                Eliminar categoría
-            </button>
-        </div>
-    </div>
-
-
-    {{ Form::model($category,['route'=>['admin_update_category_path',$shop->name,$category->name],'class'=>'validate']) }}
         <div class="row">
-            <div class="col-md-10 ">
+            <div class="col-xs-10">
+                <button class="btn btn-danger pull-right" data-toggle="modal" data-target="#modal-eliminar-categoria">
+                    Eliminar categoría
+                </button>
+                <h3 class="no-margin">Editar categoría: {{ $category->name }}</h3>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-10">
                 <br>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-md-10">
-                <!-- Nombre Form Input -->
-                <div class="form-group">
-                    {{ Form::label('name','Nombre:') }}
-                    {{ Form::text('name',null,['class'=>'form-control','required'=>'required']) }}
-                 </div>
+            <div class="col-xs-10">
+                <a href="{{ URL::route('admin_category_path',$shop->link) }}" class="btn btn-primary" title=""><i class="fa fa-reply"></i> Volver atrás</a>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-10 ">
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-3 col-sm-3 col-xs-12">
-                            {{ Form::submit('Enviar',['class'=>'btn btn-primary btn-block']) }}
+        {{ Form::model($category,['route'=>['admin_update_category_path',$shop->link,$category->id],'class'=>'validate']) }}
+            <div class="row">
+                <div class="col-md-10 ">
+                    <br>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-10">
+                    <!-- Nombre Form Input -->
+                    <div class="form-group">
+                        {{ Form::label('name','Nombre:') }}
+                        {{ Form::text('name',null,['class'=>'form-control','required'=>'required']) }}
+                     </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-10 ">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                {{ Form::submit('Enviar',['class'=>'btn btn-primary btn-block']) }}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        </div>
     </div>
     {{ Form::close() }}
 </div>
+
 <!-- Modal -->
 <div class="modal fade" id="modal-eliminar-categoria" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        {{ Form::open(['route'=>'admin_destroy_category_path']) }}
+        {{ Form::open(['route'=>['admin_destroy_category_path',$shop->link,$category->id],'method'=>'DELETE']) }}
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>

@@ -15,7 +15,7 @@ class CreateCategoriesTable extends Migration {
             $table->increments('id');
             $table->integer('shop_id')->unsigned();
             $table->foreign('shop_id')->references('id')->on('shops')->onDelete('cascade');
-            $table->string('name', 32)->unique();
+            $table->string('name', 32);
             $table->timestamps();
         });
     }

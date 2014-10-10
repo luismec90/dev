@@ -14,11 +14,11 @@
             </li>
             <li><a class="tree-toggler nav-header">Categorías</a>
                 <ul class="nav nav-list tree " style="{{ Route::currentRouteName()!='category_path' ? 'display: none;' :'' }};">
-                @foreach ($shop->categories as $row)
-                   <li class="{{ Route::currentRouteName()=='category_path' && $category->name==$row->name ? 'active':''; }}">
-                    <a href="{{ route('category_path',[$shop->link,$row->name]) }}">{{ $row->name }}</a>
-                    </li>
-                @endforeach
+                    @foreach ($shop->categories as $row)
+                       <li class="{{ Route::currentRouteName()=='category_path' && $category->name==$row->name ? 'active':''; }}">
+                        <a href="{{ route('category_path',[$shop->link,$row->name]) }}">{{ $row->name }}</a>
+                        </li>
+                    @endforeach
                 </ul>
             </li>
             <li class="{{ Route::currentRouteName()=='delivery_path' || Route::currentRouteName()=='product_delivery_path' ? 'active':'' }}">
@@ -33,8 +33,14 @@
                     <a href="{{ route('bill_path',$shop->link) }}">Realizar venta</a>
                 </li>
 
-                 <li class="@if(Route::currentRouteName()=='admin_category_path' || Route::currentRouteName()=='admin_edit_category_path') {{ 'active'}} @endif">
-                    <a href="{{ route('admin_category_path',$shop->link) }}">Categorias y productos</a>
+                <li class="@if(Route::currentRouteName()=='admin_category_path' ||
+                Route::currentRouteName()=='admin_edit_category_path' ||
+                Route::currentRouteName()=='admin_create_category_path'||
+                Route::currentRouteName()=='admin_products_path' ||
+                Route::currentRouteName()=='admin_edit_product_path' ||
+                Route::currentRouteName()=='admin_create_product_path')
+                {{ 'active'}} @endif">
+                <a href="{{ route('admin_category_path',$shop->link) }}">Editar categorías y productos</a>
                 </li>
             @endif
         </ul>

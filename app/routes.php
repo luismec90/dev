@@ -60,10 +60,20 @@ Route::group(array('prefix' => '{shop_link}'), function () {
         Route::post('/venta', array('before' => 'auth|admin','as' => 'bill_path', 'uses' => 'BillsController@store'));
         Route::post('/getuser', array('before' => 'auth|admin','as' => 'getuser_path', 'uses' => 'UsersController@getUser'));
         Route::get('/categorias', array('before' => 'auth|admin', 'as' => 'admin_category_path', 'uses' => 'CategoriesController@index'));
+        Route::get('/categorias/crear', array('before' => 'auth|admin', 'as' => 'admin_create_category_path', 'uses' => 'CategoriesController@create'));
+        Route::post('/categorias/crear', array('before' => 'auth|admin', 'as' => 'admin_store_category_path', 'uses' => 'CategoriesController@store'));
         Route::get('/categorias/editar/{category_id}', array('before' => 'auth|admin', 'as' => 'admin_edit_category_path', 'uses' => 'CategoriesController@edit'));
-        Route::post('/categorias/actualizar/{category_id}', array('before' => 'auth|admin', 'as' => 'admin_update_category_path', 'uses' => 'CategoriesController@update'));
+        Route::post('/categorias/editar/{category_id}', array('before' => 'auth|admin', 'as' => 'admin_update_category_path', 'uses' => 'CategoriesController@update'));
         Route::delete('/categorias/eliminar/{category_id}', array('before' => 'auth|admin', 'as' => 'admin_destroy_category_path', 'uses' => 'CategoriesController@destroy'));
-        Route::get('/categorias/{category}', array('before' => 'auth|admin', 'as' => 'admin_show_category_path', 'uses' => 'CategoriesController@adminShow'));
+
+        Route::get('/categoria/{category_id}', array('before' => 'auth|admin', 'as' => 'admin_products_path', 'uses' => 'ProductsController@index'));
+        Route::get('/categoria/{category_id}/producto/{product_id}', array('before' => 'auth|admin', 'as' => 'admin_edit_product_path', 'uses' => 'ProductsController@edit'));
+        Route::get('/categorias/{category_id}/producto/crear', array('before' => 'auth|admin', 'as' => 'admin_create_product_path', 'uses' => 'ProductsController@create'));
+        Route::post('/categorias/{category_id}/producto/crear', array('before' => 'auth|admin', 'as' => 'admin_store_product_path', 'uses' => 'ProductsController@store'));
+        Route::get('/categorias/{category_id}/producto/editar/{product_id}', array('before' => 'auth|admin', 'as' => 'admin_edit_product_path', 'uses' => 'ProductsController@edit'));
+        Route::post('/categorias/{category_id}/producto/editar/{product_id}', array('before' => 'auth|admin', 'as' => 'admin_update_product_path', 'uses' => 'ProductsController@update'));
+        Route::delete('/categorias/{category_id}/producto/eliminar/{product_id}', array('before' => 'auth|admin', 'as' => 'admin_destroy_product_path', 'uses' => 'ProductsController@destroy'));
+
     });
 
 
