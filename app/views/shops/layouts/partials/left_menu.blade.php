@@ -28,7 +28,7 @@
                 <a href="{{ route('localization_path',$shop->link) }}">Localización</a>
             </li>
             @if(isset($shop) && Auth::check() &&  Auth::user()->isAdmin($shop->id))
-                <hr>
+                <li class="dropdown-header">Administración</li>
                 <li class="@if(Route::currentRouteName()=='bill_path') {{ 'active'}} @endif">
                     <a href="{{ route('bill_path',$shop->link) }}">Realizar venta</a>
                 </li>
