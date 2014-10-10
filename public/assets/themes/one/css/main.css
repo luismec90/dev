@@ -37,6 +37,7 @@ html, body, #map-canvas  {
 .product-description{
     height: 75px;
     overflow: hidden;
+    margin-bottom: 4px;
 }
 .product .name{
     text-overflow:ellipsis;
@@ -137,15 +138,30 @@ h3.no-margin{
     cursor: pointer;
 }
 
-#photo1-product {
- width: 320px;
- height: 150px;
- background-size: 320px 150px;
-    background-image: url(http://placehold.it/320x150);
-}
 #photo2-product {
-    width: 900px;
-    height: 500px;
-    background-size: 900px 500px;
-    background-image: url(http://placehold.it/900x500);
+    width: 800px;
+    height: 400px;
+    background-size: 800px 400px;
+    background-image: url(http://placehold.it/800x400);
+}
+
+#coverDisplay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #444;
+    background: rgba(68,68,68,0.95);
+    overflow: hidden;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    z-index: 1500;
+}
+#imgLoading{
+    width: 64px;
+    height: 64px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -32px;
+    margin-left: -32px;
 }

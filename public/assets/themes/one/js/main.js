@@ -1,6 +1,14 @@
 $(function () {
 
 
+    $('form.form-submit').submit(function () {
+        $("#coverDisplay").css({
+            "opacity": "1",
+            "width": "100%",
+            "height": "100%"
+        });
+    });
+
 
     // Smooth Hash Link Scroll
     $('.smooth-scroll').click(function () {

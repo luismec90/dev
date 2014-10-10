@@ -3,32 +3,34 @@
 class ProductsController extends \BaseController
 {
 
-    public function index($shop_link,$category_id)
+    public function index($shop_link, $category_id)
     {
         $shop = Shop::where('link', $shop_link)->firstOrFail();
-        $category = Category::with('products')->where('id', $category_id)->where('shop_id',$shop->id)->firstOrFail();
+        $category = Category::with('products')->where('id', $category_id)->where('shop_id', $shop->id)->firstOrFail();
 
-        return View::make('shops.pages.admin.product.index', compact('shop','category'));
+        return View::make('shops.pages.admin.product.index', compact('shop', 'category'));
     }
 
-    public function create($shop_link,$category_id)
+    public function create($shop_link, $category_id)
     {
         $shop = Shop::where('link', $shop_link)->firstOrFail();
-        $category = Category::where('id', $category_id)->where('shop_id',$shop->id)->firstOrFail();
-        return View::make('shops.pages.admin.product.create', compact('shop','category'));
+        $category = Category::where('id', $category_id)->where('shop_id', $shop->id)->firstOrFail();
+
+        return View::make('shops.pages.admin.product.create', compact('shop', 'category'));
     }
 
 
-    public function store($shop_link,$category_id)
+    public function store($shop_link, $category_id)
     {
         $validation = Validator::make(Input::all(), Product::$rules, Product::$validationMessages);
         if ($validation->fails()) {
             return Redirect::back()->withInput()->withErrors($validation);
         }
 
+
         $shop = Shop::where('link', $shop_link)->firstOrFail();
-        $category = Category::where('id',$category_id)->where('shop_id', $shop->id)->first();
-        $product=Product::where('name',Input::get('name'))->where('category_id',$category->id)->first();
+        $category = Category::where('id', $category_id)->where('shop_id', $shop->id)->first();
+        $product = Product::where('name', Input::get('name'))->where('category_id', $category->id)->first();
 
         if (!is_null($product)) {
             $errors = new Illuminate\Support\MessageBag;
@@ -43,28 +45,49 @@ class ProductsController extends \BaseController
         $product->name = Input::get('name');
         $product->description = Input::get('description');
         $product->price = Input::get('price');
-        if(Input::has('delivery_service')){
-            $product->delivery_service="1";
-        }else{
-            $product->delivery_service="0";
+        if (Input::has('delivery_service')) {
+            $product->delivery_service = "1";
+        } else {
+            $product->delivery_service = "0";
         }
         $product->save();
 
+        if (Input::hasFile('photo')) {
+            $photo = Input::file('photo');
+            $product->photo_extension = $photo->getClientOriginalExtension();
+            $product->save();
+
+            $path = "shops/{$shop->id}/products/{$product->id}";
+            if (!File::exists($path)) {
+                File::makeDirectory($path);
+            }
+
+            $filename = 'mini.' . $product->photo_extension;
+            Image::make($photo->getRealPath())
+                ->fit(252, 126)
+                ->save("$path/$filename");
+
+            $filename = 'cover.' . $product->photo_extension;
+            Image::make($photo->getRealPath())
+                ->fit(900, 450450)
+                ->save("$path/$filename");
+        }
+
         Flash::success('Producto creado correctamente');
 
-        return Redirect::route('admin_products_path',[$shop->link,$category->id]);
+        return Redirect::route('admin_products_path', [$shop->link, $category->id]);
     }
 
-    public function edit($shop_link, $category_id,$product_id)
+    public function edit($shop_link, $category_id, $product_id)
     {
         $shop = Shop::where('link', $shop_link)->firstOrFail();
-        $category = Category::where('id', $category_id)->where('shop_id',$shop->id)->firstOrFail();
-        $product=Product::where('id', $product_id)->where('category_id',$category->id)->firstOrFail();
+        $category = Category::where('id', $category_id)->where('shop_id', $shop->id)->firstOrFail();
+        $product = Product::where('id', $product_id)->where('category_id', $category->id)->firstOrFail();
 
-        return View::make('shops.pages.admin.product.edit', compact('shop', 'category','product'));
+        return View::make('shops.pages.admin.product.edit', compact('shop', 'category', 'product'));
     }
 
-    public function update($shop_link, $category_id,$product_id)
+    public function update($shop_link, $category_id, $product_id)
     {
         $validation = Validator::make(Input::all(), Product::$rules, Product::$validationMessages);
         if ($validation->fails()) {
@@ -72,8 +95,8 @@ class ProductsController extends \BaseController
         }
 
         $shop = Shop::where('link', $shop_link)->firstOrFail();
-        $category = Category::where('id',$category_id)->where('shop_id', $shop->id)->first();
-        $product=Product::where('id','<>',$product_id)->where('name',Input::get('name'))->where('category_id',$category->id)->first();
+        $category = Category::where('id', $category_id)->where('shop_id', $shop->id)->first();
+        $product = Product::where('id', '<>', $product_id)->where('name', Input::get('name'))->where('category_id', $category->id)->first();
 
         if (!is_null($product)) {
             $errors = new Illuminate\Support\MessageBag;
@@ -86,10 +109,10 @@ class ProductsController extends \BaseController
         $product->name = Input::get('name');
         $product->description = Input::get('description');
         $product->price = Input::get('price');
-        if(Input::has('delivery_service')){
-            $product->delivery_service="1";
-        }else{
-            $product->delivery_service="0";
+        if (Input::has('delivery_service')) {
+            $product->delivery_service = "1";
+        } else {
+            $product->delivery_service = "0";
         }
         $product->save();
 
@@ -99,18 +122,22 @@ class ProductsController extends \BaseController
     }
 
 
-    public function destroy($shop_link, $category_id,$product_id)
+    public function destroy($shop_link, $category_id, $product_id)
     {
         $shop = Shop::where('link', $shop_link)->firstOrFail();
-        $category = Category::where('id', $category_id)->where('shop_id',$shop->id)->firstOrFail();
-        $product=Product::where('id', $product_id)->where('category_id',$category->id)->firstOrFail();
+        $category = Category::where('id', $category_id)->where('shop_id', $shop->id)->firstOrFail();
+        $product = Product::where('id', $product_id)->where('category_id', $category->id)->firstOrFail();
         $product->delete();
+
+        $path = "shops/{$shop->id}/products/$product_id";
+        if (File::isDirectory($path)) {
+            File::deleteDirectory($path);
+        }
 
         Flash::success('Producto eliminado correctamente');
 
-        return Redirect::route('admin_products_path',[$shop->link,$category->id]);
+        return Redirect::route('admin_products_path', [$shop->link, $category->id]);
     }
-
 
 
     public function show($shop_link, $category_name, $product_name)
@@ -160,7 +187,7 @@ class ProductsController extends \BaseController
         $review = new Review;
 
         // Validate that the user's input corresponds to the rules specified in the review model
-        $validator = Validator::make($input, Review::$rules,Review::$validationMessages);
+        $validator = Validator::make($input, Review::$rules, Review::$validationMessages);
 
         // If input passes validation - store the review in DB, otherwise return to product page with error message
         if ($validator->passes()) {

@@ -1,5 +1,5 @@
 <div class="thumbnail">
-    <img class="" src="{{ $product->pathImage(false,$shop->id,$product->id) }}" alt="">
+    <img class="" src="{{ $product->pathImage(false,$shop->id,$product->id) }}" width="252" height="126" alt="">
     <div class="caption">
         <h4 class="pull-right">{{ $product->price() }}</h4>
         <h4 class="name"> {{ link_to_route('product_path',$product->name,[$shop->link,$category->name,$product->name]) }}

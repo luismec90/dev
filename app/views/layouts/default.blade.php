@@ -55,6 +55,6 @@
         @section('js')
         @show
 
-        @include('layouts.partials.notify');
+        @include('layouts.partials.notify')
     </body>
 </html>

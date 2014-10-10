@@ -33,8 +33,8 @@
     </div>
 
     <div class="row">
-        <div class="col-xs-12">
-            <h3 class="no-margin"> Crear categoría</h3>
+        <div class="col-xs-10">
+            <a href="{{ URL::route('admin_category_path',$shop->link) }}" class="btn btn-primary" title=""><i class="fa fa-reply"></i> Volver atras</a>
         </div>
     </div>
 
@@ -45,16 +45,15 @@
     </div>
 
     <div class="row">
-        <div class="col-xs-10">
-            <a href="{{ URL::route('admin_category_path',$shop->link) }}" class="btn btn-primary" title=""><i class="fa fa-reply"></i> Volver atras</a>
+        <div class="col-xs-12">
+            <h3 class="no-margin"> Crear categoría</h3>
         </div>
     </div>
-
 
     {{ Form::open(['route'=>['admin_create_category_path',$shop->link],'class'=>'validate']) }}
         <div class="row">
             <div class="col-md-10 ">
-                <br>
+                <hr>
             </div>
         </div>
 

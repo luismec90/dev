@@ -6,7 +6,8 @@ class Product extends \Eloquent
     public static $rules = [
         'name' => 'required',
         'description' => 'required',
-        'price'=>'required|numeric'
+        'price'=>'required|numeric',
+        'photo'=>'required|image|max:4000'
     ];
 
     public static $validationMessages = [
@@ -14,6 +15,9 @@ class Product extends \Eloquent
         'description.required' => 'El campo descripción es obligatorio',
         'price.required' => 'El campo precio es obligatorio',
         'price.numeric' => 'El campo precio debe ser un número',
+        'photo.required' => 'El campo foto es obligatorio',
+        'photo.image' => 'El campo foto debe ser una imagen',
+        'photo.max' => 'La foto del producto debe pesar menos de 4MB',
     ];
 
     // Don't forget to fill this array
@@ -33,8 +37,8 @@ class Product extends \Eloquent
     {
     //$product_id = 1;
         if ($cover)
-            return asset("shops/$category_id/products/$product_id/cover.jpg");
-        return asset("shops/$category_id/products/$product_id/mini.jpg");
+            return asset("shops/$category_id/products/$product_id/cover.{$this->photo_extension}");
+        return asset("shops/$category_id/products/$product_id/mini.{$this->photo_extension}");
     }
 
     public function price()

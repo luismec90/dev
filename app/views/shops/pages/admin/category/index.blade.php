@@ -25,8 +25,8 @@
         </div>
 
         <div class="row">
-            <div class="col-md-10 ">
-                <br>
+            <div class="col-xs-12">
+                <hr>
             </div>
         </div>
 

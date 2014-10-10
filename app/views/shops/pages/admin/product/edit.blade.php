@@ -32,12 +32,9 @@
         </div>
     </div>
 
-     <div class="row">
+    <div class="row">
         <div class="col-xs-10">
-            <button class="btn btn-danger pull-right" data-toggle="modal" data-target="#modal-eliminar-producto">
-                Eliminar producto
-            </button>
-            <h3 class="no-margin"> Editar producto: {{ $product->name }}</h3>
+            <a href="{{ URL::route('admin_products_path',[$shop->link,$category->id]) }}" class="btn btn-primary" title=""><i class="fa fa-reply"></i> Volver atras</a>
         </div>
     </div>
 
@@ -47,74 +44,17 @@
         </div>
     </div>
 
-    <div class="row">
+     <div class="row">
         <div class="col-xs-10">
-            <a href="{{ URL::route('admin_products_path',[$shop->link,$category->id]) }}" class="btn btn-primary" title=""><i class="fa fa-reply"></i> Volver atras</a>
+            <button class="btn btn-danger pull-right" data-toggle="modal" data-target="#modal-eliminar-producto">
+                Eliminar producto
+            </button>
+            <h3 class="no-margin"> Editar producto: {{ $product->name }}</h3>
         </div>
     </div>
 
     {{ Form::model($product,['route'=>['admin_update_product_path',$shop->link,$category->id,$product->id],'class'=>'validate']) }}
-        <div class="row">
-            <div class="col-md-10 ">
-                <br>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-10">
-                <!-- Nombre Form Input -->
-                <div class="form-group">
-                    {{ Form::label('name','Nombre:') }}
-                    {{ Form::text('name',null,['class'=>'form-control','required'=>'required']) }}
-                 </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-10">
-                <!-- Precio Form Input -->
-                <div class="form-group">
-                    {{ Form::label('price','Precio:') }}
-                    {{ Form::number('price',null,['class'=>'form-control','required'=>'required']) }}
-                 </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-10">
-                <!-- Servicio a domicilio -->
-                <div class="checkbox">
-                    <label>
-                        {{ Form::checkbox('delivery_service', '1'); }} Servicio a domicilio
-                    </label>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-10">
-                <!-- Descripción Form Input -->
-                <div class="form-group">
-                    {{ Form::label('description','Descripción:') }}
-                    {{ Form::textarea('description',null,['class'=>'form-control','required'=>'required']) }}
-                 </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-10 ">
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-3 col-sm-3 col-xs-12">
-                            {{ Form::submit('Enviar',['class'=>'btn btn-primary btn-block']) }}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        </div>
-    </div>
+        @include('shops.layouts.partials.create_edit_product')
     {{ Form::close() }}
 </div>
 <!-- Modal -->

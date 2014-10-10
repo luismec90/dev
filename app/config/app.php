@@ -124,7 +124,8 @@ return array(
         'Laracasts\Flash\FlashServiceProvider',
         'Way\Generators\GeneratorsServiceProvider',
         'Barryvdh\Debugbar\ServiceProvider',
-        'Artdarek\OAuth\OAuthServiceProvider'
+        'Artdarek\OAuth\OAuthServiceProvider',
+        'Intervention\Image\ImageServiceProvider'
 
     ),
 
@@ -194,6 +195,7 @@ return array(
         'View' => 'Illuminate\Support\Facades\View',
         'Flash' => 'Laracasts\Flash\Flash',
         'OAuth' => 'Artdarek\OAuth\Facade\OAuth',
+        'Image' => 'Intervention\Image\Facades\Image',
 
     ),
 

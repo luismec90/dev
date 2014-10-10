@@ -14,6 +14,18 @@
 
     <div class="col-md-9">
 
+         <div class="row">
+            <div class="col-xs-10">
+                <a href="{{ URL::route('admin_category_path',$shop->link) }}" class="btn btn-primary" title=""><i class="fa fa-reply"></i> Volver atrás</a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-10">
+                <br>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-xs-12">
                 <a href="{{ route('admin_create_product_path',[$shop->link,$category->id]) }}" class="btn btn-primary pull-right">Crear producto</a>
@@ -21,21 +33,13 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-xs-10">
-                <br>
-            </div>
-        </div>
 
-        <div class="row">
-            <div class="col-xs-10">
-                <a href="{{ URL::route('admin_category_path',$shop->link) }}" class="btn btn-primary" title=""><i class="fa fa-reply"></i> Volver atrás</a>
-            </div>
-        </div>
+
+
 
         <div class="row">
             <div class="col-md-10 ">
-                <br>
+                <hr>
             </div>
         </div>
 

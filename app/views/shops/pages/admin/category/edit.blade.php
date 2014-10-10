@@ -34,10 +34,7 @@
 
         <div class="row">
             <div class="col-xs-10">
-                <button class="btn btn-danger pull-right" data-toggle="modal" data-target="#modal-eliminar-categoria">
-                    Eliminar categoría
-                </button>
-                <h3 class="no-margin">Editar categoría: {{ $category->name }}</h3>
+                <a href="{{ URL::route('admin_category_path',$shop->link) }}" class="btn btn-primary" title=""><i class="fa fa-reply"></i> Volver atrás</a>
             </div>
         </div>
 
@@ -49,14 +46,21 @@
 
         <div class="row">
             <div class="col-xs-10">
-                <a href="{{ URL::route('admin_category_path',$shop->link) }}" class="btn btn-primary" title=""><i class="fa fa-reply"></i> Volver atrás</a>
+                <button class="btn btn-danger pull-right" data-toggle="modal" data-target="#modal-eliminar-categoria">
+                    Eliminar categoría
+                </button>
+                <h3 class="no-margin">Editar categoría: {{ $category->name }}</h3>
             </div>
         </div>
+
+
+
+
 
         {{ Form::model($category,['route'=>['admin_update_category_path',$shop->link,$category->id],'class'=>'validate']) }}
             <div class="row">
                 <div class="col-md-10 ">
-                    <br>
+                    <hr>
                 </div>
             </div>
 
