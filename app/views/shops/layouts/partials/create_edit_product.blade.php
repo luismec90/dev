@@ -9,7 +9,7 @@
     <div class="col-md-12">
         <div class="row">
             <div class="col-xs-12">
-                <div id="photo2-product" class="img-thumbnail"></div>
+                <div id="photo2-product" class="img-thumbnail" {{ isset($product) ? "style='background-image:url({$product->pathImage(true,$shop->id,$product->id)})'":"" }}></div>
             </div>
         </div>
         <div class="row">
@@ -22,11 +22,11 @@
                 <div class="form-group">
                     <div><b>Nota:</b> Se recomienda que la foto tenga el doble de ancho que de alto, ademas de una resolución minima de 800x400 pixeles </div>
                     <div class="input-group">
-                        <input type="text" class="form-control" readonly="">
+                        <input type="text" value="{{ isset($product) ? "cover.{$product->photo_extension}":"" }}" class="form-control" readonly="">
                         <span class="input-group-btn">
                             <span class="btn btn-primary btn-file">
                                 Foto del producto
-                                {{ Form::file('photo',['id'=>'file-photo2','accept'=>'image/*','required'=>'true']) }}
+                                {{ Form::file('photo',['id'=>'file-photo2','accept'=>'image/*']) }}
                             </span>
                         </span>
                     </div>

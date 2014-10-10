@@ -89,7 +89,7 @@ class ProductsController extends \BaseController
 
     public function update($shop_link, $category_id, $product_id)
     {
-        $validation = Validator::make(Input::all(), Product::$rules, Product::$validationMessages);
+        $validation = Validator::make(Input::all(), Product::$rulesUpdate, Product::$validationMessages);
         if ($validation->fails()) {
             return Redirect::back()->withInput()->withErrors($validation);
         }
@@ -115,6 +115,27 @@ class ProductsController extends \BaseController
             $product->delivery_service = "0";
         }
         $product->save();
+
+        if (Input::hasFile('photo')) {
+            $photo = Input::file('photo');
+            $product->photo_extension = $photo->getClientOriginalExtension();
+            $product->save();
+
+            $path = "shops/{$shop->id}/products/{$product->id}";
+            if (!File::exists($path)) {
+                File::makeDirectory($path);
+            }
+
+            $filename = 'mini.' . $product->photo_extension;
+            Image::make($photo->getRealPath())
+                ->fit(252, 126)
+                ->save("$path/$filename");
+
+            $filename = 'cover.' . $product->photo_extension;
+            Image::make($photo->getRealPath())
+                ->fit(900,450)
+                ->save("$path/$filename");
+        }
 
         Flash::success('Producto actualizado correctamente');
 

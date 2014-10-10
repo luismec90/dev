@@ -18,20 +18,16 @@ class ShopsController extends \BaseController
         return View::make('shops.pages.localization', compact('shop'));
     }
 
+    public function subscriptions($shop_link)
+    {
+        $shop = Shop::where('link', $shop_link)->firstOrFail();
 
-    public function becomeMember()
-    {   $shop_id=Input::get('shop_id');
-        $shop = Shop::find($shop_id)->firstOrFail();
-        if($shop_id && Auth::user()->isMember($shop->link)){
+        $suscribed_users = User::whereHas('shops', function ($query) use ($shop) {
+            $query->where("role", 2);
+            $query->where("shops.id", $shop->id);
+        })->get();
 
-
-            return Redirect::back();
-        }else{
-            return Redirect::back();
-        }
-
-
-        return View::make('shops.themes.admin.category.index', compact('shop'));
+        return View::make('shops.pages.subscriptions', compact('shop','suscribed_users'));
     }
 
 }

@@ -31,4 +31,9 @@ class Shop extends \Eloquent {
         return asset("shops/{$this->id}/{$this->image_preview}");
     }
 
+    public function users()
+    {
+        return $this->belongsToMany('User')->withPivot('role');
+    }
+
 }

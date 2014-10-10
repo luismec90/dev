@@ -10,6 +10,13 @@ class Product extends \Eloquent
         'photo'=>'required|image|max:4000'
     ];
 
+    public static $rulesUpdate = [
+        'name' => 'required',
+        'description' => 'required',
+        'price'=>'required|numeric',
+        'photo'=>'sometimes|image|max:4000'
+    ];
+
     public static $validationMessages = [
         'name.required' => 'El campo nombre es obligatorio',
         'description.required' => 'El campo descripción es obligatorio',

@@ -17,7 +17,24 @@ class SessionsController extends \BaseController
 
             return Redirect::back()->withInput();
         }
-        Flash::success('Bienvenido nuevamente');
+        if (Auth::user()->gender == 'f') {
+            $welcome = 'Bienvenida';
+        } else if (Auth::user()->gender == 'm') {
+            $welcome = 'Bienvenido';
+        } else {
+            $welcome = 'Bienvenid@';
+        }
+
+        Flash::success("$welcome  nuevamente " . Auth::user()->first_name);
+
+        $shop = Shop::whereHas('users', function ($query) {
+            $query->where("users.id", Auth::user()->id);
+            $query->where("role", 1);
+        })->first();
+
+        if (!is_null($shop)) {
+            return Redirect::route('shop_path', $shop->link);
+        }
 
         return Redirect::to(Session::get('previous_url'));
     }

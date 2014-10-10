@@ -38,7 +38,7 @@
 
 
         <div class="row">
-            <div class="col-md-10 ">
+            <div class="col-xs-12 ">
                 <hr>
             </div>
         </div>

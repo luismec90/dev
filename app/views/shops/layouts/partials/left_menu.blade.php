@@ -43,6 +43,10 @@
                 {{ 'active'}} @endif">
                 <a href="{{ route('admin_category_path',$shop->link) }}">Editar categorías y productos</a>
                 </li>
+
+                <li class="@if(Route::currentRouteName()=='subscriptions_path') {{ 'active'}} @endif">
+                    <a href="{{ route('subscriptions_path',$shop->link) }}">Usuarios suscritos</a>
+                </li>
             @endif
         </ul>
     </div>

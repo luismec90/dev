@@ -21,7 +21,7 @@ Route::get('/contacto', array('as' => 'contact_path', 'uses' => 'PagesController
 Route::post('/contacto', array('as' => 'contact_path', 'uses' => 'PagesController@sendContact'));
 
 /* Listar establecimiento */
-Route::get('listar', array('before' => 'auth', 'as' => 'listshops_path', 'uses' => 'PagesController@listShops'));
+Route::get('listar', array('as' => 'listshops_path', 'uses' => 'PagesController@listShops'));
 
 /* Mis sistios */
 Route::get('saldo', array('before' => 'auth', 'as' => 'summary_path', 'uses' => 'PagesController@balance'));
@@ -74,6 +74,7 @@ Route::group(array('prefix' => '{shop_link}'), function () {
         Route::post('/categorias/{category_id}/productos/editar/{product_id}', array('before' => 'auth|admin', 'as' => 'admin_update_product_path', 'uses' => 'ProductsController@update'));
         Route::delete('/categorias/{category_id}/productos/eliminar/{product_id}', array('before' => 'auth|admin', 'as' => 'admin_destroy_product_path', 'uses' => 'ProductsController@destroy'));
 
+        Route::get('/suscripciones}', array('before' => 'auth|admin', 'as' => 'subscriptions_path', 'uses' => 'ShopsController@subscriptions'));
     });
 
 

@@ -9,6 +9,7 @@
 {{ HTML::script('assets/libs/bootstrapvalidator/js/bootstrapValidator.js') }}
 {{ HTML::script('assets/libs/bootstrapvalidator/js/language/es_ES.js') }}
 {{ HTML::script('assets/js/validation.js') }}
+{{ HTML::script('assets/themes/one/js/product.js') }}
 @stop
 
 @section('content')
@@ -53,8 +54,8 @@
         </div>
     </div>
 
-    {{ Form::model($product,['route'=>['admin_update_product_path',$shop->link,$category->id,$product->id],'class'=>'validate']) }}
-        @include('shops.layouts.partials.create_edit_product')
+    {{ Form::model($product,['route'=>['admin_update_product_path',$shop->link,$category->id,$product->id],'class'=>'validate form-submit','files' => true]) }}
+        @include('shops.layouts.partials.create_edit_product',compact('producto'))
     {{ Form::close() }}
 </div>
 <!-- Modal -->
