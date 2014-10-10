@@ -56,7 +56,7 @@
 
 
 
-    {{ Form::open(['route'=>['admin_store_product_path',$shop->link,$category->id],'class'=>'validate form-submit','files' => true]) }}
+    {{ Form::open(['route'=>['admin_store_product_path',$shop->link,$category->id],'class'=>'validate','files' => true]) }}
          @include('shops.layouts.partials.create_edit_product')
     {{ Form::close() }}
 </div>

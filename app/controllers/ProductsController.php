@@ -69,7 +69,7 @@ class ProductsController extends \BaseController
 
             $filename = 'cover.' . $product->photo_extension;
             Image::make($photo->getRealPath())
-                ->fit(900, 450450)
+                ->fit(900)
                 ->save("$path/$filename");
         }
 
