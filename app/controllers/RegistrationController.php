@@ -60,4 +60,58 @@ class RegistrationController extends \BaseController
 
         return Redirect::route('login_path');
     }
+
+    public function completeRegistration($shop_link, $email, $token)
+    {
+        if (Auth::check()) {
+            Auth::logout();
+        }
+        $shop = Shop::where('link', $shop_link)->firstOrFail();
+        $user = User::where('email', $email)->where('confirmed', 0)->first();
+
+        if ($token == sha1("$email-luis5484175") && !is_null($user)) {
+            return View::make('pages.complete_registration', compact('shop', 'user', 'token'));
+        } else {
+            Flash::error("Link inválido");
+
+            return Redirect::route("home");
+        }
+    }
+
+    public function endRegistration($shop_link, $email, $token)
+    {
+        if (Auth::check()) {
+            Auth::logout();
+        }
+        $shop = Shop::where('link', $shop_link)->firstOrFail();
+        $user = User::where('email', $email)->where('confirmed', 0)->first();
+
+        if ($token == sha1("$email-luis5484175") && !is_null($user)) {
+            $validation = Validator::make(Input::all(), User::$rulesCompleteRegister, User::$validationMessages);
+            if ($validation->fails()) {
+                return Redirect::back()->withInput()->withErrors($validation);
+            }
+
+            $user->first_name = Input::get('first_name');
+            $user->last_name = Input::get('last_name');
+            $user->birth_date = Input::get('birth_date');
+            $user->gender = Input::get('gender');
+            $user->avatar = 'default.png';
+            $user->password = Hash::make(Input::get('password'));
+            $user->confirmed = 1;
+            $user->save();
+
+            Flash::success("Gracias por completar tu registro");
+
+            Auth::attempt(['email' => $email, 'password' => Input::get('password'), 'confirmed' => '1']);
+
+            return Redirect::route("shop_path", $shop->link);
+
+        } else {
+            Flash::error("Link inválido");
+
+            return Redirect::route("home");
+        }
+
+    }
 }

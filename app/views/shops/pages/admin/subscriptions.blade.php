@@ -42,6 +42,7 @@ function iniciar() {
 
     <div class="row">
         <div class="col-xs-12">
+        <a class="btn btn-primary pull-right" href="{{ route('export_subscriptions_path',$shop->link) }}">Exportar a Excel</a>
             <h3 class="no-margin">Suscripciones</h3>
         </div>
     </div>

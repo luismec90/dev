@@ -2,10 +2,33 @@
 
 class Shop extends \Eloquent {
 
-    // Add your validation rules here
     public static $rules = [
-            // 'title' => 'required'
+        'name' => 'required',
+        'link' => 'required',
+        'lat' => 'required',
+        'lng'=>'required',
+        'retribution'=>'required|integer|between:1,100',
+        'email'=>'required',
+        'phone'=>'required',
+        'schedule'=>'required',
+        'about'=>'required',
     ];
+
+
+    public static $validationMessages = [
+        'name.required' => 'El campo nombre es obligatorio',
+        'link.required' => 'El campo link es obligatorio',
+        'lat.required' => 'El campo lat es obligatorio',
+        'lng.required'=>'El campo lng es obligatorio',
+        'retribution.required'=>'El campo retribution es obligatorio',
+        'email.required'=>'El campo email es obligatorio',
+        'phone.required'=>'El campo phone es obligatorio',
+        'schedule.required'=>'El campo schedule es obligatorio',
+        'about.required'=>'El campo about es obligatorio',
+        'retribution.integer'=>'El campo retribución debe ser un número entero entre 1 y 100',
+        'retribution.between'=>'El campo retribución debe ser un número entero entre 1 y 100',
+    ];
+
     // Don't forget to fill this array
     protected $fillable = [];
 

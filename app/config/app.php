@@ -125,7 +125,8 @@ return array(
         'Way\Generators\GeneratorsServiceProvider',
         'Barryvdh\Debugbar\ServiceProvider',
         'Artdarek\OAuth\OAuthServiceProvider',
-        'Intervention\Image\ImageServiceProvider'
+        'Intervention\Image\ImageServiceProvider',
+        'Maatwebsite\Excel\ExcelServiceProvider',
 
     ),
 
@@ -196,7 +197,7 @@ return array(
         'Flash' => 'Laracasts\Flash\Flash',
         'OAuth' => 'Artdarek\OAuth\Facade\OAuth',
         'Image' => 'Intervention\Image\Facades\Image',
-
+        'Excel' => 'Maatwebsite\Excel\Facades\Excel',
     ),
 
 );

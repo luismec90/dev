@@ -86,7 +86,15 @@
              
             <div class="caption-full">
                 <h4 class="pull-right">{{ $product->price() }}</h4>
-                <h4><a>{{$product->name}}</a> <a  href="{{ URL::route('product_delivery_path',[$shop->link,$product->id]) }}"  class="btn btn-primary btn-sm" {{ Auth::check() ? '':'disabled'; }}>Pedir a domicilio</a> </h4>
+                <h4><a>{{$product->name}}
+                @if($product->delivery_service==1)
+                    <a  href="{{ URL::route('product_delivery_path',[$shop->link,$product->id]) }}"  class="btn btn-primary btn-sm">Pedir a domicilio</a>
+                @endif
+
+                @if(Auth::check() && Auth::user()->isAdmin($shop->id))
+                     <a  href="{{ URL::route('admin_edit_product_path',[$shop->link,$product->category_id,$product->id]) }}"  class="btn btn-primary btn-sm">Editar</a>
+                @endif
+                </a></h4>
                 <p>{{$product->description}}</p>
 
             </div>

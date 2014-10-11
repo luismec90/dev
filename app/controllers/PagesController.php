@@ -3,6 +3,17 @@
 class PagesController extends BaseController {
 
 
+    public function test()
+    {
+        $shop = Shop::first();
+        $bill = Bill::first();
+        $title="asdasd";
+        $user=User::find(14);
+        $is_new_user=true;
+        return View::make('emails.shops.admin.bill',compact('shop','bill','title','user','is_new_user'));
+
+    }
+
     public function home()
     {
         $towns=Town::orderBy('name')->get();

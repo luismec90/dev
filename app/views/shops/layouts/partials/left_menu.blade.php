@@ -21,9 +21,11 @@
                     @endforeach
                 </ul>
             </li>
-            <li class="{{ Route::currentRouteName()=='delivery_path' || Route::currentRouteName()=='product_delivery_path' ? 'active':'' }}">
-                <a href="{{ route('delivery_path',$shop->link) }}">Domicilios</a>
-            </li>
+            @if($shop->delivery_service)
+                <li class="{{ Route::currentRouteName()=='delivery_path' || Route::currentRouteName()=='product_delivery_path' ? 'active':'' }}">
+                    <a href="{{ route('delivery_path',$shop->link) }}">Domicilios</a>
+                </li>
+            @endif
             <li class="{{ Route::currentRouteName()=='localization_path' ? 'active':'' }}">
                 <a href="{{ route('localization_path',$shop->link) }}">Localización</a>
             </li>
@@ -47,12 +49,23 @@
                 <li class="@if(Route::currentRouteName()=='subscriptions_path') {{ 'active'}} @endif">
                     <a href="{{ route('subscriptions_path',$shop->link) }}">Usuarios suscritos</a>
                 </li>
+
+                 <li class="@if(Route::currentRouteName()=='edit_general_information_path') {{ 'active'}} @endif">
+                    <a href="{{ route('edit_general_information_path',$shop->link) }}">Información general</a>
+                </li>
+
             @endif
         </ul>
     </div>
     <div class="row">
         <div class="col-sm-12">
            @include('shops.layouts.partials.member-form')
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+          <br>
+          <br>
         </div>
     </div>
 </div>

@@ -50,7 +50,7 @@
          <h2 class="section-title"><span>Acerca</span></h2>
         </div>
         <div class="col-lg-12">
-            <p>Noma es un restaurante que resalta la cocina argentina, centrado en la parrilla y las pastas. Todo inicia con el delicioso aroma de carne recién asada, música de artistas argentinos de múltiples géneros y meseros con ese inconfundible acento argentino que te hace sentir transportado a un restaurante en la patagonia.</p>
+            <p>{{ $shop->about }}</p>
         </div>
     </div>
     <div class="section row">
@@ -59,7 +59,7 @@
         </div>
 
 
-            @foreach($popularProducts as $product)
+            @foreach($popular_products as $product)
             <div class="product col-sm-4 col-lg-4 col-md-4">
                 @include('shops.layouts.partials.preview_product',['category'=>$product->category])
             </div>

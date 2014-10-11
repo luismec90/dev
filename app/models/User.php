@@ -11,6 +11,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface
     use UserTrait,
         RemindableTrait;
 
+    private $is_admin = null;
+    private $is_member = null;
+
     /**
      * The database table used by the model.
      *
@@ -31,6 +34,15 @@ class User extends Eloquent implements UserInterface, RemindableInterface
         'birth_date' => 'required|date_format:Y-m-d',
         'gender' => 'required|in:f,m',
         'email' => 'required|email|unique:users',
+        'password' => 'required|confirmed|min:6'
+    ];
+
+    public static $rulesCompleteRegister = [
+        'first_name' => 'required',
+        'last_name' => 'required',
+        'birth_date' => 'required|date_format:Y-m-d',
+        'gender' => 'required|in:f,m',
+        'email' => 'required|email',
         'password' => 'required|confirmed|min:6'
     ];
 
@@ -67,18 +79,35 @@ class User extends Eloquent implements UserInterface, RemindableInterface
 
     public function isAdmin($shop_id)
     {
-        $shop = $this->shops()->where('shop_id', $shop_id)->where('role', 1)->get();
-        if ($shop->count())
-            return true;
-        return false;
+        if (is_null($this->is_admin)) {
+            $shop = $this->shops()->where('shop_id', $shop_id)->where('role', 1)->get();
+            if ($shop->count()) {
+                $this->is_admin = true;
+
+                return true;
+            }
+            $this->is_admin = false;
+            return false;
+        } else {
+            return $this->is_admin;
+        }
+
     }
 
     public function isMember($shop_id)
     {
-        $shop = $this->shops()->where('shop_id', $shop_id)->where('role', 2)->get();
-        if ($shop->count())
-            return true;
-        return false;
+        if (is_null($this->is_member)) {
+            $shop = $this->shops()->where('shop_id', $shop_id)->where('role', 2)->get();
+            if ($shop->count()) {
+                $this->is_member = true;
+                return true;
+            }
+            $this->is_member = false;
+            return false;
+
+        } else {
+            return $this->is_member;
+        }
     }
 
     public function rutaAvatar()
@@ -90,9 +119,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface
     {
         return $this->hasMany('Review');
     }
+
     public function saldo($shop_id)
     {
-        $shop=DB::table('bills')->select(DB::raw('sum(retribution-redeemed) as retribution'))
+        $shop = DB::table('bills')->select(DB::raw('sum(retribution-redeemed) as retribution'))
             ->where('shop_id', $shop_id)
             ->where('user_id', $this->id)
             ->first();

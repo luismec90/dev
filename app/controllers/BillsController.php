@@ -61,8 +61,9 @@ class BillsController extends \BaseController
         }
 
         $user = User::where('email', $email)->first();
-
+        $is_new_user=false;
         if (is_null($user)) {
+            $is_new_user=true;
             $user = new User;
             $user->email = $email;
             $user->save();
@@ -107,7 +108,7 @@ class BillsController extends \BaseController
 
         $title="Se ha realizado la siguiente compra";
 
-        Mail::send('emails.shops.admin.bill',compact('shop','bill','title'), function ($message) use ($user) {
+        Mail::send('emails.shops.admin.bill',compact('shop','bill','title','user','is_new_user'), function ($message) use ($user) {
             $message->to($user->email, Auth::user()->first_name)
                 ->subject('Compra realizada');
         });

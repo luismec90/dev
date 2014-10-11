@@ -32,6 +32,8 @@ class SessionsController extends \BaseController
             $query->where("role", 1);
         })->first();
 
+
+
         if (!is_null($shop)) {
             return Redirect::route('shop_path', $shop->link);
         }

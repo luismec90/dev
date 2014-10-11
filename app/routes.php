@@ -45,6 +45,11 @@ Route::post('perfil', array('before' => 'auth', 'as' => 'update_profile_path', '
 Route::get('perfil/password', array('before' => 'auth', 'as' => 'password_path', 'uses' => 'UsersController@showPassword'));
 Route::post('perfil/password', array('before' => 'auth', 'as' => 'update_password_path', 'uses' => 'UsersController@updatePassword'));
 
+/* Complete registration */
+Route::get('completar_registro/{shop_link}/{user_email}/{token}', array('as' => 'complete_registration', 'uses' => 'RegistrationController@completeRegistration'));
+Route::post('completar_registro/{shop_link}/{user_email}/{token}', array('as' => 'complete_registration', 'uses' => 'RegistrationController@endRegistration'));
+
+
 /* Login or Register with Social Networks */
 Route::get('login_facebook', array('before' => 'guest', 'as' => 'login_facebook_path', 'uses' => 'SocialNetworksController@loginWithFacebook'));
 Route::get('login_twitter', array('before' => 'guest', 'as' => 'login_twitter_path', 'uses' => 'SocialNetworksController@loginWithTwitter'));
@@ -74,7 +79,12 @@ Route::group(array('prefix' => '{shop_link}'), function () {
         Route::post('/categorias/{category_id}/productos/editar/{product_id}', array('before' => 'auth|admin', 'as' => 'admin_update_product_path', 'uses' => 'ProductsController@update'));
         Route::delete('/categorias/{category_id}/productos/eliminar/{product_id}', array('before' => 'auth|admin', 'as' => 'admin_destroy_product_path', 'uses' => 'ProductsController@destroy'));
 
-        Route::get('/suscripciones}', array('before' => 'auth|admin', 'as' => 'subscriptions_path', 'uses' => 'ShopsController@subscriptions'));
+        Route::get('/suscripciones', array('before' => 'auth|admin', 'as' => 'subscriptions_path', 'uses' => 'ShopsController@subscriptions'));
+        Route::get('/suscripciones/exportar', array('before' => 'auth|admin', 'as' => 'export_subscriptions_path', 'uses' => 'ShopsController@exportSubscriptions'));
+
+        Route::get('/informacion-general', array('before' => 'auth|admin', 'as' => 'edit_general_information_path', 'uses' => 'ShopsController@generalInformation'));
+        Route::post('/informacion-general', array('before' => 'auth|admin', 'as' => 'update_general_information_path', 'uses' => 'ShopsController@updateGeneralInformation'));
+
     });
 
 

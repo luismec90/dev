@@ -28,6 +28,7 @@ class ShopsTableSeeder extends Seeder
             'cell' => $faker->phoneNumber,
             'email' => 'luismec90@gmail.com',
             'schedule' => ' Lu - Ju: 11:00 AM to 7:00 PM, Vi - Do: 11:00 AM to 10:00 PM ',
+            'delivery_service' => '1',
             'facebook' => 'https://www.facebook.com/Noma.restaurant'
         ]);
 

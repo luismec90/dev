@@ -56,15 +56,14 @@ $(function () {
 
     $("#email").change(function () {
         $.ajax({
-            url: "admin/getuser",
+            url: "getuser",
             method: "POST",
             type: "json",
             data: {
                 email: $(this).val()
             },
             success: function (data) {
-                console.log(data);
-                if (data != "[]") {
+                if (data != "[]" && data.retribution!=0) {
                     $("#nombre-usuario").html(data.first_name + " " + data.last_name);
                     $("#info-balance").html(data.retribution);
                     $("#check-balance").attr("data-retribution",data.retribution);

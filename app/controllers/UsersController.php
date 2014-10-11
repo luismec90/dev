@@ -59,17 +59,17 @@ class UsersController extends \BaseController
         }
     }
 
-    public function getUser($shop_link){
-        $email=Input::get('email');
-        $user=User::where('email',$email)->first();
-        $shop=Shop::where('link',$shop_link)->firstOrFail();
-        if($user){
-            $user->retribution=$user->saldo($shop->id);
-             return $user;
-        }else{
+    public function getUser($shop_link)
+    {
+        $email = Input::get('email');
+        $user = User::where('email', $email)->first();
+        $shop = Shop::where('link', $shop_link)->firstOrFail();
+        if ($user) {
+            $user->retribution = $user->saldo($shop->id);
+            return $user;
+        } else {
             return "[]";
         }
-
 
     }
 }
