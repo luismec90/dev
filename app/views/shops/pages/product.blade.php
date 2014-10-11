@@ -70,16 +70,30 @@
 @stop
 
 @section('content')
+
 <div class="row">
     <div class="col-lg-12">
-       <h2 class="section-title"><span>{{ $product->name }}</span></h2>
+       <h2 class="shop-title section-title"><span>{{ $shop->name }}</span></h2>
     <br>
     </div>
 </div>
+
 <div class="row">
     @include('shops.layouts.partials.products_menu')
     
     <div class="col-md-9">
+
+        <div class="row">
+            <div class="col-xs-10">
+                <h3 class="no-margin">{{ $product->name }}</h3>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <hr>
+            </div>
+        </div>
        
         <div class="thumbnail">
             <img class="img-cover" src="{{ $product->pathImage(true,$shop->id,$product->id) }}" alt="">

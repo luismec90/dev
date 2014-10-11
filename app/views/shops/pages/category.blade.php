@@ -13,6 +13,18 @@
 
     <div class="col-md-9">
 
+        <div class="row">
+            <div class="col-xs-10">
+                <h3 class="no-margin">{{ $category->name }}</h3>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <hr>
+            </div>
+        </div>
+
         <div class="row carousel-holder">
 
             <div class="col-md-12">

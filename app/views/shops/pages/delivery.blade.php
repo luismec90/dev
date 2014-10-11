@@ -13,7 +13,7 @@
 {{ HTML::script('assets/themes/one/js/delivery.js')}}
 <script>
 
-    var item='<div class="row item"> <div class="col-md-10"> <div class="well well-sm"> <div class="row"> <div class="col-sm-4"> <div class="form-group"> {{ Form::label("category","Categoria:") }} {{ Form::select("category",$selectCategories,null,["class"=>"form-control categoria","required"=>"true"]) }} </div> </div> <div class="col-sm-4"> <div class="form-group"> {{ Form::label("product","Producto:") }} {{ Form::select("products[]",[""=>""],null,["class"=>"form-control producto","required"=>"true","readonly"=>"true"]) }} </div> </div> <div class="col-sm-2"> <div class="form-group"> {{ Form::label("amounts","Cantidad:") }} {{ Form::number("amounts[]",1,["class"=>"form-control cantidad","required"=>"true"]) }} </div> </div> <div class="col-sm-2"> <div class="form-group"> {{ Form::label("cost","Costo:") }} {{ Form::text("costs[]",null,["class"=>"form-control costo","readonly"=>"true"]) }} </div> </div> </div> </div> </div> <div class="col-md-2"> <a class="btn btn-danger remove"> <i class="fa fa-minus"></i> </a> </div> </div>';
+    var item='<div class="row item"> <div class="col-md-10"> <div class="well well-sm"> <div class="row"> <div class="col-sm-3"> <div class="form-group"> {{ Form::label("category","Categoria:") }} {{ Form::select("category",$selectCategories,null,["class"=>"form-control categoria","required"=>"true"]) }} </div> </div> <div class="col-sm-4"> <div class="form-group"> {{ Form::label("product","Producto:") }} {{ Form::select("products[]",[""=>""],null,["class"=>"form-control producto","required"=>"true","readonly"=>"true"]) }} </div> </div> <div class="col-sm-2"> <div class="form-group"> {{ Form::label("amounts","Cantidad:") }} {{ Form::number("amounts[]",1,["class"=>"form-control cantidad","required"=>"true"]) }} </div> </div> <div class="col-sm-3"> <div class="form-group"> {{ Form::label("cost","Costo:") }} <div class="input-group"> <div class="input-group-addon">$</div> {{ Form::text("costs[]",null,["class"=>"form-control costo","readonly"=>"true"]) }} </div> </div> </div> </div> </div> </div> <div class="col-md-2"> <a class="btn btn-danger remove"> <i class="fa fa-minus"></i> </a> </div> </div>';
 
     var retribution="{{ $shop->retribution }}";
 
@@ -48,6 +48,18 @@
     @include('shops.layouts.partials.left_menu')
 
     <div class="col-md-9">
+
+        <div class="row">
+            <div class="col-xs-10">
+                <h3 class="no-margin">Domocilios</h3>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-10">
+                <hr>
+            </div>
+        </div>
 
         <div class="row">
              <div class="col-md-10">
@@ -89,9 +101,9 @@
         <div id="products">
         <div class="row item">
         <div class="col-md-10">
-        <div class="well well-sm">
+        <div id="first-delivery" class="well well-sm">
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-3">
 
                     <div class="form-group">
                     {{ Form::label('category','Categoria:') }}
@@ -112,11 +124,14 @@
                     {{ Form::number('amounts[]',1,['class'=>'form-control cantidad','required'=>'true']) }}
                     </div>
                 </div>
-                <div class="col-sm-2">
+                <div class="col-sm-3">
 
                     <div class="form-group">
                     {{ Form::label('cost','Costo:') }}
-                    {{ Form::text('costs[]',null,['class'=>'form-control costo','readonly'=>'true']) }}
+                    <div class="input-group">
+                        <div class="input-group-addon">$</div>
+                        {{ Form::text('costs[]',null,['class'=>'form-control costo','readonly'=>'true']) }}
+                    </div>
                     </div>
                 </div>
             </div>
@@ -131,18 +146,24 @@
         </div>
 
         <div class="row">
-            <div class="col-md-2 col-md-offset-6">
+            <div class="col-md-3 col-md-offset-4">
                 <!-- Total Form Input -->
                 <div class="form-group">
                     {{ Form::label('category','Saldo ganado:') }}
-                    {{ Form::text('retribution',0,['id'=>'retribution','class'=>'form-control','readonly'=>'true']) }}
+                    <div class="input-group">
+                        <div class="input-group-addon">$</div>
+                        {{ Form::text('retribution',0,['id'=>'retribution','class'=>'form-control','readonly'=>'true']) }}
+                    </div>
                 </div>
             </div>
-            <div class="col-md-2 ">
+            <div class="col-md-3">
                  <!-- Total Form Input -->
                 <div class="form-group">
                     {{ Form::label('category','Total a pagar:') }}
-                    {{ Form::text('total',0,['id'=>'total','class'=>'form-control','readonly'=>'true']) }}
+                    <div class="input-group">
+                        <div class="input-group-addon">$</div>
+                        {{ Form::text('total',0,['id'=>'total','class'=>'form-control','readonly'=>'true']) }}
+                    </div>
                 </div>
             </div>
         </div>

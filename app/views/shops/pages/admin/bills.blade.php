@@ -43,6 +43,18 @@
     <div class="col-md-9">
 
         <div class="row">
+            <div class="col-xs-10">
+                <h3 class="no-margin">Realizar venta</h3>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <hr>
+            </div>
+        </div>
+
+        <div class="row">
             <div class="col-md-10">
                 @include('layouts.partials.errors')
             </div>

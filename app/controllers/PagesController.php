@@ -7,9 +7,10 @@ class PagesController extends BaseController {
     {
         $shop = Shop::first();
         $bill = Bill::first();
-        $title="asdasd";
-        $user=User::find(14);
+        $title="Gracias por su compra";
+        $user=User::first();
         $is_new_user=true;
+
         return View::make('emails.shops.admin.bill',compact('shop','bill','title','user','is_new_user'));
 
     }

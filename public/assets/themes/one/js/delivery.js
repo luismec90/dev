@@ -1,10 +1,18 @@
 $(function () {
 
     if (selectedProductCategoryId != null && selectedProductId != null) {
-        $("#category").val(selectedProductCategoryId);
-        $("#product").html(eval('category_' + selectedProductCategoryId))
-        $("#product").val(selectedProductId);
-        $("#product").removeAttr("readonly");
+        $("#first-delivery .categoria").val(selectedProductCategoryId);
+        $("#first-delivery .producto").html(eval('category_' + selectedProductCategoryId))
+        $("#first-delivery .producto").val(selectedProductId);
+        $("#first-delivery .producto").removeAttr("readonly");
+
+        var inputCosto = $("#first-delivery input.costo");
+        var cantidad = 1;
+        var costo = $("#first-delivery .producto option:selected").data('price');
+        var valor = $(this).val();
+        inputCosto.val(costo * cantidad);
+
+        actualizarTotal();
     }
 
     $("#products a.add").click(function () {
@@ -39,7 +47,7 @@ $(function () {
         var costo = $('option:selected', this).data('price');
         var valor = $(this).val();
         if (valor != "") {
-            inputCosto.val(costo*cantidad);
+            inputCosto.val(costo * cantidad);
         } else {
             inputCosto.val("");
         }
@@ -49,7 +57,7 @@ $(function () {
     $("#products").on("change", "input.cantidad", function () {
         var selectProduct = $(this).parent().parent().parent().find("select.producto");
         var costo = $('option:selected', selectProduct).data('price');
-        if(costo){
+        if (costo) {
             var cantidad = $(this).val();
             var inputCosto = $(this).parent().parent().parent().find("input.costo");
             inputCosto.val(costo * cantidad);
@@ -64,15 +72,15 @@ $(function () {
 
 });
 
-function actualizarTotal(){
-    var total=0;
+function actualizarTotal() {
+    var total = 0;
     var costoProducto;
-    $("#products input.costo").each(function(){
-        costoProducto=parseInt($(this).val());
-        if($.isNumeric(costoProducto)){
-            total+=costoProducto;
+    $("#products input.costo").each(function () {
+        costoProducto = parseInt($(this).val());
+        if ($.isNumeric(costoProducto)) {
+            total += costoProducto;
         }
     });
-    $("#retribution").val(parseInt(total*retribution));
+    $("#retribution").val(parseInt(total * retribution));
     $("#total").val(total);
 }

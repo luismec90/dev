@@ -67,19 +67,17 @@
 						<tbody>
 							<tr>
 								<td>
-									<table width="580" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+									<table width="580" cellpadding="0" cellspacing="0" border="0" align="" class="devicewidth">
 										<tbody>
 											<tr>
 												<td>
 													<!-- logo -->
 
-													<table width="280" cellpadding="0" cellspacing="0" border="0" align="left" class="devicewidth">
+													<table width="450" cellpadding="0" cellspacing="0" border="0" align="left" class="devicewidth">
 														<tbody>
 															<tr>
-																<td width="20" align="left" style="font-size:1px; line-height:1px; mso-line-height-rule: exactly;" class="emhide">
-																</td>
-																<td height="66" width="100" valign="middle" align="center" class="devicewidthinner" style="text-align:center;">
-																	 <a href="{{ URL::route('shop_path',$shop->link) }}" style="color:#fff; text-decoration: none; font-size: 30px; font-family: arial, Helvetica, sans-serif; text-align: center; line-height: 20px; position: relative;">{{ $shop->link }}</a>
+																<td height="66" width="400" valign="middle" align="center" class="devicewidthinner" >
+																	 <a href="{{ URL::route('shop_path',$shop->link) }}" style="color:#fff; text-decoration: none; font-size: 30px; font-family: arial, Helvetica, sans-serif; text-align: center; line-height: 20px; position: relative;">{{ $shop->name }}</a>
 																</td>
 																<td width="190" align="left" style="font-size:1px; line-height:1px; mso-line-height-rule: exactly;" class="emhide">
 																</td>
@@ -90,18 +88,7 @@
 
 													<!-- menu -->
 
-													<table width="280" cellpadding="0" cellspacing="0" border="0" align="right" class="devicewidth">
-														<tbody>
-															<tr>
-																<td height="66" width="270" valign="middle" style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: rgb(255, 255, 255); text-align: right; line-height: 24px; position: relative;" class="menu" empara="menu">
 
-																</td>
-																<td width="20" style="font-size:1px; line-height:1px; mso-line-height-rule: exactly;">
-																</td>
-															</tr>
-														</tbody>
-													</table>
-													<!-- End of Menu -->
 
 												</td>
 											</tr>
