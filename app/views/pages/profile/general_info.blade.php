@@ -82,6 +82,12 @@
                                 {{ Form::email('email',null,['class'=>'form-control','readonly'=>'true']) }}
                                 </div>
 
+                                <!-- Code Form Input -->
+                                <div class="form-group">
+                                {{ Form::label('code','Código de verificación:') }}
+                                {{ Form::text('code',null,['class'=>'form-control','required'=>'true']) }}
+                                </div>
+
 
                                 <div class="form-group">
                                 <div class="row">

@@ -31,10 +31,23 @@
             </li>
             @if(isset($shop) && Auth::check() &&  Auth::user()->isAdmin($shop->id))
                 <li><hr></li>
+
                 <li class="dropdown-header">Administración</li>
+
                 <li class="@if(Route::currentRouteName()=='bill_path') {{ 'active'}} @endif">
                     <a href="{{ route('bill_path',$shop->link) }}">Realizar venta</a>
                 </li>
+
+                <li class="@if(Route::currentRouteName()=='sales_report_path') {{ 'active'}} @endif">
+                    <a href="{{ route('sales_report_path',$shop->link) }}">Reporte de ventas</a>
+                </li>
+
+                <li class="@if(Route::currentRouteName()=='subscriptions_path') {{ 'active'}} @endif">
+                    <a href="{{ route('subscriptions_path',$shop->link) }}">Usuarios suscritos</a>
+                </li>
+
+                <li><hr></li>
+                <li class="dropdown-header">Configuración</li>
 
                 <li class="@if(Route::currentRouteName()=='admin_category_path' ||
                 Route::currentRouteName()=='admin_edit_category_path' ||
@@ -44,10 +57,6 @@
                 Route::currentRouteName()=='admin_create_product_path')
                 {{ 'active'}} @endif">
                 <a href="{{ route('admin_category_path',$shop->link) }}">Editar categorías y productos</a>
-                </li>
-
-                <li class="@if(Route::currentRouteName()=='subscriptions_path') {{ 'active'}} @endif">
-                    <a href="{{ route('subscriptions_path',$shop->link) }}">Usuarios suscritos</a>
                 </li>
 
                  <li class="@if(Route::currentRouteName()=='edit_general_information_path') {{ 'active'}} @endif">

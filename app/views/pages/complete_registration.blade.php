@@ -19,7 +19,7 @@
 
             @include('layouts.partials.errors')
 
-            {{ Form::model($user,['route'=>['complete_registration',$shop->link,$user->email,$token],'class'=>'validate']) }}
+            {{ Form::model($user,['route'=>['complete_registration',$shop,$user->email,$token],'class'=>'validate']) }}
             {{ Form::hidden('token',$token) }}
             <!-- Nombres Form Input -->
             <div class="form-group">

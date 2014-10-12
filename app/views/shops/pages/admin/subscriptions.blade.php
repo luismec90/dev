@@ -1,28 +1,5 @@
 @extends('shops.layouts.default')
 
-@section('js')
-<script src="http://maps.google.com/maps/api/js?sensor=false&callback=iniciar"></script>
-
-<script>
-function iniciar() {
-
-    var myLatlng = new google.maps.LatLng( {{ $shop->lat }}, {{ $shop->lng }} );
-
-    var mapOptions = {
-        center: myLatlng,
-        zoom: 16,
-        mapTypeId: google.maps.MapTypeId.ROADMAP};
-    var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-
-    // To add the marker to the map, use the 'map' property
-    var marker = new google.maps.Marker({
-        position: myLatlng,
-        map: map,
-        title: "{{ $shop->name }}"
-    });
-}
-</script>
-@stop
 @section('content')
 
 
@@ -67,7 +44,7 @@ function iniciar() {
                 </tr>
                 @foreach($suscribed_users as $suscribed_user)
                     <tr>
-                        <td>{{ $suscribed_user->first_name }}</td>
+                        <td>{{ $suscribed_user->first_name." ".$suscribed_user->last_name }}</td>
                         <td>{{ $suscribed_user->email }}</td>
                         <td>
                         @if($suscribed_user->gender=='f')

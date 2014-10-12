@@ -76,8 +76,12 @@
 													<table width="450" cellpadding="0" cellspacing="0" border="0" align="left" class="devicewidth">
 														<tbody>
 															<tr>
-																<td height="66" width="400" valign="middle" align="center" class="devicewidthinner" >
+																<td height="66" width="400" valign="middle" style="padding-left:20px;" class="devicewidthinner" >
+																@if(isset($shop))
 																	 <a href="{{ URL::route('shop_path',$shop->link) }}" style="color:#fff; text-decoration: none; font-size: 30px; font-family: arial, Helvetica, sans-serif; text-align: center; line-height: 20px; position: relative;">{{ $shop->name }}</a>
+                                                                 @else
+                                                                    <a href="{{ URL::route('home') }}" style="color:#fff; text-decoration: none; font-size: 30px; font-family: arial, Helvetica, sans-serif; text-align: center; line-height: 20px; position: relative;">LinkingShops</a>
+                                                                 @endif
 																</td>
 																<td width="190" align="left" style="font-size:1px; line-height:1px; mso-line-height-rule: exactly;" class="emhide">
 																</td>

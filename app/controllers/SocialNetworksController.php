@@ -30,19 +30,36 @@ class SocialNetworksController extends \BaseController
                 $user->gender = ($result['gender'] == 'male') ? 'm' : 'f';
                 $user->email = $result['email'];
                 $user->avatar = 'default.png';
-                $user->confirmed = '1';
                 $user->save();
-                Flash::success('Te has registrado exitosamente!');
-            } else {
-                Flash::success('Bienvenido nuevamante!');
             }
+
+            if ($user->confirmed == 0) {
+                Flash::success("Por favor completa campos vacios");
+                return Redirect::route('complete_registration',["base",$user->email,sha1("$user->email-luis5484175")]);
+            }
+
             Auth::login($user);
-            if ($user->password == "") {
-              //  return Redirect::route('update_password_path')->withErrors(['message' => 'Por favor configure su contraseña']);
+
+            if (Auth::user()->gender == 'f') {
+                $welcome = 'Bienvenida';
+            } else if (Auth::user()->gender == 'm') {
+                $welcome = 'Bienvenido';
+            } else {
+                $welcome = 'Bienvenid@';
+            }
+
+            Flash::success("$welcome  nuevamente " . Auth::user()->first_name);
+
+            $shop = Shop::whereHas('users', function ($query) {
+                $query->where("users.id", Auth::user()->id);
+                $query->where("role", 1);
+            })->first();
+
+            if (!is_null($shop)) {
+                return Redirect::route('shop_path', $shop->link);
             }
 
             return Redirect::to(Session::get('previous_url'));
-
 
         } // if not ask for permission first
         else {
@@ -83,15 +100,32 @@ class SocialNetworksController extends \BaseController
                 $user->last_name = $result['family_name'];
                 $user->email = $result['email'];
                 $user->avatar = 'default.png';
-                $user->confirmed = '1';
                 $user->save();
-                Flash::success('Te has registrado exitosamente!');
-            } else {
-                Flash::success('Bienvenido nuevamante!');
             }
+
+            if ($user->confirmed == 0) {
+                return Redirect::route('complete_registration',["base",$user->email,sha1("$user->email-luis5484175")]);
+            }
+
             Auth::login($user);
-            if ($user->password == "") {
-               // return Redirect::route('update_password_path')->withErrors(['message' => 'Por favor establesca su contraseña']);
+
+            if (Auth::user()->gender == 'f') {
+                $welcome = 'Bienvenida';
+            } else if (Auth::user()->gender == 'm') {
+                $welcome = 'Bienvenido';
+            } else {
+                $welcome = 'Bienvenid@';
+            }
+
+            Flash::success("$welcome  nuevamente " . Auth::user()->first_name);
+
+            $shop = Shop::whereHas('users', function ($query) {
+                $query->where("users.id", Auth::user()->id);
+                $query->where("role", 1);
+            })->first();
+
+            if (!is_null($shop)) {
+                return Redirect::route('shop_path', $shop->link);
             }
 
             return Redirect::to(Session::get('previous_url'));

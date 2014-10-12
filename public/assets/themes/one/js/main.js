@@ -78,6 +78,14 @@ $(function () {
         yearRange: 'c-100:c'
     });
 
+    $('.datepicker').datepicker({
+        dateFormat: 'yy-mm-dd',
+        changeYear: true,
+        changeMonth: true,
+        maxDate: 0
+    });
+
+
 
     $('.btn-file :file').change(function () {
         var input = $(this);

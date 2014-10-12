@@ -28,7 +28,7 @@ Route::post('/contacto', array('as' => 'contact_path', 'uses' => 'PagesControlle
 Route::get('listar', array('as' => 'listshops_path', 'uses' => 'PagesController@listShops'));
 
 /* Mis sistios */
-Route::get('saldo', array('before' => 'auth', 'as' => 'summary_path', 'uses' => 'PagesController@balance'));
+Route::get('mistiendas', array('before' => 'auth', 'as' => 'mysites_path', 'uses' => 'PagesController@mySites'));
 
 /* Register */
 Route::get('registro', array('before' => 'guest', 'as' => 'register_path', 'uses' => 'RegistrationController@create'));
@@ -88,6 +88,9 @@ Route::group(array('prefix' => '{shop_link}'), function () {
 
         Route::get('/informacion-general', array('before' => 'auth|admin', 'as' => 'edit_general_information_path', 'uses' => 'ShopsController@generalInformation'));
         Route::post('/informacion-general', array('before' => 'auth|admin', 'as' => 'update_general_information_path', 'uses' => 'ShopsController@updateGeneralInformation'));
+
+        Route::get('ventas', array('before' => 'auth|admin', 'as' => 'sales_report_path', 'uses' => 'ReportsController@indexSales'));
+        Route::get('ventas/exportar', array('before' => 'auth|admin', 'as' => 'export_sales_report_path', 'uses' => 'ReportsController@exportSales'));
 
     });
 

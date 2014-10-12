@@ -25,14 +25,14 @@ class SessionsController extends \BaseController
             $welcome = 'Bienvenid@';
         }
 
-        Flash::success("$welcome  nuevamente " . Auth::user()->first_name);
+
 
         $shop = Shop::whereHas('users', function ($query) {
             $query->where("users.id", Auth::user()->id);
             $query->where("role", 1);
         })->first();
 
-
+        Flash::success("$welcome  nuevamente " . Auth::user()->first_name);
 
         if (!is_null($shop)) {
             return Redirect::route('shop_path', $shop->link);

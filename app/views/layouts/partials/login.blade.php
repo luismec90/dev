@@ -1,5 +1,8 @@
 <ul id="navigation" class="nav navbar-nav navbar-right">
     @if(Auth::check())
+        <li id="mis-sitios" class="@if(Route::currentRouteName()=='mysites_path') {{ "active"}} @endif">
+            <a href="{{ route('mysites_path') }}">Mis tiendas</a>
+        </li>
         <li> @include('layouts.partials.avatar')</li>
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -8,9 +11,7 @@
                 <li class="@if(Route::currentRouteName()=='profile_path') {{ "active"}} @endif">
                     <a href="{{ route('profile_path') }}">Mi perfil</a>
                 </li>
-                <li class="@if(Route::currentRouteName()=='summary_path') {{ "active"}} @endif">
-                    <a href="{{ route('summary_path') }}">Mis sitios</a>
-                </li>
+
                 <li class="divider"></li>
 
                 <li>{{ link_to_route('logout_path','Salir') }}</li>

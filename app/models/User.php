@@ -51,7 +51,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface
         'last_name' => 'required',
         'birth_date' => 'required|date_format:Y-m-d',
         'gender' => 'required|in:f,m',
-        'avatar' => 'image|max:2048'
+        'avatar' => 'image|max:2048',
+        'code' => 'required|integer|digits:4'
     ];
 
     public static $updatePasswordRules = [
@@ -69,6 +70,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface
         'email.required' => 'El campo email es obligatorio',
         'password.required' => 'El campo contraseña es obligatorio',
         'password.confirmed' => 'El campo confirmar contraseña no coincide',
+        'code.required' => 'El campo código de verificación es obligatorio',
+        'code.integer' => 'El campo código debe contener solo números',
+        'code.digits' => 'El campo código debe tener 4 caracteres',
     ];
 
 

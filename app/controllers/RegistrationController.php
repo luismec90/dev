@@ -26,6 +26,7 @@ class RegistrationController extends \BaseController
         $user->email = Input::get('email');
         $user->avatar = 'default.png';
         $user->password = Hash::make(Input::get('password'));
+        $user->code=rand(1111,9999);
         $user->confirmation_code = $confirmation_code;
         $user->save();
 
@@ -66,7 +67,13 @@ class RegistrationController extends \BaseController
         if (Auth::check()) {
             Auth::logout();
         }
-        $shop = Shop::where('link', $shop_link)->firstOrFail();
+
+        if ($shop_link != "base") {
+            $shop = Shop::where('link', $shop_link)->firstOrFail();
+            $shop = $shop->link;
+        } else {
+            $shop = "base";
+        }
         $user = User::where('email', $email)->where('confirmed', 0)->first();
 
         if ($token == sha1("$email-luis5484175") && !is_null($user)) {
@@ -83,7 +90,9 @@ class RegistrationController extends \BaseController
         if (Auth::check()) {
             Auth::logout();
         }
-        $shop = Shop::where('link', $shop_link)->firstOrFail();
+        if ($shop_link != "base") {
+            $shop = Shop::where('link', $shop_link)->firstOrFail();
+        }
         $user = User::where('email', $email)->where('confirmed', 0)->first();
 
         if ($token == sha1("$email-luis5484175") && !is_null($user)) {
@@ -98,6 +107,7 @@ class RegistrationController extends \BaseController
             $user->gender = Input::get('gender');
             $user->avatar = 'default.png';
             $user->password = Hash::make(Input::get('password'));
+            $user->code=rand(1111,9999);
             $user->confirmed = 1;
             $user->save();
 
@@ -105,7 +115,11 @@ class RegistrationController extends \BaseController
 
             Auth::attempt(['email' => $email, 'password' => Input::get('password'), 'confirmed' => '1']);
 
-            return Redirect::route("shop_path", $shop->link);
+            if ($shop_link != "base") {
+                return Redirect::route("shop_path", $shop->link);
+            }else{
+                return Redirect::route("home");
+            }
 
         } else {
             Flash::error("Link inválido");

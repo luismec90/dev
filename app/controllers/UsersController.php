@@ -20,6 +20,7 @@ class UsersController extends \BaseController
             Auth::user()->birth_date = Input::get('birth_date');
             Auth::user()->gender = Input::get('gender');
             Auth::user()->email = Input::get('email');
+            Auth::user()->code = Input::get('code');
 
             if (Input::hasFile('avatar')) {
                 $file = Input::file('avatar');

@@ -23,14 +23,6 @@
                 <div class="row">
 
                     <div class="col-sm-6">
-                        <!-- Message Form Input -->
-                        <div class="form-group">
-                            {{ Form::label('message','Mensaje:') }}
-                            {{ Form::textarea('message',null,['class'=>'form-control','rows'=>'11','required'=>'required']) }}
-                        </div>
-
-                    </div>
-                    <div class="col-sm-6">
                         <!-- Subject Form Input -->
                         <div class="form-group">
                             {{ Form::label('message','Asunto:') }}
@@ -57,6 +49,14 @@
                             </div>
                         </div>
                     </div>
+                     <div class="col-sm-6">
+                        <!-- Message Form Input -->
+                        <div class="form-group">
+                            {{ Form::label('message','Mensaje:') }}
+                            {{ Form::textarea('message',null,['class'=>'form-control','rows'=>'11','required'=>'required']) }}
+                        </div>
+
+                     </div>
                 </div>
              {{ Form::close() }}
         </div>

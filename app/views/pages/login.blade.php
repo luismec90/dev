@@ -34,6 +34,13 @@
             {{ Form::password('password',['class'=>'form-control','required'=>'required']) }}
             </div>
 
+            <!-- Remember -->
+            <div class="checkbox">
+            <label>
+                {{ Form::checkbox('remember', '1'); }} Recordar mi cuenta
+            </label>
+            </div>
+
             <div class="form-group">
                 {{ link_to('/password/remind','¿Olvidó su contraseña?') }}
             </div>

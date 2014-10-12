@@ -13,7 +13,7 @@
 @section('content')
 <section id="contact" class="section  section-contact">
     <div class="container">
-        <h2 class="section-title"><span>Saldo</span></h2>
+        <h2 class="section-title"><span>Mis tiendas</span></h2>
         <div class="main-action">
              <div class="row">
                 <br><br>
@@ -31,7 +31,7 @@
                 <tr>
                 <td>{{ $shop->name }}</td>
                 <td><a href="{{ route('shop_path',$shop->link) }}" class="btn btn-primary btn-sm">Ver página web </a></td>
-                <td>$ {{ $shop->retribution }}</td>
+                <td>$ {{ Auth::user()->saldo($shop->id)  }}</td>
                 </tr>
                 @endforeach
                 </table>

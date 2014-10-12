@@ -44,10 +44,18 @@ class BillsController extends \BaseController
             return Redirect::back();
         }
 
-        $discount=0;
+        $user = User::where('email', $email)->first();
+        $is_new_user=false;
+        if (is_null($user)) {
+            $is_new_user=true;
+            $user = new User;
+            $user->email = $email;
+            $user->save();
+        }
+
         if($balance!=0 && is_numeric($balance)){
-            if(Auth::user()->email==$email && Auth::user()->code==$code){
-                $avalibleBalance=Auth::user()->saldo($shop->id);
+            if($user->email==$email && $user->code==$code){
+                $avalibleBalance=$user->saldo($shop->id);
                 if($balance>$avalibleBalance){
                     Flash::error('Ha saldo a descontar no puede ser mayor que el saldo disponible');
                     return Redirect::back();
@@ -59,16 +67,6 @@ class BillsController extends \BaseController
         }else{
             $balance=0;
         }
-
-        $user = User::where('email', $email)->first();
-        $is_new_user=false;
-        if (is_null($user)) {
-            $is_new_user=true;
-            $user = new User;
-            $user->email = $email;
-            $user->save();
-        }
-
 
         $bill = new Bill;
         $bill->shop_id = $shop->id;
@@ -105,6 +103,15 @@ class BillsController extends \BaseController
         $bill->total_cost = $total_cost;
         $bill->retribution = $retribution;
         $bill->save();
+
+        $is_user_in_shop= Shop::whereHas('users', function ($query) use ($user) {
+            $query->where("users.id", $user->id);
+            $query->where("role", 2);
+        })->where('id',$shop->id)->first();
+
+        if(is_null($is_user_in_shop)){
+            $user->shops()->attach($shop->id,['role'=>2]);
+        }
 
         $title="Se ha realizado la siguiente compra";
 
