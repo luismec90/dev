@@ -31,7 +31,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface
     public static $rules = [
         'first_name' => 'required',
         'last_name' => 'required',
-        'birth_date' => 'required|date_format:Y-m-d',
+        'birth_date' => 'sometimes|date_format:Y-m-d',
         'gender' => 'required|in:f,m',
         'email' => 'required|email|unique:users',
         'password' => 'required|confirmed|min:6'
@@ -40,7 +40,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface
     public static $rulesCompleteRegister = [
         'first_name' => 'required',
         'last_name' => 'required',
-        'birth_date' => 'required|date_format:Y-m-d',
+        'birth_date' => 'sometimes|date_format:Y-m-d',
         'gender' => 'required|in:f,m',
         'email' => 'required|email',
         'password' => 'required|confirmed|min:6'
@@ -49,7 +49,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface
     public static $updateRules = [
         'first_name' => 'required',
         'last_name' => 'required',
-        'birth_date' => 'required|date_format:Y-m-d',
+        'birth_date' => 'sometimes|date_format:Y-m-d',
         'gender' => 'required|in:f,m',
         'avatar' => 'image|max:2048',
         'code' => 'required|integer|digits:4'
@@ -63,7 +63,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface
     public static $validationMessages = [
         'first_name.required' => 'El campo nombres es obligatorio',
         'last_name.required' => 'El campo apellidos es obligatorio',
-        'birth_date.required' => 'El campo fecha de nacimiento es obligatorio',
         'birth_date.date_format' => 'El campo fecha de nacimiento no corresponde con el formato Y-m-d.',
         'gender.required' => 'El campo género es obligatorio',
         'gender.in' => 'El campo género seleccionado es inválido',

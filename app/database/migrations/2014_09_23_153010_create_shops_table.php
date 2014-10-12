@@ -20,7 +20,7 @@ class CreateShopsTable extends Migration
             $table->string('name', 32)->unique();
             $table->string('link', 64)->unique();
             $table->decimal('retribution', 5, 4);
-            $table->string('image_preview',20);
+            $table->string('image_preview', 20);
             $table->string('about', 2048);
             $table->string('lat');
             $table->string('lng');

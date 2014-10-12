@@ -87,4 +87,57 @@ class ShopsController extends \BaseController
         return Redirect::back();
     }
 
+    public function logo($shop_link)
+    {
+
+        $shop = Shop::where('link', $shop_link)->firstOrFail();
+
+        return View::make('shops.pages.admin.logo', compact('shop', 'category', 'product'));
+    }
+    public function storeLogo($shop_link)
+    {
+
+        $rules=[
+            'logo'=>'required|image'
+        ];
+        $validationMessages=[
+            'logo.required'=>'El campo logo es obligatorio',
+            'logo.image'=>'El campo logo debe ser una imagen',
+        ];
+        $validation = Validator::make(Input::all(),$rules, $validationMessages);
+        if ($validation->fails()) {
+            return Redirect::back()->withInput()->withErrors($validation);
+        }
+
+        $shop = Shop::where('link', $shop_link)->firstOrFail();
+
+        if (Input::hasFile('logo')) {
+            $photo = Input::file('logo');
+
+            $path = "shops/{$shop->id}";
+            if (!File::exists($path)) {
+                File::makeDirectory($path);
+            }
+
+            $filename = 'preview.' . $photo->getClientOriginalExtension();
+            Image::make($photo->getRealPath())
+                ->fit(300, 300)
+                ->save("$path/$filename");
+            $shop->image_preview=$filename;
+            $shop->save();
+        }
+
+
+        Flash::success("Logo guardado correctamente");
+
+        return Redirect::back();
+    }
+
+    public function covers($shop_link)
+    {
+        $shop = Shop::where('link', $shop_link)->firstOrFail();
+
+        return View::make('shops.pages.admin.covers', compact('shop', 'category', 'product'));
+    }
+
 }

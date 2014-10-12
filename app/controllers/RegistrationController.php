@@ -111,7 +111,7 @@ class RegistrationController extends \BaseController
             $user->confirmed = 1;
             $user->save();
 
-            Flash::success("Gracias por completar tu registro");
+            Flash::success("Gracias por completar el registro");
 
             Auth::attempt(['email' => $email, 'password' => Input::get('password'), 'confirmed' => '1']);
 

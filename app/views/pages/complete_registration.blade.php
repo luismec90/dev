@@ -36,7 +36,7 @@
             <!-- Fecha de nacimiento Form Input -->
             <div class="form-group">
             {{ Form::label('birth_date','Fecha de nacimiento:') }}
-            {{ Form::text('birth_date',null,['class'=>'form-control datepickerBirthday','required'=>'required']) }}
+            {{ Form::text('birth_date',null,['class'=>'form-control datepickerBirthday']) }}
             </div>
 
             <!-- Genero Form Input -->

@@ -61,8 +61,19 @@
 
                  <li class="@if(Route::currentRouteName()=='edit_general_information_path') {{ 'active'}} @endif">
                     <a href="{{ route('edit_general_information_path',$shop->link) }}">Información general</a>
-                </li>
+                 </li>
 
+                <li>
+                    <a class="tree-toggler nav-header">Fotos del establecimiento</a>
+                    <ul class="nav nav-list tree " style="{{ Route::currentRouteName()!='logo_path' && Route::currentRouteName()!='covers_path' ? 'display: none;' :'' }};">
+                        <li class="{{ Route::currentRouteName()=='logo_path'? 'active':''; }}">
+                            <a href="{{ route('logo_path',$shop->link) }}">Logo</a>
+                        </li>
+                        <li class="{{ Route::currentRouteName()=='covers_path'? 'active':''; }}">
+                            <a href="{{ route('covers_path',$shop->link) }}">Covers</a>
+                        </li>
+                    </ul>
+                </li>
             @endif
         </ul>
     </div>

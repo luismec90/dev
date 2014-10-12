@@ -22,41 +22,39 @@
 </div>
 
 <div class="row">
-
     @include('shops.layouts.partials.left_menu')
-
     <div class="col-md-9">
-
-    <div class="row">
+        <div class="row">
         <div class="col-md-10">
             @include('layouts.partials.errors')
         </div>
-    </div>
+        </div>
 
-    <div class="row">
+        <div class="row">
         <div class="col-xs-10">
             <a href="{{ URL::route('admin_products_path',[$shop->link,$category->id]) }}" class="btn btn-primary" title=""><i class="fa fa-reply"></i> Volver atras</a>
         </div>
-    </div>
+        </div>
 
-    <div class="row">
+        <div class="row">
         <div class="col-xs-10">
             <br>
         </div>
-    </div>
+        </div>
 
-     <div class="row">
+        <div class="row">
         <div class="col-xs-10">
             <button class="btn btn-danger pull-right" data-toggle="modal" data-target="#modal-eliminar-producto">
                 Eliminar producto
             </button>
             <h3 class="no-margin"> Editar producto: {{ $product->name }}</h3>
         </div>
-    </div>
+        </div>
 
-    {{ Form::model($product,['route'=>['admin_update_product_path',$shop->link,$category->id,$product->id],'class'=>'validate form-submit','files' => true]) }}
+        {{ Form::model($product,['route'=>['admin_update_product_path',$shop->link,$category->id,$product->id],'class'=>'validate form-submit','files' => true]) }}
         @include('shops.layouts.partials.create_edit_product',compact('producto'))
-    {{ Form::close() }}
+        {{ Form::close() }}
+    </div>
 </div>
 <!-- Modal -->
 <div class="modal fade" id="modal-eliminar-producto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

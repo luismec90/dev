@@ -92,6 +92,9 @@ Route::group(array('prefix' => '{shop_link}'), function () {
         Route::get('ventas', array('before' => 'auth|admin', 'as' => 'sales_report_path', 'uses' => 'ReportsController@indexSales'));
         Route::get('ventas/exportar', array('before' => 'auth|admin', 'as' => 'export_sales_report_path', 'uses' => 'ReportsController@exportSales'));
 
+        Route::get('logo', array('before' => 'auth|admin', 'as' => 'logo_path', 'uses' => 'ShopsController@logo'));
+        Route::post('logo', array('before' => 'auth|admin', 'as' => 'logo_path', 'uses' => 'ShopsController@storeLogo'));
+        Route::get('covers', array('before' => 'auth|admin', 'as' => 'covers_path', 'uses' => 'ShopsController@covers'));
     });
 
 

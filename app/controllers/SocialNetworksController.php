@@ -34,7 +34,7 @@ class SocialNetworksController extends \BaseController
             }
 
             if ($user->confirmed == 0) {
-                Flash::success("Por favor completa campos vacios");
+                Flash::success("Gracias por registrarse, por favor complete el siguiente formulario para activar su cuenta");
                 return Redirect::route('complete_registration',["base",$user->email,sha1("$user->email-luis5484175")]);
             }
 
@@ -48,12 +48,12 @@ class SocialNetworksController extends \BaseController
                 $welcome = 'Bienvenid@';
             }
 
-            Flash::success("$welcome  nuevamente " . Auth::user()->first_name);
-
             $shop = Shop::whereHas('users', function ($query) {
                 $query->where("users.id", Auth::user()->id);
                 $query->where("role", 1);
             })->first();
+
+            Flash::success("$welcome  nuevamente " . Auth::user()->first_name);
 
             if (!is_null($shop)) {
                 return Redirect::route('shop_path', $shop->link);
@@ -104,6 +104,7 @@ class SocialNetworksController extends \BaseController
             }
 
             if ($user->confirmed == 0) {
+                Flash::success("Gracias por registrarse, por favor complete el siguiente formulario para activar su cuenta");
                 return Redirect::route('complete_registration',["base",$user->email,sha1("$user->email-luis5484175")]);
             }
 
@@ -117,12 +118,12 @@ class SocialNetworksController extends \BaseController
                 $welcome = 'Bienvenid@';
             }
 
-            Flash::success("$welcome  nuevamente " . Auth::user()->first_name);
-
             $shop = Shop::whereHas('users', function ($query) {
                 $query->where("users.id", Auth::user()->id);
                 $query->where("role", 1);
             })->first();
+
+            Flash::success("$welcome  nuevamente " . Auth::user()->first_name);
 
             if (!is_null($shop)) {
                 return Redirect::route('shop_path', $shop->link);
