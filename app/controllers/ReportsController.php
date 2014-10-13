@@ -18,7 +18,8 @@ class ReportsController extends BaseController
                 'users.email',
                 'users.first_name',
                 'users.last_name',
-                'purchases.created_at');
+                'purchases.created_at')
+            ->where('bills.shop_id', $shop->id);
 
         if (Input::has('category')) {
             $q->where('products.category_id', Input::get('category'));
@@ -36,8 +37,8 @@ class ReportsController extends BaseController
             $q->where('purchases.created_at', '<=', Input::get('until') . ' 23:59:59');
         }
 
-        $q2=$q;
-        $total=$q2->sum('cost');
+        $q2 = $q;
+        $total = $q2->sum('cost');
 
         $sales = $q->orderBy('purchases.created_at', 'desc')->paginate(20);
 
@@ -46,7 +47,7 @@ class ReportsController extends BaseController
             $selectCategories[$category->id] = $category->name;
         }
 
-        return View::make('shops.pages.admin.reports.sales', compact('shop', 'sales', 'selectCategories','total'));
+        return View::make('shops.pages.admin.reports.sales', compact('shop', 'sales', 'selectCategories', 'total'));
     }
 
     public function exportSales($shop_link)
@@ -63,7 +64,8 @@ class ReportsController extends BaseController
                 'users.email As Email_cliente',
                 'users.first_name AS Nombres',
                 'users.last_name AS Apellidos',
-                'purchases.created_at AS Fecha');
+                'purchases.created_at AS Fecha')
+            ->where('bills.shop_id', $shop->id);
 
         if (Input::has('category')) {
             $q->where('products.category_id', Input::get('category'));
@@ -82,7 +84,7 @@ class ReportsController extends BaseController
         }
 
         $sales = $q->orderBy('purchases.created_at', 'desc')->get();
-            $sales = json_decode(json_encode((array) $sales), true);
+        $sales = json_decode(json_encode((array)$sales), true);
 
         Excel::create($shop->link . '_reporte_ventas_' . date('Y-m-d'), function ($excel) use ($sales) {
             $excel->sheet('Sheetname', function ($sheet) use ($sales) {

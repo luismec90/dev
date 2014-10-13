@@ -12,7 +12,7 @@ class ShopsController extends \BaseController
         if (!$categories)
             $categories = [''];
 
-        $popular_products = Product::with('category')->whereIn('category_id', $categories)->get();
+        $popular_products = Product::with('category')->whereIn('category_id', $categories)->take(9)->get();
 
         return View::make('shops.pages.home', compact('shop', 'popular_products'));
     }
