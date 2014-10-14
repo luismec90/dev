@@ -14,7 +14,6 @@ class CoversTableSeeder extends Seeder {
             'shop_id' => "1",
             'image' => '1.jpg',
             'caption' => 'Tradición',
-            'current'=>1
         ]);
 
         Cover::create([

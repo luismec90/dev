@@ -21,12 +21,16 @@ class PagesController extends BaseController {
         $activities=Activity::orderBy('name')->get();
 
 
-        return View::make('pages.home',compact('towns','activities'));
+        return View::make('pages.promo',compact('towns','activities'));
     }
 
     public function contact()
     {
-        return View::make('pages.contact');
+        return View::make('pages.contact_pioner');
+    }
+    public function contactPioner()
+    {
+        return View::make('pages.contact_pioner');
     }
     public function sendContact()
     {
@@ -58,6 +62,35 @@ class PagesController extends BaseController {
         return Redirect::back();
     }
 
+    public function sendContactPioner()
+    {
+        $rules=[
+            'subject'=>'required',
+            'name'=>'required',
+            'email'=>'required'
+        ];
+        $validationMessages= [
+            'subject.required'=>'El campo asunto es obligatorio',
+            'name.required'=>'El campo nombre es obligatorio',
+            'email.required'=>'El campo email es obligatorio',
+        ];
+
+        $validation = Validator::make(Input::all(), $rules, $validationMessages);
+        if ($validation->fails()) {
+            return Redirect::back()->withInput()->withErrors($validation);
+        }
+
+        Mail::send('emails.contact_pioner', [], function ($message) {
+            $message->to('luismec90@gmail.com', Input::get('name'))
+                ->subject('Contacto');
+        });
+
+        Flash::success('Su mensaje se ha enviado exitosamente, muchas gracias.');
+
+        return Redirect::back();
+    }
+
+
     public function mySites()
     {
         $shops=DB::table('shops')->join('bills', 'shops.id', '=', 'bills.shop_id')->select(DB::raw('shops.*,shops.name,sum(bills.retribution) as retribution'))
@@ -74,5 +107,10 @@ class PagesController extends BaseController {
         $shops=Shop::all();
 
         return View::make('pages.list_shops',compact('shops'));
+    }
+
+    public function promo()
+    {
+        return View::make('pages.promo');
     }
 }

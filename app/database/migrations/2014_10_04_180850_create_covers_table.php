@@ -19,7 +19,6 @@ class CreateCoversTable extends Migration
             $table->foreign('shop_id')->references('id')->on('shops')->onDelete('cascade');
             $table->string('image', 10);
             $table->string('caption');
-            $table->boolean('current')->default(0);
             $table->timestamps();
         });
     }

@@ -8,10 +8,6 @@ class Shop extends \Eloquent {
         'lat' => 'required',
         'lng'=>'required',
         'retribution'=>'required|integer|between:1,100',
-        'email'=>'required',
-        'phone'=>'required',
-        'schedule'=>'required',
-        'about'=>'required',
     ];
 
 

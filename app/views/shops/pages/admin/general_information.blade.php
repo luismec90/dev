@@ -100,7 +100,7 @@
                         <!-- Email Form Input -->
                         <div class="form-group">
                             {{ Form::label('email','E-mail:') }}
-                            {{ Form::email('email',null,['class'=>'form-control','required'=>'required']) }}
+                            {{ Form::email('email',null,['class'=>'form-control']) }}
                         </div>
                     </div>
                 </div>
@@ -117,27 +117,33 @@
                         <!-- Cell Form Input -->
                         <div class="form-group">
                         {{ Form::label('cell','Celular') }}
-                        {{ Form::text('cell',null,['class'=>'form-control','required'=>'required']) }}
+                        {{ Form::text('cell',null,['class'=>'form-control']) }}
                         </div>
                     </div>
+                </div>
+
+                <!-- Street Address Form Input -->
+                <div class="form-group">
+                    {{ Form::label('street_address','Dirección:') }}
+                    {{ Form::text('street_address',null,['class'=>'form-control']) }}
                 </div>
 
                 <!-- Schedule Form Input -->
                 <div class="form-group">
                     {{ Form::label('schedule','Horario:') }}
-                    {{ Form::text('schedule',null,['class'=>'form-control','required'=>'required','rows'=>2]) }}
+                    {{ Form::text('schedule',null,['class'=>'form-control']) }}
                 </div>
 
                 <!-- About Form Input -->
                 <div class="form-group">
                     {{ Form::label('about','Acerca:') }}
-                    {{ Form::textarea('about',null,['class'=>'form-control','required'=>'required','rows'=>5]) }}
+                    {{ Form::textarea('about',null,['class'=>'form-control','rows'=>5]) }}
                 </div>
 
                 <!-- Facebook Form Input -->
                 <div class="form-group">
                     {{ Form::label('facebook','Facebook:') }}
-                    {{ Form::text('facebook',null,['class'=>'form-control','required'=>'required','rows'=>2]) }}
+                    {{ Form::text('facebook',null,['class'=>'form-control']) }}
                 </div>
 
                 <div class="row">

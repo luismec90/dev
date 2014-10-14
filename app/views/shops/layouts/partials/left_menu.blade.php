@@ -65,11 +65,13 @@
 
                 <li>
                     <a class="tree-toggler nav-header">Fotos del establecimiento</a>
-                    <ul class="nav nav-list tree " style="{{ Route::currentRouteName()!='logo_path' && Route::currentRouteName()!='covers_path' ? 'display: none;' :'' }};">
+                    <ul class="nav nav-list tree " style="{{ Route::currentRouteName()!='logo_path' && Route::currentRouteName()!='covers_path' && Route::currentRouteName()!='admin_create_cover_path' && Route::currentRouteName()!='admin_edit_cover_path'  ? 'display: none;' :'' }};">
                         <li class="{{ Route::currentRouteName()=='logo_path'? 'active':''; }}">
                             <a href="{{ route('logo_path',$shop->link) }}">Logo</a>
                         </li>
-                        <li class="{{ Route::currentRouteName()=='covers_path'? 'active':''; }}">
+                        <li class="{{ Route::currentRouteName()=='covers_path' ||
+                         Route::currentRouteName()=='admin_create_cover_path' ||
+                         Route::currentRouteName()=='admin_edit_cover_path' ? 'active':''; }}">
                             <a href="{{ route('covers_path',$shop->link) }}">Covers</a>
                         </li>
                     </ul>

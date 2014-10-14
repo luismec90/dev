@@ -15,23 +15,23 @@
     <!-- Indicators -->
     <ol class="carousel-indicators">
     @for ($i = 0; $i < $shop->covers->count(); $i++)
-        <li data-target="#carousel-1" data-slide-to="{{ $i }}" class="{{ $shop->covers[$i]->current==1 ? 'active' : '';}}"></li>
+        <li data-target="#carousel-1" data-slide-to="{{ $i }}" class="{{ $i==0 ? 'active' : '';}}"></li>
     @endfor
 
     </ol>
 
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
-        @foreach($shop->covers as $cover)
-        <div class="item {{ $cover->current==1 ? 'active' : '';}}">
-            <img src="{{ $cover->pathImage($shop->id) }}" alt="...">
-            @if( $cover->caption!="")
+        @for ($i = 0; $i < $shop->covers->count(); $i++)
+        <div class="item {{ $i==0 ? 'active' : '';}}">
+            <img src="{{ $shop->covers[$i]->pathImage($shop->id) }}" alt="...">
+            @if( $shop->covers[$i]->caption!="")
                 <div class="carousel-caption">
-                    <h3>{{ $cover->caption }}</h3>
+                    <h3>{{ $shop->covers[$i]->caption }}</h3>
                 </div>
             @endif
         </div>
-        @endforeach
+        @endfor
 
     </div>
 

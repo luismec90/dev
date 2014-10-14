@@ -43,9 +43,9 @@ class ShopsController extends \BaseController
         $suscribed_users = User::whereHas('shops', function ($query) use ($shop) {
             $query->where("role", 2);
             $query->where("shops.id", $shop->id);
-        })->select('users.last_name AS Apellidos','users.first_name AS Nombres', 'gender AS Género', 'email as Email', 'created_at AS Fecha_suscripción')->orderBy('created_at')->get();
+        })->select('users.last_name AS Apellidos', 'users.first_name AS Nombres', 'gender AS Género', 'email as Email', 'created_at AS Fecha_suscripción')->orderBy('created_at')->get();
 
-        Excel::create($shop->link.'_suscripciones_'.date('Y-m-d'), function ($excel) use ($suscribed_users) {
+        Excel::create($shop->link . '_suscripciones_' . date('Y-m-d'), function ($excel) use ($suscribed_users) {
             $excel->sheet('Sheetname', function ($sheet) use ($suscribed_users) {
                 $sheet->fromArray($suscribed_users);
             });
@@ -75,6 +75,7 @@ class ShopsController extends \BaseController
         $shop->retribution = Input::get('retribution') / 100;
         $shop->email = Input::get('email');
         $shop->phone = Input::get('phone');
+        $shop->street_address = Input::get('street_address');
         $shop->schedule = Input::get('schedule');
         $shop->about = Input::get('about');
         $shop->cell = Input::get('cell');
@@ -94,17 +95,18 @@ class ShopsController extends \BaseController
 
         return View::make('shops.pages.admin.logo', compact('shop', 'category', 'product'));
     }
+
     public function storeLogo($shop_link)
     {
 
-        $rules=[
-            'logo'=>'required|image'
+        $rules = [
+            'logo' => 'required|image'
         ];
-        $validationMessages=[
-            'logo.required'=>'El campo logo es obligatorio',
-            'logo.image'=>'El campo logo debe ser una imagen',
+        $validationMessages = [
+            'logo.required' => 'El campo logo es obligatorio',
+            'logo.image' => 'El campo logo debe ser una imagen',
         ];
-        $validation = Validator::make(Input::all(),$rules, $validationMessages);
+        $validation = Validator::make(Input::all(), $rules, $validationMessages);
         if ($validation->fails()) {
             return Redirect::back()->withInput()->withErrors($validation);
         }
@@ -123,7 +125,7 @@ class ShopsController extends \BaseController
             Image::make($photo->getRealPath())
                 ->fit(300, 300)
                 ->save("$path/$filename");
-            $shop->image_preview=$filename;
+            $shop->image_preview = $filename;
             $shop->save();
         }
 
@@ -132,12 +134,4 @@ class ShopsController extends \BaseController
 
         return Redirect::back();
     }
-
-    public function covers($shop_link)
-    {
-        $shop = Shop::where('link', $shop_link)->firstOrFail();
-
-        return View::make('shops.pages.admin.covers', compact('shop', 'category', 'product'));
-    }
-
 }
