@@ -20,7 +20,7 @@
     <div class="row">
         <div class="col-xs-12">
         <a class="btn btn-primary pull-right" href="{{ route('export_subscriptions_path',$shop->link) }}">Exportar a Excel</a>
-            <h3 class="no-margin">Suscripciones</h3>
+            <h3 class="no-margin">Clientes</h3>
         </div>
     </div>
     <div class="row">
@@ -41,6 +41,7 @@
                     <td>Nombres</td>
                     <td>Correo</td>
                     <td>Sexo</td>
+                     <td>Saldo</td>
                 </tr>
                 @foreach($suscribed_users as $suscribed_user)
                     <tr>
@@ -52,6 +53,9 @@
                         @elseif($suscribed_user->gender=='m')
                             Masculino
                         @endif
+                        </td>
+                        <td>
+                       $  {{  $suscribed_user->saldo($shop->id) }}
                         </td>
                     </tr>
                 @endforeach

@@ -80,6 +80,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface
         return $this->belongsToMany('Shop')->withPivot('role');
     }
 
+    public function bills() {
+        return $this->hasMany('Bill');
+    }
+
     public function isAdmin($shop_id)
     {
         if (is_null($this->is_admin)) {

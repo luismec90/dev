@@ -43,7 +43,12 @@ class ShopsController extends \BaseController
         $suscribed_users = User::whereHas('shops', function ($query) use ($shop) {
             $query->where("role", 2);
             $query->where("shops.id", $shop->id);
-        })->select('users.last_name AS Apellidos', 'users.first_name AS Nombres', 'gender AS Género', 'email as Email', 'created_at AS Fecha_suscripción')->orderBy('created_at')->get();
+        })->select('users.id','users.last_name AS Apellidos', 'users.first_name AS Nombres', 'gender AS Género', 'email as Email', 'created_at AS Fecha_suscripción')->orderBy('created_at')->get();
+
+        foreach ($suscribed_users as $user) {
+            $saldo = $user->saldo($shop->id);
+            $user->Saldo = $saldo;
+        }
 
         Excel::create($shop->link . '_suscripciones_' . date('Y-m-d'), function ($excel) use ($suscribed_users) {
             $excel->sheet('Sheetname', function ($sheet) use ($suscribed_users) {

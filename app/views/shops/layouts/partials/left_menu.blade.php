@@ -43,7 +43,7 @@
                 </li>
 
                 <li class="@if(Route::currentRouteName()=='subscriptions_path') {{ 'active'}} @endif">
-                    <a href="{{ route('subscriptions_path',$shop->link) }}">Usuarios suscritos</a>
+                    <a href="{{ route('subscriptions_path',$shop->link) }}">Clientes</a>
                 </li>
 
                 <li><hr></li>

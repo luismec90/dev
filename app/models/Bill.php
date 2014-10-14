@@ -13,7 +13,12 @@ class Bill extends \Eloquent {
         'email.email' => 'El campo email no es válido'
     ];
 
+    public function user() {
+        return $this->belongsTo('User');
+    }
+
     public function purchases() {
         return $this->hasMany('Purchase');
     }
+
 }
