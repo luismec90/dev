@@ -46,6 +46,10 @@
                     <a href="{{ route('subscriptions_path',$shop->link) }}">Clientes</a>
                 </li>
 
+                <li class="@if(Route::currentRouteName()=='statistics_path') {{ 'active'}} @endif">
+                    <a href="{{ route('statistics_path',$shop->link) }}">Estadísticas</a>
+                </li>
+
                 <li><hr></li>
                 <li class="dropdown-header">Configuración</li>
 

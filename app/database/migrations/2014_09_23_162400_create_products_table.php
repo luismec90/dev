@@ -20,6 +20,7 @@ class CreateProductsTable extends Migration {
             $table->string('price');
             $table->string('photo_extension');
             $table->boolean('delivery_service')->default(0);
+            $table->boolean('publish')->default(1);
             $table->float('rating_cache');
             $table->integer('rating_count');
             $table->timestamps();

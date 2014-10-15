@@ -50,7 +50,10 @@
                         <tr>
                             <td>Nombre</td>
                             <td>Precio</td>
-                            <td>Servicio a domicilio</td>
+                            <td>Publicado</td>
+                            @if($shop->delivery_service)
+                                <td>Servicio a domicilio</td>
+                            @endif
                             <td>Opciones</td>
                         </tr>
                     </thead>
@@ -58,7 +61,10 @@
                     <tr>
                         <td>{{ $product->name }}</td>
                         <td>${{ $product->price }}</td>
-                        <td> {{ $product->delivery_service ? "Si" : "No"; }}</td>
+                       <td> {{ $product->publish ? "Si" : "No"; }}</td>
+                        @if($shop->delivery_service)
+                                <td> {{ $product->delivery_service ? "Si" : "No"; }}</td>
+                        @endif
                         <td>
                             {{ link_to_route('admin_edit_product_path','Editar producto',[$shop->link,$category->id,$product->id],['class'=>'btn btn-primary btn-sm']) }}
                         </td>

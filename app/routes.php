@@ -98,6 +98,9 @@ Route::group(array('prefix' => '{shop_link}'), function () {
         Route::get('ventas', array('before' => 'auth|admin', 'as' => 'sales_report_path', 'uses' => 'ReportsController@indexSales'));
         Route::get('ventas/exportar', array('before' => 'auth|admin', 'as' => 'export_sales_report_path', 'uses' => 'ReportsController@exportSales'));
 
+        /* Statistics */
+        Route::get('estadisticas', array('before' => 'auth|admin', 'as' => 'statistics_path', 'uses' => 'StatisticsController@index'));
+
         /* Logo */
         Route::get('logo', array('before' => 'auth|admin', 'as' => 'logo_path', 'uses' => 'ShopsController@logo'));
         Route::post('logo', array('before' => 'auth|admin', 'as' => 'logo_path', 'uses' => 'ShopsController@storeLogo'));
@@ -109,6 +112,7 @@ Route::group(array('prefix' => '{shop_link}'), function () {
         Route::get('covers/editar/{cover_id}', array('before' => 'auth|admin', 'as' => 'admin_edit_cover_path', 'uses' => 'CoversController@edit'));
         Route::post('covers/editar/{cover_id}', array('before' => 'auth|admin', 'as' => 'admin_update_cover_path', 'uses' => 'CoversController@update'));
         Route::delete('covers/eliminar/{cover_id}', array('before' => 'auth|admin', 'as' => 'admin_destroy_cover_path', 'uses' => 'CoversController@destroy'));
+
     });
 
 

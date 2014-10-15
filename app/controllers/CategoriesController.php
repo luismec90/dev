@@ -49,7 +49,9 @@ class CategoriesController extends \BaseController
     public function show($shop_link, $category_name)
     {
         $shop = Shop::with(['categories', 'categories.products'])->where('link', $shop_link)->firstOrFail();
-        $category = Category::with('products')->where('name', $category_name)->firstOrFail();
+        $category = Category::with(['products'=>function($q){
+            $q->where('publish',1);
+        }])->where('name', $category_name)->firstOrFail();
 
         return View::make('shops.pages.category', compact('shop', 'category'));
     }

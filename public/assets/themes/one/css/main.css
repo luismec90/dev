@@ -184,3 +184,7 @@ h3.no-margin{
 a.info-user{
     cursor:pointer;
 }
+.chart {
+    width: 100%;
+    height: 600px;
+}
