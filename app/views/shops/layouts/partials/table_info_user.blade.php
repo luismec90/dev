@@ -9,7 +9,7 @@
             <tr>
                 <td>{{ $purchase->product_name }}</td>
                 <td>{{ $purchase->amount }}</td>
-                <td>{{ $purchase->cost }}</td>
+                <td>$ {{ $purchase->cost }}</td>
             </tr>
         @endforeach
     @endforeach

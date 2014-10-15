@@ -96,6 +96,9 @@ $(function () {
     });
 
     $("a.info-user").click(function () {
+
+        coverOn();
+
         var user_id = $(this).data("user");
         var shop_id = $(this).data("shop");
 
@@ -107,9 +110,28 @@ $(function () {
             },
             success: function (data) {
                 $("#body-modal-info-user").html(data);
+
+                coverOff();
+
+                $("#modal-info-usuario").modal();
             }
         });
 
-        $("#modal-info-usuario").modal();
     });
 });
+
+function coverOn() {
+    $("#coverDisplay").css({
+        "opacity": "1",
+        "width": "100%",
+        "height": "100%"
+    });
+}
+
+function coverOff() {
+    $("#coverDisplay").css({
+        "opacity": "0",
+        "width": "0",
+        "height": "0"
+    });
+}
