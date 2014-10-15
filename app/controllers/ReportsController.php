@@ -16,6 +16,7 @@ class ReportsController extends BaseController
                 'purchases.amount',
                 'purchases.cost',
                 'users.email',
+                'users.id AS user_id',
                 'users.first_name',
                 'users.last_name',
                 'purchases.created_at')

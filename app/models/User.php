@@ -80,7 +80,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface
         return $this->belongsToMany('Shop')->withPivot('role');
     }
 
-    public function bills() {
+    public function bills()
+    {
         return $this->hasMany('Bill');
     }
 
@@ -135,6 +136,17 @@ class User extends Eloquent implements UserInterface, RemindableInterface
             ->first();
 
         return empty($shop->retribution) ? 0 : $shop->retribution;
+    }
+
+    public static function linkUserEmail($user_id,$shop_id)
+    {
+        $user=User::findOrFail($user_id);
+
+        if (Auth::check() && Auth::user()->isAdmin($shop_id)) {
+            return "<a class='info-user' data-user='{$user->id}' data-shop='$shop_id'>{$user->email}</a>";
+        } else {
+            return $user->email;
+        }
     }
 
 }

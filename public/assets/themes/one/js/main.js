@@ -86,7 +86,6 @@ $(function () {
     });
 
 
-
     $('.btn-file :file').change(function () {
         var input = $(this);
         var label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
@@ -96,4 +95,21 @@ $(function () {
         $(this).parent().children('ul.tree').toggle(300);
     });
 
+    $("a.info-user").click(function () {
+        var user_id = $(this).data("user");
+        var shop_id = $(this).data("shop");
+
+        $.ajax({
+            url: "/info_user",
+            data: {
+                user_id: user_id,
+                shop_id: shop_id
+            },
+            success: function (data) {
+                $("#body-modal-info-user").html(data);
+            }
+        });
+
+        $("#modal-info-usuario").modal();
+    });
 });

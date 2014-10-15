@@ -65,7 +65,7 @@ Route::get('login_facebook', array('before' => 'guest', 'as' => 'login_facebook_
 Route::get('login_twitter', array('before' => 'guest', 'as' => 'login_twitter_path', 'uses' => 'SocialNetworksController@loginWithTwitter'));
 Route::get('login_google', array('before' => 'guest', 'as' => 'login_google_path', 'uses' => 'SocialNetworksController@loginWithGoogle'));
 
-
+Route::get('info_user', array('as' => 'info_user_path', 'uses' => 'UsersController@infoUser'));
 
 Route::group(array('prefix' => '{shop_link}'), function () {
 

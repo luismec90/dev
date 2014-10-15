@@ -57,6 +57,7 @@
         @section('js')
         @show
 
-        @include('layouts.partials.notify');
+        @include('layouts.partials.notify')
+        @include('shops.layouts.partials.modal_info_usuario')
     </body>
 </html>

@@ -73,4 +73,30 @@ class UsersController extends \BaseController
         }
 
     }
+
+    public function infoUser()
+    {
+        $user_id = Input::get("user_id");
+        $shop_id = Input::get("shop_id");
+
+
+        if (Auth::check() && Auth::user()->isAdmin($shop_id)) {
+
+            $shop = Shop::find($shop_id);
+            $user = User::find($user_id);
+
+            if ($shop && $user && $user->isMember($shop_id)) {
+
+                $bills = Bill::with('purchases')
+                    ->where('shop_id', $shop_id)
+                    ->where('user_id', $user_id)
+                    ->get();
+
+                return View::make('shops.layouts.partials.table_info_user',compact('bills'));
+            }
+        }
+
+        return Response::make('Unauthorized', 401);
+
+    }
 }
