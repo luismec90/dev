@@ -144,39 +144,65 @@
             </div>
         </div>
         <div class="row">
-        <div class="col-md-10">
-        <div class="row">
-            <div class="col-sm-6">
-                <!-- Publish -->
-                <div class="checkbox">
-                    <label>
-                        {{ Form::checkbox('no_register_products', '1',false,['id'=>'no_register_products']); }} Registrar únicamente el total a pagar
-                    </label>
-                </div>
-            </div>
-
-
-            <div class="col-sm-3">
-                <!-- Total Form Input -->
-                <div class="form-group">
-                    {{ Form::label('category','Saldo ganado:') }}
-                    <div class="input-group">
-                        <div class="input-group-addon">$</div>
-                         {{ Form::text('retribution',0,['id'=>'retribution','class'=>'form-control','readonly'=>'true']) }}
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <!-- Publish -->
+                        <div class="checkbox">
+                            <label>
+                                {{ Form::checkbox('no_register_products', '1',false,['id'=>'no_register_products']); }} Registrar únicamente el total a pagar
+                            </label>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-3">
-                <!-- Total Form Input -->
-                <div class="form-group">
-                    {{ Form::label('category','Total a pagar:') }}
-                    <div class="input-group">
-                        <div class="input-group-addon">$</div>
-                        {{ Form::number('total',0,['id'=>'total','class'=>'form-control','required'=>'true','readonly'=>'true']) }}
+
+                <div class="row">
+
+                    <div class="col-sm-3">
+                        <!-- Total Form Input -->
+                        <div class="form-group">
+                            {{ Form::label('category','Saldo ganado:') }}
+                            <div class="input-group">
+                                <div class="input-group-addon">$</div>
+                                 {{ Form::text('retribution',0,['id'=>'retribution','class'=>'form-control','readonly'=>'true']) }}
+                            </div>
+                        </div>
                     </div>
+
+                    <div class="col-sm-3">
+                        <!-- Total Form Input -->
+                        <div class="form-group">
+                                {{ Form::label('category','Subtotal:') }}
+                            <div class="input-group">
+                                <div class="input-group-addon">$</div>
+                                 {{ Form::text('subtotal',0,['id'=>'subtotal','class'=>'form-control','readonly'=>'true']) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <!-- Total Form Input -->
+                        <div class="form-group">
+                                {{ Form::label('balance_redeemed','Saldo redimido:') }}
+                            <div class="input-group">
+                                <div class="input-group-addon">$</div>
+                                 {{ Form::text('balance_redeemed',0,['id'=>'balance_redeemed','class'=>'form-control','readonly'=>'true']) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <!-- Total Form Input -->
+                        <div class="form-group">
+                            {{ Form::label('category','Total a pagar:',['class'=>'text-danger']) }}
+                            <div class="input-group">
+                                <div class="input-group-addon">$</div>
+                                {{ Form::number('total',0,['id'=>'total','class'=>'form-control','required'=>'true','readonly'=>'true']) }}
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-            </div>
-            </div>
             </div>
         </div>
         <div class="row">
