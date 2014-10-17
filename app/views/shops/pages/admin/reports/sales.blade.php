@@ -106,7 +106,11 @@
                             <td>{{ $sale->product_name }}</td>
                             <td>{{ $sale->amount }}</td>
                             <td>$ {{ $sale->cost }}</td>
-                            <td>{{ User::linkUserEmail($sale->user_id,$shop->id) }}</td>
+                            <td>
+                                @if(!is_null($sale->user_id))
+                                    {{ User::linkUserEmail($sale->user_id,$shop->id) }}
+                                @endif
+                            </td>
                             <td>{{ $sale->created_at }}</td>
                         </tr>
                     @endforeach

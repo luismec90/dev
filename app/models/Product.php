@@ -6,8 +6,8 @@ class Product extends \Eloquent
     public static $rules = [
         'photo' => 'required_if:publish,1|image|max:4000',
         'name' => 'required',
-        'price' => 'required|numeric',
-        'description' => 'required_if:publish,1',
+        'price' => 'required|numeric'
+
     ];
 
     public static $rulesUpdate = [
@@ -23,7 +23,6 @@ class Product extends \Eloquent
         'photo.required_if' => 'El campo foto es obligatorio cuando si se desea publicar el producto',
         'photo.image' => 'El campo foto debe ser una imagen',
         'photo.max' => 'La foto del producto debe pesar menos de 4MB',
-        'description.required_if' => 'El campo descripción es obligatorio si se desea publicar el producto',
     ];
 
     // Don't forget to fill this array

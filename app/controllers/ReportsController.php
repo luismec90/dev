@@ -10,7 +10,7 @@ class ReportsController extends BaseController
 
         $q = DB::table('bills')
             ->join('purchases', 'bills.id', '=', 'purchases.bill_id')
-            ->join('users', 'users.id', '=', 'bills.user_id')
+            ->leftjoin('users', 'users.id', '=', 'bills.user_id')
             ->leftJoin('products', 'products.id', '=', 'purchases.product_id')
             ->select('purchases.product_name',
                 'purchases.amount',

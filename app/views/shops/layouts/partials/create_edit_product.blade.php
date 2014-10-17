@@ -15,6 +15,25 @@
     </div>
 </div>
 
+<div class="row">
+    <div class="col-md-10">
+        <!-- Nombre Form Input -->
+        <div class="form-group">
+            {{ Form::label('name','Nombre:') }}
+            {{ Form::text('name',null,['class'=>'form-control','required'=>'required']) }}
+         </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-10">
+        <!-- Precio Form Input -->
+        <div class="form-group">
+            {{ Form::label('price','Precio:') }}
+            {{ Form::number('price',null,['class'=>'form-control','required'=>'required']) }}
+         </div>
+    </div>
+</div>
 
 <div class="row">
     <div class="col-md-12">
@@ -53,25 +72,7 @@
     </div>
 </div>
 
-<div class="row">
-    <div class="col-md-10">
-        <!-- Nombre Form Input -->
-        <div class="form-group">
-            {{ Form::label('name','Nombre:') }}
-            {{ Form::text('name',null,['class'=>'form-control','required'=>'required']) }}
-         </div>
-    </div>
-</div>
 
-<div class="row">
-    <div class="col-md-10">
-        <!-- Precio Form Input -->
-        <div class="form-group">
-            {{ Form::label('price','Precio:') }}
-            {{ Form::number('price',null,['class'=>'form-control','required'=>'required']) }}
-         </div>
-    </div>
-</div>
 
 @if($shop->delivery_service)
     <div class="row">

@@ -53,6 +53,8 @@ class BillsController extends \BaseController
                 $user = new User;
                 $user->email = $email;
                 $user->save();
+            } else if (!$user->confirmed) {
+                $is_new_user = true;
             }
 
 
@@ -126,11 +128,11 @@ class BillsController extends \BaseController
                 $user->shops()->attach($shop->id, ['role' => 2]);
             }
 
-            $title = "Se ha realizado la siguiente compra";
+            $title = "Gracias por elegirnos";
 
-            Mail::send('emails.shops.admin.bill', compact('shop', 'bill', 'title', 'user', 'is_new_user'), function ($message) use ($user) {
+            Mail::send('emails.shops.admin.bill', compact('shop', 'bill', 'title', 'user', 'is_new_user'), function ($message) use ($user, $shop) {
                 $message->to($user->email, Auth::user()->first_name)
-                    ->subject('Compra realizada');
+                    ->subject($shop->name . ' - Compra realizada');
             });
         }
 

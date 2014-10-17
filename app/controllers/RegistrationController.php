@@ -26,17 +26,17 @@ class RegistrationController extends \BaseController
         $user->email = Input::get('email');
         $user->avatar = 'default.png';
         $user->password = Hash::make(Input::get('password'));
-        $user->code=rand(1111,9999);
+        $user->code = rand(1111, 9999);
         $user->confirmation_code = $confirmation_code;
         $user->save();
 
-        Mail::send('emails.verify', ['confirmation_code' => $confirmation_code], function ($message) {
+        Mail::send('emails.verify', compact('confirmation_code', 'user'), function ($message) {
             $message->to(Input::get('email'), Input::get('first_name'))
                 ->subject('Verificar email');
         });
 
 
-        Flash::success('¡Gracias por registrarse! Por favor, revise su email');
+        Flash::success('¡Gracias por registrarse! Se ha enviado un correo de confirmación a tu email');
 
         return Redirect::home();
     }
@@ -44,22 +44,30 @@ class RegistrationController extends \BaseController
     public function confirm($confirmation_code)
     {
         if (!$confirmation_code) {
-            throw new InvalidConfirmationCodeException;
+            Flash::error('Link inválido');
+
+        } else {
+
+            $user = User::whereConfirmationCode($confirmation_code)->first();
+
+            if (!$user) {
+                Flash::error('Link inválido');
+            } else {
+
+                $user->confirmed = 1;
+                $user->confirmation_code = null;
+                $user->save();
+
+
+                Auth::login($user);
+
+                Flash::success("Gracias por verificar su cuenta");
+
+                return Redirect::home();
+            }
         }
 
-        $user = User::whereConfirmationCode($confirmation_code)->first();
-
-        if (!$user) {
-            throw new InvalidConfirmationCodeException;
-        }
-
-        $user->confirmed = 1;
-        $user->confirmation_code = null;
-        $user->save();
-
-        Flash::success('Se ha verificado satisfactoriamente su cuenta');
-
-        return Redirect::route('login_path');
+        return Redirect::route('register_path');
     }
 
     public function completeRegistration($shop_link, $email, $token)
@@ -107,7 +115,7 @@ class RegistrationController extends \BaseController
             $user->gender = Input::get('gender');
             $user->avatar = 'default.png';
             $user->password = Hash::make(Input::get('password'));
-            $user->code=rand(1111,9999);
+            $user->code = rand(1111, 9999);
             $user->confirmed = 1;
             $user->save();
 
@@ -117,7 +125,7 @@ class RegistrationController extends \BaseController
 
             if ($shop_link != "base") {
                 return Redirect::route("shop_path", $shop->link);
-            }else{
+            } else {
                 return Redirect::route("home");
             }
 

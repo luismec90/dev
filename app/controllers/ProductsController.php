@@ -119,10 +119,6 @@ class ProductsController extends \BaseController
                 $flag = true;
             }
 
-            if (!Input::get('description')) {
-                $errors->add('message', 'El campo descripción es obligatorio si se desea publicar el producto');
-                $flag = true;
-            }
 
             if ($flag)
                 return Redirect::back()->withInput()->withErrors($errors);

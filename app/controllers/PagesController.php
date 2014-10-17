@@ -1,51 +1,54 @@
 <?php
 
-class PagesController extends BaseController {
+class PagesController extends BaseController
+{
 
 
     public function test()
     {
         $shop = Shop::first();
         $bill = Bill::first();
-        $title="Gracias por su compra";
-        $user=User::first();
-        $is_new_user=true;
+        $title = "Gracias por elegirnos";
+        $user = User::first();
+        $is_new_user = false;
 
-        return View::make('emails.shops.admin.bill',compact('shop','bill','title','user','is_new_user'));
+        return View::make('emails.shops.admin.bill', compact('shop', 'bill', 'title', 'user', 'is_new_user'));
 
     }
 
     public function home()
     {
-        $towns=Town::orderBy('name')->get();
-        $activities=Activity::orderBy('name')->get();
+        $towns = Town::orderBy('name')->get();
+        $activities = Activity::orderBy('name')->get();
 
 
-        return View::make('pages.promo',compact('towns','activities'));
+        return View::make('pages.promo', compact('towns', 'activities'));
     }
 
     public function contact()
     {
         return View::make('pages.contact_pioner');
     }
+
     public function contactPioner()
     {
         return View::make('pages.contact_pioner');
     }
+
     public function sendContact()
     {
-        $rules=[
-            'message'=>'required',
-            'subject'=>'required',
-            'name'=>'required',
-            'email'=>'required'
+        $rules = [
+            'message' => 'required',
+            'subject' => 'required',
+            'name' => 'required',
+            'email' => 'required'
         ];
-        $validationMessages= [
-            'message.required'=>'El campo mensaje es obligatorio',
-            'subject.required'=>'El campo asunto es obligatorio',
-            'name.required'=>'El campo nombre es obligatorio',
-            'email.required'=>'El campo email es obligatorio',
-            ];
+        $validationMessages = [
+            'message.required' => 'El campo mensaje es obligatorio',
+            'subject.required' => 'El campo asunto es obligatorio',
+            'name.required' => 'El campo nombre es obligatorio',
+            'email.required' => 'El campo email es obligatorio',
+        ];
 
         $validation = Validator::make(Input::all(), $rules, $validationMessages);
         if ($validation->fails()) {
@@ -64,15 +67,15 @@ class PagesController extends BaseController {
 
     public function sendContactPioner()
     {
-        $rules=[
-            'subject'=>'required',
-            'name'=>'required',
-            'email'=>'required'
+        $rules = [
+            'subject' => 'required',
+            'name' => 'required',
+            'email' => 'required'
         ];
-        $validationMessages= [
-            'subject.required'=>'El campo asunto es obligatorio',
-            'name.required'=>'El campo nombre es obligatorio',
-            'email.required'=>'El campo email es obligatorio',
+        $validationMessages = [
+            'subject.required' => 'El campo asunto es obligatorio',
+            'name.required' => 'El campo nombre es obligatorio',
+            'email.required' => 'El campo email es obligatorio',
         ];
 
         $validation = Validator::make(Input::all(), $rules, $validationMessages);
@@ -93,20 +96,30 @@ class PagesController extends BaseController {
 
     public function mySites()
     {
-        $shops=DB::table('shops')->join('bills', 'shops.id', '=', 'bills.shop_id')->select(DB::raw('shops.*,shops.name,sum(bills.retribution) as retribution'))
+
+        $ownShops = DB::table('shops')
+            ->join('shop_user', 'shops.id', '=', 'shop_user.shop_id')
+            ->where('shop_user.user_id', Auth::user()->id)
+            ->where('role', 1)
+            ->get();
+
+
+        $shops = DB::table('shops')
+            ->join('bills', 'shops.id', '=', 'bills.shop_id')
+            ->select(DB::raw('shops.*,shops.name,sum(bills.retribution) as retribution'))
             ->where('bills.user_id', Auth::user()->id)
             ->groupBy('shops.id')
             ->get();
 
-        return View::make('pages.my_sites',compact('shops'));
+        return View::make('pages.my_sites', compact('shops','ownShops'));
     }
 
 
     public function listShops()
     {
-        $shops=Shop::all();
+        $shops = Shop::all();
 
-        return View::make('pages.list_shops',compact('shops'));
+        return View::make('pages.list_shops', compact('shops'));
     }
 
     public function promo()
