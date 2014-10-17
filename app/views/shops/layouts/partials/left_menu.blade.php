@@ -15,9 +15,11 @@
             <li><a class="tree-toggler nav-header">Categorías</a>
                 <ul class="nav nav-list tree " style="{{ Route::currentRouteName()!='category_path' ? 'display: none;' :'' }};">
                     @foreach ($shop->categories as $row)
-                       <li class="{{ Route::currentRouteName()=='category_path' && $category->name==$row->name ? 'active':''; }}">
-                        <a href="{{ route('category_path',[$shop->link,$row->name]) }}">{{ $row->name }}</a>
-                        </li>
+                        @if($row->publishedProducts()->count())
+                            <li class="{{ Route::currentRouteName()=='category_path' && $category->name==$row->name ? 'active':''; }}">
+                                <a href="{{ route('category_path',[$shop->link,$row->name]) }}">{{ $row->name }}</a>
+                            </li>
+                        @endif
                     @endforeach
                 </ul>
             </li>

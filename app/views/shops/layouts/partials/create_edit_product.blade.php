@@ -6,7 +6,7 @@
 
 <div class="row">
     <div class="col-md-10">
-        <!-- Servicio a domicilio -->
+        <!-- Publish -->
         <div class="checkbox">
             <label>
                 {{ Form::checkbox('publish', '1',true,['id'=>'publish']); }}Publicar producto

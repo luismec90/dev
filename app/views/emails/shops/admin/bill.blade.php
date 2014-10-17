@@ -7,6 +7,7 @@
 
 
 <div>
+@if($bill->purchases->count())
     <table width="540" align="center" cellpadding="0" cellspacing="0" border="0" style="border: 1px solid #ddd; border-spacing: 0; border-collapse: collapse;" class="devicewidthinner">
             <tr style="background: #444; color:#FFFFFF">
                 <td style="border: 1px solid #ddd; padding: 8px;">Producto</td>
@@ -31,6 +32,18 @@
                 <td style="border: 1px solid #ddd; padding: 8px;"><b>$ {{ $bill->total_cost }}</b></td>
             </tr>
     </table>
+@else
+   <table width="540" align="center" cellpadding="0" cellspacing="0" border="0" style="border: 1px solid #ddd; border-spacing: 0; border-collapse: collapse;" class="devicewidthinner">
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 8px;">Saldo ganado:</td>
+                <td style="border: 1px solid #ddd; padding: 8px;"><b>$ {{ $bill->retribution }}</b></td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 8px;">Total:</td>
+                <td style="border: 1px solid #ddd; padding: 8px;"><b>$ {{ $bill->total_cost }}</b></td>
+            </tr>
+    </table>
+@endif
 </div>
 
 <div style="margin: 20px">

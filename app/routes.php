@@ -73,7 +73,8 @@ Route::group(array('prefix' => '{shop_link}'), function () {
     Route::group(array('prefix' => 'admin'), function () {
         Route::get('/venta', array('before' => 'auth|admin','as' => 'bill_path', 'uses' => 'BillsController@create'));
         Route::post('/venta', array('before' => 'auth|admin','as' => 'bill_path', 'uses' => 'BillsController@store'));
-        Route::post('/getuser', array('before' => 'auth|admin','as' => 'getuser_path', 'uses' => 'UsersController@getUser'));
+        Route::get('/getuser', array('before' => 'auth|admin','as' => 'getuser_path', 'uses' => 'UsersController@getUser'));
+        Route::get('/autouseremail',array('before' => 'auth|admin','as' => 'autouseremail_path', 'uses' => 'UsersController@autocompleteEmailUser'));
         Route::get('/categorias', array('before' => 'auth|admin', 'as' => 'admin_category_path', 'uses' => 'CategoriesController@index'));
         Route::get('/categorias/crear', array('before' => 'auth|admin', 'as' => 'admin_create_category_path', 'uses' => 'CategoriesController@create'));
         Route::post('/categorias/crear', array('before' => 'auth|admin', 'as' => 'admin_store_category_path', 'uses' => 'CategoriesController@store'));

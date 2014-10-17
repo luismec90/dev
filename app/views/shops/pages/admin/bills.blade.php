@@ -2,15 +2,14 @@
 
 
 @section('css')
-{{ HTML::style('assets/libs/bootstrapvalidator/css/bootstrapValidator.min.css') }}
-{{ HTML::style('assets/css/registro.css') }}
+{{-- HTML::style('assets/libs/bootstrapvalidator/css/bootstrapValidator.min.css') --}}
 @stop
 
 @section('js')
-{{ HTML::script('assets/themes/one/js/bill.js')}}
-{{ HTML::script('assets/libs/bootstrapvalidator/js/bootstrapValidator.js') }}
-{{ HTML::script('assets/libs/bootstrapvalidator/js/language/es_ES.js') }}
-{{ HTML::script('assets/js/validation.js') }}
+{{ HTML::script('assets/themes/one/js/bill.js') }}
+{{-- HTML::script('assets/libs/bootstrapvalidator/js/bootstrapValidator.js') --}}
+{{-- HTML::script('assets/libs/bootstrapvalidator/js/language/es_ES.js') --}}
+{{-- HTML::script('assets/js/validation.js') --}}
 <script>
 
     var item='<div class="row item"> <div class="col-md-10"> <div class="well well-sm"> <div class="row"> <div class="col-sm-3"> <div class="form-group"> {{ Form::label("category","Categoria:") }} {{ Form::select("category",$selectCategories,null,["class"=>"form-control categoria","required"=>"true"]) }} </div> </div> <div class="col-sm-4"> <div class="form-group"> {{ Form::label("product","Producto:") }} {{ Form::select("products[]",[""=>""],null,["class"=>"form-control producto","required"=>"true","readonly"=>"true"]) }} </div> </div> <div class="col-sm-2"> <div class="form-group"> {{ Form::label("amounts","Cantidad:") }} {{ Form::number("amounts[]",1,["class"=>"form-control cantidad","required"=>"true"]) }} </div> </div> <div class="col-sm-3"> <div class="form-group"> {{ Form::label("cost","Costo:") }} <div class="input-group"> <div class="input-group-addon">$</div> {{ Form::text("costs[]",null,["class"=>"form-control costo"]) }} </div> </div> </div> </div> </div> </div> <div class="col-md-2"> <a class="btn btn-danger remove"> <i class="fa fa-minus"></i> </a> </div> </div>';
@@ -66,7 +65,7 @@
                 <!-- Email Form Input -->
                 <div class="form-group">
                     {{ Form::label('email','Email del comprador:') }}
-                    {{ Form::email('email',null,['id'=>'email','class'=>'form-control','required'=>'true']) }}
+                    {{ Form::email('email',null,['id'=>'email','class'=>'form-control']) }}
                 </div>
             </div>
         </div>
@@ -145,7 +144,19 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-3 col-md-offset-4">
+        <div class="col-md-10">
+        <div class="row">
+            <div class="col-sm-6">
+                <!-- Publish -->
+                <div class="checkbox">
+                    <label>
+                        {{ Form::checkbox('no_register_products', '1',false,['id'=>'no_register_products']); }} Registrar únicamente el total a pagar
+                    </label>
+                </div>
+            </div>
+
+
+            <div class="col-sm-3">
                 <!-- Total Form Input -->
                 <div class="form-group">
                     {{ Form::label('category','Saldo ganado:') }}
@@ -161,9 +172,11 @@
                     {{ Form::label('category','Total a pagar:') }}
                     <div class="input-group">
                         <div class="input-group-addon">$</div>
-                        {{ Form::text('total',0,['id'=>'total','class'=>'form-control','readonly'=>'true']) }}
+                        {{ Form::number('total',0,['id'=>'total','class'=>'form-control','required'=>'true','readonly'=>'true']) }}
                     </div>
                 </div>
+            </div>
+            </div>
             </div>
         </div>
         <div class="row">

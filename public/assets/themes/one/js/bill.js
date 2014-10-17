@@ -54,35 +54,6 @@ $(function () {
         actualizarTotal();
     });
 
-    $("#email").change(function () {
-        $.ajax({
-            url: "getuser",
-            method: "POST",
-            type: "json",
-            data: {
-                email: $(this).val()
-            },
-            success: function (data) {
-                if (data != "[]" && data.retribution!=0) {
-                    $("#nombre-usuario").html(data.first_name + " " + data.last_name);
-                    $("#info-balance").html(data.retribution);
-                    $("#check-balance").attr("data-retribution",data.retribution);
-                    $("#retribution-zone .ocultar1").removeClass("ocultar");
-                }else{
-                    $("form.validate").data('bootstrapValidator').resetForm();
-                    $("#nombre-usuario").html("");
-                    $("#info-balance").html("");
-                    $("#check-balance").attr("data-retribution","0");
-                    $("#check-balance").attr('checked', false);
-                    $("#retribution-zone .ocultar1").addClass("ocultar");
-                    $("#retribution-zone .ocultar2").addClass("ocultar");
-                    $("#balance").val("0");
-                    actualizarTotal();
-                    $("#code").val("0");
-                }
-            }
-        });
-    });
 
     $("#check-balance").change(function () {
         if ($(this).is(':checked')) {
@@ -91,7 +62,6 @@ $(function () {
             $("#code").val("");
             $("#retribution-zone .ocultar2").removeClass("ocultar");
         } else {
-            $("form.validate").data('bootstrapValidator').resetForm();
             $("#balance").val("0");
             actualizarTotal();
             $("#code").val("0");
@@ -100,17 +70,59 @@ $(function () {
     });
 
     $("#balance").change(function () {
-        if ($(this).val()>$("#check-balance").data("retribution")) {
+        if ($(this).val() > $("#check-balance").data("retribution")) {
             $(this).val("0");
         }
         actualizarTotal();
+    });
+    $("#total").change(function () {
+
+        if ($.isNumeric($(this).val())) {
+            var total = parseInt($(this).val());
+        } else {
+            var total = 0;
+        }
+        $("#retribution").val(parseInt(total * retribution));
+    });
+
+    $("#no_register_products").change(function () {
+        if ($(this).is(':checked')) {
+            $("#products").addClass('hide');
+            $("#retribution").val("0");
+            $("#total").prop('readonly', false).val("").focus();
+            $("#email").prop('required', true);
+            $("#products .form-control").each(function () {
+                $(this).prop('required', false);
+            });
+        } else {
+            $("#products").removeClass('hide');
+            $("#total").prop('readonly', true);
+            $("#email").prop('required', false);
+            actualizarTotal();
+            $("#products .form-control").each(function () {
+                $(this).prop('required', true);
+            });
+        }
+    });
+
+    $("#email").autocomplete({
+        source: "autouseremail",
+        minLength: 3,
+        select: function (event, ui) {
+            $('#email').val(ui.item.value);
+            checkRetribution(ui.item.value);
+        }
+    });
+
+    $("#email").change(function () {
+        checkRetribution($(this).val());
     });
 });
 
 function actualizarTotal() {
     var total = 0;
     if ($.isNumeric($("#balance").val())) {
-        total=parseInt($("#balance").val())*-1;
+        total = parseInt($("#balance").val()) * -1;
     }
     var costoProducto;
     $("#products input.costo").each(function () {
@@ -119,9 +131,37 @@ function actualizarTotal() {
             total += costoProducto;
         }
     });
-    if(total<0){
-        total=0;
+    if (total < 0) {
+        total = 0;
     }
     $("#retribution").val(parseInt(total * retribution));
     $("#total").val(total);
+}
+function checkRetribution(email) {
+    $.ajax({
+        url: "getuser",
+        method: "GET",
+        type: "json",
+        data: {
+            email: email
+        },
+        success: function (data) {
+            if (data != "[]" && data.retribution != 0) {
+                $("#nombre-usuario").html(data.first_name + " " + data.last_name);
+                $("#info-balance").html(data.retribution);
+                $("#check-balance").attr("data-retribution", data.retribution);
+                $("#retribution-zone .ocultar1").removeClass("ocultar");
+            } else {
+                $("#nombre-usuario").html("");
+                $("#info-balance").html("");
+                $("#check-balance").attr("data-retribution", "0");
+                $("#check-balance").attr('checked', false);
+                $("#retribution-zone .ocultar1").addClass("ocultar");
+                $("#retribution-zone .ocultar2").addClass("ocultar");
+                $("#balance").val("0");
+                actualizarTotal();
+                $("#code").val("0");
+            }
+        }
+    });
 }

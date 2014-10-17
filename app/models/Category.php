@@ -22,4 +22,7 @@ class Category extends \Eloquent {
         return $this->hasMany('Product');
     }
 
+    public function publishedProducts() {
+        return $this->hasMany('Product')->where('publish',1);
+    }
 }

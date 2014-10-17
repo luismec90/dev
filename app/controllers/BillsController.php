@@ -37,6 +37,7 @@ class BillsController extends \BaseController
         $costs = Input::get('costs');
         $balance = Input::get('balance');
         $code = Input::get('code');
+        $total = Input::get('total');
 
         if (!$products || !$amounts || !$costs) {
             Flash::error('Ha ocurrido un error, asegurate de llenar todos los campos');
@@ -44,81 +45,94 @@ class BillsController extends \BaseController
             return Redirect::back();
         }
 
-        $user = User::where('email', $email)->first();
-        $is_new_user=false;
-        if (is_null($user)) {
-            $is_new_user=true;
-            $user = new User;
-            $user->email = $email;
-            $user->save();
-        }
+        if ($email) {
+            $user = User::where('email', $email)->first();
+            $is_new_user = false;
+            if (is_null($user)) {
+                $is_new_user = true;
+                $user = new User;
+                $user->email = $email;
+                $user->save();
+            }
 
-        if($balance!=0 && is_numeric($balance)){
-            if($user->email==$email && $user->code==$code){
-                $avalibleBalance=$user->saldo($shop->id);
-                if($balance>$avalibleBalance){
-                    Flash::error('Ha saldo a descontar no puede ser mayor que el saldo disponible');
+
+            if ($balance != 0 && is_numeric($balance)) {
+                if ($user->email == $email && $user->code == $code) {
+                    $avalibleBalance = $user->saldo($shop->id);
+                    if ($balance > $avalibleBalance) {
+                        Flash::error('Ha saldo a descontar no puede ser mayor que el saldo disponible');
+                        return Redirect::back();
+                    }
+                } else {
+                    Flash::error('Código de verificación incorrecto');
                     return Redirect::back();
                 }
-            }else{
-                Flash::error('Código de verificación incorrecto');
-                return Redirect::back();
+            } else {
+                $balance = 0;
             }
-        }else{
-            $balance=0;
-        }
 
+        }
         $bill = new Bill;
         $bill->shop_id = $shop->id;
-        $bill->user_id = $user->id;
-        $bill->redeemed=$balance;
+        if ($email) {
+            $bill->user_id = $user->id;
+            $bill->redeemed = $balance;
+        }
         $bill->save();
 
         $total_cost = -$balance;
 
-        for ($i = 0; $i < sizeof($products); $i++) {
+        if (!Input::get('no_register_products')) {
+            for ($i = 0;
+                 $i < sizeof($products);
+                 $i++) {
 
-            if (empty($products[$i]) || empty($amounts[$i]) || empty($costs[$i])) {
-                $bill->delete();
+                if (empty($products[$i]) || empty($amounts[$i]) || empty($costs[$i])) {
+                    $bill->delete();
 
-                Flash::error('Ha ocurrido un error, asegurate de llenar todos los campos');
+                    Flash::error('Ha ocurrido un error, asegurate de llenar todos los campos');
 
-                return Redirect::back();
+                    return Redirect::back();
+                }
+
+                $product = Product::findOrFail($products[$i]);
+                $products[$i] = $product->name;
+
+                $purchase = new Purchase;
+                $purchase->bill_id = $bill->id;
+                $purchase->product_id = $product->id;
+                $purchase->product_name = $product->name;
+                $purchase->amount = $amounts[$i];
+                $purchase->cost = $costs[$i];
+                $purchase->save();
+
+                $total_cost += $costs[$i];
             }
-
-            $product = Product::findOrFail($products[$i]);
-            $products[$i]=$product->name;
-
-            $purchase = new Purchase;
-            $purchase->bill_id = $bill->id;
-            $purchase->product_id = $product->id;
-            $purchase->product_name = $product->name;
-            $purchase->amount = $amounts[$i];
-            $purchase->cost = $costs[$i];
-            $purchase->save();
-
-            $total_cost += $costs[$i];
+        } else {
+            $total_cost = $total;
         }
-        $retribution=round($total_cost * $shop->retribution);
+        $retribution = round($total_cost * $shop->retribution);
         $bill->total_cost = $total_cost;
         $bill->retribution = $retribution;
         $bill->save();
 
-        $is_user_in_shop= Shop::whereHas('users', function ($query) use ($user) {
-            $query->where("users.id", $user->id);
-            $query->where("role", 2);
-        })->where('id',$shop->id)->first();
+        if ($email) {
+            $is_user_in_shop = Shop::whereHas('users', function ($query) use ($user) {
+                $query->where("users.id", $user->id);
+                $query->where("role", 2);
+            })->where('id', $shop->id)->first();
 
-        if(is_null($is_user_in_shop)){
-            $user->shops()->attach($shop->id,['role'=>2]);
+            if (is_null($is_user_in_shop)) {
+                $user->shops()->attach($shop->id, ['role' => 2]);
+            }
+
+            $title = "Se ha realizado la siguiente compra";
+
+            Mail::send('emails.shops.admin.bill', compact('shop', 'bill', 'title', 'user', 'is_new_user'), function ($message) use ($user) {
+                $message->to($user->email, Auth::user()->first_name)
+                    ->subject('Compra realizada');
+            });
         }
-
-        $title="Se ha realizado la siguiente compra";
-
-        Mail::send('emails.shops.admin.bill',compact('shop','bill','title','user','is_new_user'), function ($message) use ($user) {
-            $message->to($user->email, Auth::user()->first_name)
-                ->subject('Compra realizada');
-        });
 
         Flash::success('Registro creado exitosamente');
 

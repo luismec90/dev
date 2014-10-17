@@ -108,17 +108,18 @@ class ProductsController extends \BaseController
 
         $product = Product::where('id', $product_id)->where('category_id', $category->id)->firstOrFail();
 
-        if (true || Input::has('publish')) {
+        if (Input::has('publish')) {
             $flag = false;
 
             $errors = new Illuminate\Support\MessageBag;
 
-            if (!$product->photo_extension) {
+
+            if (!$product->photo_extension && !Input::hasFile('photo')) {
                 $errors->add('message', 'El campo foto es obligatorio si se desea publicar el producto');
                 $flag = true;
             }
 
-            if (!$product->description) {
+            if (!Input::get('description')) {
                 $errors->add('message', 'El campo descripción es obligatorio si se desea publicar el producto');
                 $flag = true;
             }

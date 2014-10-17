@@ -92,11 +92,33 @@ class UsersController extends \BaseController
                     ->where('user_id', $user_id)
                     ->get();
 
-                return View::make('shops.layouts.partials.table_info_user',compact('bills'));
+                return View::make('shops.layouts.partials.table_info_user', compact('bills'));
             }
         }
 
         return Response::make('Unauthorized', 401);
 
+    }
+
+    public function autocompleteEmailUser($shop_link)
+    {
+        $shop = Shop::where('link', $shop_link)->firstOrFail();
+
+        $email = Input::get('term');
+
+        $results = array();
+
+        $queries = DB::table('users')
+            ->join('shop_user','users.id','=','shop_user.user_id')
+            ->where('shop_user.shop_id',$shop->id)
+            ->where('shop_user.role',2)
+            ->where('email', 'LIKE', '%' . $email . '%')
+            ->select('users.id','users.email')
+            ->take(5)->get();
+
+        foreach ($queries as $query) {
+            $results[] = ['id' => $query->id, 'value' => $query->email];
+        }
+        return Response::json($results);
     }
 }
