@@ -5,22 +5,26 @@ class ReportsController extends BaseController
 
     public function indexSales($shop_link)
     {
+        $since = Input::has('since') ? Input::get('since') : date('Y-m-d');
+        $since.=' 00:00:00';
+
+        $until = Input::has('until') ? Input::get('until') : date('Y-m-d');
+        $until.=' 23:59:59';
+
+
         $shop = Shop::with('categories', 'categories.products')->where('link', $shop_link)->firstOrFail();
 
+        $q = Bill::with(['purchases', 'user', 'purchases.product' => function ($q) {
 
-        $q = DB::table('bills')
-            ->join('purchases', 'bills.id', '=', 'purchases.bill_id')
-            ->leftjoin('users', 'users.id', '=', 'bills.user_id')
-            ->leftJoin('products', 'products.id', '=', 'purchases.product_id')
-            ->select('purchases.product_name',
-                'purchases.amount',
-                'purchases.cost',
-                'users.email',
-                'users.id AS user_id',
-                'users.first_name',
-                'users.last_name',
-                'purchases.created_at')
-            ->where('bills.shop_id', $shop->id);
+            if (Input::has('category')) {
+                $q->where('products.category_id', Input::get('category'));
+            }
+
+            if (Input::has('product')) {
+                $q->where('products.id', Input::get('product'));
+            }
+
+        }])->where('bills.shop_id', $shop->id);
 
         if (Input::has('category')) {
             $q->where('products.category_id', Input::get('category'));
@@ -30,25 +34,21 @@ class ReportsController extends BaseController
             $q->where('products.id', Input::get('product'));
         }
 
-        if (Input::has('since')) {
-            $q->where('purchases.created_at', '>=', Input::get('since') . ' 00:00:00');
-        }
+        $q->where('created_at', '>=', $since );
 
-        if (Input::has('until')) {
-            $q->where('purchases.created_at', '<=', Input::get('until') . ' 23:59:59');
-        }
+        $q->where('created_at', '<=', $until );
 
         $q2 = $q;
-        $total = $q2->sum('cost');
+        $total = $q2->sum('total_cost');
 
-        $sales = $q->orderBy('purchases.created_at', 'desc')->paginate(20);
+        $bills = $q->withTrashed()->orderBy('created_at', 'desc')->paginate(20);
 
         $selectCategories[''] = 'Seleccionar...';
         foreach ($shop->categories as $category) {
             $selectCategories[$category->id] = $category->name;
         }
 
-        return View::make('shops.pages.admin.reports.sales', compact('shop', 'sales', 'selectCategories', 'total'));
+        return View::make('shops.pages.admin.reports.sales', compact('shop', 'bills', 'selectCategories', 'total'));
     }
 
     public function exportSales($shop_link)

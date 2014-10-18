@@ -34,8 +34,20 @@ html, body, #map-canvas  {
 .product .thumbnail{
     height: 315px;
 }
+.product .thumbnail .precio-ver-mas{
+    margin:0 0 5px 0;
+}
+.product .thumbnail .ratings .glyphicon {
+    margin-right: 5px;
+}
+.product .thumbnail .ver-mas {
+    font-size: 16px;
+}
+.thumbnail .caption {
+    padding:5px 2px;
+}
 .product-description{
-    height: 75px;
+    height: 70px;
     overflow: hidden;
     margin-bottom: 4px;
 }
@@ -43,6 +55,9 @@ html, body, #map-canvas  {
     text-overflow:ellipsis;
     white-space:nowrap;
     overflow:hidden;
+    margin:3px 0 7px 0;
+    text-align: center;
+    font-size: 16px;
 }
 .product .description{
     margin-bottom: 5px;
@@ -99,7 +114,8 @@ a:hover{
     border-color: #e74c3c;
     color: #ffffff;
 }
-.glyphicon { margin-right:10px; }
+.glyphicon-margin { margin-right:10px; }
+
 .panel-body { padding:0px; }
 .panel-body table tr td { padding-left: 15px }
 .panel-body .table {margin-bottom: 0px; }
@@ -187,4 +203,12 @@ a.info-user{
 .chart {
     width: 100%;
     height: 600px;
+}
+
+#table-report .sale-canceled td{
+    background: #e74c3c;
+    color:#fff;
+}
+#table-report .sale-canceled a{
+    color:#fff;
 }

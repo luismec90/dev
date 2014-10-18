@@ -9,6 +9,12 @@ $(function () {
         });
     });
 
+    $("form").keypress(function(e) {
+        //Enter key
+        if (e.which == 13) {
+            return false;
+        }
+    });
 
     // Smooth Hash Link Scroll
     $('.smooth-scroll').click(function () {

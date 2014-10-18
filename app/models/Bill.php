@@ -1,7 +1,12 @@
 <?php
 
+use Illuminate\Database\Eloquent\SoftDeletingTrait;
+
 class Bill extends \Eloquent {
-	protected $fillable = [];
+
+    use SoftDeletingTrait;
+
+    protected $dates = ['deleted_at'];
 
     public static $rules = [
         'email' => 'required_if:register_products,1|email'

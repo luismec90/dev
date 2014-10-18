@@ -33,6 +33,11 @@ class Product extends \Eloquent
         return $this->belongsTo('Category');
     }
 
+    public function purchase()
+    {
+        return $this->hasOne('Purchase');
+    }
+
     public function reviews()
     {
         return $this->hasMany('Review');

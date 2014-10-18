@@ -59,7 +59,7 @@
             </div>
         </div>
 
-        {{ Form::open(['route'=>['bill_path',$shop->link],'class'=>'validate']) }}
+        {{ Form::open(['route'=>['bill_path',$shop->link],'class'=>'validate form-submit']) }}
         <div class="row">
             <div class="col-md-10 ">
                 <!-- Email Form Input -->
@@ -159,34 +159,34 @@
                 <div class="row">
 
                     <div class="col-sm-3">
-                        <!-- Total Form Input -->
+                        <!-- Retribution Form Input -->
                         <div class="form-group">
                             {{ Form::label('category','Saldo ganado:') }}
                             <div class="input-group">
                                 <div class="input-group-addon">$</div>
-                                 {{ Form::text('retribution',0,['id'=>'retribution','class'=>'form-control','readonly'=>'true']) }}
+                                 {{ Form::number('retribution',0,['id'=>'retribution','class'=>'form-control','required'=>'true','readonly'=>'true']) }}
                             </div>
                         </div>
                     </div>
 
                     <div class="col-sm-3">
-                        <!-- Total Form Input -->
+                        <!-- Subtotal Form Input -->
                         <div class="form-group">
                                 {{ Form::label('category','Subtotal:') }}
                             <div class="input-group">
                                 <div class="input-group-addon">$</div>
-                                 {{ Form::text('subtotal',0,['id'=>'subtotal','class'=>'form-control','readonly'=>'true']) }}
+                                 {{ Form::number('subtotal',0,['id'=>'subtotal','class'=>'form-control','required'=>'true',   'readonly'=>'true']) }}
                             </div>
                         </div>
                     </div>
 
                     <div class="col-sm-3">
-                        <!-- Total Form Input -->
+                        <!-- Balance_redeemed Form Input -->
                         <div class="form-group">
                                 {{ Form::label('balance_redeemed','Saldo redimido:') }}
                             <div class="input-group">
                                 <div class="input-group-addon">$</div>
-                                 {{ Form::text('balance_redeemed',0,['id'=>'balance_redeemed','class'=>'form-control','readonly'=>'true']) }}
+                                 {{ Form::number('balance_redeemed',0,['id'=>'balance_redeemed','class'=>'form-control','readonly'=>'true']) }}
                             </div>
                         </div>
                     </div>

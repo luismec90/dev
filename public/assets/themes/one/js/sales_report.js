@@ -19,4 +19,9 @@ $(function () {
         }
     });
 
+    $("#table-report button.delete-sale").click(function () {
+        $("#modal-delete-bill").modal();
+        $("#bill_id").val($(this).data("id-bill"));
+    });
+    $("[data-toggle=tooltip]").tooltip();
 });

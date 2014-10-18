@@ -71,10 +71,10 @@ Route::group(array('prefix' => '{shop_link}'), function () {
 
     /*Zona de administracion*/
     Route::group(array('prefix' => 'admin'), function () {
-        Route::get('/venta', array('before' => 'auth|admin','as' => 'bill_path', 'uses' => 'BillsController@create'));
-        Route::post('/venta', array('before' => 'auth|admin','as' => 'bill_path', 'uses' => 'BillsController@store'));
-        Route::get('/getuser', array('before' => 'auth|admin','as' => 'getuser_path', 'uses' => 'UsersController@getUser'));
-        Route::get('/autouseremail',array('before' => 'auth|admin','as' => 'autouseremail_path', 'uses' => 'UsersController@autocompleteEmailUser'));
+        Route::get('/venta', array('before' => 'auth|admin', 'as' => 'bill_path', 'uses' => 'BillsController@create'));
+        Route::post('/venta', array('before' => 'auth|admin', 'as' => 'bill_path', 'uses' => 'BillsController@store'));
+        Route::get('/getuser', array('before' => 'auth|admin', 'as' => 'getuser_path', 'uses' => 'UsersController@getUser'));
+        Route::get('/autouseremail', array('before' => 'auth|admin', 'as' => 'autouseremail_path', 'uses' => 'UsersController@autocompleteEmailUser'));
         Route::get('/categorias', array('before' => 'auth|admin', 'as' => 'admin_category_path', 'uses' => 'CategoriesController@index'));
         Route::get('/categorias/crear', array('before' => 'auth|admin', 'as' => 'admin_create_category_path', 'uses' => 'CategoriesController@create'));
         Route::post('/categorias/crear', array('before' => 'auth|admin', 'as' => 'admin_store_category_path', 'uses' => 'CategoriesController@store'));
@@ -122,9 +122,9 @@ Route::group(array('prefix' => '{shop_link}'), function () {
 
     Route::post('{category}/{product}/{id}/review', array('as' => 'review_path', 'uses' => 'ProductsController@saveReview'));
 
-    Route::get('/domicilios/', array('before' => 'auth','as' => 'delivery_path', 'uses' => 'DeliveriesController@create'));
-    Route::get('/domicilios/{product_id}', array('before' => 'auth','as' => 'product_delivery_path', 'uses' => 'DeliveriesController@create'));
-    Route::post('/domicilios', array('before' => 'auth','as' => 'delivery_path', 'uses' => 'DeliveriesController@store'));
+    Route::get('/domicilios/', array('before' => 'auth', 'as' => 'delivery_path', 'uses' => 'DeliveriesController@create'));
+    Route::get('/domicilios/{product_id}', array('before' => 'auth', 'as' => 'product_delivery_path', 'uses' => 'DeliveriesController@create'));
+    Route::post('/domicilios', array('before' => 'auth', 'as' => 'delivery_path', 'uses' => 'DeliveriesController@store'));
 
     Route::post('afiliarse', array('as' => 'member_path', 'uses' => 'MembersController@store'));
 
@@ -134,30 +134,8 @@ Route::group(array('prefix' => '{shop_link}'), function () {
     Route::get('/{category}', array('as' => 'category_path', 'uses' => 'CategoriesController@show'));
     Route::get('/{category}/{product}', array('as' => 'product_path', 'uses' => 'ProductsController@show'));
 
+    Route::delete('cancelar-venta', array('as' => 'delete_bill_path', 'uses' => 'BillsController@destroy'));
 
-
-
-
-
-
-
-
-
-    /*
-
-
-
-
-       Route::get('/categorias/{category}/editar/{product}', array('before' => 'auth|admin', 'as' => 'admin_edit_product_path', 'uses' => 'ProductsController@adminEdit'));
-       Route::post('/categorias/{category}/actualizar/{product}', array('before' => 'auth|admin', 'as' => 'admin_update_product_path', 'uses' => 'ProductsController@adminUpdate'));
-       Route::delete('/categorias/{category}/eliminar/{product}', array('before' => 'auth|admin', 'as' => 'admin_destroy_product_path', 'uses' => 'ProductsController@adminDestroy'));
-
-       Route::get('/venta', array('before' => 'auth|admin', 'as' => 'sale_path', 'uses' => 'SalesController@create'));
-
-
-       Route::get('/contacto', array('as' => 'contact_shop_path', 'uses' => 'ShopsController@contact'));
-
-   */
 });
 
 

@@ -6,4 +6,8 @@ class Purchase extends \Eloquent {
     public function bill() {
         return $this->belongsTo('Bill');
     }
+    public function product()
+    {
+        return $this->belongsTo('Product');
+    }
 }

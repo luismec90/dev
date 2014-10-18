@@ -5,16 +5,13 @@ class Cover extends \Eloquent {
 
     public static $rules = [
         'photo'=>'required|image|max:4000',
-        'caption'=>'required'
     ];
 
     public static $rulesUpdate = [
-        'caption' => 'required',
         'photo'=>'sometimes|image|max:4000'
     ];
 
     public static $validationMessages = [
-        'caption.required' => 'El campo nombre es obligatorio',
         'photo.required' => 'El campo cover es obligatorio',
         'photo.image' => 'El campo cover debe ser una imagen',
         'photo.max' => 'El cover debe pesar menos de 4MB',

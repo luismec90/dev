@@ -141,4 +141,15 @@ class BillsController extends \BaseController
         return Redirect::back();
     }
 
+    public function destroy($shop_link)
+    {
+        $shop = Shop::where('link', $shop_link)->firstOrFail();
+        $bill=Bill::where('id',Input::get('bill_id'))->where('shop_id',$shop->id)->firstOrFail();
+        $bill->canceled=1;
+        $bill->delete();
+
+        Flash::success('Venta cancelada correctamente');
+
+        return Redirect::back();
+    }
 }

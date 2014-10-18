@@ -65,13 +65,13 @@
                     <div class="col-md-2">
                         <div class="form-group">
                         {{ Form::label('since','Desde:') }}
-                        {{ Form::text('since',Input::has('since') ? Input::get('since') : '',['id'=>'since','class'=>'form-control datepicker']) }}
+                        {{ Form::text('since',Input::has('since') ? Input::get('since') : date('Y-m-d'),['id'=>'since','class'=>'form-control datepicker']) }}
                         </div>
                     </div>
                      <div class="col-md-2">
                         <div class="form-group">
                         {{ Form::label('until','Hasta:') }}
-                        {{ Form::text('until',Input::has('until') ? Input::get('until') : '',['id'=>'until','class'=>'form-control datepicker']) }}
+                        {{ Form::text('until',Input::has('until') ? Input::get('until') : date('Y-m-d'),['id'=>'until','class'=>'form-control datepicker']) }}
                         </div>
                     </div>
                     <div class="col-md-1">
@@ -91,27 +91,38 @@
 
         <div class="row">
             <div class="col-xs-12">
-                <table class="table table-hover table-bordered table-striped">
+                <table id="table-report" class="table table-hover table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th>Producto</th>
-                            <th>Cantidad</th>
-                            <th>Total</th>
                             <th>Cliente</th>
+                            <th>Producto | cantidad | precio</th>
+                            <th>Total</th>
                             <th>Fecha</th>
+                            <th>Cancelar</th>
                         </tr>
                     </thead>
-                    @foreach($sales as $sale)
-                        <tr>
-                            <td>{{ $sale->product_name }}</td>
-                            <td>{{ $sale->amount }}</td>
-                            <td>$ {{ $sale->cost }}</td>
+                    @foreach($bills as $bill)
+                        <tr class="{{ $bill->deleted_at ? 'sale-canceled':'' }}">
                             <td>
-                                @if(!is_null($sale->user_id))
-                                    {{ User::linkUserEmail($sale->user_id,$shop->id) }}
+                                @if(!is_null($bill->user))
+                                    {{ User::linkUserEmail($bill->user->id,$shop->id) }}
                                 @endif
                             </td>
-                            <td>{{ $sale->created_at }}</td>
+                            <td>
+
+                                    @foreach($bill->purchases as $purchase )
+                                        <div>- {{ $purchase->product_name  }} | {{ $purchase->amount }} |  {{ Shop::showMoney($purchase->cost)  }}</div>
+                                    @endforeach
+                            </td>
+                             <td>{{ Shop::showMoney($bill->total_cost) }}</td>
+                            <td>{{ $bill->created_at }}</td>
+                            <td>
+                                @if( !$bill->deleted_at)
+                                    <button class="btn btn-danger delete-sale" data-id-bill="{{ $bill->id }}"><span class="glyphicon glyphicon-trash"></span></button>
+                                @else
+                                <i class="fa fa-exclamation-triangle"  data-toggle="tooltip" data-placement="bottom" title="Esta venta fue cancelada el {{ $bill->deleted_at }}"></i>
+                                @endif
+                            </td>
                         </tr>
                     @endforeach
                 </table>
@@ -121,15 +132,38 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="well text-center">
-               <h4> <span class="text-warning">Total: $ {{ $total }}</span> </h4>
+               <h4> <span class="text-warning">Total: {{ Shop::showMoney($total) }}</span> </h4>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-xs-12">
-                {{ $sales->links(); }}
+                {{ $bills->links(); }}
             </div>
         </div>
     </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modal-delete-bill" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Cancelar venta</h4>
+      </div>
+        {{ Form::open(['route'=>['delete_bill_path',$shop->link],'class'=>'validate form-submit','method'=>'DELETE']) }}
+            <div class="modal-body">
+                {{ Form::hidden('bill_id',null,['id'=>'bill_id']) }}
+                ¿Realmente desea cancelar esta venta?
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-danger">Enviar</button>
+            </div>
+        {{ Form::close() }}
+    </div>
+  </div>
 </div>
 @stop

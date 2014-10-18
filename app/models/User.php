@@ -133,6 +133,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface
         $shop = DB::table('bills')->select(DB::raw('sum(retribution-redeemed) as retribution'))
             ->where('shop_id', $shop_id)
             ->where('user_id', $this->id)
+            ->whereNull('deleted_at')
             ->first();
 
         return empty($shop->retribution) ? 0 : $shop->retribution;

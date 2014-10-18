@@ -47,7 +47,7 @@
         <!-- Nombre Form Input -->
         <div class="form-group">
             {{ Form::label('caption','Mensaje:') }}
-            {{ Form::text('caption',null,['class'=>'form-control','required'=>'required']) }}
+            {{ Form::text('caption',null,['class'=>'form-control']) }}
          </div>
     </div>
 </div>
