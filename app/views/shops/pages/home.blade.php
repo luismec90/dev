@@ -47,15 +47,20 @@
     @endif
 </div>
 
+
     <div class="section row">
-    <br>
-        <div class="col-lg-12">
-         <h2 class="section-title"><span>Acerca</span></h2>
-        </div>
-        <div class="col-lg-12">
-            <p>{{ $shop->about }}</p>
-        </div>
+        @if($shop->about)
+            <br>
+            <div class="col-lg-12">
+                <h2 class="section-title"><span>Acerca</span></h2>
+            </div>
+            <div class="col-lg-12">
+                <p>{{ $shop->about }}</p>
+            </div>
+        @endif
     </div>
+
+
     <div class="section row">
         <div class="col-lg-12">
             <h2 class="section-title"><span>Lo más destacado</span></h2>
