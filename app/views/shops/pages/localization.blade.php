@@ -6,7 +6,7 @@
 <script>
 function iniciar() {
 
-    var myLatlng = new google.maps.LatLng( {{ $shop->lat }}, {{ $shop->lng }} );
+    var myLatlng = new google.maps.LatLng( {{ $shop->lat }}, {{ $shop->lng }} eee);
 
     var mapOptions = {
         center: myLatlng,

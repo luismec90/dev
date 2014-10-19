@@ -109,23 +109,14 @@ class ProductsController extends \BaseController
         $product = Product::where('id', $product_id)->where('category_id', $category->id)->firstOrFail();
 
         if (Input::has('publish')) {
-            $flag = false;
 
             $errors = new Illuminate\Support\MessageBag;
 
-
             if (!$product->photo_extension && !Input::hasFile('photo')) {
                 $errors->add('message', 'El campo foto es obligatorio si se desea publicar el producto');
-                $flag = true;
-            }
 
-            if (!Input::get('description')) {
-                $errors->add('message', 'El campo descripción es obligatorio si se desea publicar el producto');
-                $flag = true;
-            }
-
-            if ($flag)
                 return Redirect::back()->withInput()->withErrors($errors);
+            }
         }
 
 
@@ -188,8 +179,8 @@ class ProductsController extends \BaseController
     public function show($shop_link, $category_name, $product_name)
     {
         $shop = Shop::with('categories')->where('link', $shop_link)->firstOrFail();
-        $category = Category::with('products')->where('name', $category_name)->where('shop_id',$shop->id)->firstOrFail();
-        $product = Product::where('name', $product_name)->where('publish', 1)->where('category_id',$category->id)->firstOrFail();
+        $category = Category::with('products')->where('name', $category_name)->where('shop_id', $shop->id)->firstOrFail();
+        $product = Product::where('name', $product_name)->where('publish', 1)->where('category_id', $category->id)->firstOrFail();
         $reviews = $product->reviews()->with('user')->orderBy('created_at', 'desc')->paginate(20);
 
         return View::make('shops.pages.product', compact('shop', 'category', 'product', 'reviews', 'reviews'));
