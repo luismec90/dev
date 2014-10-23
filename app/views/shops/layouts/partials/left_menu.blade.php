@@ -1,4 +1,12 @@
-<div class="col-md-3">
+
+
+<p  class="visible-xs visible-sm text-center">
+<button id="btn-ver-menu" type="button" class="btn btn-primary" data-toggle="offcanvas">Ver menú</button>
+</p>
+
+
+
+<div class="col-md-3 sidebar-offcanvas ocultar-menu" id="sidebar" role="navigation">
 
     @if(Auth::check() && !Auth::user()->isAdmin($shop->id))
             <div class="alert well-sm alert-warning">

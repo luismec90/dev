@@ -59,13 +59,20 @@
             </div>
         </div>
 
-        {{ Form::open(['route'=>['bill_path',$shop->link],'class'=>'validate form-submit']) }}
+        {{ Form::open(['route'=>['bill_path',$shop->link],'id'=>'form-bill','class'=>'validate form-submit']) }}
         <div class="row">
-            <div class="col-md-10 ">
+            <div class="col-md-7">
                 <!-- Email Form Input -->
                 <div class="form-group">
                     {{ Form::label('email','Email del comprador:') }}
                     {{ Form::email('email',null,['id'=>'email','class'=>'form-control']) }}
+                </div>
+            </div>
+             <div class="col-md-3">
+                <!-- Date Form Input -->
+                <div class="form-group">
+                    {{ Form::label('date','Fecha de venta:') }}
+                    {{ Form::text('date',date('Y-m-d'),['id'=>'date','class'=>'datepicker form-control']) }}
                 </div>
             </div>
         </div>
@@ -172,7 +179,7 @@
                     <div class="col-sm-3">
                         <!-- Subtotal Form Input -->
                         <div class="form-group">
-                                {{ Form::label('category','Subtotal:') }}
+                                {{ Form::label('category','Total:') }}
                             <div class="input-group">
                                 <div class="input-group-addon">$</div>
                                  {{ Form::number('subtotal',0,['id'=>'subtotal','class'=>'form-control','required'=>'true',   'readonly'=>'true']) }}
@@ -180,7 +187,7 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-3">
+                    <div id="div-redimido" class="col-sm-3 hidden">
                         <!-- Balance_redeemed Form Input -->
                         <div class="form-group">
                                 {{ Form::label('balance_redeemed','Saldo redimido:') }}
@@ -191,10 +198,10 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-3">
+                    <div id="div-total" class="col-sm-3 hidden">
                         <!-- Total Form Input -->
                         <div class="form-group">
-                            {{ Form::label('category','Total a pagar:',['class'=>'text-danger']) }}
+                            {{ Form::label('category','Total Final:',['class'=>'text-danger']) }}
                             <div class="input-group">
                                 <div class="input-group-addon">$</div>
                                 {{ Form::number('total',0,['id'=>'total','class'=>'form-control','required'=>'true','readonly'=>'true']) }}

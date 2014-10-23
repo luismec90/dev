@@ -14,9 +14,10 @@ class SearchesController extends BaseController
             })->where(function ($q) use ($selectedTown) {
                 if ($selectedTown)
                     $q->where('town_id', $selectedTown);
-            })->get();
+            })->orderBy('name')
+                ->get();
         }else{
-            $shops = Shop::all();
+            $shops = Shop::orderBy('name')->get();
         }
 
         $towns = Town::orderBy('name')->get();

@@ -21,7 +21,6 @@
 
         <table class="table table-bordered table-striped">
         <tr>
-        <th></th>
         <th>Establecimiento</th>
         <th>Ver página</th>
 
@@ -29,7 +28,6 @@
 
         @foreach($shops as $shop)
                 <tr>
-                 <td>{{ $shop->name }} </td>
                 <td>{{ $shop->name }} </td>
                 <td><a href="{{ route('shop_path',$shop->link) }}" class="btn btn-primary btn-sm">Ver página web </a></td>
                 </tr>

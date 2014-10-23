@@ -27,6 +27,8 @@
                     @if(!empty($shops) && $shops->count())
                         <fieldset>  <legend>Resultados</legend>
                         @foreach($shops as $shop)
+                            @if($shop->id!=1)
+
                             <div class="row">
                                 <img class="col-sm-2" src="{{ $shop->pathPreviwImage() }}">
                                 <div class="col-sm-10">
@@ -36,7 +38,9 @@
                                             {{ $shop->name }}
                                             <a href="{{ route('shop_path',$shop->link) }}" class="btn btn-primary btn-sm">Ver página web </a>
                                             <a href="{{ route('localization_path',$shop->link) }}" class="btn btn-primary btn-sm">Localización </a>
-                                            <a href="{{ route('delivery_path',$shop->link) }}"class="btn btn-primary btn-sm">Domicilios </a>
+                                            @if($shop->delivery_service)
+                                                <a href="{{ route('delivery_path',$shop->link) }}"class="btn btn-primary btn-sm">Domicilios </a>
+                                            @endif
                                             </h4>
                                         </div>
                                     </div>
@@ -48,6 +52,7 @@
                                 </div>
                             </div>
                             <br>
+                            @endif
                         @endforeach
 
                         {{-- <table class="table table-striped">

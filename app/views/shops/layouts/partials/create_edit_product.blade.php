@@ -9,7 +9,7 @@
         <!-- Publish -->
         <div class="checkbox">
             <label>
-                {{ Form::checkbox('publish', '1',true,['id'=>'publish']); }}Publicar producto
+                {{ Form::checkbox('publish', '1',false,['id'=>'publish']); }}Publicar producto
             </label>
         </div>
     </div>
@@ -30,7 +30,7 @@
         <!-- Precio Form Input -->
         <div class="form-group">
             {{ Form::label('price','Precio:') }}
-            {{ Form::number('price',null,['class'=>'form-control','required'=>'required']) }}
+            {{ Form::number('price',null,['class'=>'form-control']) }}
          </div>
     </div>
 </div>

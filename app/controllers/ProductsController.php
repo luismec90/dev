@@ -44,7 +44,8 @@ class ProductsController extends \BaseController
         $product->category_id = $category->id;
         $product->name = Input::get('name');
         $product->description = Input::get('description');
-        $product->price = Input::get('price');
+        if (Input::get('price'))
+            $product->price = Input::get('price');
         $product->publish = Input::has('publish');
         if (Input::has('delivery_service')) {
             $product->delivery_service = "1";
@@ -122,7 +123,11 @@ class ProductsController extends \BaseController
 
         $product->name = Input::get('name');
         $product->description = Input::get('description');
-        $product->price = Input::get('price');
+        if (Input::get('price'))
+            $product->price = Input::get('price');
+        else
+            $product->price = NULL;
+
         $product->publish = Input::has('publish');
         if (Input::has('delivery_service')) {
             $product->delivery_service = "1";

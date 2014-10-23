@@ -13,10 +13,9 @@
                     <li class="@if(Route::currentRouteName()=='home') {{ "active"}} @endif">
                         <a href="{{ route('home') }}">Inicio</a>
                     </li>
-                  {{--  <li class="@if(Route::currentRouteName()=='search_path') {{ "active"}} @endif">
+                   <li class="@if(Route::currentRouteName()=='search_path') {{ "active"}} @endif">
                         <a href="{{ route('search_path') }}">Búsqueda</a>
                     </li>
-                    --}}
                       <li class="@if(Route::currentRouteName()=='listshops_path') {{ "active"}} @endif">
                         <a href="{{ route('listshops_path') }}">Establecimientos</a>
                     </li>

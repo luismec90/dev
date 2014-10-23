@@ -99,7 +99,7 @@
             <img class="img-cover" src="{{ $product->pathImage(true,$shop->id,$product->id) }}" alt="">
              
             <div class="caption-full">
-                <h4 class="pull-right">{{ $product->price() }}</h4>
+                <h4 class="pull-right">{{ Shop::showMoney($product->price) }}</h4>
                 <h4><a>{{$product->name}}
                 @if($product->delivery_service==1)
                     <a  href="{{ URL::route('product_delivery_path',[$shop->link,$product->id]) }}"  class="btn btn-primary btn-sm">Pedir a domicilio</a>

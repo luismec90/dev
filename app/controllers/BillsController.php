@@ -32,6 +32,7 @@ class BillsController extends \BaseController
 
         $shop = Shop::where('link', $shop_link)->firstOrFail();
         $email = Input::get('email');
+        $date = Input::get('date');
         $products = Input::get('products');
         $amounts = Input::get('amounts');
         $costs = Input::get('costs');
@@ -80,6 +81,10 @@ class BillsController extends \BaseController
             $bill->user_id = $user->id;
             $bill->redeemed = $balance;
         }
+
+        if (date('Y-m-d') != $date)
+            $bill->created_at = $date;
+
         $bill->save();
 
         $total_cost = -$balance;
@@ -144,8 +149,8 @@ class BillsController extends \BaseController
     public function destroy($shop_link)
     {
         $shop = Shop::where('link', $shop_link)->firstOrFail();
-        $bill=Bill::where('id',Input::get('bill_id'))->where('shop_id',$shop->id)->firstOrFail();
-        $bill->canceled=1;
+        $bill = Bill::where('id', Input::get('bill_id'))->where('shop_id', $shop->id)->firstOrFail();
+        $bill->canceled = 1;
         $bill->delete();
 
         Flash::success('Venta cancelada correctamente');

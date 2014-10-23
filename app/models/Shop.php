@@ -56,7 +56,10 @@ class Shop extends \Eloquent {
     }
 
     public static function showMoney($amount){
-        return '$ '.number_format($amount,0,',','.');
+        if($amount)
+            return '$ '.number_format($amount,0,',','.');
+        else
+            return '--';
     }
 
 }

@@ -69,11 +69,15 @@ $(function () {
             $("#balance").val($("#check-balance").data("retribution"));
             $("#code").val("");
             $("#retribution-zone .ocultar2").removeClass("ocultar");
+            $("#div-redimido").removeClass("hidden");
+            $("#div-total").removeClass("hidden");
 
         } else {
             $("#balance").val("0");
             $("#code").val("0");
             $("#retribution-zone .ocultar2").addClass("ocultar");
+            $("#div-redimido").addClass("hidden");
+            $("#div-total").addClass("hidden");
         }
 
         actualizarSaldoRedimido();
@@ -185,6 +189,8 @@ function checkRetribution(email) {
                 $("#balance").val("0");
                 actualizarTotal();
                 $("#code").val("0");
+                $("#div-redimido").addClass("hidden");
+                $("#div-total").addClass("hidden");
             }
         }
     });

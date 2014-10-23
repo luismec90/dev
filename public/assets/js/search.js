@@ -5,7 +5,7 @@ $(function(){
     });
 
     $("#activity").select2({
-        placeholder: "Seleccione una actividad",
+        placeholder: "Seleccione una categoría",
         allowClear: true
     });
 });

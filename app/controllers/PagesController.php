@@ -22,12 +22,12 @@ class PagesController extends BaseController
         $activities = Activity::orderBy('name')->get();
 
 
-        return View::make('pages.promo', compact('towns', 'activities'));
+        return View::make('pages.home', compact('towns', 'activities'));
     }
 
     public function contact()
     {
-        return View::make('pages.contact_pioner');
+        return View::make('pages.contact');
     }
 
     public function contactPioner()

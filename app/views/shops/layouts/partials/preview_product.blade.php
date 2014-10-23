@@ -3,12 +3,12 @@
     <img class="" src="{{ $product->pathImage(false,$shop->id,$product->id) }}" width="252" height="126" alt="">
     <div class="caption">
     <div>
-        <h4 class="precio-ver-mas">{{ $product->price() }} {{ link_to_route('product_path','Ver más',[$shop->link,$category->name,$product->name],['class'=>'pull-right ver-mas']) }}</h4>
+        <h4 class="precio-ver-mas">{{ Shop::showMoney($product->price) }} {{ link_to_route('product_path','Ver más',[$shop->link,$category->name,$product->name],['class'=>'pull-right ver-mas']) }}</h4>
 </div>
         <div class="description">
             <b>Descripción: </b>
         </div>
-        <p class="product-description"> {{ substr($product->description,0,100) }}
+        <p class="product-description"> {{ nl2br(substr($product->description,0,100)) }}
             @if(strlen($product->description)>100)
             ...
             @endif

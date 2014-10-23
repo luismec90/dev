@@ -24,7 +24,7 @@
 <div class="row">
     <br>
     <br>
-    <div class="col-xs-2 col-xs-offset-5 text-center">
+    <div class="col-xs-12 col-sm-2 col-sm-offset-5 text-center">
         <button type="submit" class="btn btn-primary btn-lg btn-block">Buscar</button>
     </div>
 </div>

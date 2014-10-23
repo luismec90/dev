@@ -6,13 +6,13 @@ class Product extends \Eloquent
     public static $rules = [
         'photo' => 'required_if:publish,1|image|max:4000',
         'name' => 'required',
-        'price' => 'required|numeric'
+        'price' => 'sometimes|numeric'
 
     ];
 
     public static $rulesUpdate = [
         'name' => 'required',
-        'price' => 'required|numeric',
+        'price' => 'sometimes|numeric',
         'photo' => 'sometimes|image|max:4000'
     ];
 
@@ -49,11 +49,6 @@ class Product extends \Eloquent
         if ($cover)
             return asset("shops/$category_id/products/$product_id/cover.{$this->photo_extension}");
         return asset("shops/$category_id/products/$product_id/mini.{$this->photo_extension}");
-    }
-
-    public function price()
-    {
-        return '$ ' . number_format($this->price, 0, ',', '.');
     }
 
     public function recalculateRating($rating)

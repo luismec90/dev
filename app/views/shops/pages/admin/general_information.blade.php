@@ -110,7 +110,7 @@
                         <!-- Phone Form Input -->
                         <div class="form-group">
                         {{ Form::label('phone','Télefono') }}
-                        {{ Form::text('phone',null,['class'=>'form-control','required'=>'required']) }}
+                        {{ Form::text('phone',null,['class'=>'form-control']) }}
                         </div>
                     </div>
                     <div class="col-sm-6">

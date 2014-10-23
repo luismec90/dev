@@ -11,6 +11,7 @@ $(function () {
 
     $("form").keypress(function(e) {
         //Enter key
+        console.log($(this));
         if (e.which == 13) {
             return false;
         }
@@ -124,6 +125,29 @@ $(function () {
         });
 
     });
+
+
+    $('#btn-ver-menu').click(function () {
+        if($('.sidebar-offcanvas').is(':visible')){
+            $(this).html("Ver menú");
+        }else{
+            $(this).html("Ocultar menú");
+        }
+        $('.sidebar-offcanvas').toggle('ocultar-menu');
+
+    });
+
+    // disable mousewheel on a input number field when in focus
+    // (to prevent Cromium browsers change the value when scrolling)
+    $('form').on('focus', 'input[type=number]', function (e) {
+        $(this).on('mousewheel.disableScroll', function (e) {
+            e.preventDefault()
+        })
+    })
+    $('form').on('blur', 'input[type=number]', function (e) {
+        $(this).off('mousewheel.disableScroll')
+    })
+
 });
 
 function coverOn() {
