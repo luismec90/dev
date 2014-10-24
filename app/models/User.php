@@ -34,7 +34,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface
         'birth_date' => 'sometimes|date_format:Y-m-d',
         'gender' => 'required|in:f,m',
         'email' => 'required|email|unique:users',
-        'password' => 'required|confirmed|min:6'
+        'password' => 'required|confirmed|min:4'
     ];
 
     public static $rulesCompleteRegister = [
@@ -43,7 +43,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface
         'birth_date' => 'sometimes|date_format:Y-m-d',
         'gender' => 'required|in:f,m',
         'email' => 'required|email',
-        'password' => 'required|confirmed|min:6'
+        'password' => 'required|confirmed|min:4'
     ];
 
     public static $updateRules = [

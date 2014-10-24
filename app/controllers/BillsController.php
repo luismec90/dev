@@ -46,6 +46,10 @@ class BillsController extends \BaseController
             return Redirect::back();
         }
 
+        if( $balance>$total){
+
+        }
+
         if ($email) {
             $user = User::where('email', $email)->first();
             $is_new_user = false;

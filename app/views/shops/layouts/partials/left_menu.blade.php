@@ -10,7 +10,7 @@
 
     @if(Auth::check() && !Auth::user()->isAdmin($shop->id))
             <div class="alert well-sm alert-warning">
-            <b>Saldo: $ {{ Auth::user()->saldo($shop->id) }} </b>
+            <b>Saldo: {{ Shop::showMoney(Auth::user()->saldo($shop->id)) }} </b>
             </div>
     @endif
 

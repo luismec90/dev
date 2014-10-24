@@ -7,7 +7,7 @@ class Shop extends \Eloquent {
         'link' => 'required',
         'lat' => 'required',
         'lng'=>'required',
-        'retribution'=>'required|integer|between:1,100',
+        'retribution'=>'required|integer|between:0,100',
     ];
 
 
