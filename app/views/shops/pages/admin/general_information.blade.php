@@ -97,15 +97,23 @@
                         </div>
                     </div>
                     <div class="col-sm-6">
+                        <!-- balance_deadline Form Input -->
+                        <div class="form-group">
+                            {{ Form::label('balance_deadline','Días de vigencia del saldo:') }}
+                            {{ Form::number('balance_deadline',null,['class'=>'form-control','required'=>'true']) }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
                         <!-- Email Form Input -->
                         <div class="form-group">
                             {{ Form::label('email','E-mail:') }}
                             {{ Form::email('email',null,['class'=>'form-control']) }}
                         </div>
                     </div>
-                </div>
 
-                <div class="row">
                     <div class="col-sm-6">
                         <!-- Phone Form Input -->
                         <div class="form-group">
@@ -113,13 +121,16 @@
                         {{ Form::text('phone',null,['class'=>'form-control']) }}
                         </div>
                     </div>
+
+                </div>
+                <div class="row">
                     <div class="col-sm-6">
-                        <!-- Cell Form Input -->
-                        <div class="form-group">
-                        {{ Form::label('cell','Celular') }}
-                        {{ Form::text('cell',null,['class'=>'form-control']) }}
-                        </div>
-                    </div>
+                                            <!-- Cell Form Input -->
+                                            <div class="form-group">
+                                            {{ Form::label('cell','Celular') }}
+                                            {{ Form::text('cell',null,['class'=>'form-control']) }}
+                                            </div>
+                                        </div>
                 </div>
 
                 <!-- Street Address Form Input -->

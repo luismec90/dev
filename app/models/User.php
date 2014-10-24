@@ -4,6 +4,7 @@ use Illuminate\Auth\UserTrait;
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
+use Carbon\Carbon;
 
 class User extends Eloquent implements UserInterface, RemindableInterface
 {
@@ -130,10 +131,13 @@ class User extends Eloquent implements UserInterface, RemindableInterface
 
     public function saldo($shop_id)
     {
+        $shop=Shop::findOrFail($shop_id);
+
         $shop = DB::table('bills')->select(DB::raw('sum(retribution-redeemed) as retribution'))
-            ->where('shop_id', $shop_id)
+            ->where('shop_id', $shop->id)
             ->where('user_id', $this->id)
             ->whereNull('deleted_at')
+            ->where('created_at','>=',Carbon::now()->subDays($shop->balance_deadline))
             ->first();
 
         return empty($shop->retribution) ? 0 : $shop->retribution;

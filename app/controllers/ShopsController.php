@@ -78,6 +78,7 @@ class ShopsController extends \BaseController
 
         $shop->name = Input::get('name');
         $shop->retribution = Input::get('retribution') / 100;
+        $shop->balance_deadline = Input::get('balance_deadline');
         $shop->email = Input::get('email');
         $shop->phone = Input::get('phone');
         $shop->street_address = Input::get('street_address');
