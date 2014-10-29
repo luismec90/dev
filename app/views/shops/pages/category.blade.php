@@ -8,6 +8,7 @@
     <br>
     </div>
 </div>
+
 <div class="row">
     @include('shops.layouts.partials.left_menu')
 
