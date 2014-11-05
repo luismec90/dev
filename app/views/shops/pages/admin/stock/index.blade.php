@@ -58,7 +58,8 @@
                     <thead>
                         <tr>
                             <td>Nombre</td>
-                            <td>Cantidad</td>
+                            <td>Cantidad actual</td>
+                            <td>Umbral</td>
                             <td>Opciones</td>
                         </tr>
                             @foreach($shop->stocks as $stock)
@@ -68,6 +69,9 @@
                                     </td>
                                     <td>
                                         {{ $stock->total_amount.' '.$stock->unit->name }}
+                                    </td>
+                                    <td>
+                                        {{ $stock->trigger.' '.$stock->unit->name }}
                                     </td>
                                     <td>
                                     <a href="{{ route('historic_stock_path',[$shop->link,$stock->id]) }}" class="btn btn-primary btn-sm">Histórico</a>

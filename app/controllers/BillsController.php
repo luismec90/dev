@@ -25,6 +25,10 @@ class BillsController extends \BaseController
 
     public function store($shop_link)
     {
+
+        // 3 querys | 860 us
+        // Validar datos del cliente
+
         $validation = Validator::make(Input::all(), Bill::$rules, Bill::$validationMessages);
         if ($validation->fails()) {
             return Redirect::back()->withErrors($validation);
@@ -40,17 +44,16 @@ class BillsController extends \BaseController
         $code = Input::get('code');
         $total = Input::get('total');
 
+        // No permitir estos datos vacios
         if (!$products || !$amounts || !$costs) {
             Flash::error('Ha ocurrido un error, asegurate de llenar todos los campos');
 
             return Redirect::back();
         }
 
-        if( $balance>$total){
 
-        }
 
-        if ($email) {
+        if ($email) { // Si se ingreso el email, comporbar si es un cliente nuevo
             $user = User::where('email', $email)->first();
             $is_new_user = false;
             if (is_null($user)) {
@@ -79,6 +82,7 @@ class BillsController extends \BaseController
             }
 
         }
+
         $bill = new Bill;
         $bill->shop_id = $shop->id;
         if ($email) {
@@ -92,6 +96,9 @@ class BillsController extends \BaseController
         $bill->save();
 
         $total_cost = -$balance;
+
+        // 6 querys | 2.37 ms
+
 
         if (!Input::get('no_register_products')) {
             for ($i = 0;
@@ -122,6 +129,10 @@ class BillsController extends \BaseController
         } else {
             $total_cost = $total;
         }
+
+        // 12 querys || 5.11 ms
+
+
         $retribution = round($total_cost * $shop->retribution);
         $bill->total_cost = $total_cost;
         $bill->retribution = $retribution;
@@ -137,6 +148,8 @@ class BillsController extends \BaseController
                 $user->shops()->attach($shop->id, ['role' => 2]);
             }
 
+            // 14 querys || 5.98 ms
+
             $title = "Gracias por elegirnos";
 
             Mail::send('emails.shops.admin.bill', compact('shop', 'bill', 'title', 'user', 'is_new_user'), function ($message) use ($user, $shop) {
@@ -145,8 +158,13 @@ class BillsController extends \BaseController
             });
         }
 
+        // 15 querys || 6.11 ms
+
+        $this->updateStock($shop,$bill->id);
+
         Flash::success('Registro creado exitosamente');
 
+        return "sd";
         return Redirect::back();
     }
 
@@ -160,5 +178,26 @@ class BillsController extends \BaseController
         Flash::success('Venta cancelada correctamente');
 
         return Redirect::back();
+    }
+
+    public function updateStock($shop,$bill_id)
+    {
+
+        $bill=Bill::with('purchases','purchases.product','purchases.product.stocks')->where('id',$bill_id)->first();
+
+        foreach ($bill->purchases as $purchase) {
+
+            foreach ($purchase->product->stocks as $stock) {
+                $stock_history = new StockHistory;
+                $stock_history->stock_id = $stock->id;
+                $stock_history->amount = $purchase->amount * $stock->pivot->stock_spent * -1;
+                $stock_history->description = $purchase->product->name . " x " . $purchase->amount;
+                $stock_history->save();
+
+              $stock->updateTotalAmount($shop);
+                $stock->save();
+            }
+        }
+
     }
 }

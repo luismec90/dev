@@ -40,4 +40,19 @@ class Stock extends \Eloquent
     {
         return $this->belongsToMany('Product')->withPivot('stock_spent');
     }
+
+    public function updateTotalAmount($shop)
+    {
+        $this->total_amount = DB::table('stock_histories')->where('stock_id', $this->id)->sum('amount');
+
+
+        if ($this->total_amount <= $this->trigger) {
+
+            Mail::send('emails.shops.admin.stock', ['shop' => $shop, 'stock' => $this], function ($message) use ($shop) {
+                $message->to($shop->email, Auth::user()->first_name)
+                    ->subject($this->name . ' - Inventario bajo: '.$this->total_amount.' '.$this->unit->name);
+            });
+
+        }
+    }
 }

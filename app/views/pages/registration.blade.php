@@ -53,7 +53,7 @@
 
             <!-- Contraseña Form Input -->
             <div class="form-group">
-            {{ Form::label('password','Contraseña:') }}
+           {{ Form::label('password','Establecer una contraseña:') }}
             {{ Form::password('password',['class'=>'form-control','required'=>'required']) }}
             </div>
 
