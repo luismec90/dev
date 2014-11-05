@@ -59,4 +59,9 @@ class Product extends \Eloquent
         $this->rating_count = $reviews->count();
         $this->save();
     }
+
+    public function stocks()
+    {
+        return $this->belongsToMany('Stock')->withPivot('stock_spent');
+    }
 }

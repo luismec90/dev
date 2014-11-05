@@ -107,6 +107,7 @@
 
                 @if(Auth::check() && Auth::user()->isAdmin($shop->id))
                      <a  href="{{ URL::route('admin_edit_product_path',[$shop->link,$product->category_id,$product->id]) }}"  class="btn btn-primary btn-sm">Editar</a>
+                       <a  href="{{ URL::route('relate_stock_product_path',[$shop->link,$product->category_id,$product->id]) }}"  class="btn btn-primary btn-sm">Establecer ingredientes</a>
                 @endif
                 </a></h4>
                 <p>{{$product->description}}</p>

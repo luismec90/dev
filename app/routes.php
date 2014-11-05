@@ -84,7 +84,6 @@ Route::group(array('prefix' => '{shop_link}'), function () {
 
         Route::get('/categorias/{category_id}', array('before' => 'auth|admin', 'as' => 'admin_products_path', 'uses' => 'ProductsController@index'));
         Route::get('/categorias/{category_id}/productos/crear', array('before' => 'auth|admin', 'as' => 'admin_create_product_path', 'uses' => 'ProductsController@create'));
-        Route::get('/categorias/{category_id}/productos/{product_id}', array('before' => 'auth|admin', 'as' => 'admin_edit_product_path', 'uses' => 'ProductsController@edit'));
         Route::post('/categorias/{category_id}/productos/crear', array('before' => 'auth|admin', 'as' => 'admin_store_product_path', 'uses' => 'ProductsController@store'));
         Route::get('/categorias/{category_id}/productos/editar/{product_id}', array('before' => 'auth|admin', 'as' => 'admin_edit_product_path', 'uses' => 'ProductsController@edit'));
         Route::post('/categorias/{category_id}/productos/editar/{product_id}', array('before' => 'auth|admin', 'as' => 'admin_update_product_path', 'uses' => 'ProductsController@update'));
@@ -101,6 +100,18 @@ Route::group(array('prefix' => '{shop_link}'), function () {
 
         /* Statistics */
         Route::get('estadisticas', array('before' => 'auth|admin', 'as' => 'statistics_path', 'uses' => 'StatisticsController@index'));
+
+        /* Stocks */
+        Route::get('inventario', array('before' => 'auth|admin', 'as' => 'stock_path', 'uses' => 'StocksController@index'));
+        Route::get('inventario/crear', array('before' => 'auth|admin', 'as' => 'create_stock_path', 'uses' => 'StocksController@create'));
+        Route::post('inventario/crear', array('before' => 'auth|admin', 'as' => 'store_stock_path', 'uses' => 'StocksController@store'));
+        Route::get('inventario/editar/{cover_id}', array('before' => 'auth|admin', 'as' => 'edit_stock_path', 'uses' => 'StocksController@edit'));
+        Route::post('inventario/editar/{stock_id}', array('before' => 'auth|admin', 'as' => 'update_stock_path', 'uses' => 'StocksController@update'));
+        Route::delete('inventario/eliminar/{stock_id}', array('before' => 'auth|admin', 'as' => 'destroy_stock_path', 'uses' => 'StocksController@destroy'));
+        Route::post('inventario/actualizarcantidad', array('before' => 'auth|admin', 'as' => 'update_amount_stock_path', 'uses' => 'StocksController@updateAmount'));
+        Route::get('inventario/historico/{stock_id}', array('before' => 'auth|admin', 'as' => 'historic_stock_path', 'uses' => 'StocksController@historic'));
+        Route::get('relacionar-producto-con-stock/{category_id}/{product_id}', array('before' => 'auth|admin', 'as' => 'relate_stock_product_path', 'uses' => 'StocksController@relateStockProduct'));
+        Route::post('relacionar-producto-con-stock/{category_id}/{product_id}', array('before' => 'auth|admin', 'as' => 'store_relate_stock_product_path', 'uses' => 'StocksController@storeRelateStockProduct'));
 
         /* Logo */
         Route::get('logo', array('before' => 'auth|admin', 'as' => 'logo_path', 'uses' => 'ShopsController@logo'));
