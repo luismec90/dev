@@ -112,6 +112,7 @@ Route::group(array('prefix' => '{shop_link}'), function () {
         Route::get('inventario/historico/{stock_id}', array('before' => 'auth|admin', 'as' => 'historic_stock_path', 'uses' => 'StocksController@historic'));
         Route::get('relacionar-producto-con-stock/{category_id}/{product_id}', array('before' => 'auth|admin', 'as' => 'relate_stock_product_path', 'uses' => 'StocksController@relateStockProduct'));
         Route::post('relacionar-producto-con-stock/{category_id}/{product_id}', array('before' => 'auth|admin', 'as' => 'store_relate_stock_product_path', 'uses' => 'StocksController@storeRelateStockProduct'));
+        Route::delete('relacionar-producto-con-stock/{category_id}/{product_id}', array('before' => 'auth|admin', 'as' => 'destroy_relate_stock_product_path', 'uses' => 'StocksController@destroyRelateStockProduct'));
 
         /* Logo */
         Route::get('logo', array('before' => 'auth|admin', 'as' => 'logo_path', 'uses' => 'ShopsController@logo'));

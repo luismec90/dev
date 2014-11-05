@@ -18,5 +18,9 @@ $(function () {
         }
     });
 
+    $("#table-stock .delete-stock").click(function () {
+        $("#stock_id").val($(this).data("stock-id"));
+        $("#modal-delete-stock").modal();
+    });
 });
 

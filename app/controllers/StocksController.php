@@ -141,15 +141,45 @@ class StocksController extends \BaseController
 
     public function storeRelateStockProduct($shop_link, $category_id, $product_id)
     {
+        $stock_id = Input::get('stock_id');
+
         $shop = Shop::where('link', $shop_link)->firstOrFail();
 
         $category = Category::where('id', $category_id)->where('shop_id', $shop->id)->firstOrFail();
 
         $product = Product::where('id', $product_id)->where('category_id', $category->id)->firstOrFail();
 
-        $product->stocks()->attach(Input::get('stock'), array('stock_spent' => Input::get('amount')));
+        $exist = DB::table('product_stock')
+            ->where('product_id', $product->id)
+            ->where('stock_id', $stock_id)
+            ->get();
 
-        Flash::success('Ingrediente agregado correctamente');
+        if ($exist) {
+            Flash::error('Ingrediente duplicado');
+        } else {
+            $product->stocks()->attach($stock_id, array('stock_spent' => Input::get('amount')));
+            Flash::success('Ingrediente agregado correctamente');
+        }
+
+        return Redirect::back();
+
+    }
+
+    public function destroyRelateStockProduct($shop_link, $category_id, $product_id)
+    {
+        $stock_id = Input::get('stock_id');
+
+        $shop = Shop::where('link', $shop_link)->firstOrFail();
+
+        $category = Category::where('id', $category_id)->where('shop_id', $shop->id)->firstOrFail();
+
+        $product = Product::where('id', $product_id)->where('category_id', $category->id)->firstOrFail();
+
+        $stock = Stock::where('id', $stock_id)->where('shop_id', $shop->id)->firstOrFail();
+
+        $product->stocks()->detach($stock->id);
+
+        Flash::success('Ingrediente eliminado correctamente');
 
         return Redirect::back();
     }
