@@ -184,4 +184,41 @@ class StocksController extends \BaseController
         return Redirect::back();
     }
 
+    public function updateRelateStockProduct($shop_link, $category_id, $product_id)
+    {
+        $old_stock_id = Input::get('old_stock_id');
+
+        $new_stock_id = Input::get('stock_id');
+
+        $shop = Shop::where('link', $shop_link)->firstOrFail();
+
+        $category = Category::where('id', $category_id)->where('shop_id', $shop->id)->firstOrFail();
+
+        $product = Product::where('id', $product_id)->where('category_id', $category->id)->firstOrFail();
+
+        $new_stock = Stock::where('id', $new_stock_id)->where('shop_id', $shop->id)->firstOrFail();
+
+        $exist=[];
+
+        if ($old_stock_id != $new_stock_id) {
+            $exist = DB::table('product_stock')
+                ->where('product_id', $product->id)
+                ->where('stock_id', $new_stock->id)
+                ->get();
+        }
+
+        if ($exist) {
+            Flash::error('Ingrediente duplicado');
+        } else {
+            $old_stock = Stock::where('id', $old_stock_id)->where('shop_id', $shop->id)->firstOrFail();
+
+            $product->stocks()->detach($old_stock->id);
+
+            $product->stocks()->attach($new_stock->id, array('stock_spent' => Input::get('amount')));
+
+            Flash::success('Ingrediente editado correctamente');
+        }
+
+        return Redirect::back();
+    }
 }

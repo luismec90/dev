@@ -18,9 +18,23 @@ $(function () {
         }
     });
 
-    $("#table-stock .delete-stock").click(function () {
+    $("#table-stock .btn-edit-stock").click(function () {
+        $("#old_stock_id").val($(this).data("stock-id"));
+        $("#edit-stock").val($(this).data("stock-id"));
+        var unit=$("#edit-stock").find(':selected').data('unit');
+        $("#edit-unit").html(unit);
+        $("#edit-amount").val($(this).data("amount"));
+        $("#modal-edit-stock").modal();
+    });
+
+    $("#table-stock .btn-delete-stock").click(function () {
         $("#stock_id").val($(this).data("stock-id"));
         $("#modal-delete-stock").modal();
+    });
+
+    $("#edit-stock").change(function () {
+        var unit=$("#edit-stock").find(':selected').data('unit');
+        $("#edit-unit").html(unit);
     });
 });
 

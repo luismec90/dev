@@ -28,7 +28,7 @@
         </div>
         <div class="row">
             <div class="col-xs-10">
-                <a href="{{ URL::route('product_path',[$shop->link,$category->name,$product->name]) }}" class="btn btn-primary" title=""><i class="fa fa-reply"></i> Volver atras</a>
+                <a href="{{ URL::route('product_path',[$shop->link,$category->name,$product->name]) }}" class="btn btn-primary" title=""><i class="fa fa-reply"></i> Volver atrás</a>
             </div>
         </div>
         <div class="row">
@@ -61,7 +61,14 @@
                             <td>{{ $stock->name }}</td>
                             <td>{{ $stock->pivot->stock_spent.' '.$stock->unit->name }}</td>
                             <td>
-                                <button class="btn btn-danger delete-stock"
+                                <button class="btn btn-primary btn-sm btn-edit-stock"
+                                data-stock-id="{{ $stock->id }}"
+                                data-amount="{{ $stock->pivot->stock_spent }}"
+                                >
+                                    Editar
+                                </button>
+
+                                <button class="btn btn-danger btn-sm btn-delete-stock"
                                 data-stock-id="{{ $stock->id }}">
                                     Eliminar
                                 </button>
@@ -128,6 +135,47 @@
             <div class="modal-body">
                 ¿Realmente desea eliminar este ingrediente?
             </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </div>
+            {{ Form::close() }}
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modal-edit-stock" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            {{ Form::open(['route'=>['update_relate_stock_product_path',$shop->link,$category->id,$product->id],'id'=>'form-add-stock','class'=>'validate form-horizontal']) }}
+           {{ Form::hidden('old_stock_id',null,['id'=>'old_stock_id']) }}
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Editar ingrediente</h4>
+            </div>
+            <div class="modal-body">
+                  <div class="form-group">
+                      <label class="col-sm-4 control-label">Ingrediente:</label>
+                      <div class="col-sm-4">
+                          <select id="edit-stock" name="stock_id" class="form-control" required="trrue">
+                              <option value="">Seleccionar...</option>
+                              @foreach($stocks as $stock)
+                                  <option value="{{ $stock->id }}" data-unit="{{ $stock->unit->name }}">{{ $stock->name }}</option>
+                              @endforeach
+                          </select>
+                      </div>
+                  </div>
+                  <div id="div-amount" class="form-group">
+                      <label class="col-sm-4 control-label">Cantidad requerida:</label>
+                      <div class="col-sm-4">
+                          <div class="input-group">
+                              {{ Form::text('amount',null,['id'=>'edit-amount','class'=>'form-control','required'=>'true']) }}
+                              <div id="edit-unit" class="input-group-addon"></div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                 <button type="submit" class="btn btn-primary">Enviar</button>

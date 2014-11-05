@@ -35,7 +35,7 @@
 
         <div class="row">
             <div class="col-xs-10">
-                <a href="{{ URL::route('covers_path',$shop->link) }}" class="btn btn-primary" title=""><i class="fa fa-reply"></i> Volver atras</a>
+                <a href="{{ URL::route('covers_path',$shop->link) }}" class="btn btn-primary" title=""><i class="fa fa-reply"></i> Volver atrás</a>
             </div>
         </div>
 
