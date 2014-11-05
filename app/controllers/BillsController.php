@@ -164,7 +164,6 @@ class BillsController extends \BaseController
 
         Flash::success('Registro creado exitosamente');
 
-        return "sd";
         return Redirect::back();
     }
 

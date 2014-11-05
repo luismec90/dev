@@ -12,20 +12,20 @@ class UnitsTableSeeder extends Seeder
 
         Unit::create([
             'id' => '1',
-            'name' => 'mililitros',
-            'symbol' => 'ml',
+            'name' => 'unidades',
+            'symbol' => 'u',
         ]);
 
         Unit::create([
             'id' => '2',
-            'name' => 'litros',
-            'symbol' => 'l',
+            'name' => 'miligramos',
+            'symbol' => 'mg',
         ]);
 
         Unit::create([
             'id' => '3',
-            'name' => 'miligramos',
-            'symbol' => 'mg',
+            'name' => 'gramos',
+            'symbol' => 'g',
         ]);
 
         Unit::create([
@@ -36,9 +36,17 @@ class UnitsTableSeeder extends Seeder
 
         Unit::create([
             'id' => '5',
-            'name' => 'unidades',
-            'symbol' => 'unidades',
+            'name' => 'mililitros',
+            'symbol' => 'ml',
         ]);
+
+        Unit::create([
+            'id' => '6',
+            'name' => 'litros',
+            'symbol' => 'l',
+        ]);
+
+
     }
 
 }
