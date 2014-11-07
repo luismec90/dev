@@ -134,7 +134,7 @@ class StocksController extends \BaseController
 
         $product = Product::where('id', $product_id)->where('category_id', $category->id)->firstOrFail();
 
-        $stocks = Stock::with('unit')->orderBy('name')->get();
+        $stocks = Stock::with('unit')->where('shop_id', $shop->id)->orderBy('name')->get();
 
         return View::make('shops.pages.admin.stock.relate_product_stock', compact('shop', 'category', 'product', 'stocks'));
     }
@@ -198,7 +198,7 @@ class StocksController extends \BaseController
 
         $new_stock = Stock::where('id', $new_stock_id)->where('shop_id', $shop->id)->firstOrFail();
 
-        $exist=[];
+        $exist = [];
 
         if ($old_stock_id != $new_stock_id) {
             $exist = DB::table('product_stock')

@@ -6,15 +6,22 @@ class ReportsController extends BaseController
     public function indexSales($shop_link)
     {
         $since = Input::has('since') ? Input::get('since') : date('Y-m-d');
-        $since.=' 00:00:00';
+        $since .= ' 00:00:00';
 
         $until = Input::has('until') ? Input::get('until') : date('Y-m-d');
-        $until.=' 23:59:59';
+        $until .= ' 23:59:59';
 
 
         $shop = Shop::with('categories', 'categories.products')->where('link', $shop_link)->firstOrFail();
 
-        $q = Bill::with(['purchases', 'user', 'purchases.product' => function ($q) {
+        $q = Bill::with(['purchases', 'purchases.product', 'user'])
+            ->where('bills.shop_id', $shop->id);
+
+        if (Input::has('category') || Input::has('product')) {
+
+            $q->join('purchases', 'bills.id', '=', 'purchases.bill_id')
+                ->join('products', 'products.id', '=', 'purchases.product_id')
+                ->whereNotNull('purchases.bill_id');
 
             if (Input::has('category')) {
                 $q->where('products.category_id', Input::get('category'));
@@ -24,24 +31,21 @@ class ReportsController extends BaseController
                 $q->where('products.id', Input::get('product'));
             }
 
-        }])->where('bills.shop_id', $shop->id);
-
-        if (Input::has('category')) {
-            $q->where('products.category_id', Input::get('category'));
         }
 
-        if (Input::has('product')) {
-            $q->where('products.id', Input::get('product'));
-        }
 
-        $q->where('created_at', '>=', $since );
+        $q->where('bills.created_at', '>=', $since);
 
-        $q->where('created_at', '<=', $until );
+        $q->where('bills.created_at', '<=', $until);
+
+
 
         $q2 = $q;
+
         $total = $q2->sum('total_cost');
 
-        $bills = $q->withTrashed()->orderBy('created_at', 'desc')->paginate(20);
+        $bills = $q->select('bills.*')->withTrashed()->orderBy('bills.created_at', 'desc')->paginate(20);
+
 
         $selectCategories[''] = 'Seleccionar...';
         foreach ($shop->categories as $category) {

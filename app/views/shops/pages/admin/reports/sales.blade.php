@@ -109,7 +109,6 @@
                                 @endif
                             </td>
                             <td>
-
                                     @foreach($bill->purchases as $purchase )
                                         <div>- {{ $purchase->product_name  }} | {{ $purchase->amount }} |  {{ Shop::showMoney($purchase->cost)  }}</div>
                                     @endforeach
@@ -138,7 +137,7 @@
         </div>
         <div class="row">
             <div class="col-xs-12">
-                {{ $bills->links(); }}
+                {{ $bills->appends(Input::get())->links(); }}
             </div>
         </div>
     </div>

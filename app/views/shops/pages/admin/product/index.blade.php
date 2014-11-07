@@ -67,6 +67,7 @@
                         @endif
                         <td>
                             {{ link_to_route('admin_edit_product_path','Editar producto',[$shop->link,$category->id,$product->id],['class'=>'btn btn-primary btn-sm']) }}
+                            <a  href="{{ URL::route('relate_stock_product_path',[$shop->link,$product->category_id,$product->id]) }}"  class="btn btn-primary btn-sm">Establecer ingredientes</a>
                         </td>
                     </tr>
                     @endforeach

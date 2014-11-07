@@ -28,7 +28,11 @@
         </div>
         <div class="row">
             <div class="col-xs-10">
-                <a href="{{ URL::route('product_path',[$shop->link,$category->name,$product->name]) }}" class="btn btn-primary" title=""><i class="fa fa-reply"></i> Volver atrás</a>
+                @if($product->publish==1)
+                    <a href="{{ URL::route('product_path',[$shop->link,$category->name,$product->name]) }}" class="btn btn-primary" title=""><i class="fa fa-reply"></i> Volver atrás</a>
+                @else
+                    <a href="{{ URL::route('admin_products_path',[$shop->link,$category->id]) }}" class="btn btn-primary" title=""><i class="fa fa-reply"></i> Volver atrás</a>
+                @endif
             </div>
         </div>
         <div class="row">

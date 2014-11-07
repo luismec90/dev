@@ -2,11 +2,14 @@ $(function () {
 
 
     $('form.form-submit').submit(function () {
-        $("#coverDisplay").css({
+        /*    $("#coverDisplay").css({
             "opacity": "1",
             "width": "100%",
             "height": "100%"
-        });
+        });*/
+
+        $(this).find(':submit').prop("disabled",true);
+
     });
 
     $("form").keypress(function(e) {

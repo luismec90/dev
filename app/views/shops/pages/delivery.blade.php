@@ -51,7 +51,7 @@
 
         <div class="row">
             <div class="col-xs-10">
-                <h3 class="no-margin">Domocilios</h3>
+                <h3 class="no-margin">Domicilios</h3>
             </div>
         </div>
 
@@ -148,7 +148,7 @@
         <div class="row">
             <div class="col-md-3 col-md-offset-4">
                 <!-- Total Form Input -->
-                <div class="form-group">
+                <div class="form-group {{ ($shop->retribution==0) ? "hide":"" }}">
                     {{ Form::label('category','Saldo ganado:') }}
                     <div class="input-group">
                         <div class="input-group-addon">$</div>
