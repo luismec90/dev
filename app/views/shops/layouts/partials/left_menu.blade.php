@@ -64,7 +64,12 @@
                     <a href="{{ route('statistics_path',$shop->link) }}">Estadísticas</a>
                 </li>
 
+                 <li class="@if(Route::currentRouteName()=='alliances_path') {{ 'active'}} @endif">
+                    <a href="{{ route('alliances_path',$shop->link) }}">Alianzas</a>
+                </li>
+
                 <li><hr></li>
+
                 <li class="dropdown-header">Configuración</li>
 
                 <li class="@if(Route::currentRouteName()=='admin_category_path' ||

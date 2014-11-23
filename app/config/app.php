@@ -199,5 +199,4 @@ return array(
         'Image' => 'Intervention\Image\Facades\Image',
         'Excel' => 'Maatwebsite\Excel\Facades\Excel',
     ),
-
 );
