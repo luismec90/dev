@@ -1,13 +1,13 @@
 @extends('layouts.default')
 
 @section('css')
-    {{ HTML::style('assets/libs/select2/select2.css') }}
-    {{ HTML::style('assets/libs/select2/select2-bootstrap.css') }}
+{{ HTML::style('assets/libs/select2/select2.css') }}
+{{ HTML::style('assets/libs/select2/select2-bootstrap.css') }}
 @stop
 
 @section('js')
-    {{ HTML::script('assets/libs/select2/select2.js') }}
-    {{ HTML::script('assets/js/search.js') }}
+{{ HTML::script('assets/libs/select2/select2.js') }}
+{{ HTML::script('assets/js/search.js') }}
 @stop
 
 
@@ -32,7 +32,7 @@
     <div class="col-md-12 text-center">
         <h1> Encuentra establecimientos afiliados cercanos</h1>
         <div class="container">
-            @include('layouts.partials.search')
+
         </div>
     </div>
 </div>
@@ -42,13 +42,9 @@
 <section class="section section-center section-cta">
     <div class="container">
         <h2 class="section-title"><span>Listo para comenzar?</span></h2>
-
-        <p>LinkingShops es una red de tiendas, aliadas para ofrecer descuentos exclusivos a sus clientes.
-
-        </p>
-        <div class="main-action row text-center">
-            <div class="col-md-3 col-md-offset-3"><a href="{{ route('register_path') }}" class="smooth-scroll btn btn-lg btn-block btn-danger">Registrate de forma gratuita</a></div>
-         <div class="col-md-3 col-sm-4"><a href="{{ route('listshops_path') }}" class="smooth-scroll btn btn-lg btn-block btn-default">Establecimientos afiliados</a></div>
+        <p>LinkingShops es plataforma diseñada para la fidelización de clientes y a atracción de nuevos compradores <br> através de alianzas entre establecimientos comerciales de todos los sectores.</p>        
+        <div class="main-action row text-center ">
+            <div class="col-md-3 col-md-offset-4"><a href="{{ route('register_path') }}" class="smooth-scroll btn btn-lg btn-block btn-danger">Registrate de forma gratuita</a></div>
         </div>
     </div>
 </section>
@@ -59,37 +55,34 @@
         <div class="row">
             <div class="col-md-4 col-sm-6">
                 <div class="icon-wrap"><img src="{{ asset('assets/images/payment4.png') }}" alt=""></div>
-                <h4>Puntos</h4>
-                <p>Por cada compra que realices<br> en nuestros establecimientos recibirás<br> saldo a tu favor para compras futuras.</p> 
+                <h4>Fideliza tus clientes</h4>
+<!--                <p>Por cada compra que realices<br> en nuestros establecimientos recibirás<br> saldo a tu favor para compras futuras.</p> -->
+                <p>Por cada venta realizada <br>podrás otorgar saldo, que tus compradores podrán utilizar en futuras visitas.</p> 
             </div>
             <div class="col-md-4 col-sm-6">
                 <div class="icon-wrap"><img src="{{ asset('assets/images/icon-bag-flat.png') }}" alt=""></div>
-                <h4>Comprando</h4>
-                <p>A través de nuestra página encontrarás <br> productos y servicios de todo tipo, incluyendo<br>  comidas y vestuario a tu gusto.</p> 
+                <!--             <h4>Comprando</h4>
+                                <p>A través de nuestra página encontrarás <br> productos y servicios de todo tipo, incluyendo<br>  comidas y vestuario a tu gusto.</p> -->
+                <h4>Promocionate en la web</h4>
+                <p>Aumenta tu visibilidad en el mercado. <br> Crea gratuitamente tu sitio web en nuestra página y promociona tus productos.</p> 
             </div>
             <!-- los mismos establecimientos-->
             <div class="col-md-4 col-sm-6">
                 <div class="icon-wrap"><img src="{{ asset('assets/images/offer.png') }}" alt=""></div>
-                <h4>Descuentos</h4>
-                <p>Con LinkingShops obtendrás <br>descuentos exclusivos al comprar <br> en las tiendas de nuestra red.</p>
+                <!--                <h4>Descuentos</h4>
+                                <p>Con LinkingShops obtendrás <br>descuentos exclusivos al comprar <br> en las tiendas de nuestra red.</p>-->
+                <h4>Nuevos compradores</h4>
+                <p>Encuentra nuevos compradores <br>otorgando saldo a tus establecimientos afiliados <br> para que sus clientes sean también los tuyos </p>
             </div>
-            
-        </div>
-        
-        
-        <!--            <div class="col-md-4 col-sm-6">
-                        <div class="icon-wrap"><img src="{{ asset('assets/images/icon-chrome-flat.png') }}" alt=""></div>
-                        <h4>Página web</h4>
-                        <p>Cada establecimiento afiliado tiene su página web donde puedes encontrar sus productos/servicios, valoraciones de los usuarios y localización. </p>
-                        Cada establecimiento afiliado tiene su respectiva página web en la cual puedes encontrar todo tipo de información como fotos de los productos/servicios, valoraciones de los usuarios, localización. 
-                    </div>-->
+        </div>  
+
         <div class="row">
             <div class="col-md-4 col-sm-6">
-                <div class="icon-wrap"><img src="{{ asset('assets/images/icon-ticket-flat.png') }}" alt=""></div>
-                <h4>Tiendas</h4>
-                <p>Conoce nuestra red de tiendas <br>con sus alianzas, promociones y localización. </p>
-<!--                <p>Cada establecimiento afiliado tiene su página web donde puedes encontrar sus productos/servicios, valoraciones de los usuarios y localización. </p>
-                Cada establecimiento afiliado tiene su respectiva página web en la cual puedes encontrar todo tipo de información como fotos de los productos/servicios, valoraciones de los usuarios, localización. -->
+                <div class="icon-wrap"><img src="{{ asset('assets/images/alliances.png') }}" alt=""></div>
+                <!--                <h4>Tiendas</h4>
+                                <p>Conoce nuestra red de tiendas <br>con sus alianzas, promociones y localización. </p>-->
+                <h4>Alianzas</h4>
+                <p>Genera alianzas con otros establecimientos <br></p>
             </div>
             <div class="col-md-4 col-sm-6">
                 <div class="icon-wrap"><img src="{{ asset('assets/images/icon-delivery-flat.png') }}" alt=""></div>
@@ -128,69 +121,69 @@
                 <div class="entry-thumbnail">
                     <a href="#" class="hover-effect" data-toggle="modal" data-target="#project-modal">
                         <img src="{{ asset('assets/images/noma.jpg') }}" alt="" />
-                        <span class="overlay"><i class="fa fa-plus"></i></span>
-                    </a>
-                </div>
-            </article>
-            <article class="col-md-3 col-sm-6 portfolio-item motion graphic">
-                <div class="entry-thumbnail">
-                    <a href="#" class="hover-effect" data-toggle="modal" data-target="#project-modal">
-                        <img src="{{ asset('assets/images/project-2.jpg') }}" alt="" />
-                        <span class="overlay"><i class="fa fa-plus"></i></span>
-                    </a>
-                </div>
-            </article>
-            <article class="col-md-3 col-sm-6 portfolio-item branding web">
-                <div class="entry-thumbnail">
-                    <a href="#" class="hover-effect" data-toggle="modal" data-target="#project-modal">
-                        <img src="{{ asset('assets/images/project-3.png') }}" alt="" />
-                        <span class="overlay"><i class="fa fa-plus"></i></span>
-                    </a>
-                </div>
-            </article>
-            <article class="col-md-3 col-sm-6 portfolio-item photography graphic">
-                <div class="entry-thumbnail">
-                    <a href="#" class="hover-effect" data-toggle="modal" data-target="#project-modal">
-                        <img src="{{ asset('assets/images/project-4.png') }}" alt="" />
-                        <span class="overlay"><i class="fa fa-plus"></i></span>
-                    </a>
-                </div>
-            </article>
-            <article class="col-md-3 col-sm-6 portfolio-item motion web">
-                <div class="entry-thumbnail">
-                    <a href="#" class="hover-effect" data-toggle="modal" data-target="#project-modal">
-                        <img src="{{ asset('assets/images/project-5.png') }}" alt="" />
-                        <span class="overlay"><i class="fa fa-plus"></i></span>
-                    </a>
-                </div>
-            </article>
-            <article class="col-md-3 col-sm-6 portfolio-item branding graphic">
-                <div class="entry-thumbnail">
-                    <a href="#" class="hover-effect" data-toggle="modal" data-target="#project-modal">
-                        <img src="{{ asset('assets/images/project-6.jpg') }}" alt="" />
-                        <span class="overlay"><i class="fa fa-plus"></i></span>
-                    </a>
-                </div>
-            </article>
-            <article class="col-md-3 col-sm-6 portfolio-item motion photography web">
-                <div class="entry-thumbnail">
-                    <a href="#" class="hover-effect" data-toggle="modal" data-target="#project-modal">
-                        <img src="{{ asset('assets/images/project-8.jpg') }}" alt="" />
-                        <span class="overlay"><i class="fa fa-plus"></i></span>
-                    </a>
-                </div>
-            </article>
-            <article class="col-md-3 col-sm-6 portfolio-item photography motion branding graphic">
-                <div class="entry-thumbnail">
-                    <a href="#" class="hover-effect" data-toggle="modal" data-target="#project-modal">
-                        <img src="{{ asset('assets/images/project-7.jpg') }}" alt="" />
-                        <span class="overlay"><i class="fa fa-plus"></i></span>
-                    </a>
-                </div>
-            </article>
-        </div>
-
+<span class="overlay"><i class="fa fa-plus"></i></span>
+</a>
+</div>
+</article>
+<article class="col-md-3 col-sm-6 portfolio-item motion graphic">
+    <div class="entry-thumbnail">
+        <a href="#" class="hover-effect" data-toggle="modal" data-target="#project-modal">
+            <img src="{{ asset('assets/images/project-2.jpg') }}" alt="" />
+            <span class="overlay"><i class="fa fa-plus"></i></span>
+        </a>
     </div>
+</article>
+<article class="col-md-3 col-sm-6 portfolio-item branding web">
+    <div class="entry-thumbnail">
+        <a href="#" class="hover-effect" data-toggle="modal" data-target="#project-modal">
+            <img src="{{ asset('assets/images/project-3.png') }}" alt="" />
+            <span class="overlay"><i class="fa fa-plus"></i></span>
+        </a>
+    </div>
+</article>
+<article class="col-md-3 col-sm-6 portfolio-item photography graphic">
+    <div class="entry-thumbnail">
+        <a href="#" class="hover-effect" data-toggle="modal" data-target="#project-modal">
+            <img src="{{ asset('assets/images/project-4.png') }}" alt="" />
+            <span class="overlay"><i class="fa fa-plus"></i></span>
+        </a>
+    </div>
+</article>
+<article class="col-md-3 col-sm-6 portfolio-item motion web">
+    <div class="entry-thumbnail">
+        <a href="#" class="hover-effect" data-toggle="modal" data-target="#project-modal">
+            <img src="{{ asset('assets/images/project-5.png') }}" alt="" />
+            <span class="overlay"><i class="fa fa-plus"></i></span>
+        </a>
+    </div>
+</article>
+<article class="col-md-3 col-sm-6 portfolio-item branding graphic">
+    <div class="entry-thumbnail">
+        <a href="#" class="hover-effect" data-toggle="modal" data-target="#project-modal">
+            <img src="{{ asset('assets/images/project-6.jpg') }}" alt="" />
+            <span class="overlay"><i class="fa fa-plus"></i></span>
+        </a>
+    </div>
+</article>
+<article class="col-md-3 col-sm-6 portfolio-item motion photography web">
+    <div class="entry-thumbnail">
+        <a href="#" class="hover-effect" data-toggle="modal" data-target="#project-modal">
+            <img src="{{ asset('assets/images/project-8.jpg') }}" alt="" />
+            <span class="overlay"><i class="fa fa-plus"></i></span>
+        </a>
+    </div>
+</article>
+<article class="col-md-3 col-sm-6 portfolio-item photography motion branding graphic">
+    <div class="entry-thumbnail">
+        <a href="#" class="hover-effect" data-toggle="modal" data-target="#project-modal">
+            <img src="{{ asset('assets/images/project-7.jpg') }}" alt="" />
+            <span class="overlay"><i class="fa fa-plus"></i></span>
+        </a>
+    </div>
+</article>
+</div>
+
+</div>
 </section>
 
 <!-- Project Modal -->
@@ -253,13 +246,13 @@
                 </div>
                 <div class="item">
                     <blockquote>
-                         <p>Es genial que me devuelvan dinero para compras futuras </p>
+                        <p>Es genial que me devuelvan dinero para compras futuras </p>
                         <small> <cite title="Source Title">Juan Diego Girldo</cite></small>
                     </blockquote>
                 </div>
                 <div class="item">
                     <blockquote>
-                         <p>Suscribirme a las tiendas me ha permitido conocer las mejores promociones </p>
+                        <p>Suscribirme a las tiendas me ha permitido conocer las mejores promociones </p>
                         <small> <cite title="Source Title">Andres Pineda</cite></small>
                     </blockquote>
                 </div>
