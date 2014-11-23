@@ -42,7 +42,7 @@
 <section class="section section-center section-cta">
     <div class="container">
         <h2 class="section-title"><span>Listo para comenzar?</span></h2>
-        <p>LinkingShops es plataforma diseñada para la fidelización de clientes y a atracción de nuevos compradores <br> através de alianzas entre establecimientos comerciales de todos los sectores.</p>        
+        <p>LinkingShops es una plataforma para la fidelización de clientes y a atracción de nuevos compradores <br> através de alianzas entre establecimientos comerciales de todos los sectores.</p>        
         <div class="main-action row text-center ">
             <div class="col-md-3 col-md-offset-4"><a href="{{ route('register_path') }}" class="smooth-scroll btn btn-lg btn-block btn-danger">Registrate de forma gratuita</a></div>
         </div>
@@ -120,7 +120,8 @@
             <article class="col-md-3 col-sm-6 portfolio-item branding photography web">
                 <div class="entry-thumbnail">
                     <a href="#" class="hover-effect" data-toggle="modal" data-target="#project-modal">
-                        <img src="{{ asset('assets/images/noma.jpg') }}" alt="" />
+                        <img src="{{ asset('assets/images/noma.jpg') }}" alt="" /> --}}
+                        
 <span class="overlay"><i class="fa fa-plus"></i></span>
 </a>
 </div>
