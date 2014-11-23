@@ -127,6 +127,9 @@ Route::group(array('prefix' => '{shop_link}'), function () {
         Route::post('covers/editar/{cover_id}', array('before' => 'auth|admin', 'as' => 'admin_update_cover_path', 'uses' => 'CoversController@update'));
         Route::delete('covers/eliminar/{cover_id}', array('before' => 'auth|admin', 'as' => 'admin_destroy_cover_path', 'uses' => 'CoversController@destroy'));
 
+
+        /*Alliances*/
+        Route::get('alianzas', array('before' => 'auth|admin', 'as' => 'alliances_path', 'uses' => 'AlliancesController@index'));
     });
 
 
