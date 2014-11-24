@@ -51,7 +51,7 @@
         {{ HTML::script('assets/js/jquery.singlePageNav.min.js') }}
         {{ HTML::script('assets/libs/bootstrap-growl/bootstrap-growl.min.js') }}
         {{ HTML::script('assets/js/main.js') }}
-3
+
         @section('js')
         @show
 

@@ -1,15 +1,10 @@
 $(function () {
 
 
-    $('form.form-submit').submit(function () {
-        /*    $("#coverDisplay").css({
-            "opacity": "1",
-            "width": "100%",
-            "height": "100%"
-        });*/
-
-        $(this).find(':submit').prop("disabled",true);
-
+    $("form").submit(function (e) {
+        $(this).find('[type=submit]').each(function (index) {
+            $(this).data("loading-text", "Enviando...").button("loading");
+        });
     });
 
     $("form").keypress(function(e) {
