@@ -130,6 +130,7 @@ Route::group(array('prefix' => '{shop_link}'), function () {
 
         /*Alliances*/
         Route::get('alianzas', array('before' => 'auth|admin', 'as' => 'alliances_path', 'uses' => 'AlliancesController@index'));
+        Route::post('alianzas/solicitar', array('before' => 'auth|admin', 'as' => 'request_alliance_path', 'uses' => 'AlliancesController@requestAlliance'));
     });
 
 

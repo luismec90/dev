@@ -35,4 +35,9 @@ class AlliancesController extends \BaseController
         return View::make('shops.pages.admin.alliances.index', compact('shop', 'shops', 'towns', 'activities','selectedTown','selectedActivity'));
     }
 
+    public function requestAlliance($shop_link)
+    {
+        dd(Input::all());
+    }
+
 }

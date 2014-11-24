@@ -102,7 +102,7 @@
                                         <td> {{ $shop->name }} </td>
                                         <td> {{ $shop->about }} </td>
                                         <td>
-                                            <button class="btn btn-danger btn-request-alliance">Solicitar alianza </button>
+                                            <button class="btn btn-danger btn-request-alliance" data-shop-name="{{ $shop->name }}">Solicitar alianza </button>
                                             <br>
                                             <br>
                                             <a href="{{ route('localization_path',$shop->link) }}" class="btn btn-default" target="_blank">Ver localización </a>
@@ -117,22 +117,69 @@
         </div>
     </div>
 </div>
-<!-- Modal -->
-<div class="modal fade" id="modal-request-alliance" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title">Solicitar Alianza</h4>
-      </div>
-      <div class="modal-body">
 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Enviar</button>
-      </div>
+<!-- Solicitar alianza Modal -->
+<div class="modal fade" id="modal-request-alliance" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        {{ Form::open(["id"=>"form-request-alliance","route"=>["request_alliance_path",$shop->link]]) }}
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
+                    <h4 class="modal-title" id="modal-request-alliance-label">Solicitar alianza</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <h3 id="shop-name" class="text-center"></h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <!-- Porcentaje por compra Form Input -->
+                            <div class="form-group">
+                                {{ Form::label('Porcentaje','Porcentaje por compra:') }}
+                                {{ Form::text('asd',null,['class'=>'form-control','required'=>'required']) }}
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <!-- asd Form Input -->
+                            <div class="form-group">
+                                {{ Form::label('','Tope:') }}
+                                {{ Form::text('',null,['class'=>'form-control','required'=>'required']) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <!-- Porcentaje por compra Form Input -->
+                            <div class="form-group">
+                                {{ Form::label('Porcentaje','Porcentaje por compra esperado:') }}
+                                {{ Form::text('asd',null,['class'=>'form-control','required'=>'required']) }}
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <!-- asd Form Input -->
+                            <div class="form-group">
+                                {{ Form::label('','Tope esperado:') }}
+                                {{ Form::text('',null,['class'=>'form-control','required'=>'required']) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                {{ Form::label('','Notas adicionales:') }}
+                                <textarea class="form-control" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    {{ Form::submit('Enviar',['class'=>'btn btn-primary']) }}
+                </div>
+            </div>
+        {{ Form::close() }}
     </div>
-  </div>
 </div>
 @stop
