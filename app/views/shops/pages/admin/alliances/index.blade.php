@@ -3,11 +3,13 @@
 @section('css')
 {{ HTML::style('assets/libs/select2/select2.css') }}
 {{ HTML::style('assets/libs/select2/select2-bootstrap.css') }}
+{{ HTML::style('assets/themes/one/css/alliances.css') }}
 @stop
 
 @section('js')
 {{ HTML::script('assets/libs/select2/select2.js') }}
 {{ HTML::script('assets/themes/one/js/alliances.js') }}
+
 @stop
 
 @section('content')
@@ -84,6 +86,7 @@
                         <br>
                     </div>
                 </div>
+                @include('layouts.partials.errors')
                 <div  class="row">
                     <div class="col-xs-12">
                         @if(!empty($shops))
@@ -102,7 +105,7 @@
                                         <td> {{ $shop->name }} </td>
                                         <td> {{ $shop->about }} </td>
                                         <td>
-                                            <button class="btn btn-danger btn-request-alliance" data-shop-name="{{ $shop->name }}">Solicitar alianza </button>
+                                            <button class="btn btn-danger btn-request-alliance" data-shop-name="{{ $shop->name }}" data-shop-id="{{ $shop->id }}">Solicitar alianza </button>
                                             <br>
                                             <br>
                                             <a href="{{ route('localization_path',$shop->link) }}" class="btn btn-default" target="_blank">Ver localización </a>
@@ -122,6 +125,7 @@
 <div class="modal fade" id="modal-request-alliance" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         {{ Form::open(["id"=>"form-request-alliance","route"=>["request_alliance_path",$shop->link]]) }}
+            {{ Form::hidden('to',null,['id'=>'to','required'=>'required']) }}
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
@@ -134,42 +138,86 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-6">
-                            <!-- Porcentaje por compra Form Input -->
-                            <div class="form-group">
-                                {{ Form::label('Porcentaje','Porcentaje por compra:') }}
-                                {{ Form::text('asd',null,['class'=>'form-control','required'=>'required']) }}
-                            </div>
-                        </div>
-                        <div class="col-xs-6">
-                            <!-- asd Form Input -->
-                            <div class="form-group">
-                                {{ Form::label('','Tope:') }}
-                                {{ Form::text('',null,['class'=>'form-control','required'=>'required']) }}
+                        <div class="col-xs-12">
+                            <div class="well well-sm">
+                                <fieldset>
+                                    <legend>Propuesta a enviar:</legend>
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <div class="form-group">
+                                                {{ Form::label('from_retribution_per_user_granted','Retribución por usuario:') }}
+                                                <div class="input-group">
+                                                    {{ Form::number('from_retribution_per_user_granted',null,['class'=>'form-control','placeholder'=>'Ej: 5','required'=>'required','step'=>'0.001']) }}
+                                                    <div class="input-group-addon">%</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <div class="form-group">
+                                                {{ Form::label('from_limit_per_user_granted','Límite por usuario:') }}
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">$</div>
+                                                    {{ Form::number('from_limit_per_user_granted',null,['class'=>'form-control','placeholder'=>'Ej: 20000','required'=>'required']) }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <div class="form-group">
+                                                {{ Form::label('from_limit_total_granted','Límite total:') }}
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">$</div>
+                                                    {{ Form::number('from_limit_total_granted',null,['class'=>'form-control','placeholder'=>'Ej: 800000','required'=>'required']) }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-6">
-                            <!-- Porcentaje por compra Form Input -->
-                            <div class="form-group">
-                                {{ Form::label('Porcentaje','Porcentaje por compra esperado:') }}
-                                {{ Form::text('asd',null,['class'=>'form-control','required'=>'required']) }}
-                            </div>
-                        </div>
-                        <div class="col-xs-6">
-                            <!-- asd Form Input -->
-                            <div class="form-group">
-                                {{ Form::label('','Tope esperado:') }}
-                                {{ Form::text('',null,['class'=>'form-control','required'=>'required']) }}
+                        <div class="col-xs-12">
+                            <div class="well well-sm">
+                                <fieldset>
+                                    <legend>Propuesta esperada a recibir:</legend>
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <div class="form-group">
+                                                {{ Form::label('to_retribution_per_user_granted','Retribución por usuario:') }}
+                                                <div class="input-group">
+                                                    {{ Form::number('to_retribution_per_user_granted',null,['class'=>'form-control','placeholder'=>'Ej: 5','required'=>'required','step'=>'0.001']) }}
+                                                    <div class="input-group-addon">%</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <div class="form-group">
+                                                {{ Form::label('to_limit_per_user_granted','Límite por usuario:') }}
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">$</div>
+                                                    {{ Form::number('to_limit_per_user_granted',null,['class'=>'form-control','placeholder'=>'Ej: 20000','required'=>'required']) }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <div class="form-group">
+                                                {{ Form::label('to_limit_total_granted','Límite total:') }}
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">$</div>
+                                                    {{ Form::number('to_limit_total_granted',null,['class'=>'form-control','placeholder'=>'Ej: 800000','required'=>'required']) }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="form-group">
-                                {{ Form::label('','Notas adicionales:') }}
-                                <textarea class="form-control" rows="3"></textarea>
+                                {{ Form::label('note','Notas adicionales:') }}
+                                <textarea name="note" class="form-control" rows="3" placeholder="Me gustaría que fuéramos aliados porque..."></textarea>
                             </div>
                         </div>
                     </div>
