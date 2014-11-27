@@ -234,3 +234,7 @@ a.info-user{
         font-size:14px;
     }
 }
+.container-tabs{
+    border: 1px solid #ddd;
+    border-top-color: transparent;
+}
