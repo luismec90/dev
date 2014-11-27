@@ -22,6 +22,7 @@
                     <li class="@if(Route::currentRouteName()=='contact_path') {{ "active"}} @endif">
                         <a href="{{ route('contact_path') }}">Contacto</a>
                     </li>
+
                 </ul>
                 @include('layouts.partials.login')
             </div>

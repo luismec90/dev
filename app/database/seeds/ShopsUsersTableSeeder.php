@@ -10,7 +10,7 @@ class ShopsUsersTableSeeder extends Seeder {
 
 
         DB::table('shop_user')->insert(['user_id' => 1, 'shop_id' => 1, 'role' => 1]);
-        DB::table('shop_user')->insert(['user_id' => 1, 'shop_id' => 2, 'role' => 2]);
+        DB::table('shop_user')->insert(['user_id' => 2, 'shop_id' => 2, 'role' => 1]);
     }
 
 }

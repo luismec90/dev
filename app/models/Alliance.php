@@ -22,4 +22,10 @@ class Alliance extends \Eloquent {
         'to_limit_total_granted'            => 'sometimes|numeric'
     ];
 
+    public function allianceRecords()
+    {
+        return $this->hasMany('AllianceRecord');
+    }
+
+
 }

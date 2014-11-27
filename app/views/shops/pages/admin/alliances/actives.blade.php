@@ -26,37 +26,6 @@
         @include('shops.pages.admin.alliances.partials.tabs')
         <div  class="row">
             <div class="col-xs-12">
-                <div class="row">
-                    {{ Form::open(['method'=>'GET']) }}
-                        <div class="col-xs-5">
-                            <label>Seleccione una ciudad:</label>
-                            <select id="town" name="town" class="form-control">
-                                <option></option>
-                                @foreach($towns as $town)
-                                    <option value="{{ $town->id }}" {{ $selectedTown==$town->id ? 'selected':''; }}>{{ $town->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="col-xs-5">
-                            <label>Seleccionar una categoría:</label>
-                            <select id="activity" name="activity" class="form-control">
-                                <option></option>
-                                @foreach($activities as $activity)
-                                    <option value="{{ $activity->id }}" {{ $selectedActivity==$activity->id ? 'selected':''; }}>{{ $activity->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="col-xs-2">
-                            <br>
-                            <button type="submit" class="btn btn-primary">Buscar</button>
-                        </div>
-                    {{ Form::close() }}
-                </div>
-                <div class="row">
-                    <div class="col-xs-12">
-                        <br>
-                    </div>
-                </div>
                 @include('layouts.partials.errors')
                 <div  class="row">
                     <div class="col-xs-12">

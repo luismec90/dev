@@ -1,6 +1,7 @@
-#header{
+#header {
     border-top: 2px solid #e74c3c;
 }
+
 .carousel-caption {
     background: rgba(0, 0, 0, 0.35);
 }
@@ -10,87 +11,103 @@ body {
     color: #828282;
     background-color: #eee;
 }
+
 #contenedor {
     margin-top: 20px;
     margin-bottom: 20px;
     background-color: #fff;
     border: 1px solid transparent;
-    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
-    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
     border-top: none;
 }
-#map{
+
+#map {
     height: 400px;
 }
-html, body, #map-canvas  {
+
+html, body, #map-canvas {
     margin: 0;
     padding: 0;
     height: 100%;
 }
+
 #map-canvas {
-    width:500px;
-    height:480px;
+    width: 500px;
+    height: 480px;
 }
-.product .thumbnail{
+
+.product .thumbnail {
     height: 315px;
 }
-.product .thumbnail .precio-ver-mas{
-    margin:0 0 5px 0;
+
+.product .thumbnail .precio-ver-mas {
+    margin: 0 0 5px 0;
 }
+
 .product .thumbnail .ratings .glyphicon {
     margin-right: 5px;
 }
+
 .product .thumbnail .ver-mas {
     font-size: 16px;
 }
+
 .thumbnail .caption {
-    padding:5px 2px;
+    padding: 5px 2px;
 }
-.product-description{
+
+.product-description {
     height: 70px;
     overflow: hidden;
     margin-bottom: 4px;
 }
-.product .name{
-    text-overflow:ellipsis;
-    white-space:nowrap;
-    overflow:hidden;
-    margin:3px 0 7px 0;
+
+.product .name {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    margin: 3px 0 7px 0;
     text-align: center;
     font-size: 16px;
 }
-.product .description{
+
+.product .description {
     margin-bottom: 5px;
 }
-a{
-    color:#1abc9c;
+
+a {
+    color: #1abc9c;
 }
-a:hover{
-    color:#1dd2af;
+
+a:hover {
+    color: #1dd2af;
 }
+
 .section-title {
     margin: 20px 0 0;
     text-align: center;
     position: relative;
 }
-.section-title span
-{
-    background:#fff;
-    padding:0 10px;
-    z-index:1;
-    position:relative
+
+.section-title span {
+    background: #fff;
+    padding: 0 10px;
+    z-index: 1;
+    position: relative
 }
-.section-title:after
-{
-    content:"";
-    display:block;
-    height:1px;
-    background:#f5f5f5;
-    position:absolute;
-    top:20px;
-    width:100%
+
+.section-title:after {
+    content: "";
+    display: block;
+    height: 1px;
+    background: #f5f5f5;
+    position: absolute;
+    top: 20px;
+    width: 100%
 }
-.shop-title{
+
+.shop-title {
     color: #e74c3c;
 }
 
@@ -98,50 +115,60 @@ a:hover{
     margin: 20px 0;
     font-size: 24px;
     color: #d17581;
-    cursor:pointer;
+    cursor: pointer;
 }
 
-.alert  [data-growl="message"]{
+.alert [data-growl="message"] {
     margin-right: 20px;
 }
+
 .alert-success {
     background-color: #00bc8c;
     border-color: #00bc8c;
     color: #ffffff;
 }
+
 .alert-danger {
     background-color: #e74c3c;
     border-color: #e74c3c;
     color: #ffffff;
 }
-.glyphicon-margin { margin-right:10px; }
 
-.panel-body { padding:0px; }
-.panel-body table tr td { padding-left: 15px }
-.panel-body .table {margin-bottom: 0px; }
+.glyphicon-margin {
+    margin-right: 10px;
+}
+
+
+
 
 .nav-list {
     padding-left: 15px;
     padding-right: 15px;
     margin-bottom: 0;
 }
-a.tree-toggler{
-    cursor:pointer;
+
+a.tree-toggler {
+    cursor: pointer;
 }
+
 li.active a, .nav-pills li.active a:hover, .nav-pills li.active a:focus {
     color: #fff;
     background-color: #1abc9c;
 }
-#saldo{
+
+#saldo {
     padding: 10px 15px;
     margin: 0 0 0 5px;
 }
-#retribution-zone .ocultar{
-    display:none;
+
+#retribution-zone .ocultar {
+    display: none;
 }
-h3.no-margin{
-    margin:0;
+
+h3.no-margin {
+    margin: 0;
 }
+
 .btn-file input[type=file] {
     position: absolute;
     top: 0;
@@ -173,13 +200,14 @@ h3.no-margin{
     top: 0;
     left: 0;
     background: #444;
-    background: rgba(68,68,68,0.95);
+    background: rgba(68, 68, 68, 0.95);
     overflow: hidden;
     filter: alpha(opacity=0);
     opacity: 0;
     z-index: 1500;
 }
-#imgLoading{
+
+#imgLoading {
     width: 64px;
     height: 64px;
     position: absolute;
@@ -188,31 +216,37 @@ h3.no-margin{
     margin-top: -32px;
     margin-left: -32px;
 }
-#mis-sitios{
+
+#mis-sitios {
     margin-right: 20px;
 }
+
 #shop-preview {
     width: 300px;
     height: 300px;
     background-size: 300px 300px;
     background-image: url(http://placehold.it/300x300);
 }
-a.info-user{
-    cursor:pointer;
+
+a.info-user {
+    cursor: pointer;
 }
+
 .chart {
     width: 100%;
     height: 600px;
 }
 
-#table-report .sale-canceled td{
+#table-report .sale-canceled td {
     background: #e74c3c;
-    color:#fff;
+    color: #fff;
 }
-#table-report .sale-canceled a{
-    color:#fff;
+
+#table-report .sale-canceled a {
+    color: #fff;
 }
-#form-bill input{
+
+#form-bill input {
     z-index: 0;
 }
 
@@ -220,21 +254,198 @@ a.info-user{
 
 @media screen and (max-width: 991px) {
 
-
     .sidebar-offcanvas.ocultar-menu {
         display: none;
     }
 }
 
-#btn-ver-menu{
+#btn-ver-menu {
     margin-left: 15px;
 }
+
 @media screen and (max-width: 767px) {
     #carousel-1 h3 {
-        font-size:14px;
+        font-size: 14px;
     }
 }
-.container-tabs{
+
+.container-tabs {
     border: 1px solid #ddd;
     border-top-color: transparent;
+}
+
+.icon-animated-bell {
+    display: inline-block;
+    -moz-animation: ringing 2s 5 ease 1s;
+    -webkit-animation: ringing 2s 5 ease 1s;
+    -o-animation: ringing 2s 5 ease 1s;
+    -ms-animation: ringing 2s 5 ease 1s;
+    animation: ringing 2s 5 ease 1s;
+    -moz-transform-origin: 50% 0;
+    -webkit-transform-origin: 50% 0;
+    -o-transform-origin: 50% 0;
+    -ms-transform-origin: 50% 0;
+    transform-origin: 50% 0;
+    font-size: 1.5em !important;
+    color: #e74c3c;
+}
+
+@-moz-keyframes ringing {
+    0% {
+        -moz-transform: rotate(-15deg)
+    }
+    2% {
+        -moz-transform: rotate(15deg)
+    }
+    4% {
+        -moz-transform: rotate(-18deg)
+    }
+    6% {
+        -moz-transform: rotate(18deg)
+    }
+    8% {
+        -moz-transform: rotate(-22deg)
+    }
+    10% {
+        -moz-transform: rotate(22deg)
+    }
+    12% {
+        -moz-transform: rotate(-18deg)
+    }
+    14% {
+        -moz-transform: rotate(18deg)
+    }
+    16% {
+        -moz-transform: rotate(-12deg)
+    }
+    18% {
+        -moz-transform: rotate(12deg)
+    }
+    20% {
+        -moz-transform: rotate(0deg)
+    }
+
+}
+
+@-webkit-keyframes ringing {
+    0% {
+        -webkit-transform: rotate(-15deg)
+    }
+    2% {
+        -webkit-transform: rotate(15deg)
+    }
+    4% {
+        -webkit-transform: rotate(-18deg)
+    }
+    6% {
+        -webkit-transform: rotate(18deg)
+    }
+    8% {
+        -webkit-transform: rotate(-22deg)
+    }
+    10% {
+        -webkit-transform: rotate(22deg)
+    }
+    12% {
+        -webkit-transform: rotate(-18deg)
+    }
+    14% {
+        -webkit-transform: rotate(18deg)
+    }
+    16% {
+        -webkit-transform: rotate(-12deg)
+    }
+    18% {
+        -webkit-transform: rotate(12deg)
+    }
+    20% {
+        -webkit-transform: rotate(0deg)
+    }
+
+}
+
+@-ms-keyframes ringing {
+    0% {
+        -ms-transform: rotate(-15deg)
+    }
+    2% {
+        -ms-transform: rotate(15deg)
+    }
+    4% {
+        -ms-transform: rotate(-18deg)
+    }
+    6% {
+        -ms-transform: rotate(18deg)
+    }
+    8% {
+        -ms-transform: rotate(-22deg)
+    }
+    10% {
+        -ms-transform: rotate(22deg)
+    }
+    12% {
+        -ms-transform: rotate(-18deg)
+    }
+    14% {
+        -ms-transform: rotate(18deg)
+    }
+    16% {
+        -ms-transform: rotate(-12deg)
+    }
+    18% {
+        -ms-transform: rotate(12deg)
+    }
+    20% {
+        -ms-transform: rotate(0deg)
+    }
+
+}
+
+@keyframes ringing {
+    0% {
+        transform: rotate(-15deg)
+    }
+    2% {
+        transform: rotate(15deg)
+    }
+    4% {
+        transform: rotate(-18deg)
+    }
+    6% {
+        transform: rotate(18deg)
+    }
+    8% {
+        transform: rotate(-22deg)
+    }
+    10% {
+        transform: rotate(22deg)
+    }
+    12% {
+        transform: rotate(-18deg)
+    }
+    14% {
+        transform: rotate(18deg)
+    }
+    16% {
+        transform: rotate(-12deg)
+    }
+    18% {
+        transform: rotate(12deg)
+    }
+    20% {
+        transform: rotate(0deg)
+    }
+
+}
+.badge {
+    position: relative;
+    top: -4px;
+    left: 2px;
+    padding-right: 5px;
+    padding-left: 5px;
+    background-color: #d15b47!important;
+    text-shadow: none;
+    font-size: 12px;
+    padding-top: 2px;
+    padding-bottom: 4px;
 }
