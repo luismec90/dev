@@ -29,7 +29,6 @@ class PagesController extends BaseController {
         $towns = Town::orderBy('name')->get();
         $activities = Activity::orderBy('name')->get();
 
-
         return View::make('pages.buyers', compact('towns', 'activities'));
     }
 

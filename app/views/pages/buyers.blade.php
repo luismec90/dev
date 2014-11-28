@@ -1,13 +1,13 @@
 @extends('layouts.default')
 
 @section('css')
-{{ HTML::style('assets/libs/select2/select2.css') }}
-{{ HTML::style('assets/libs/select2/select2-bootstrap.css') }}
+    {{ HTML::style('assets/libs/select2/select2.css') }}
+    {{ HTML::style('assets/libs/select2/select2-bootstrap.css') }}
 @stop
 
 @section('js')
-{{ HTML::script('assets/libs/select2/select2.js') }}
-{{ HTML::script('assets/js/search.js') }}
+    {{ HTML::script('assets/libs/select2/select2.js') }}
+    {{ HTML::script('assets/js/search.js') }}
 @stop
 
 
@@ -28,18 +28,27 @@
     </div>
 </div>
 
-<!--<div class="main-text hidden-xs">
+<div class="main-text hidden-xs">
     <div class="col-md-12 text-center">
-        <h1> El primer sistema masivo de fidelización de clientes a través de puntos</h1>
+        <h1> Encuentra establecimientos afiliados cercanos</h1>
+        <div class="container">
+            @include('layouts.partials.search')
+        </div>
     </div>
-</div>-->
+</div>
+
+
 
 <section class="section section-center section-cta">
     <div class="container">
         <h2 class="section-title"><span>Listo para comenzar?</span></h2>
-        <p>LinkingShops es una plataforma para la fidelización de clientes y a atracción de nuevos compradores <br> através de alianzas entre establecimientos comerciales de todos los sectores.</p>
-        <div class="main-action row text-center ">
-            <div class="col-xs-12 text-center"><a href="{{ route('register_path') }}" class="smooth-scroll btn btn-lg btn-danger">Registrate de forma gratuita</a></div>
+
+        <p>LinkingShops es una red de tiendas, aliadas para ofrecer descuentos exclusivos a sus clientes.
+
+        </p>
+        <div class="main-action row text-center">
+            <div class="col-md-3 col-md-offset-3"><a href="{{ route('register_path') }}" class="smooth-scroll btn btn-lg btn-block btn-danger">Registrate de forma gratuita</a></div>
+         <div class="col-md-3 col-sm-4"><a href="{{ route('listshops_path') }}" class="smooth-scroll btn btn-lg btn-block btn-default">Establecimientos afiliados</a></div>
         </div>
     </div>
 </section>
@@ -49,48 +58,39 @@
         <h2 class="section-title"><span>Como funciona?</span></h2>
         <div class="row">
             <div class="col-md-4 col-sm-6">
-                <div class="icon-wrap"><img src="{{ asset('assets/images/alliances.png') }}" alt=""></div>
-                <!--                <h4>Tiendas</h4>
-                                <p>Conoce nuestra red de tiendas <br>con sus alianzas, promociones y localización. </p>-->
-                <h4>Alianzas</h4>
-                <p>Desarrolla alianzas para tener establecimientos aliados con los que puedas intercambiar clientes a través de la creación de descuentos conjuntos.<br></p>
+                <div class="icon-wrap"><img src="{{ asset('assets/images/payment4.png') }}" alt=""></div>
+                <h4>Puntos</h4>
+                <p>Por cada compra que realices<br> en nuestros establecimientos recibirás<br> saldo a tu favor para compras futuras.</p> 
             </div>
-
             <div class="col-md-4 col-sm-6">
-                <div class="icon-wrap"><img src="{{ asset('assets/images/positionB.png') }}" alt=""></div>
-                <!--             <h4>Comprando</h4>
-                                <p>A través de nuestra página encontrarás <br> productos y servicios de todo tipo, incluyendo<br>  comidas y vestuario a tu gusto.</p> -->
-                <h4>Promocionate en la web</h4>
-                <p>Aumenta tu visibilidad en el mercado. <br> Crea gratuitamente tu sitio web en nuestra página y promociona tus productos.</p>
+                <div class="icon-wrap"><img src="{{ asset('assets/images/icon-bag-flat.png') }}" alt=""></div>
+                <h4>Comprando</h4>
+                <p>A través de nuestra página encontrarás <br> productos y servicios de todo tipo, incluyendo<br>  comidas y vestuario a tu gusto.</p> 
             </div>
             <!-- los mismos establecimientos-->
             <div class="col-md-4 col-sm-6">
-                <div class="icon-wrap"><img src="{{ asset('assets/images/payment4.png') }}" alt=""></div>
-                <h4>Fideliza tus clientes</h4>
-<!--                <p>Por cada compra que realices<br> en nuestros establecimientos recibirás<br> saldo a tu favor para compras futuras.</p> -->
-                <p>Por cada venta realizada <br>podrás otorgar saldo, que tus compradores podrán utilizar en futuras visitas.</p>
+                <div class="icon-wrap"><img src="{{ asset('assets/images/offer.png') }}" alt=""></div>
+                <h4>Descuentos</h4>
+                <p>Con LinkingShops obtendrás <br>descuentos exclusivos al comprar <br> en las tiendas de nuestra red.</p>
             </div>
-
+            
         </div>
-
+        
         <div class="row">
             <div class="col-md-4 col-sm-6">
-                <div class="icon-wrap"><img src="{{ asset('assets/images/sales3C.png') }}" alt=""></div>
-                <!--                <h4>Descuentos</h4>
-                                <p>Con LinkingShops obtendrás <br>descuentos exclusivos al comprar <br> en las tiendas de nuestra red.</p>-->
-                <h4>Nuevos compradores</h4>
-                <p>Encuentra nuevos compradores <br>otorgando saldo a tus establecimientos afiliados <br> para que sus clientes sean también los tuyos </p>
-            </div>
-
-            <div class="col-md-4 col-sm-6">
-                <div class="icon-wrap"><img src="{{ asset('assets/images/data2.png') }}" alt=""></div>
-                <h4>Sigue tus clientes</h4>
-                <p>Base de datos de tus compradores. Podrás conocer más tus compradores, incluyendo su frecuencia de visita y preferencias.</p>
+                <div class="icon-wrap"><img src="{{ asset('assets/images/icon-ticket-flat.png') }}" alt=""></div>
+                <h4>Tiendas</h4>
+                <p>Conoce nuestra red de tiendas <br>con sus alianzas, promociones y localización. </p>
             </div>
             <div class="col-md-4 col-sm-6">
-                <div class="icon-wrap"><img src="{{ asset('assets/images/gift.png') }}" alt=""></div>
-                <h4>Promocionate</h4>
-                <p>Con la ayuda de nuestra plataforma podrás desarrollar estrategias promocionales via e-mail y premiar tus clientes en sus fechas especiales.</p>
+                <div class="icon-wrap"><img src="{{ asset('assets/images/icon-delivery-flat.png') }}" alt=""></div>
+                <h4>A domicilio</h4>
+                <p>Podrás ordernar a domicilio <br>en las tiendas afiliadas que presten el servicio. </p>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="icon-wrap"><img src="{{ asset('assets/images/icon-comments-flat.png') }}" alt=""></div>
+                <h4>Valoraciones</h4>
+                <p>Compra los mejores productos,<br> conociendo la opinión de los demás usuarios<br>acerca de sus compras y valora también<br>tus productos preferidos.</p>
             </div>
         </div>
     </div>
@@ -112,13 +112,13 @@
                 </div>
                 <div class="item">
                     <blockquote>
-                        <p>Es genial que me devuelvan dinero para compras futuras </p>
+                         <p>Es genial que me devuelvan dinero para compras futuras </p>
                         <small> <cite title="Source Title">Juan Diego Girldo</cite></small>
                     </blockquote>
                 </div>
                 <div class="item">
                     <blockquote>
-                        <p>Suscribirme a las tiendas me ha permitido conocer las mejores promociones </p>
+                         <p>Suscribirme a las tiendas me ha permitido conocer las mejores promociones </p>
                         <small> <cite title="Source Title">Andres Pineda</cite></small>
                     </blockquote>
                 </div>
@@ -132,5 +132,7 @@
         </div>
     </div>
 </section>
+
+
 
 @stop
