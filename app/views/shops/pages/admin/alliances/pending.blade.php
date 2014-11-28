@@ -63,39 +63,42 @@
                                                                     <td>Límite total:</td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td>Restaurante Noma</td>
+                                                                    <td>{{ $allianceRecord->alliance->shopFrom->name }}</td>
                                                                     <td>
-                                                                        {{ (float) $allianceRecord->from_retribution_per_user_granted }} %
+                                                                        <b>{{ (float) $allianceRecord->from_retribution_per_user_granted }} %</b>
                                                                     </td>
                                                                     <td>
-                                                                        $ {{ (float) $allianceRecord->from_limit_per_user_granted }}
+                                                                        <b>$ {{ (float) $allianceRecord->from_limit_per_user_granted }}</b>
                                                                     </td>
                                                                     <td>
-                                                                        $ {{ (float) $allianceRecord->from_limit_total_granted }}
+                                                                        <b>$ {{ (float) $allianceRecord->from_limit_total_granted }}</b>
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td>Pachos pizza</td>
+                                                                    <td>{{ $allianceRecord->alliance->shopTo->name }}</td>
                                                                     <td>
-                                                                        {{ (float) $allianceRecord->to_retribution_per_user_granted }} %
+                                                                        <b>{{ (float) $allianceRecord->to_retribution_per_user_granted }} %</b>
                                                                     </td>
                                                                     <td>
-                                                                        $ {{ (float) $allianceRecord->to_limit_per_user_granted }}
+                                                                        <b>$ {{ (float) $allianceRecord->to_limit_per_user_granted }}</b>
                                                                     </td>
                                                                     <td>
-                                                                        $ {{ (float) $allianceRecord->to_limit_total_granted }}
+                                                                        <b>$ {{ (float) $allianceRecord->to_limit_total_granted }}</b>
                                                                     </td>
                                                                 </tr>
                                                             </table>
                                                         </div>
                                                         <div class="col-xs-12">
-                                                            Nota: {{ $allianceRecord->note }}
+                                                        <div class="well well-sm">
+                                                            <b>Nota:</b> {{ $allianceRecord->note }}
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             </li>
                                             @endforeach
+
                                         </ul>
                                     </div>
                                     <div class="panel-footer">

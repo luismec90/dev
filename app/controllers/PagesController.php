@@ -1,7 +1,6 @@
 <?php
 
-class PagesController extends BaseController
-{
+class PagesController extends BaseController {
 
 
     public function test()
@@ -16,13 +15,22 @@ class PagesController extends BaseController
 
     }
 
-    public function home()
+    public function shops()
     {
         $towns = Town::orderBy('name')->get();
         $activities = Activity::orderBy('name')->get();
 
 
-        return View::make('pages.home', compact('towns', 'activities'));
+        return View::make('pages.shops', compact('towns', 'activities'));
+    }
+
+    public function buyers()
+    {
+        $towns = Town::orderBy('name')->get();
+        $activities = Activity::orderBy('name')->get();
+
+
+        return View::make('pages.buyers', compact('towns', 'activities'));
     }
 
     public function contact()
@@ -40,22 +48,24 @@ class PagesController extends BaseController
         $rules = [
             'message' => 'required',
             'subject' => 'required',
-            'name' => 'required',
-            'email' => 'required'
+            'name'    => 'required',
+            'email'   => 'required'
         ];
         $validationMessages = [
             'message.required' => 'El campo mensaje es obligatorio',
             'subject.required' => 'El campo asunto es obligatorio',
-            'name.required' => 'El campo nombre es obligatorio',
-            'email.required' => 'El campo email es obligatorio',
+            'name.required'    => 'El campo nombre es obligatorio',
+            'email.required'   => 'El campo email es obligatorio',
         ];
 
         $validation = Validator::make(Input::all(), $rules, $validationMessages);
-        if ($validation->fails()) {
+        if ($validation->fails())
+        {
             return Redirect::back()->withInput()->withErrors($validation);
         }
 
-        Mail::send('emails.contact', [], function ($message) {
+        Mail::send('emails.contact', [], function ($message)
+        {
             $message->to('luismec90@gmail.com', Input::get('name'))
                 ->subject('Contacto');
         });
@@ -69,21 +79,23 @@ class PagesController extends BaseController
     {
         $rules = [
             'subject' => 'required',
-            'name' => 'required',
-            'email' => 'required'
+            'name'    => 'required',
+            'email'   => 'required'
         ];
         $validationMessages = [
             'subject.required' => 'El campo asunto es obligatorio',
-            'name.required' => 'El campo nombre es obligatorio',
-            'email.required' => 'El campo email es obligatorio',
+            'name.required'    => 'El campo nombre es obligatorio',
+            'email.required'   => 'El campo email es obligatorio',
         ];
 
         $validation = Validator::make(Input::all(), $rules, $validationMessages);
-        if ($validation->fails()) {
+        if ($validation->fails())
+        {
             return Redirect::back()->withInput()->withErrors($validation);
         }
 
-        Mail::send('emails.contact_pioner', [], function ($message) {
+        Mail::send('emails.contact_pioner', [], function ($message)
+        {
             $message->to('luismec90@gmail.com', Input::get('name'))
                 ->subject('Contacto');
         });
@@ -111,7 +123,7 @@ class PagesController extends BaseController
             ->groupBy('shops.id')
             ->get();
 
-        return View::make('pages.my_sites', compact('shops','ownShops'));
+        return View::make('pages.my_sites', compact('shops', 'ownShops'));
     }
 
 

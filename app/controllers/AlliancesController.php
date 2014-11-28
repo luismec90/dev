@@ -4,57 +4,41 @@ class AlliancesController extends \BaseController {
 
     public function index($shop_link)
     {
-
-
         $shop = Shop::where('link', $shop_link)->firstOrFail();
         $towns = Town::orderBy('name')->get();
         $activities = Activity::orderBy('name')->get();
 
+        $selectedTown = Input::get('town');
+        $selectedActivity = Input::get('activity');
 
-        if (Input::has('town') || Input::has('activity'))
+        $alliancesWhereIAmA = DB::table('shops')
+            ->join('alliances', 'alliances.from', '=', 'shops.id')
+            ->where('shops.id', $shop->id)
+            ->lists('alliances.to');
+
+        $alliancesWhereIAmB = DB::table('shops')
+            ->join('alliances', 'alliances.to', '=', 'shops.id')
+            ->where('shops.id', $shop->id)
+            ->lists('alliances.to');
+
+        $currentAlliances = array_merge($alliancesWhereIAmA, $alliancesWhereIAmB, [$shop->id]);
+
+        $q = Shop::orderBy('name')->whereNotIn('id', $currentAlliances);
+
+        if ($selectedTown)
         {
-
-            $selectedTown = Input::get('town');
-            $selectedActivity = Input::get('activity');
-
-
-            $alliancesWhereIAmA = DB::table('shops')
-                ->join('alliances', 'alliances.from', '=', 'shops.id')
-                ->where('shops.id', $shop->id)
-                ->where('active', 1)
-                ->lists('alliances.to');
-
-            $alliancesWhereIAmB = DB::table('shops')
-                ->join('alliances', 'alliances.to', '=', 'shops.id')
-                ->where('shops.id', $shop->id)
-                ->where('active', 1)
-                ->lists('alliances.to');
-
-            $currentAlliances = array_merge($alliancesWhereIAmA, $alliancesWhereIAmB, [$shop->id]);
-
-            $q = Shop::orderBy('name')->whereNotIn('id', $currentAlliances);
-
-            if ($selectedTown)
-            {
-                $q = $q->where('town_id', $selectedTown);
-            }
-
-            if ($selectedActivity)
-            {
-                $q = $q->whereHas('activities', function ($q2) use ($selectedActivity)
-                {
-                    $q2->where('activities.id', $selectedActivity);
-                });
-            }
-            $shops = $q->get();
-
-        } else
-        {
-            $shops = Shop::whereNotIn('id', [$shop->id])->orderBy('name')->get();
-            $selectedTown = '';
-            $selectedActivity = '';
-
+            $q = $q->where('town_id', $selectedTown);
         }
+
+        if ($selectedActivity)
+        {
+            $q = $q->whereHas('activities', function ($q2) use ($selectedActivity)
+            {
+                $q2->where('activities.id', $selectedActivity);
+            });
+        }
+
+        $shops = $q->get();
 
         return View::make('shops.pages.admin.alliances.index', compact('shop', 'shops', 'towns', 'activities', 'selectedTown', 'selectedActivity'));
     }
@@ -104,7 +88,7 @@ class AlliancesController extends \BaseController {
     {
         $shop = Shop::where('link', $shop_link)->firstOrFail();
 
-        $pendingAlliance = Alliance::with('allianceRecords','allianceRecords.shop')
+        $pendingAlliance = Alliance::with('allianceRecords','shopFrom','shopTo', 'allianceRecords.shop')
             ->where('id', $alliance_id)
             ->where(function ($query) use ($shop)
             {

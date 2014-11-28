@@ -27,5 +27,14 @@ class Alliance extends \Eloquent {
         return $this->hasMany('AllianceRecord');
     }
 
+    public function shopFrom()
+    {
+        return $this->belongsTo('Shop', 'from');
+    }
+
+    public function shopTo()
+    {
+        return $this->belongsTo('Shop', 'to');
+    }
 
 }
