@@ -137,11 +137,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         return $this->hasMany('Review');
     }
 
-    public function notifications()
-    {
-        return $this->hasMany('Notification')->orderBy('created_at', 'desc')->where('viewed',0);
-    }
-
     public function saldo($shop_id)
     {
         $shop = Shop::findOrFail($shop_id);

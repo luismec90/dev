@@ -21,7 +21,7 @@
         @include('shops.pages.admin.alliances.partials.tabs')
         <div class="row">
             <div class="col-xs-12">
-                <a class="btn btn-primary" href="{{ route('active_alliances_path',$shop->link) }}">Ir atrás</a>
+                <a class="btn btn-primary" href="{{ route('suspended_alliances_path',$shop->link) }}">Ir atrás</a>
             </div>
         </div>
         <div class="row">
@@ -42,8 +42,8 @@
                                     </div>
                                     <div id="panel-history-alliances" class="panel-body">
                                         <ul class="chat">
-                                            <?php $t=$activeAlliance->allianceRecords->count(); $i=0; ?>
-                                            @foreach($activeAlliance->allianceRecords as $allianceRecord)
+                                            <?php $t=$suspendedAlliance->allianceRecords->count(); $i=0; ?>
+                                            @foreach($suspendedAlliance->allianceRecords as $allianceRecord)
                                             <?php $i++; ?>
                                             <li class="{{ $allianceRecord->shop_id==$shop->id ? "right" : "left" }} clearfix">
                                                 <span class="chat-img {{ $allianceRecord->shop_id==$shop->id ? "pull-right" : "pull-left" }}">
@@ -106,7 +106,7 @@
                                     <div class="panel-footer">
                                         <div class="row">
                                             <div class="col-xs-12 text-center">
-                                                <buuton class="btn btn-primary" data-toggle="modal" data-target="#modal-suspend-alliance">Suspender alianza</buuton>
+                                                <buuton class="btn btn-primary" data-toggle="modal" data-target="#modal-suspend-alliance">Reactivar alianza</buuton>
                                             </div>
                                         </div>
                                     </div>
@@ -120,24 +120,6 @@
     </div>
 </div>
 
-
-<div class="modal fade" id="modal-suspend-alliance">
-	<div class="modal-dialog">
-        {{ Form::open(["route"=>["suspend_alliance_path",$shop->link,$activeAlliance->id],'autocomplete'=>'off']) }}
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Suspender alianza</h4>
-                </div>
-                <div class="modal-body">
-                    ¿Realmente desea suspender esta alianza?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary">Enviar</button>
-                </div>
-            </div><!-- /.modal-content -->
-        {{ Form::close() }}
-	</div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+<!-- Solicitar alianza Modal -->
+@include('shops.pages.admin.alliances.partials.modal_request_alliance',['title'=>'Contra propuesta','route'=>["contra_request_alliance_path",$shop->link,$suspendedAlliance->id]])
 @stop

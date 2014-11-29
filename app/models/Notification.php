@@ -4,8 +4,8 @@ class Notification extends \Eloquent {
 
     protected $fillable = [];
 
-    public function user()
+    public function shos()
     {
-        return $this->belongsTo('User');
+        return $this->belongsTo('Shop');
     }
 }

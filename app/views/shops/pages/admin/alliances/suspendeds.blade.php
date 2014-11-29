@@ -29,7 +29,7 @@
                 @include('layouts.partials.errors')
                 <div  class="row">
                     <div class="col-xs-12">
-                        @if(!empty($activeAlliances))
+                        @if(!empty($suspendedAlliances))
                             <table class="table table-bordered" >
                                 <tr>
                                     <td>Imagen</td>
@@ -38,25 +38,25 @@
                                     <td>Opciones</td>
 
                                 </tr>
-                                @foreach($activeAlliances as $activeAlliance)
+                                @foreach($suspendedAlliances as $suspendAlliance)
                                     <tr>
                                         <td>
-                                            @if($activeAlliance->from==$shop->id)
-                                                <img class="img-thumbnail" width="80" src="{{ $activeAlliance->shopTo->pathPreviwImage() }}">
-                                            @elseif($activeAlliance->to==$shop->id)
-                                                <img class="img-thumbnail" width="80" src="{{ $activeAlliance->shopFrom->pathPreviwImage() }}">
+                                            @if($suspendAlliance->from==$shop->id)
+                                                <img class="img-thumbnail" width="80" src="{{ $suspendAlliance->shopTo->pathPreviwImage() }}">
+                                            @elseif($suspendAlliance->to==$shop->id)
+                                                <img class="img-thumbnail" width="80" src="{{ $suspendAlliance->shopFrom->pathPreviwImage() }}">
                                             @endif
                                         </td>
                                         <td class="col-xs-2">
-                                            @if($activeAlliance->from==$shop->id)
-                                                {{ $activeAlliance->shopTo->name }}
-                                            @elseif($activeAlliance->to==$shop->id)
-                                                {{ $activeAlliance->shopFrom->name }}
+                                            @if($suspendAlliance->from==$shop->id)
+                                                {{ $suspendAlliance->shopTo->name }}
+                                            @elseif($suspendAlliance->to==$shop->id)
+                                                {{ $suspendAlliance->shopFrom->name }}
                                             @endif
                                         </td>
-                                        <td>Activa</td>
+                                        <td>Pendiente</td>
                                         <td>
-                                            <a class="btn btn-danger" href="{{ route('active_alliance_path',[$shop->link,$activeAlliance->id]) }}">Ver detalles</a>
+                                            <a class="btn btn-danger" href="{{ route('suspended_alliance_path',[$shop->link,$suspendAlliance->id]) }}">Ver detalles</a>
                                         </td>
                                     </tr>
                                 @endforeach

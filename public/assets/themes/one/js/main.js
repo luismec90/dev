@@ -1,6 +1,5 @@
 $(function () {
 
-
     $("form").submit(function (e) {
         $(this).find('[type=submit]').each(function (index) {
             $(this).data("loading-text", "Enviando...").button("loading");

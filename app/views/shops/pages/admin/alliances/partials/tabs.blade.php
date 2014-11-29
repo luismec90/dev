@@ -17,8 +17,11 @@
                    <li class="{{ Route::currentRouteName()=="pending_alliances_path" || Route::currentRouteName()=="pending_alliance_path" ? "active" : "" }}">
                         <a href="{{ route("pending_alliances_path",$shop->link) }}">Alianzas en proceso</a>
                     </li>
-                    <li class="{{ Route::currentRouteName()=="active_alliances_path" ? "active" : "" }}">
+                    <li class="{{ Route::currentRouteName()=="active_alliances_path" || Route::currentRouteName()=="active_alliance_path" ? "active" : "" }}">
                         <a href="{{ route("active_alliances_path",$shop->link) }}">Alianzas activas</a>
+                    </li>
+                    <li class="{{ Route::currentRouteName()=="suspended_alliances_path"  || Route::currentRouteName()=="suspended_alliance_path" ? "active" : "" }}">
+                        <a href="{{ route("suspended_alliances_path",$shop->link) }}">Alianzas suspendidas</a>
                     </li>
                 </ul>
             </div>

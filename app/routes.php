@@ -123,13 +123,23 @@ Route::group(array('prefix' => '{shop_link}'), function ()
         Route::delete('covers/eliminar/{cover_id}', array('before' => 'auth|admin', 'as' => 'admin_destroy_cover_path', 'uses' => 'CoversController@destroy'));
 
 
-        /*Alliances*/
+        /* Alliances */
+
+
         Route::get('alianzas', array('before' => 'auth|admin', 'as' => 'alliances_path', 'uses' => 'AlliancesController@index'));
         Route::post('alianzas/solicitar', array('before' => 'auth|admin', 'as' => 'request_alliance_path', 'uses' => 'AlliancesController@requestAlliance'));
+
+
         Route::get('alianzas/enproceso', array('before' => 'auth|admin', 'as' => 'pending_alliances_path', 'uses' => 'AlliancesController@pendingAlliances'));
         Route::get('alianzas/enproceso/{alliance_id}', array('before' => 'auth|admin', 'as' => 'pending_alliance_path', 'uses' => 'AlliancesController@pendingAlliance'));
+        Route::post('alianzas/enproceso/{alliance_id}/contrapropuesta', array('before' => 'auth|admin', 'as' => 'contra_request_alliance_path', 'uses' => 'AlliancesController@contraRequestAlliance'));
+        Route::post('alianzas/enproceso/{alliance_id}/aceptar', array('before' => 'auth|admin', 'as' => 'accept_request_alliance_path', 'uses' => 'AlliancesController@acceptRequestAlliance'));
         Route::get('alianzas/activas', array('before' => 'auth|admin', 'as' => 'active_alliances_path', 'uses' => 'AlliancesController@activeAlliances'));
         Route::get('alianzas/activas/{alliance_id}', array('before' => 'auth|admin', 'as' => 'active_alliance_path', 'uses' => 'AlliancesController@activeAlliance'));
+        Route::post('alianzas/activas/{alliance_id}/suspender', array('before' => 'auth|admin', 'as' => 'suspend_alliance_path', 'uses' => 'AlliancesController@suspendAlliance'));
+        Route::get('alianzas/suspendidas', array('before' => 'auth|admin', 'as' => 'suspended_alliances_path', 'uses' => 'AlliancesController@suspendedAlliances'));
+        Route::get('alianzas/suspendida/{alliance_id}', array('before' => 'auth|admin', 'as' => 'suspended_alliance_path', 'uses' => 'AlliancesController@suspendedAlliance'));
+
     });
 
 

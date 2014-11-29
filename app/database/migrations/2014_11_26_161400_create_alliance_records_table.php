@@ -39,7 +39,8 @@ class CreateAllianceRecordsTable extends Migration {
             /* Limite de dinero total a entregar a los clientes del establecimiento B */
             $table->decimal('to_limit_total_granted', 5, 4)->nullable();
             $table->string('note');
-            $table->boolean('active')->default(0);
+
+            $table->string('status',1)->default(0);// 0=pendiente, 1=activa,2=suspendida
             $table->timestamps();
         });
     }
