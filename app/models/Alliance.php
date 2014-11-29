@@ -22,4 +22,19 @@ class Alliance extends \Eloquent {
         'to_limit_total_granted'            => 'sometimes|numeric'
     ];
 
+    public function allianceRecords()
+    {
+        return $this->hasMany('AllianceRecord');
+    }
+
+    public function shopFrom()
+    {
+        return $this->belongsTo('Shop', 'from');
+    }
+
+    public function shopTo()
+    {
+        return $this->belongsTo('Shop', 'to');
+    }
+
 }

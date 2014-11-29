@@ -1,23 +1,16 @@
 <?php
 
-/*
-  |--------------------------------------------------------------------------
-  | Application Routes
-  |--------------------------------------------------------------------------
-  |
-  | Here is where you can register all of the routes for an application.
-  | It's a breeze. Simply tell Laravel the URIs it should respond to
-  | and give it the Closure to execute when that URI is requested.
-  |
- */
-
-Route::get('/promo', array('as' => 'promo_path', 'uses' => 'PagesController@promo'));
-
 /* Home */
+Route::get('/establecimientos', array('as' => 'home_shops_path', 'uses' => 'PagesController@shops'));
+
+Route::get('/usuarios', array('as' => 'home_buyer_path', 'uses' => 'PagesController@buyers'));
+
+//Route::get('/promo', array('as' => 'promo_path', 'uses' => 'PagesController@promo')); ?
+
 Route::get('/test', array('as' => 'test', 'uses' => 'PagesController@test'));
 
-/* Home */
-Route::get('/', array('as' => 'home', 'uses' => 'PagesController@home'));
+Route::get('/', array('as' => 'home', 'uses' => 'PagesController@shops'));
+/* ---------- */
 
 /* Search */
 Route::get('/busqueda', array('as' => 'search_path', 'uses' => 'SearchesController@index'));
@@ -67,10 +60,12 @@ Route::get('login_google', array('before' => 'guest', 'as' => 'login_google_path
 
 Route::get('info_user', array('as' => 'info_user_path', 'uses' => 'UsersController@infoUser'));
 
-Route::group(array('prefix' => '{shop_link}'), function () {
+Route::group(array('prefix' => '{shop_link}'), function ()
+{
 
     /*Zona de administracion*/
-    Route::group(array('prefix' => 'admin'), function () {
+    Route::group(array('prefix' => 'admin'), function ()
+    {
         Route::get('/venta', array('before' => 'auth|admin', 'as' => 'bill_path', 'uses' => 'BillsController@create'));
         Route::post('/venta', array('before' => 'auth|admin', 'as' => 'bill_path', 'uses' => 'BillsController@store'));
         Route::get('/getuser', array('before' => 'auth|admin', 'as' => 'getuser_path', 'uses' => 'UsersController@getUser'));
@@ -131,6 +126,10 @@ Route::group(array('prefix' => '{shop_link}'), function () {
         /*Alliances*/
         Route::get('alianzas', array('before' => 'auth|admin', 'as' => 'alliances_path', 'uses' => 'AlliancesController@index'));
         Route::post('alianzas/solicitar', array('before' => 'auth|admin', 'as' => 'request_alliance_path', 'uses' => 'AlliancesController@requestAlliance'));
+        Route::get('alianzas/enproceso', array('before' => 'auth|admin', 'as' => 'pending_alliances_path', 'uses' => 'AlliancesController@pendingAlliances'));
+        Route::get('alianzas/enproceso/{alliance_id}', array('before' => 'auth|admin', 'as' => 'pending_alliance_path', 'uses' => 'AlliancesController@pendingAlliance'));
+        Route::get('alianzas/activas', array('before' => 'auth|admin', 'as' => 'active_alliances_path', 'uses' => 'AlliancesController@activeAlliances'));
+        Route::get('alianzas/activas/{alliance_id}', array('before' => 'auth|admin', 'as' => 'active_alliance_path', 'uses' => 'AlliancesController@activeAlliance'));
     });
 
 

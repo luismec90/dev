@@ -26,60 +26,47 @@
         @include('shops.pages.admin.alliances.partials.tabs')
         <div  class="row">
             <div class="col-xs-12">
-                <div class="row">
-                    {{ Form::open(['method'=>'GET']) }}
-                        <div class="col-xs-5">
-                            <label>Seleccione una ciudad:</label>
-                            <select id="town" name="town" class="form-control">
-                                <option></option>
-                                @foreach($towns as $town)
-                                    <option value="{{ $town->id }}" {{ $selectedTown==$town->id ? 'selected':''; }}>{{ $town->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="col-xs-5">
-                            <label>Seleccionar una categoría:</label>
-                            <select id="activity" name="activity" class="form-control">
-                                <option></option>
-                                @foreach($activities as $activity)
-                                    <option value="{{ $activity->id }}" {{ $selectedActivity==$activity->id ? 'selected':''; }}>{{ $activity->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="col-xs-2">
-                            <br>
-                            <button type="submit" class="btn btn-primary">Buscar</button>
-                        </div>
-                    {{ Form::close() }}
-                </div>
-                <div class="row">
-                    <div class="col-xs-12">
-                        <br>
-                    </div>
-                </div>
                 @include('layouts.partials.errors')
                 <div  class="row">
                     <div class="col-xs-12">
-                        @if(!empty($shops))
+                        @if(!empty($pendingAlliances))
                             <table class="table table-bordered" >
                                 <tr>
                                     <td>Imagen</td>
-                                    <td>Nombre</td>
-                                    <td>Descripción</td>
+                                    <td>Establecimiento</td>
+                                    <td>Estatus</td>
                                     <td>Opciones</td>
+
                                 </tr>
-                                @foreach($shops as $row)
+                                @foreach($pendingAlliances as $pendingAlliance)
                                     <tr>
                                         <td class="col-xs-2">
-                                            <img class="img-thumbnail " src="{{ $row->pathPreviwImage() }}">
+                                            @if($pendingAlliance->from==$shop->id)
+                                                <img class="img-thumbnail " src="{{ Shop::findOrFail($pendingAlliance->to)->pathPreviwImage() }}">
+                                            @elseif($pendingAlliance->to==$shop->id)
+                                                <img class="img-thumbnail " src="{{ Shop::findOrFail($pendingAlliance->from)->pathPreviwImage() }}">
+                                            @endif
                                         </td>
-                                        <td> {{ $row->name }} </td>
-                                        <td> {{ $row->about }} </td>
+                                        <td class="col-xs-2">
+                                            @if($pendingAlliance->from==$shop->id)
+                                                {{ Shop::findOrFail($pendingAlliance->to)->name }}
+                                            @elseif($pendingAlliance->to==$shop->id)
+                                                {{ Shop::findOrFail($pendingAlliance->from)->name }}
+                                            @endif
+                                        </td>
+                                        <td>Pendiente</td>
                                         <td>
-                                            <button class="btn btn-danger btn-request-alliance" data-shop-name="{{ $row->name }}" data-shop-id="{{ $row->id }}">Solicitar alianza </button>
-                                            <br>
-                                            <br>
-                                            <a href="{{ route('localization_path',$row->link) }}" class="btn btn-default" target="_blank">Ver localización </a>
+                                            @if($pendingAlliance->from==$shop->id)
+                                                <a class="btn btn-danger" href="{{ route('pending_alliance_path',[$shop->link,$pendingAlliance->id]) }}">Ver detalles</a>
+                                                <br>
+                                                <br>
+                                                <a href="{{ route('localization_path',Shop::findOrFail($pendingAlliance->to)->link) }}" class="btn btn-default" target="_blank">Ver localización </a>
+                                            @elseif($pendingAlliance->to==$shop->id)
+                                                <button class="btn btn-danger">Solicitar alianza </button>
+                                                <br>
+                                                <br>
+                                                <a href="{{ route('localization_path',Shop::findOrFail($pendingAlliance->from)->link) }}" class="btn btn-default" target="_blank">Ver localización </a>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach
