@@ -136,9 +136,7 @@ Route::group(array('prefix' => '{shop_link}'), function ()
         Route::post('alianzas/enproceso/{alliance_id}/aceptar', array('before' => 'auth|admin', 'as' => 'accept_request_alliance_path', 'uses' => 'AlliancesController@acceptRequestAlliance'));
         Route::get('alianzas/activas', array('before' => 'auth|admin', 'as' => 'active_alliances_path', 'uses' => 'AlliancesController@activeAlliances'));
         Route::get('alianzas/activas/{alliance_id}', array('before' => 'auth|admin', 'as' => 'active_alliance_path', 'uses' => 'AlliancesController@activeAlliance'));
-        Route::post('alianzas/activas/{alliance_id}/suspender', array('before' => 'auth|admin', 'as' => 'suspend_alliance_path', 'uses' => 'AlliancesController@suspendAlliance'));
-        Route::get('alianzas/suspendidas', array('before' => 'auth|admin', 'as' => 'suspended_alliances_path', 'uses' => 'AlliancesController@suspendedAlliances'));
-        Route::get('alianzas/suspendida/{alliance_id}', array('before' => 'auth|admin', 'as' => 'suspended_alliance_path', 'uses' => 'AlliancesController@suspendedAlliance'));
+        Route::post('alianzas/activas/{alliance_id}/cancelar', array('before' => 'auth|admin', 'as' => 'cancel_alliance_path', 'uses' => 'AlliancesController@cancelAlliance'));
 
     });
 

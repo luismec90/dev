@@ -106,7 +106,7 @@
                                     <div class="panel-footer">
                                         <div class="row">
                                             <div class="col-xs-12 text-center">
-                                                <buuton class="btn btn-primary" data-toggle="modal" data-target="#modal-suspend-alliance">Suspender alianza</buuton>
+                                                <buuton class="btn btn-primary" data-toggle="modal" data-target="#modal-suspend-alliance">Cancelar alianza</buuton>
                                             </div>
                                         </div>
                                     </div>
@@ -123,14 +123,14 @@
 
 <div class="modal fade" id="modal-suspend-alliance">
 	<div class="modal-dialog">
-        {{ Form::open(["route"=>["suspend_alliance_path",$shop->link,$activeAlliance->id],'autocomplete'=>'off']) }}
+        {{ Form::open(["route"=>["cancel_alliance_path",$shop->link,$activeAlliance->id],'autocomplete'=>'off']) }}
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Suspender alianza</h4>
+                    <h4 class="modal-title">Cancelar alianza</h4>
                 </div>
                 <div class="modal-body">
-                    ¿Realmente desea suspender esta alianza?
+                    ¿Realmente desea cancelar esta alianza?
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>

@@ -14,11 +14,13 @@ class AlliancesController extends \BaseController {
         $alliancesWhereIAmA = DB::table('shops')
             ->join('alliances', 'alliances.from', '=', 'shops.id')
             ->where('shops.id', $shop->id)
+            ->whereIn('alliances.status',[0,1])
             ->lists('alliances.to');
 
         $alliancesWhereIAmB = DB::table('shops')
             ->join('alliances', 'alliances.to', '=', 'shops.id')
             ->where('shops.id', $shop->id)
+            ->whereIn('alliances.status',[0,1])
             ->lists('alliances.from');
 
         $currentAlliances = array_merge($alliancesWhereIAmA, $alliancesWhereIAmB, [$shop->id]);
@@ -219,7 +221,7 @@ class AlliancesController extends \BaseController {
         return View::make('shops.pages.admin.alliances.active', compact('shop', 'activeAlliance'));
     }
 
-    public function suspendAlliance($shop_link, $alliance_id)
+    public function cancelAlliance($shop_link, $alliance_id)
     {
         $shop = Shop::where('link', $shop_link)->firstOrFail();
 
@@ -250,46 +252,13 @@ class AlliancesController extends \BaseController {
 
         $notificacion = new Notification;
         $notificacion->shop_id = $to->id;
-        $notificacion->url = route("suspended_alliance_path", [$to->link, $alliance->id]);
-        $notificacion->body = "El establecimiento {$shop->name} ha suspendido la alianza";
+        $notificacion->url = "#";
+        $notificacion->body = "El establecimiento {$shop->name} ha cancelado la alianza";
         $notificacion->save();
 
-        Flash::success('Alianza suspendida exitosamente');
+        Flash::success('Alianza cancelada exitosamente');
 
-        return Redirect::route('suspended_alliance_path', [$shop->link, $alliance->id]);
+        return Redirect::route('active_alliances_path', [$shop->link, $alliance->id]);
     }
 
-
-    public function suspendedAlliances($shop_link)
-    {
-        $shop = Shop::where('link', $shop_link)->firstOrFail();
-
-        $suspendedAlliances = Alliance::where('status', '2')
-            ->where(function ($query) use ($shop)
-            {
-                $query->where("from", $shop->id)
-                    ->orWhere("to", $shop->id);
-            })->get();
-
-        return View::make('shops.pages.admin.alliances.suspendeds', compact('shop', 'suspendedAlliances'));
-    }
-
-    public function suspendedAlliance($shop_link, $alliance_id)
-    {
-        $shop = Shop::where('link', $shop_link)->firstOrFail();
-
-        $suspendedAlliance = Alliance::with(['allianceRecords' => function ($query)
-        {
-            $query->orderBy('created_at');
-        }, 'shopFrom', 'shopTo', 'allianceRecords.shop'])
-            ->where('status', '2')
-            ->where('id', $alliance_id)
-            ->where(function ($query) use ($shop)
-            {
-                $query->where("from", $shop->id)
-                    ->orWhere("to", $shop->id);
-            })->firstOrFail();
-
-        return View::make('shops.pages.admin.alliances.suspended', compact('shop', 'suspendedAlliance'));
-    }
 }
