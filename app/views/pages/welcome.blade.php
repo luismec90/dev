@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.default') 
 
 @section('css')
     {{ HTML::style('assets/libs/select2/select2.css') }}
@@ -14,60 +14,35 @@
 
 @section('content')
 
-<div id="carousel-1" class="carousel slide" data-ride="carousel">
-    <div class="carousel-inner">
-        <div class="item active">
-            <img src="http://www.autobodyconcept.com/sites/default/files/choosing_3.jpg" alt="First slide">
-        </div>
-        <div class="item">
-            <img src="http://4.bp.blogspot.com/-ArtLfiVq6VM/Tt997t_10UI/AAAAAAAABJw/XErHAFEn5SQ/s1600/cropped11.jpg" alt="Second slide">
-        </div>
-        <div class="item">
-            <img src="http://oldrichmondinn.com/wp-content/uploads/2012/08/cheesecake.jpg" alt="Third slide">
-        </div>
-    </div>
-</div>
-
-<div class="main-text hidden-xs">
-    <div class="col-md-12 text-center">
-        <h1> Encuentra establecimientos afiliados cercanos</h1>
-        <div class="container">
-            @include('layouts.partials.search')
-        </div>
-    </div>
-</div>
-
-
-
 <section class="section section-center section-cta">
     <div class="container">
         <h2 class="section-title"><span>Listo para comenzar?</span></h2>
 
-        <p>LinkingShops es una red de tiendas, aliadas para ofrecer descuentos exclusivos a sus clientes.
+        <p>LinkingShops es una plataforma para la fidelización de clientes y generación de nuevos compradores <br> através de alianzas entre establecimientos comerciales de todos los sectores.
 
         </p>
         <div class="main-action row text-center">
-            <div class="col-md-3 col-md-offset-3"><a href="{{ route('register_path') }}" class="smooth-scroll btn btn-lg btn-block btn-danger">Registrate de forma gratuita</a></div>
-         <div class="col-md-3 col-sm-4"><a href="{{ route('listshops_path') }}" class="smooth-scroll btn btn-lg btn-block btn-default">Establecimientos afiliados</a></div>
+         <div class="col-md-3 col-md-offset-3"><a href="{{ route('home_buyer_path') }}" class="smooth-scroll btn btn-lg btn-block btn-danger">Personas</a></div>
+         <div class="col-md-3 col-sm-4"><a href="{{ route('home_shops_path') }}" class="smooth-scroll btn btn-lg btn-block btn-default">Establecimientos</a></div>
         </div>
     </div>
 </section>
 
-<section id="features" class="section section-center section-hilite section-features">
+<!--<section id="features" class="section section-center section-hilite section-features">
     <div class="container">
         <h2 class="section-title"><span>Como funciona?</span></h2>
         <div class="row">
             <div class="col-md-4 col-sm-6">
                 <div class="icon-wrap"><img src="{{ asset('assets/images/payment4.png') }}" alt=""></div>
-                <h4>Saldo Gratis</h4>
-                <p>Por cada compra que realices<br> en un establecimiento aliado recibirás<br> saldo a tu favor para compras futuras.</p> 
+                <h4>Puntos</h4>
+                <p>Por cada compra que realices<br> en nuestros establecimientos recibirás<br> saldo a tu favor para compras futuras.</p> 
             </div>
             <div class="col-md-4 col-sm-6">
                 <div class="icon-wrap"><img src="{{ asset('assets/images/icon-bag-flat.png') }}" alt=""></div>
                 <h4>Comprando</h4>
                 <p>A través de nuestra página encontrarás <br> productos y servicios de todo tipo, incluyendo<br>  comidas y vestuario a tu gusto.</p> 
             </div>
-            <!-- los mismos establecimientos-->
+             los mismos establecimientos
             <div class="col-md-4 col-sm-6">
                 <div class="icon-wrap"><img src="{{ asset('assets/images/offer.png') }}" alt=""></div>
                 <h4>Descuentos</h4>
@@ -131,7 +106,7 @@
             </ol>
         </div>
     </div>
-</section>
+</section>-->
 
 
 

@@ -31,6 +31,14 @@ class PagesController extends BaseController {
 
         return View::make('pages.buyers', compact('towns', 'activities'));
     }
+    
+    public function welcome()
+    {
+        $towns = Town::orderBy('name')->get();
+        $activities = Activity::orderBy('name')->get();
+
+        return View::make('pages.welcome', compact('towns', 'activities'));
+    }
 
     public function contact()
     {

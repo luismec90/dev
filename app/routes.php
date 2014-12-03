@@ -5,6 +5,8 @@ Route::get('/establecimientos', array('as' => 'home_shops_path', 'uses' => 'Page
 
 Route::get('/usuarios', array('as' => 'home_buyer_path', 'uses' => 'PagesController@buyers'));
 
+Route::get('/ ', array('as' => 'home_welcome_path', 'uses' => 'PagesController@welcome'));
+
 //Route::get('/promo', array('as' => 'promo_path', 'uses' => 'PagesController@promo')); ?
 
 Route::get('/test', array('as' => 'test', 'uses' => 'PagesController@test'));
