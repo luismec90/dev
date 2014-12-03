@@ -5,6 +5,7 @@
         <group>
             <file>file:/D:/code/dev/app/routes.php</file>
             <file>file:/D:/code/dev/app/views/pages/welcome.blade.php</file>
+            <file>file:/D:/code/dev/app/views/pages/buyers.blade.php</file>
             <file>file:/D:/code/dev/app/views/pages/shops.blade.php</file>
         </group>
     </open-files>
