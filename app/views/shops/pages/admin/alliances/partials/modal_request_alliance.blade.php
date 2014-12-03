@@ -1,6 +1,6 @@
 <div class="modal fade" id="modal-request-alliance" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        {{ Form::open(["id"=>"form-request-alliance","route"=>$route]) }}
+        {{ Form::open(["id"=>"form-request-alliance","route"=>$route,'novalidate'=>true]) }}
             {{ Form::hidden('to',null,['id'=>'to','required'=>'required']) }}
             <div class="modal-content">
                 <div class="modal-header">
@@ -23,7 +23,7 @@
                                             <div class="form-group">
                                                 {{ Form::label('from_retribution_per_user_granted','Retribución por usuario:') }}
                                                 <div class="input-group">
-                                                    {{ Form::number('from_retribution_per_user_granted',null,['class'=>'form-control','placeholder'=>'Ej: 5','required'=>'required','step'=>'0.001']) }}
+                                                    {{ Form::text('from_retribution_per_user_granted',null,['class'=>'form-control','placeholder'=>'Ej: 5']) }}
                                                     <div class="input-group-addon">%</div>
                                                 </div>
                                             </div>
@@ -33,7 +33,7 @@
                                                 {{ Form::label('from_limit_per_user_granted','Límite por usuario:') }}
                                                 <div class="input-group">
                                                     <div class="input-group-addon">$</div>
-                                                    {{ Form::number('from_limit_per_user_granted',null,['class'=>'form-control','placeholder'=>'Ej: 20000','required'=>'required']) }}
+                                                    {{ Form::text('from_limit_per_user_granted',null,['class'=>'form-control','placeholder'=>'Ej: 20000','required'=>'required']) }}
                                                 </div>
                                             </div>
                                         </div>
@@ -42,7 +42,7 @@
                                                 {{ Form::label('from_limit_total_granted','Límite total:') }}
                                                 <div class="input-group">
                                                     <div class="input-group-addon">$</div>
-                                                    {{ Form::number('from_limit_total_granted',null,['class'=>'form-control','placeholder'=>'Ej: 800000','required'=>'required']) }}
+                                                    {{ Form::text('from_limit_total_granted',null,['class'=>'form-control','placeholder'=>'Ej: 800000','required'=>'required']) }}
                                                 </div>
                                             </div>
                                         </div>
@@ -61,7 +61,7 @@
                                             <div class="form-group">
                                                 {{ Form::label('to_retribution_per_user_granted','Retribución por usuario:') }}
                                                 <div class="input-group">
-                                                    {{ Form::number('to_retribution_per_user_granted',null,['class'=>'form-control','placeholder'=>'Ej: 5','required'=>'required','step'=>'0.001']) }}
+                                                    {{ Form::text('to_retribution_per_user_granted',null,['class'=>'form-control','placeholder'=>'Ej: 5','required'=>'required']) }}
                                                     <div class="input-group-addon">%</div>
                                                 </div>
                                             </div>
@@ -71,7 +71,7 @@
                                                 {{ Form::label('to_limit_per_user_granted','Límite por usuario:') }}
                                                 <div class="input-group">
                                                     <div class="input-group-addon">$</div>
-                                                    {{ Form::number('to_limit_per_user_granted',null,['class'=>'form-control','placeholder'=>'Ej: 20000','required'=>'required']) }}
+                                                    {{ Form::text('to_limit_per_user_granted',null,['class'=>'form-control','placeholder'=>'Ej: 20000','required'=>'required']) }}
                                                 </div>
                                             </div>
                                         </div>
@@ -80,7 +80,7 @@
                                                 {{ Form::label('to_limit_total_granted','Límite total:') }}
                                                 <div class="input-group">
                                                     <div class="input-group-addon">$</div>
-                                                    {{ Form::number('to_limit_total_granted',null,['class'=>'form-control','placeholder'=>'Ej: 800000','required'=>'required']) }}
+                                                    {{ Form::text('to_limit_total_granted',null,['class'=>'form-control','placeholder'=>'Ej: 800000','required'=>'required']) }}
                                                 </div>
                                             </div>
                                         </div>
@@ -100,7 +100,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                    {{ Form::submit('Enviar',['class'=>'btn btn-primary']) }}
+                    {{ Form::button('Enviar',['id'=>'submit-form','class'=>'btn btn-primary']) }}
                 </div>
             </div>
         {{ Form::close() }}

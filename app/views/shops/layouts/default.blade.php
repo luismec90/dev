@@ -49,8 +49,6 @@
         {{ HTML::script('//code.jquery.com/jquery-2.1.1.min.js') }}
         {{ HTML::script('assets/libs/jqueryui/jquery-ui.min.js') }}
         {{ HTML::script('//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js') }}
-        {{ HTML::script('assets/js/jquery.isotope.min.js?v=1.5.26') }}
-        {{ HTML::script('assets/js/jquery.singlePageNav.min.js') }}
         {{ HTML::script('assets/libs/bootstrap-growl/bootstrap-growl.min.js') }}
         {{ HTML::script('assets/themes/one/js/main.js') }}
 

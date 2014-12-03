@@ -1,7 +1,6 @@
 <?php
 
-class BillsController extends \BaseController
-{
+class BillsController extends \BaseController {
 
     public function index()
     {
@@ -15,7 +14,8 @@ class BillsController extends \BaseController
         $shop = Shop::with('categories', 'categories.products')->where('link', $shop_link)->firstOrFail();
 
         $selectCategories[""] = "Seleccionar...";
-        foreach ($shop->categories as $category) {
+        foreach ($shop->categories as $category)
+        {
             $selectCategories[$category->id] = $category->name;
         }
 
@@ -26,12 +26,12 @@ class BillsController extends \BaseController
     public function store($shop_link)
     {
 
-        // 3 querys | 860 us
-        // Validar datos del cliente
-
         $validation = Validator::make(Input::all(), Bill::$rules, Bill::$validationMessages);
-        if ($validation->fails()) {
-            return Redirect::back()->withErrors($validation);
+        if ($validation->fails())
+        {
+            return Response::json(array(
+                'messages' => $validation->getMessageBag()->toArray()
+            ), 400);
         }
 
         $shop = Shop::where('link', $shop_link)->firstOrFail();
@@ -44,40 +44,53 @@ class BillsController extends \BaseController
         $code = Input::get('code');
         $total = Input::get('total');
 
-        // No permitir estos datos vacios
-        if (!$products || !$amounts || !$costs) {
-            Flash::error('Ha ocurrido un error, asegurate de llenar todos los campos');
+        // Si no son Arrays no proceder
+        if (!is_array($products) || !is_array($amounts) || !is_array($costs))
+        {
+            return Response::json(array(
+                'messages' => ["Por favor intentalo nuevamente"]
+            ), 400);
 
-            return Redirect::back();
         }
 
-
-
-        if ($email) { // Si se ingreso el email, comporbar si es un cliente nuevo
+        // Si se ingreso el email, comporbar si es un cliente nuevo
+        if ($email)
+        {
             $user = User::where('email', $email)->first();
             $is_new_user = false;
-            if (is_null($user)) {
+            if (is_null($user))
+            {
                 $is_new_user = true;
                 $user = new User;
                 $user->email = $email;
                 $user->save();
-            } else if (!$user->confirmed) {
+            } else if (!$user->confirmed)
+            {
                 $is_new_user = true;
             }
 
 
-            if ($balance != 0 && is_numeric($balance)) {
-                if ($user->email == $email && $user->code == $code) {
+            if ($balance != 0 && is_numeric($balance))
+            {
+                if ($user->email == $email && $user->code == $code)
+                {
                     $avalibleBalance = $user->saldo($shop->id);
-                    if ($balance > $avalibleBalance) {
-                        Flash::error('Ha saldo a descontar no puede ser mayor que el saldo disponible');
-                        return Redirect::back();
+                    if ($balance > $avalibleBalance)
+                    {
+                        return Response::json(array(
+                            'messages' => ["El saldo a descontar no puede ser mayor que el saldo disponible"]
+                        ), 400);
+
                     }
-                } else {
-                    Flash::error('Código de verificación incorrecto');
-                    return Redirect::back();
+                } else
+                {
+                    return Response::json(array(
+                        'messages' => ["Código de verificación incorrecto"]
+                    ), 400);
+
                 }
-            } else {
+            } else
+            {
                 $balance = 0;
             }
 
@@ -85,7 +98,8 @@ class BillsController extends \BaseController
 
         $bill = new Bill;
         $bill->shop_id = $shop->id;
-        if ($email) {
+        if ($email)
+        {
             $bill->user_id = $user->id;
             $bill->redeemed = $balance;
         }
@@ -95,22 +109,25 @@ class BillsController extends \BaseController
 
         $bill->save();
 
-        $total_cost = -$balance;
+        $total_cost = - $balance;
 
         // 6 querys | 2.37 ms
 
 
-        if (!Input::get('no_register_products')) {
+        if (!Input::get('no_register_products'))
+        {
             for ($i = 0;
                  $i < sizeof($products);
-                 $i++) {
-
-                if (empty($products[$i]) || empty($amounts[$i]) || empty($costs[$i])) {
+                 $i ++)
+            {
+                if (empty($products[$i]) || empty($amounts[$i]) || empty($costs[$i]))
+                {
                     $bill->delete();
 
-                    Flash::error('Ha ocurrido un error, asegurate de llenar todos los campos');
+                    return Response::json(array(
+                        'messages' => ["Ha ocurrido un error, asegurate de llenar todos los campos"]
+                    ), 400);
 
-                    return Redirect::back();
                 }
 
                 $product = Product::findOrFail($products[$i]);
@@ -126,7 +143,8 @@ class BillsController extends \BaseController
 
                 $total_cost += $costs[$i];
             }
-        } else {
+        } else
+        {
             $total_cost = $total;
         }
 
@@ -138,13 +156,16 @@ class BillsController extends \BaseController
         $bill->retribution = $retribution;
         $bill->save();
 
-        if ($email) {
-            $is_user_in_shop = Shop::whereHas('users', function ($query) use ($user) {
+        if ($email)
+        {
+            $is_user_in_shop = Shop::whereHas('users', function ($query) use ($user)
+            {
                 $query->where("users.id", $user->id);
                 $query->where("role", 2);
             })->where('id', $shop->id)->first();
 
-            if (is_null($is_user_in_shop)) {
+            if (is_null($is_user_in_shop))
+            {
                 $user->shops()->attach($shop->id, ['role' => 2]);
             }
 
@@ -152,19 +173,21 @@ class BillsController extends \BaseController
 
             $title = "Gracias por elegirnos";
 
-            Mail::send('emails.shops.admin.bill', compact('shop', 'bill', 'title', 'user', 'is_new_user'), function ($message) use ($user, $shop) {
-                $message->to($user->email, Auth::user()->first_name)
-                    ->subject($shop->name . ' - Compra realizada');
-            });
+            /* Mail::send('emails.shops.admin.bill', compact('shop', 'bill', 'title', 'user', 'is_new_user'), function ($message) use ($user, $shop)
+              {
+                  $message->to($user->email, Auth::user()->first_name)
+                      ->subject($shop->name . ' - Compra realizada');
+              }); */
         }
 
         // 15 querys || 6.11 ms
 
-        $this->updateStock($shop,$bill->id);
+        $this->updateStock($shop, $bill->id);
 
-        Flash::success('Registro creado exitosamente');
+        return Response::json(array(
+            'messages' => ["Registro creado exitosamente"]
+        ), 200);
 
-        return Redirect::back();
     }
 
     public function destroy($shop_link)
@@ -179,24 +202,25 @@ class BillsController extends \BaseController
         return Redirect::back();
     }
 
-    public function updateStock($shop,$bill_id)
+    public function updateStock($shop, $bill_id)
     {
 
-        $bill=Bill::with('purchases','purchases.product','purchases.product.stocks')->where('id',$bill_id)->first();
+        $bill = Bill::with('purchases', 'purchases.product', 'purchases.product.stocks')->where('id', $bill_id)->first();
 
-        foreach ($bill->purchases as $purchase) {
+        foreach ($bill->purchases as $purchase)
+        {
 
-            foreach ($purchase->product->stocks as $stock) {
+            foreach ($purchase->product->stocks as $stock)
+            {
                 $stock_history = new StockHistory;
                 $stock_history->stock_id = $stock->id;
-                $stock_history->amount = $purchase->amount * $stock->pivot->stock_spent * -1;
+                $stock_history->amount = $purchase->amount * $stock->pivot->stock_spent * - 1;
                 $stock_history->description = $purchase->product->name . " x " . $purchase->amount;
                 $stock_history->save();
 
-              $stock->updateTotalAmount($shop);
+                $stock->updateTotalAmount($shop);
                 $stock->save();
             }
         }
-
     }
 }

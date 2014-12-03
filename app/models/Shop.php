@@ -64,10 +64,12 @@ class Shop extends \Eloquent {
         return $this->belongsToMany('User')->withPivot('role');
     }
 
-    public function notifications()
+    public function admins()
     {
-        return $this->hasMany('Notification')->orderBy('created_at', 'desc')->where('viewed',0);
+        return $this->belongsToMany('User')->withPivot('role')->wherePivot('role',1);
     }
+
+
 
     public static function showMoney($amount){
         if($amount)

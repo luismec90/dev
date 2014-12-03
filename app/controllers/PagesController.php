@@ -5,13 +5,16 @@ class PagesController extends BaseController {
 
     public function test()
     {
-        $shop = Shop::first();
-        $bill = Bill::first();
-        $title = "Gracias por elegirnos";
-        $user = User::first();
-        $is_new_user = false;
+        $emailTitle="asd";
+        $emailBody="asdasd";
+        $to='luismec90@gmail.com';
 
-        return View::make('emails.shops.admin.bill', compact('shop', 'bill', 'title', 'user', 'is_new_user'));
+        echo "d";
+
+        Mail::send('emails.shops.notification', ['title' => 'emailTitle', 'body' => 'emailBody'], function ($message) use ($to) {
+            $message->to('luismec90@gmail.com','Luis Montoya')
+                ->subject("asdasd" . ' - Compra realizada');
+        });
 
     }
 
@@ -137,4 +140,6 @@ class PagesController extends BaseController {
     {
         return View::make('pages.promo');
     }
+
+
 }

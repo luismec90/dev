@@ -14,13 +14,13 @@ class AlliancesController extends \BaseController {
         $alliancesWhereIAmA = DB::table('shops')
             ->join('alliances', 'alliances.from', '=', 'shops.id')
             ->where('shops.id', $shop->id)
-            ->whereIn('alliances.status',[0,1])
+            ->whereIn('alliances.status', [0, 1])
             ->lists('alliances.to');
 
         $alliancesWhereIAmB = DB::table('shops')
             ->join('alliances', 'alliances.to', '=', 'shops.id')
             ->where('shops.id', $shop->id)
-            ->whereIn('alliances.status',[0,1])
+            ->whereIn('alliances.status', [0, 1])
             ->lists('alliances.from');
 
         $currentAlliances = array_merge($alliancesWhereIAmA, $alliancesWhereIAmB, [$shop->id]);
@@ -66,15 +66,15 @@ class AlliancesController extends \BaseController {
 
         AllianceRecord::create(Input::all());
 
-        $notificacion = new Notification;
-        $notificacion->shop_id = $to->id;
-        $notificacion->url = route("pending_alliance_path", [$to->link, $alliance->id]);
-        $notificacion->body = "El establecimiento {$shop->name} te ha solicitado una alianza";
-        $notificacion->save();
+        $route = route("pending_alliance_path", [$to->link, $alliance->id]);
+        $notificationBody = "El establecimiento {$shop->name} te ha solicitado una alianza";
+        $emailTitle = "Alianza Solicitada";
+        $emailBody = "El establecimiento {$shop->name} te ha solicitado una alianza <a target_blank='$route'> Ver </a>";
+        $this->notify($to, $route, $notificationBody, $emailTitle, $emailBody);
 
         Flash::success('Alianza solicitada exitosamente');
 
-        return Redirect::back();
+        return Redirect::route('pending_alliance_path', [$shop->link, $alliance->id]);
 
     }
 
@@ -100,15 +100,26 @@ class AlliancesController extends \BaseController {
         {
             $query->orderBy('created_at');
         }, 'shopFrom', 'shopTo', 'allianceRecords.shop'])
-            ->where('status', '0')
             ->where('id', $alliance_id)
             ->where(function ($query) use ($shop)
             {
                 $query->where("from", $shop->id)
                     ->orWhere("to", $shop->id);
             })->firstOrFail();
+        if ($pendingAlliance->status == 0)
+        {
+            return View::make('shops.pages.admin.alliances.pending', compact('shop', 'pendingAlliance'));
+        } else if ($pendingAlliance->status == 1)
+        {
+            Flash::success('Esta alianza ya se encuentra activa');
 
-        return View::make('shops.pages.admin.alliances.pending', compact('shop', 'pendingAlliance'));
+            return Redirect::route('active_alliance_path', [$shop->link, $pendingAlliance->id]);
+        } else
+        {
+            Flash::error('La alianza ya no existe');
+
+            return Redirect::back();
+        }
     }
 
     public function contraRequestAlliance($shop_link, $alliance_id)
@@ -134,11 +145,11 @@ class AlliancesController extends \BaseController {
             $to = $alliance->shopto;
         }
 
-        $notificacion = new Notification;
-        $notificacion->shop_id = $to->id;
-        $notificacion->url = route("pending_alliance_path", [$to->link, $alliance->id]);
-        $notificacion->body = "El establecimiento {$shop->name} te ha hecho una contrapropuesta";
-        $notificacion->save();
+        $route = route("pending_alliance_path", [$to->link, $alliance->id]);
+        $notificationBody = "El establecimiento {$shop->name} te ha hecho una contrapropuesta";
+        $emailTitle = "Contrapropuesta";
+        $emailBody = $notificationBody . " <a target_blank='$route'> Ver </a>";
+        $this->notify($to, $route, $notificationBody, $emailTitle, $emailBody);
 
         Flash::success('Propuesta enviada exitosamente');
 
@@ -177,15 +188,15 @@ class AlliancesController extends \BaseController {
             $to = $alliance->shopto;
         }
 
-        $notificacion = new Notification;
-        $notificacion->shop_id = $to->id;
-        $notificacion->url = route("active_alliance_path", [$to->link, $alliance->id]);
-        $notificacion->body = "El establecimiento {$shop->name} ha aceptado tu propuesta. !Ahora son aliados!";
-        $notificacion->save();
+        $route = route("active_alliance_path", [$to->link, $alliance->id]);
+        $notificationBody = "El establecimiento {$shop->name} ha aceptado tu propuesta. !Ahora son aliados!";
+        $emailTitle = "Alianza Solicitada";
+        $emailBody = $notificationBody . " <a target_blank='$route'> Ver </a>";
+        $this->notify($to, $route, $notificationBody, $emailTitle, $emailBody);
 
         Flash::success('Alianza creada exitosamente');
 
-        return Redirect::route('active_alliances_path', [$shop->link]);
+        return Redirect::route('active_alliance_path', [$shop->link, $alliance->id]);
     }
 
     public function activeAlliances($shop_link)
@@ -210,13 +221,27 @@ class AlliancesController extends \BaseController {
         {
             $query->orderBy('created_at');
         }, 'shopFrom', 'shopTo', 'allianceRecords.shop'])
-            ->where('status', '1')
             ->where('id', $alliance_id)
             ->where(function ($query) use ($shop)
             {
                 $query->where("from", $shop->id)
                     ->orWhere("to", $shop->id);
             })->firstOrFail();
+
+        if ($activeAlliance->status == 0)
+        {
+            Flash::error('Esta alianza ya no se encuentra en proceso');
+
+            return View::make('shops.pages.admin.alliances.pending', compact('shop', 'pendingAlliance'));
+        } else if ($activeAlliance->status == 1)
+        {
+            return Redirect::route('active_alliance_path', [$shop->link, $pendingAlliance->id]);
+        } else
+        {
+            Flash::error('La alianza ya no existe');
+
+            return Redirect::back();
+        }
 
         return View::make('shops.pages.admin.alliances.active', compact('shop', 'activeAlliance'));
     }
@@ -250,15 +275,45 @@ class AlliancesController extends \BaseController {
             $to = $alliance->shopto;
         }
 
-        $notificacion = new Notification;
-        $notificacion->shop_id = $to->id;
-        $notificacion->url = "#";
-        $notificacion->body = "El establecimiento {$shop->name} ha cancelado la alianza";
-        $notificacion->save();
+        $route = "#";
+        $notificationBody = "El establecimiento {$shop->name} ha cancelado la alianza";
+        $emailTitle = "Alianza cancelada";
+        $emailBody = "El establecimiento {$shop->name} ha cancelado la alianza";
+        $this->notify($to, $route, $notificationBody, $emailTitle, $emailBody);
 
         Flash::success('Alianza cancelada exitosamente');
 
         return Redirect::route('active_alliances_path', [$shop->link, $alliance->id]);
+    }
+
+    private function notify($shop, $route, $notificationBody, $emailTitle, $emailBody)
+    {
+        $admins = $shop->admins;
+        $to = [];
+
+        foreach ($admins as $admin)
+        {
+            $notificacion = new Notification;
+            $notificacion->user_id = $admin->id;
+            $notificacion->url = $route;
+            $notificacion->body = $notificationBody;
+            $notificacion->save();
+
+            array_push($to, $admin->email);
+        }
+
+        if ($to)
+        {   // Revisar por que no se envian los emails
+            /* Mail::send('emails.shops.notification', ['title' => 'emailTitle', 'body' => 'emailBody'], function ($message) use ($to)
+             {
+                 $message->from('soporte@linkingshops.com', 'LinkingShops');
+
+                 $message->to($to)->bcc('luismec90@gmail.com');
+             });
+            */
+        }
+
+
     }
 
 }
