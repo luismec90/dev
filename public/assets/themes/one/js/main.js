@@ -1,57 +1,14 @@
 $(function () {
 
-
     $("form").submit(function (e) {
-        $(this).find('[type=submit]').each(function (index) {
-            $(this).data("loading-text", "Enviando...").button("loading");
-        });
+        coverOn();
     });
 
     $("form").keypress(function(e) {
         //Enter key
-        console.log($(this));
         if (e.which == 13) {
             return false;
         }
-    });
-
-    // Smooth Hash Link Scroll
-    $('.smooth-scroll').click(function () {
-        if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
-
-            var target = $(this.hash);
-            target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-            if (target.length) {
-                $('html,body').animate({
-                    scrollTop: target.offset().top
-                }, 1000);
-                return false;
-            }
-        }
-    });
-
-    /*
-     $('.nav a').on('click', function () {
-     if ($('.navbar-toggle').css('display') != 'none') {
-     $(".navbar-toggle").click();
-     }
-     });
-     */
-
-    var $container = $('.portfolio-isotope');
-    $container.imagesLoaded(function () {
-        $container.isotope({
-            itemSelector: '.portfolio-item',
-            resizable: true,
-            resizesContainer: true
-        });
-    });
-
-    // filter items when filter link is clicked
-    $('#filters a').click(function () {
-        var selector = $(this).attr('data-filter');
-        $container.isotope({filter: selector});
-        return false;
     });
 
     $.datepicker.regional['es'] = {

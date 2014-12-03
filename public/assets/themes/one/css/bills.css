@@ -1,0 +1,7 @@
+.popover {
+    background: #e74c3c;
+    color:#fff;
+}
+.popover.bottom>.arrow:after{
+    border-bottom-color: #e74c3c;
+}

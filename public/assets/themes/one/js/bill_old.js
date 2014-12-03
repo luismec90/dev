@@ -122,88 +122,6 @@ $(function () {
         }
     });
 
-
-    $("#form-bill").on('change', '[required]:visible', function () {
-        $(this).popover('destroy');
-    });
-
-    $("#submit-form").click(function () {
-        var flag = false;
-
-        $("#form-bill input:visible").popover('destroy');
-
-        $("#form-bill [required]:visible").each(function () {
-
-            var valor = $(this).val();
-            valor = valor.replace(",", ".");
-            if (valor == "") {
-                $(this).focus().popover({
-                    'trigger': 'manual',
-                    'placement': 'bottom',
-                    'content': 'Campo obligatorio'
-                }).popover('show');
-                flag = true;
-            }
-            if (flag)
-                return false;
-        });
-
-        var total = $.isNumeric($("#total").val()) ? $("#total").val() : 0;
-
-        if (!flag && total < 0) {
-            $("#subtotal").popover({
-                'trigger': 'manual',
-                'placement': 'bottom',
-                'content': 'El subtotal no puede ser menor que el saldo a redimir'
-            }).popover('show');
-            flag = true;
-        }
-
-        if (flag)
-            return false;
-
-
-        $.ajax({
-            type: 'POST',
-            url: url_send_form,
-            data: $("#form-bill").serialize(),
-            beforeSend: function () {
-                coverOn();
-            },
-            success: function (data) {
-                coverOff();
-                $.growl(data.messages[0], {
-                    type: "success",
-                    animate: {
-                        enter: 'animated bounceInDown',
-                        exit: 'animated bounceOutUp'
-                    },
-                    placement: {
-                        from: "top",
-                        align: "center"
-                    }
-                });
-                cleanBillForm();
-                $(window).scrollTop(0);
-
-            }, error: function (data) {
-                coverOff();
-                data = data.responseJSON;
-
-                var mensaje = "<div class='alert alert-danger'><ul>";
-
-                $.each(data.messages, function (key, value) {
-                    mensaje += "<li>" + value + "</li>";
-                });
-
-                mensaje += "</ul></div>";
-
-                $("#div-errors").html(mensaje);
-
-                $(window).scrollTop(0);
-            }
-        })
-    });
 });
 
 function actualizarSaldoRedimido() {
@@ -262,36 +180,18 @@ function checkRetribution(email) {
                 $("#check-balance").attr("data-retribution", data.retribution);
                 $("#retribution-zone .ocultar1").removeClass("ocultar");
             } else {
-                UsuarioNoTieneSaldo()
-
+                $("#nombre-usuario").html("");
+                $("#info-balance").html("");
+                $("#check-balance").attr("data-retribution", "0");
+                $("#check-balance").attr('checked', false);
+                $("#retribution-zone .ocultar1").addClass("ocultar");
+                $("#retribution-zone .ocultar2").addClass("ocultar");
+                $("#balance").val("0");
+                actualizarTotal();
+                $("#code").val("0");
+                $("#div-redimido").addClass("hidden");
+                $("#div-total").addClass("hidden");
             }
         }
     });
-}
-
-function UsuarioNoTieneSaldo() {
-    $("#nombre-usuario").html("");
-    $("#info-balance").html("");
-    $("#check-balance").attr("data-retribution", "0");
-    $("#check-balance").attr('checked', false);
-    $("#retribution-zone .ocultar1").addClass("ocultar");
-    $("#retribution-zone .ocultar2").addClass("ocultar");
-    $("#balance").val("0");
-    actualizarTotal();
-    $("#code").val("0");
-    $("#div-redimido").addClass("hidden");
-    $("#div-total").addClass("hidden");
-}
-
-function cleanBillForm() {
-    document.getElementById("form-bill").reset();
-    document.getElementById("div-errors").innerHTML = "";
-    $("#products .item:not(:first)").remove();
-
-    if ($("#products").is(":hidden")) {
-        $("#no_register_products").trigger("change")
-    }
-    if ($("#retribution-zone").is(":visible")) {
-        UsuarioNoTieneSaldo();
-    }
 }

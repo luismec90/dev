@@ -75,6 +75,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     ];
 
 
+    public function fullName()
+    {
+        return "{$this->first_name} {$this->last_name}";
+    }
+
     public function shops()
     {
         return $this->belongsToMany('Shop')->withPivot('role');
@@ -139,7 +144,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
     public function notifications()
     {
-        return $this->hasMany('Notification')->orderBy('created_at', 'desc')->where('viewed',0);
+        return $this->hasMany('Notification')->orderBy('created_at', 'desc');
+    }
+
+    public function newNotifications()
+    {
+        return $this->hasMany('Notification')->orderBy('created_at', 'desc')->where('viewed', 0);
     }
 
     public function saldo($shop_id)

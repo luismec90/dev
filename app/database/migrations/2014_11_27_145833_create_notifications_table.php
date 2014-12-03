@@ -17,7 +17,6 @@ class CreateNotificationsTable extends Migration {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('code', 2);
             $table->string('url');
             $table->string('body', 256);
             $table->boolean('viewed')->default(0);

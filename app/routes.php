@@ -28,8 +28,13 @@ Route::post('/contacto/pionero', array('as' => 'contact_pioner_path', 'uses' => 
 /* Listar establecimiento */
 Route::get('listar', array('as' => 'listshops_path', 'uses' => 'PagesController@listShops'));
 
+/* Create Shop */
+Route::get('/crear-establecimiento', array('before' => 'auth', 'as' => 'create_shop_path', 'uses' => 'ShopsController@create'));
+Route::post('/crear-establecimientos', array('before' => 'auth', 'as' => 'store_shop_path', 'uses' => 'ShopsController@store'));
+
+
 /* Mis sistios */
-Route::get('mistiendas', array('before' => 'auth', 'as' => 'mysites_path', 'uses' => 'PagesController@mySites'));
+Route::get('mis-establecimientos', array('before' => 'auth', 'as' => 'mysites_path', 'uses' => 'PagesController@mySites'));
 
 /* Register */
 Route::get('registro', array('before' => 'guest', 'as' => 'register_path', 'uses' => 'RegistrationController@create'));
@@ -50,6 +55,11 @@ Route::post('perfil', array('before' => 'auth', 'as' => 'update_profile_path', '
 Route::get('perfil/password', array('before' => 'auth', 'as' => 'password_path', 'uses' => 'UsersController@showPassword'));
 Route::post('perfil/password', array('before' => 'auth', 'as' => 'update_password_path', 'uses' => 'UsersController@updatePassword'));
 
+/*Notificactions*/
+Route::get('notificaciones', array('before' => 'auth', 'as' => 'notifications_path', 'uses' => 'NotificationsController@index'));
+Route::get('notificaciones/{notification_id}', array('before' => 'auth', 'as' => 'show_notification_path', 'uses' => 'NotificationsController@show'));
+
+
 /* Complete registration */
 Route::get('completar_registro/{shop_link}/{user_email}/{token}', array('as' => 'complete_registration', 'uses' => 'RegistrationController@completeRegistration'));
 Route::post('completar_registro/{shop_link}/{user_email}/{token}', array('as' => 'complete_registration', 'uses' => 'RegistrationController@endRegistration'));
@@ -62,14 +72,17 @@ Route::get('login_google', array('before' => 'guest', 'as' => 'login_google_path
 
 Route::get('info_user', array('as' => 'info_user_path', 'uses' => 'UsersController@infoUser'));
 
+
 Route::group(array('prefix' => '{shop_link}'), function ()
 {
-
     /*Zona de administracion*/
     Route::group(array('prefix' => 'admin'), function ()
     {
         Route::get('/venta', array('before' => 'auth|admin', 'as' => 'bill_path', 'uses' => 'BillsController@create'));
-        Route::post('/venta', array('before' => 'auth|admin', 'as' => 'bill_path', 'uses' => 'BillsController@store'));
+
+        //Route::post('/venta', array('before' => 'auth|admin', 'as' => 'bill_path', 'uses' => 'BillsController@store'));
+        Route::post('/venta_ajax', array('before' => 'auth|admin', 'as' => 'bill_store_path', 'uses' => 'BillsController@store'));
+
         Route::get('/getuser', array('before' => 'auth|admin', 'as' => 'getuser_path', 'uses' => 'UsersController@getUser'));
         Route::get('/autouseremail', array('before' => 'auth|admin', 'as' => 'autouseremail_path', 'uses' => 'UsersController@autocompleteEmailUser'));
         Route::get('/categorias', array('before' => 'auth|admin', 'as' => 'admin_category_path', 'uses' => 'CategoriesController@index'));
@@ -125,13 +138,21 @@ Route::group(array('prefix' => '{shop_link}'), function ()
         Route::delete('covers/eliminar/{cover_id}', array('before' => 'auth|admin', 'as' => 'admin_destroy_cover_path', 'uses' => 'CoversController@destroy'));
 
 
-        /*Alliances*/
+        /* Alliances */
+
+
         Route::get('alianzas', array('before' => 'auth|admin', 'as' => 'alliances_path', 'uses' => 'AlliancesController@index'));
         Route::post('alianzas/solicitar', array('before' => 'auth|admin', 'as' => 'request_alliance_path', 'uses' => 'AlliancesController@requestAlliance'));
+
+
         Route::get('alianzas/enproceso', array('before' => 'auth|admin', 'as' => 'pending_alliances_path', 'uses' => 'AlliancesController@pendingAlliances'));
         Route::get('alianzas/enproceso/{alliance_id}', array('before' => 'auth|admin', 'as' => 'pending_alliance_path', 'uses' => 'AlliancesController@pendingAlliance'));
+        Route::post('alianzas/enproceso/{alliance_id}/contrapropuesta', array('before' => 'auth|admin', 'as' => 'contra_request_alliance_path', 'uses' => 'AlliancesController@contraRequestAlliance'));
+        Route::post('alianzas/enproceso/{alliance_id}/aceptar', array('before' => 'auth|admin', 'as' => 'accept_request_alliance_path', 'uses' => 'AlliancesController@acceptRequestAlliance'));
         Route::get('alianzas/activas', array('before' => 'auth|admin', 'as' => 'active_alliances_path', 'uses' => 'AlliancesController@activeAlliances'));
         Route::get('alianzas/activas/{alliance_id}', array('before' => 'auth|admin', 'as' => 'active_alliance_path', 'uses' => 'AlliancesController@activeAlliance'));
+        Route::post('alianzas/activas/{alliance_id}/cancelar', array('before' => 'auth|admin', 'as' => 'cancel_alliance_path', 'uses' => 'AlliancesController@cancelAlliance'));
+
     });
 
 

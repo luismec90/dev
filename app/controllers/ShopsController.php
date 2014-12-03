@@ -1,7 +1,18 @@
 <?php
 
-class ShopsController extends \BaseController
-{
+class ShopsController extends \BaseController {
+
+    public function create()
+    {
+        $towns = Town::orderBy('name')->get();
+
+        return View::make('pages.create_shop', compact('towns'));
+    }
+
+    public function store()
+    {
+
+    }
 
     public function show($shop_link)
     {
@@ -12,7 +23,7 @@ class ShopsController extends \BaseController
         if (!$categories)
             $categories = [''];
 
-        $popular_products = Product::with('category')->whereIn('category_id', $categories)->where('publish',1)->take(9)->get();
+        $popular_products = Product::with('category')->whereIn('category_id', $categories)->where('publish', 1)->take(9)->get();
 
         return View::make('shops.pages.home', compact('shop', 'popular_products'));
     }
@@ -28,7 +39,8 @@ class ShopsController extends \BaseController
     {
         $shop = Shop::where('link', $shop_link)->firstOrFail();
 
-        $suscribed_users = User::whereHas('shops', function ($query) use ($shop) {
+        $suscribed_users = User::whereHas('shops', function ($query) use ($shop)
+        {
             $query->where("role", 2);
             $query->where("shops.id", $shop->id);
         })->get();
@@ -40,18 +52,22 @@ class ShopsController extends \BaseController
     {
         $shop = Shop::where('link', $shop_link)->firstOrFail();
 
-        $suscribed_users = User::whereHas('shops', function ($query) use ($shop) {
+        $suscribed_users = User::whereHas('shops', function ($query) use ($shop)
+        {
             $query->where("role", 2);
             $query->where("shops.id", $shop->id);
-        })->select('users.id','users.last_name AS Apellidos', 'users.first_name AS Nombres', 'gender AS Género', 'email as Email', 'created_at AS Fecha_suscripción')->orderBy('created_at')->get();
+        })->select('users.id', 'users.last_name AS Apellidos', 'users.first_name AS Nombres', 'gender AS Género', 'email as Email', 'created_at AS Fecha_suscripción')->orderBy('created_at')->get();
 
-        foreach ($suscribed_users as $user) {
+        foreach ($suscribed_users as $user)
+        {
             $saldo = $user->saldo($shop->id);
             $user->Saldo = $saldo;
         }
 
-        Excel::create($shop->link . '_suscripciones_' . date('Y-m-d'), function ($excel) use ($suscribed_users) {
-            $excel->sheet('Sheetname', function ($sheet) use ($suscribed_users) {
+        Excel::create($shop->link . '_suscripciones_' . date('Y-m-d'), function ($excel) use ($suscribed_users)
+        {
+            $excel->sheet('Sheetname', function ($sheet) use ($suscribed_users)
+            {
                 $sheet->fromArray($suscribed_users);
             });
         })->export('xls');
@@ -70,7 +86,8 @@ class ShopsController extends \BaseController
     public function updateGeneralInformation($shop_link)
     {
         $validation = Validator::make(Input::all(), Shop::$rules, Shop::$validationMessages);
-        if ($validation->fails()) {
+        if ($validation->fails())
+        {
             return Redirect::back()->withInput()->withErrors($validation);
         }
 
@@ -110,20 +127,23 @@ class ShopsController extends \BaseController
         ];
         $validationMessages = [
             'logo.required' => 'El campo logo es obligatorio',
-            'logo.image' => 'El campo logo debe ser una imagen',
+            'logo.image'    => 'El campo logo debe ser una imagen',
         ];
         $validation = Validator::make(Input::all(), $rules, $validationMessages);
-        if ($validation->fails()) {
+        if ($validation->fails())
+        {
             return Redirect::back()->withInput()->withErrors($validation);
         }
 
         $shop = Shop::where('link', $shop_link)->firstOrFail();
 
-        if (Input::hasFile('logo')) {
+        if (Input::hasFile('logo'))
+        {
             $photo = Input::file('logo');
 
             $path = "shops/{$shop->id}";
-            if (!File::exists($path)) {
+            if (!File::exists($path))
+            {
                 File::makeDirectory($path);
             }
 

@@ -64,6 +64,13 @@ class Shop extends \Eloquent {
         return $this->belongsToMany('User')->withPivot('role');
     }
 
+    public function admins()
+    {
+        return $this->belongsToMany('User')->withPivot('role')->wherePivot('role',1);
+    }
+
+
+
     public static function showMoney($amount){
         if($amount)
             return '$ '.number_format($amount,0,',','.');
