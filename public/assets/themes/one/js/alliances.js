@@ -4,6 +4,8 @@ $(function () {
         allowClear: true
     });
 
+    $(".help").popover({placement: 'top', trigger: 'hover'});
+
     $("#activity").select2({
         placeholder: "Seleccionar...",
         allowClear: true
