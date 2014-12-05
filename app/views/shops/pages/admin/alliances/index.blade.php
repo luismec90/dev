@@ -93,5 +93,5 @@
 </div>
 
 <!-- Solicitar alianza Modal -->
-@include('shops.pages.admin.alliances.partials.modal_request_alliance',['title'=>'Solicitar alianza','route'=>["request_alliance_path",$shop->link]])
+@include('shops.pages.admin.alliances.partials.modal_request_alliance',['title'=>'Solicitar alianza a:','route'=>["request_alliance_path",$shop->link]])
 @stop

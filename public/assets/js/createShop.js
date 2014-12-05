@@ -5,7 +5,7 @@ $(function () {
         allowClear: true
     });
 
-    $(".help").popover({placement: 'right', trigger: 'click'});
+    $(".help").popover({placement: 'right', trigger: 'hover'});
 
     $("#form-create-shop input").keypress(function (e) {
         $(this).popover('destroy');

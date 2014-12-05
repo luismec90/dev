@@ -38,7 +38,7 @@
 
             <!-- Location Form Input -->
             <div class="form-group">
-                {{ Form::label('town_id','Ubicación:') }}<i class="glyphicon glyphicon-info-sign pull-right help"  data-content="first tooltip asdasd asd adsf asdf asdfasdfasdf afsd"></i>
+                {{ Form::label('town_id','Ubicación:') }}<i class="glyphicon glyphicon-info-sign pull-right help"  data-content="Asdfg..."></i>
                 {{ Form::select('town_id',$selectTowns,null,['class'=>'form-control']) }}
 
             </div>

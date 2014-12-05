@@ -273,6 +273,4 @@ input:required + .popover {
 }
 input:required + .popover.bottom>.arrow:after{
     border-bottom-color: #e74c3c;
-}{
-
 }

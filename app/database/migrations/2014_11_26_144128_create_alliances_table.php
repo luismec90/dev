@@ -25,19 +25,19 @@ class CreateAlliancesTable extends Migration {
             To=B
             */
 
-            /*Porcentaje de las vestas del establecimiento B que el establecimiento que A eta dispuesto a retribuir  por usuario*/
-            $table->decimal('from_retribution_per_user_granted', 5, 4);
+            /*Porcentaje de las ventas del establecimiento B que el establecimiento que A eta dispuesto a retribuir  por usuario*/
+            $table->decimal('from_retribution_per_user_granted', 10, 2);
             /* Limite de dinero que puede acumular un usuario en particular para gastar en el establecimiento A */
-            $table->decimal('from_limit_per_user_granted', 5, 4);
+            $table->decimal('from_limit_per_user_granted', 10, 2);
             /* Limite de dinero total a entregar a los clientes del establecimiento B */
-            $table->decimal('from_limit_total_granted', 5, 4)->nullable();
+            $table->decimal('from_limit_total_granted', 10, 2)->nullable();
 
-            /*Porcentaje de las vestas del establecimiento A que el establecimiento que B eta dispuesto a retribuir  */
-            $table->decimal('to_retribution_per_user_granted', 5, 4);
+            /*Porcentaje de las ventas del establecimiento A que el establecimiento que B eta dispuesto a retribuir  */
+            $table->decimal('to_retribution_per_user_granted', 10, 2);
             /* Limite de dinero que puede acumular un usuario en particular para gastar en el establecimiento B */
-            $table->decimal('to_limit_per_user_granted', 5, 4);
+            $table->decimal('to_limit_per_user_granted', 10, 2);
             /* Limite de dinero total a entregar a los clientes del establecimiento B */
-            $table->decimal('to_limit_total_granted', 5, 4)->nullable();
+            $table->decimal('to_limit_total_granted', 10, 2)->nullable();
 
             $table->string('status',1)->default(0);// 0=pendiente, 1=activa,2=suspendida
             $table->timestamps();

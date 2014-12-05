@@ -42,22 +42,19 @@ $(function () {
         $("#modal-request-alliance").modal();
     });
 
-    $("#form-request-alliance input").keypress(function (e) {
+    $("#form-request-alliance input:required").keypress(function (e) {
         $(this).popover('destroy');
-        var charCode = (e.which) ? e.which : e.keyCode
-        if (e.which == 46) {
-            return false;
-        }
     });
 
     $("#submit-form").click(function () {
         var flag = false;
 
-        $("#form-request-alliance input:visible").popover('destroy');
+        $("#form-request-alliance input:required").popover('destroy');
 
-        $("#form-request-alliance input:visible").each(function () {
+        $("#form-request-alliance input:required").each(function () {
 
             var valor = $(this).val();
+            valor = valor.replace(".", "");
             valor = valor.replace(",", ".");
             if (!$.isNumeric(valor)) {
                 $(this).focus().popover({
@@ -73,8 +70,6 @@ $(function () {
 
         if (flag)
             return false;
-
-        $("#submit-form").data("loading-text", "Enviando...").button("loading");
 
         $("#form-request-alliance").submit();
 

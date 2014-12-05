@@ -11,7 +11,7 @@
             </a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="drop5">
                 @forelse(Auth::user()->newNotifications as $notification)
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ $notification->url!="#" ? route("show_notification_path",$notification->id) : ""  }}">{{ $notification->body }}</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="{{  route("show_notification_path",$notification->id)   }}">{{ $notification->body }}</a></li>
                 @empty
                     <li role="presentation" class="dropdown-header">No hay notificaciones nuevas</li>
                 @endforelse
@@ -23,8 +23,8 @@
             <a href="{{ route('create_shop_path') }}">Crear establecimiento</a>
         </li>
         <li id="mis-sitios" class="@if(Route::currentRouteName()=='mysites_path') {{ "active"}} @endif">
-                    <a href="{{ route('mysites_path') }}">Mis establecimientos</a>
-                </li>
+            <a href="{{ route('mysites_path') }}">Mis establecimientos</a>
+        </li>
         <li> @include('layouts.partials.avatar')</li>
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -33,9 +33,7 @@
                 <li class="@if(Route::currentRouteName()=='profile_path') {{ "active"}} @endif">
                     <a href="{{ route('profile_path') }}">Mi perfil</a>
                 </li>
-
                 <li class="divider"></li>
-
                 <li>{{ link_to_route('logout_path','Salir') }}</li>
             </ul>
         </li>

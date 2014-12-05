@@ -67,25 +67,25 @@
                                                                     <tr>
                                                                         <td>{{ $allianceRecord->alliance->shopFrom->name }}</td>
                                                                         <td>
-                                                                            <b>{{ (float) $allianceRecord->from_retribution_per_user_granted }} %</b>
+                                                                            <b> {{ Currency::toFront($allianceRecord->from_retribution_per_user_granted,'') }} %</b>
                                                                         </td>
                                                                         <td>
-                                                                            <b>$ {{ (float) $allianceRecord->from_limit_per_user_granted }}</b>
+                                                                            <b> {{ Currency::toFront($allianceRecord->from_limit_per_user_granted) }}</b>
                                                                         </td>
                                                                         <td>
-                                                                            <b>$ {{ (float) $allianceRecord->from_limit_total_granted }}</b>
+                                                                            <b> {{ Currency::toFront($allianceRecord->from_limit_total_granted) }}</b>
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td>{{ $allianceRecord->alliance->shopTo->name }}</td>
                                                                         <td>
-                                                                            <b>{{ (float) $allianceRecord->to_retribution_per_user_granted }} %</b>
+                                                                            <b> {{ Currency::toFront($allianceRecord->to_retribution_per_user_granted,'') }} %</b>
                                                                         </td>
                                                                         <td>
-                                                                            <b>$ {{ (float) $allianceRecord->to_limit_per_user_granted }}</b>
+                                                                            <b> {{ Currency::toFront($allianceRecord->to_limit_per_user_granted) }}</b>
                                                                         </td>
                                                                         <td>
-                                                                            <b>$ {{ (float) $allianceRecord->to_limit_total_granted }}</b>
+                                                                            <b> {{ Currency::toFront($allianceRecord->to_limit_total_granted) }}</b>
                                                                         </td>
                                                                     </tr>
                                                                 </table>
@@ -100,7 +100,6 @@
                                                 </div>
                                             </li>
                                             @endforeach
-
                                         </ul>
                                     </div>
                                     <div class="panel-footer">

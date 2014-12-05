@@ -51,6 +51,14 @@ class AlliancesController extends \BaseController {
 
         Input::merge(['from' => $shop->id]);
 
+        /* Eliminar el separador de miles(el punto) si lo tiene  */
+        Input::merge(['from_retribution_per_user_granted' => Currency::toBack(Input::get('from_retribution_per_user_granted'))]);
+        Input::merge(['from_limit_per_user_granted' => Currency::toBack(Input::get('from_limit_per_user_granted'))]);
+        Input::merge(['from_limit_total_granted' => Currency::toBack(Input::get('from_limit_total_granted'))]);
+        Input::merge(['to_retribution_per_user_granted' => Currency::toBack(Input::get('to_retribution_per_user_granted'))]);
+        Input::merge(['to_limit_per_user_granted' => Currency::toBack(Input::get('to_limit_per_user_granted'))]);
+        Input::merge(['to_limit_total_granted' => Currency::toBack(Input::get('to_limit_total_granted'))]);
+
         $validation = Validator::make(Input::all(), Alliance::$rules);
         if ($validation->fails())
         {
@@ -116,9 +124,7 @@ class AlliancesController extends \BaseController {
             return Redirect::route('active_alliance_path', [$shop->link, $pendingAlliance->id]);
         } else
         {
-            Flash::error('La alianza ya no existe');
-
-            return Redirect::back();
+            App::abort(404);
         }
     }
 
@@ -134,6 +140,14 @@ class AlliancesController extends \BaseController {
 
         Input::merge(['alliance_id' => $alliance->id]);
         Input::merge(['shop_id' => $shop->id]);
+
+        /* Eliminar el separador de miles(el punto) si lo tiene  */
+        Input::merge(['from_retribution_per_user_granted' => Currency::toBack(Input::get('from_retribution_per_user_granted'))]);
+        Input::merge(['from_limit_per_user_granted' => Currency::toBack(Input::get('from_limit_per_user_granted'))]);
+        Input::merge(['from_limit_total_granted' => Currency::toBack(Input::get('from_limit_total_granted'))]);
+        Input::merge(['to_retribution_per_user_granted' => Currency::toBack(Input::get('to_retribution_per_user_granted'))]);
+        Input::merge(['to_limit_per_user_granted' => Currency::toBack(Input::get('to_limit_per_user_granted'))]);
+        Input::merge(['to_limit_total_granted' => Currency::toBack(Input::get('to_limit_total_granted'))]);
 
         AllianceRecord::create(Input::all());
 
@@ -222,28 +236,15 @@ class AlliancesController extends \BaseController {
             $query->orderBy('created_at');
         }, 'shopFrom', 'shopTo', 'allianceRecords.shop'])
             ->where('id', $alliance_id)
+            ->where('status', 1)
             ->where(function ($query) use ($shop)
             {
                 $query->where("from", $shop->id)
                     ->orWhere("to", $shop->id);
             })->firstOrFail();
 
-        if ($activeAlliance->status == 0)
-        {
-            Flash::error('Esta alianza ya no se encuentra en proceso');
-
-            return View::make('shops.pages.admin.alliances.pending', compact('shop', 'pendingAlliance'));
-        } else if ($activeAlliance->status == 1)
-        {
-            return Redirect::route('active_alliance_path', [$shop->link, $pendingAlliance->id]);
-        } else
-        {
-            Flash::error('La alianza ya no existe');
-
-            return Redirect::back();
-        }
-
         return View::make('shops.pages.admin.alliances.active', compact('shop', 'activeAlliance'));
+
     }
 
     public function cancelAlliance($shop_link, $alliance_id)
