@@ -19,12 +19,12 @@
 
             @include('layouts.partials.errors')
 
-            {{ Form::open(['route'=>'store_shop_path']) }}
+            {{ Form::open(['id'=>'form-create-shop','route'=>'store_shop_path','novalidate'=>true]) }}
 
             <!-- Nombre Form Input -->
             <div class="form-group">
-             {{ Form::label('Name','Nombre del establecimiento:') }} <i class="glyphicon glyphicon-info-sign pull-right help"  data-content="first tooltip asdasd asd adsf asdf asdfasdfasdf afsd"></i>
-            {{ Form::text('name',null,['class'=>'form-control','required'=>'required']) }}
+                {{ Form::label('name','Nombre del establecimiento:') }} <i class="glyphicon glyphicon-info-sign pull-right help"  data-content="first tooltip asdasd asd adsf asdf asdfasdfasdf afsd"></i>
+                {{ Form::text('name',null,['class'=>'form-control','required'=>'required']) }}
             </div>
 
             <!-- Link Form Input -->
@@ -38,18 +38,26 @@
 
             <!-- Location Form Input -->
             <div class="form-group">
-                {{ Form::label('town','Ubicación:') }}<i class="glyphicon glyphicon-info-sign pull-right help"  data-content="first tooltip asdasd asd adsf asdf asdfasdfasdf afsd"></i>
-                <select id="town" name="town" class="form-control">
-                    <option></option>
-                    @foreach($towns as $town)
-                        <option value="{{ $town->id }}">{{ $town->name }}</option>
-                    @endforeach
-                </select>
+                {{ Form::label('town_id','Ubicación:') }}<i class="glyphicon glyphicon-info-sign pull-right help"  data-content="first tooltip asdasd asd adsf asdf asdfasdfasdf afsd"></i>
+                {{ Form::select('town_id',$selectTowns,null,['class'=>'form-control']) }}
+
             </div>
 
+            <!-- Dirección Form Input -->
+            <div class="form-group">
+                {{ Form::label('street_address','Dirección:') }} <i class="glyphicon glyphicon-info-sign pull-right help"  data-content="first tooltip asdasd asd adsf asdf asdfasdfasdf afsd"></i>
+                {{ Form::text('street_address',null,['class'=>'form-control','required'=>'required']) }}
+            </div>
+
+            <!-- Email Form Input -->
+            <div class="form-group">
+                {{ Form::label('email','E-mail:') }} <i class="glyphicon glyphicon-info-sign pull-right help"  data-content="first tooltip asdasd asd adsf asdf asdfasdfasdf afsd"></i>
+                {{ Form::text('email',null,['class'=>'form-control','required'=>'required']) }}
+            </div>
+            <!--
             <div class="row">
                 <div class="col-xs-6">
-                    <!-- Retribución Form Input -->
+
                     <div class="form-group">
                         {{ Form::label('retribution','Retribución:') }}<i class="glyphicon glyphicon-info-sign pull-right help"  data-content="first tooltip asdasd asd adsf asdf asdfasdfasdf afsd"></i>
                         <div class="input-group">
@@ -59,7 +67,7 @@
                     </div>
                 </div>
                 <div class="col-xs-6">
-                    <!-- Balance Deadline Form Input -->
+
                     <div class="form-group">
                         {{ Form::label('balance_deadline','Tiempo de vida del saldo:') }}<i class="glyphicon glyphicon-info-sign pull-right help"  data-content="first tooltip asdasd asd adsf asdf asdfasdfasdf afsd"></i>
                         <div class="input-group">
@@ -69,23 +77,25 @@
                     </div>
                 </div>
             </div>
+            -->
+
 
             <!-- Nombre del administrador Form Input -->
             <div class="form-group">
-                {{ Form::label('administrator','Nombre del administrador:') }}<i class="glyphicon glyphicon-info-sign pull-right help"  data-content="first tooltip asdasd asd adsf asdf asdfasdfasdf afsd"></i>
-                {{ Form::text('administrator',null,['class'=>'form-control','required'=>true]) }}
+                {{ Form::label('administrator_name','Nombre del administrador:') }}<i class="glyphicon glyphicon-info-sign pull-right help"  data-content="first tooltip asdasd asd adsf asdf asdfasdfasdf afsd"></i>
+                {{ Form::text('administrator_name',null,['class'=>'form-control','required'=>true]) }}
             </div>
 
            <!-- Número celular del administrador Form Input -->
            <div class="form-group">
-               {{ Form::label('cellphone','Número celular del administrador:') }}<i class="glyphicon glyphicon-info-sign pull-right help"  data-content="first tooltip asdasd asd adsf asdf asdfasdfasdf afsd"></i>
-               {{ Form::text('cellphone',null,['class'=>'form-control','required'=>'required']) }}
+               {{ Form::label('cell','Número celular del administrador:') }}<i class="glyphicon glyphicon-info-sign pull-right help"  data-content="first tooltip asdasd asd adsf asdf asdfasdfasdf afsd"></i>
+               {{ Form::text('cell',null,['class'=>'form-control','required'=>'required']) }}
            </div>
 
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-3 col-sm-3 col-xs-12">
-                        {{ Form::submit('Enviar',['class'=>'btn btn-primary btn-block']) }}
+                        {{ Form::button('Enviar',['id'=>'submit-form','class'=>'btn btn-primary btn-block']) }}
                     </div>
                 </div>
             </div>

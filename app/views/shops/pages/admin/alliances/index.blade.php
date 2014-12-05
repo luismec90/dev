@@ -71,7 +71,7 @@
                                 @foreach($shops as $row)
                                     <tr>
                                         <td>
-                                            <img class="img-thumbnail" width="80" src="{{ $row->pathPreviwImage() }}">
+                                            <img class="img-thumbnail" width="120" src="{{ $row->pathPreviwImage() }}">
                                         </td>
                                         <td> {{ $row->name }} </td>
                                         <td> {{ $row->about }} </td>

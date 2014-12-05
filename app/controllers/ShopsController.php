@@ -5,12 +5,127 @@ class ShopsController extends \BaseController {
     public function create()
     {
         $towns = Town::orderBy('name')->get();
+        $selectTowns[''] = '';
 
-        return View::make('pages.create_shop', compact('towns'));
+        foreach ($towns as $town)
+        {
+            $selectTowns[$town->id] = $town->name;
+
+        }
+
+        return View::make('pages.create_shop', compact('selectTowns'));
     }
 
     public function store()
     {
+        $validation = Validator::make(Input::all(), Shop::$createRules, Shop::$validationMessages);
+        if ($validation->fails())
+        {
+            return Redirect::back()->withInput()->withErrors($validation);
+        }
+        $shop = new Shop;
+        $shop->name = Input::get('name');
+        $shop->link = Input::get('link');
+        $shop->town_id = Input::get('town_id');
+        $shop->street_address = Input::get('street_address');
+        $shop->email = Input::get('email');
+        $shop->administrator_name = Input::get('administrator_name');
+        $shop->cell = Input::get('cell');
+        $shop->about = "Acerca ...";
+        $shop->save();
+
+        $path = "shops/{$shop->id}";
+
+        if (!File::exists($path))
+        {
+            File::makeDirectory($path);
+        }
+        $path = "shops/{$shop->id}/products";
+
+        if (!File::exists($path))
+        {
+            File::makeDirectory($path);
+        }
+
+        $path = "shops/{$shop->id}/covers";
+
+        if (!File::exists($path))
+        {
+            File::makeDirectory($path);
+        }
+
+        $cover = new Cover;
+        $cover->shop_id = $shop->id;
+        $cover->caption = 'Texto de prueba 1';
+        $cover->save();
+
+
+        $photoPath = 'assets/images/demo-cover-1.gif';
+        $photoExtension = 'gif';
+        $path = "shops/{$shop->id}/covers";
+
+        $filename = $cover->id . "." . $photoExtension;
+        $cover->image = $filename;
+        $cover->save();
+        Image::make($photoPath)
+            ->fit(900, 300)
+            ->save("$path/$filename");
+
+        $cover = new Cover;
+        $cover->shop_id = $shop->id;
+        $cover->caption = 'Texto de prueba 2';
+        $cover->save();
+
+        $photoPath = 'assets/images/demo-cover-2.gif';
+        $photoExtension = 'gif';
+        $path = "shops/{$shop->id}/covers";
+
+        $filename = $cover->id . "." . $photoExtension;
+        $cover->image = $filename;
+        $cover->save();
+        Image::make($photoPath)
+            ->fit(900, 300)
+            ->save("$path/$filename");
+
+        $category = new Category;
+        $category->shop_id = $shop->id;
+        $category->name = 'Categoria de prueba';
+        $category->save();
+
+        $photoPath = 'assets/images/demo-product.gif';
+        $photoExtension = 'gif';
+        $product = new Product;
+        $product->category_id = $category->id;
+        $product->name = ('Producto de prueba');
+        $product->description = 'Alguna descripción...';
+        $product->price = '2.99';
+        $product->publish = 1;
+        $product->delivery_service = "1";
+        $product->photo_extension = $photoExtension;
+        $product->save();
+
+        $path = "shops/{$shop->id}/products/{$product->id}";
+
+        if (!File::exists($path))
+        {
+            File::makeDirectory($path);
+        }
+
+        $filename = 'mini.' . $photoExtension;
+        Image::make($photoPath)
+            ->fit(252, 126)
+            ->save("$path/$filename");
+
+        $filename = 'cover.' . $photoExtension;
+        Image::make($photoPath)
+            ->fit(900, 450)
+            ->save("$path/$filename");
+
+        Auth::user()->shops()->attach($shop->id, ['role' => 1]);
+
+        Flash::success('Establecimiento creado exitosamente');
+
+        return Redirect::route('shop_path', $shop->link);
 
     }
 
@@ -85,7 +200,7 @@ class ShopsController extends \BaseController {
 
     public function updateGeneralInformation($shop_link)
     {
-        $validation = Validator::make(Input::all(), Shop::$rules, Shop::$validationMessages);
+        $validation = Validator::make(Input::all(), Shop::$updateRules, Shop::$validationMessages);
         if ($validation->fails())
         {
             return Redirect::back()->withInput()->withErrors($validation);
