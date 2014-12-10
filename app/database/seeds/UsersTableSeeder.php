@@ -27,12 +27,24 @@ class UsersTableSeeder extends Seeder {
             'last_name'  => 'Serna',
             'birth_date' => '1990-02-22',
             'gender'     => 'f',
-            'email'      => 'mary@gmail.com',
+            'email'      => 'mary.serna.8903@gmail.com',
             'avatar'     => 'default.png',
             'password'   => Hash::make("123"),
             'confirmed'  => 1
         ]);
 
+        User::create([
+            'id'         => 3,
+            'first_name' => 'Juan',
+            'last_name'  => 'Montoya',
+            'birth_date' => '1990-02-22',
+            'gender'     => 'm',
+            'code'       => '123',
+            'email'      => 'lfmontoyag@unal.edu.co',
+            'avatar'     => 'default.png',
+            'password'   => Hash::make("123"),
+            'confirmed'  => 1
+        ]);
 
         foreach (range(1, 10) as $index)
         {

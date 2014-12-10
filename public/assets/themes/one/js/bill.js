@@ -39,10 +39,10 @@ $(function () {
     $("#products").on("change", "select.producto", function () {
         var inputCosto = $(this).parent().parent().parent().find("input.costo");
         var cantidad = $(this).parent().parent().parent().find("input.cantidad").val();
-        var costo = $('option:selected', this).data('price');
+        var costo = $('option:selected', this).attr('data-price');
         var valor = $(this).val();
         if (valor != "") {
-            inputCosto.val(costo * cantidad);
+            inputCosto.val(toFront(costo * cantidad));
         } else {
             inputCosto.val("");
         }
@@ -51,11 +51,11 @@ $(function () {
 
     $("#products").on("change", "input.cantidad", function () {
         var selectProduct = $(this).parent().parent().parent().find("select.producto");
-        var costo = $('option:selected', selectProduct).data('price');
+        var costo = $('option:selected', selectProduct).attr('data-price');
         if (costo) {
             var cantidad = $(this).val();
             var inputCosto = $(this).parent().parent().parent().find("input.costo");
-            inputCosto.val(costo * cantidad);
+            inputCosto.val(toFront(costo * cantidad));
         }
         actualizarTotal();
     });
@@ -66,7 +66,7 @@ $(function () {
 
     $("#check-balance").change(function () {
         if ($(this).is(':checked')) {
-            $("#balance").val($("#check-balance").data("retribution"));
+            $("#balance").val(toFront($("#check-balance").attr("data-retribution")));
             $("#code").val("");
             $("#retribution-zone .ocultar2").removeClass("ocultar");
             $("#div-redimido").removeClass("hidden");
@@ -84,7 +84,7 @@ $(function () {
     });
 
     $("#balance").change(function () {
-        if ($(this).val() > $("#check-balance").data("retribution")) {
+        if (toBack($(this).val()) > toBack($("#check-balance").attr("data-retribution"))) {
             $(this).val("0");
         }
         actualizarSaldoRedimido();
@@ -92,9 +92,9 @@ $(function () {
 
     $("#subtotal").change(function () {
         if ($("#no_register_products").is(":checked")) {
-
-            var subtotal = $.isNumeric($(this).val()) ? $(this).val() : 0;
-            total = subtotal - $("#balance_redeemed").val();
+            var subtotal = toBack($(this).val());
+            subtotal = $.isNumeric(subtotal) ? subtotal : 0;
+            total = subtotal - toBack($("#balance_redeemed").val());
             $("#total").val(total);
             $("#retribution").val(parseInt(total * retribution));
 
@@ -128,91 +128,135 @@ $(function () {
     });
 
     $("#submit-form").click(function () {
-        var flag = false;
+            var flag = false;
 
-        $("#form-bill input:visible").popover('destroy');
+            $("#form-bill input:visible").popover('destroy');
 
-        $("#form-bill [required]:visible").each(function () {
+            $("#form-bill [required]:visible").each(function () {
 
-            var valor = $(this).val();
-            valor = valor.replace(",", ".");
-            if (valor == "") {
-                $(this).focus().popover({
-                    'trigger': 'manual',
-                    'placement': 'bottom',
-                    'content': 'Campo obligatorio'
-                }).popover('show');
-                flag = true;
+                var valor = $(this).val();
+
+                if (valor == "") {
+                    $(this).focus().popover({
+                        'trigger': 'manual',
+                        'placement': 'bottom',
+                        'content': 'Campo obligatorio'
+                    }).popover('show');
+                    flag = true;
+                }
+                if (flag)
+                    return false;
+            });
+
+            if (!flag) {
+                $("#form-bill .number[required]:visible").each(function () {
+
+                    var valor = String(toBack($(this).val()));
+
+                    valor = valor.replace(",", ".");
+                    if (!$.isNumeric(valor)) {
+                        $(this).focus().popover({
+                            'trigger': 'manual',
+                            'placement': 'bottom',
+                            'content': 'Número inválido'
+                        }).popover('show');
+                        flag = true;
+                    }
+                    if (flag)
+                        return false;
+                });
             }
+
+            if (!flag) {
+                if ($("#balance").is(":visible")) {
+                    var balance = toBack(($("#balance").val()));
+                    var subtotal = toBack(($("#subtotal").val()));
+
+                    var maximoSaldoARedimirPermito = subtotal * retribution_per_bill;
+                    console.log(maximoSaldoARedimirPermito);
+                    if (balance > maximoSaldoARedimirPermito) {
+                        $("#balance").popover({
+                            'trigger': 'manual',
+                            'placement': 'bottom',
+                            'content': 'El saldo a redimir no puede ser mayor a $ ' + toFront(maximoSaldoARedimirPermito)+ ' (el '+toFront(retribution_per_bill*100)+'% del total a pagar)'
+                        }).popover('show');
+                        flag = true;
+                    }
+                }
+            }
+
+            if (!flag) {
+                if ($("#balance").is(":visible")) {
+                    if ($("#balance").val() == 0) {
+                        $("#balance").popover({
+                            'trigger': 'manual',
+                            'placement': 'bottom',
+                            'content': 'El saldo a redimir debe ser mayor a 0'
+                        }).popover('show');
+                        flag = true;
+                    }
+                }
+            }
+
+
+
+
             if (flag)
                 return false;
-        });
 
-        var total = $.isNumeric($("#total").val()) ? $("#total").val() : 0;
 
-        if (!flag && total < 0) {
-            $("#subtotal").popover({
-                'trigger': 'manual',
-                'placement': 'bottom',
-                'content': 'El subtotal no puede ser menor que el saldo a redimir'
-            }).popover('show');
-            flag = true;
+            $.ajax({
+                type: 'POST',
+                url: url_send_form,
+                data: $("#form-bill").serialize(),
+                beforeSend: function () {
+                    coverOn();
+                },
+                success: function (data) {
+                    coverOff();
+                    $.growl(data.messages[0], {
+                        type: "success",
+                        animate: {
+                            enter: 'animated bounceInDown',
+                            exit: 'animated bounceOutUp'
+                        },
+                        placement: {
+                            from: "top",
+                            align: "center"
+                        }
+                    });
+                    cleanBillForm();
+                    $(window).scrollTop(0);
+
+                }, error: function (data) {
+                    coverOff();
+                    data = data.responseJSON;
+
+                    var mensaje = "<div class='alert alert-danger'><ul>";
+
+                    $.each(data.messages, function (key, value) {
+                        mensaje += "<li>" + value + "</li>";
+                    });
+
+                    mensaje += "</ul></div>";
+
+                    $("#div-errors").html(mensaje);
+
+                    $(window).scrollTop(0);
+                }
+            })
         }
-
-        if (flag)
-            return false;
-
-
-        $.ajax({
-            type: 'POST',
-            url: url_send_form,
-            data: $("#form-bill").serialize(),
-            beforeSend: function () {
-                coverOn();
-            },
-            success: function (data) {
-                coverOff();
-                $.growl(data.messages[0], {
-                    type: "success",
-                    animate: {
-                        enter: 'animated bounceInDown',
-                        exit: 'animated bounceOutUp'
-                    },
-                    placement: {
-                        from: "top",
-                        align: "center"
-                    }
-                });
-                cleanBillForm();
-                $(window).scrollTop(0);
-
-            }, error: function (data) {
-                coverOff();
-                data = data.responseJSON;
-
-                var mensaje = "<div class='alert alert-danger'><ul>";
-
-                $.each(data.messages, function (key, value) {
-                    mensaje += "<li>" + value + "</li>";
-                });
-
-                mensaje += "</ul></div>";
-
-                $("#div-errors").html(mensaje);
-
-                $(window).scrollTop(0);
-            }
-        })
-    });
+    )
+    ;
 });
 
 function actualizarSaldoRedimido() {
 
-    var inputBalance = $("#balance").val();
+    var inputBalance = toBack($("#balance").val());
 
     var balanceRedeemed = $.isNumeric(inputBalance) ? inputBalance : 0;
 
-    $("#balance_redeemed").val(balanceRedeemed);
+    $("#balance_redeemed").val(toFront(balanceRedeemed));
 
     actualizarTotal();
 }
@@ -220,30 +264,29 @@ function actualizarSaldoRedimido() {
 function actualizarTotal() {
 
     var subTotal = 0;
-    var inputBalanceRedeemed = $("#balance_redeemed").val();
+    var inputBalanceRedeemed = toBack($("#balance_redeemed").val());
 
     var balanceRedeemed = $.isNumeric(inputBalanceRedeemed) ? inputBalanceRedeemed : 0;
 
     if (!$("#no_register_products").is(":checked")) {
-
         var costoProducto;
         $("#products input.costo").each(function () {
-            costoProducto = parseInt($(this).val());
+            costoProducto = parseInt(toBack($(this).val()));
             if ($.isNumeric(costoProducto)) {
                 subTotal += costoProducto;
             }
         });
     } else {
-        subTotal = $("#subtotal").val();
+        subTotal = toBack($("#subtotal").val());
     }
 
     var total = subTotal - balanceRedeemed;
     if (total < 0) {
         total = 0;
     }
-    $("#retribution").val(parseInt(total * retribution));
-    $("#subtotal").val(subTotal);
-    $("#total").val(total);
+    $("#retribution").val(toFront(parseInt(total * retribution)));
+    $("#subtotal").val(toFront(subTotal));
+    $("#total").val(toFront(total));
 
 }
 
@@ -258,7 +301,7 @@ function checkRetribution(email) {
         success: function (data) {
             if (data != "[]" && data.retribution != 0) {
                 $("#nombre-usuario").html(data.first_name + " " + data.last_name);
-                $("#info-balance").html(data.retribution);
+                $("#info-balance").html(toFront(data.retribution));
                 $("#check-balance").attr("data-retribution", data.retribution);
                 $("#retribution-zone .ocultar1").removeClass("ocultar");
             } else {

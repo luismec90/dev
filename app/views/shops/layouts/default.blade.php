@@ -18,6 +18,11 @@
         {{-- HTML::style('//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css') --}}
         {{ HTML::style('assets/libs/jqueryui/jquery-ui.min.css') }}
         {{ HTML::style('assets/themes/one/css/template.css') }}
+
+        @if(Auth::user()->isAdmin($shop->id))
+            {{ HTML::style('assets/libs/bootstrap-tour/css/bootstrap-tour.min.css') }}
+        @endif
+
         {{ HTML::style('assets/themes/one/css/main.css') }}
 
         @section('css')
@@ -50,6 +55,11 @@
         {{ HTML::script('assets/libs/jqueryui/jquery-ui.min.js') }}
         {{ HTML::script('//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js') }}
         {{ HTML::script('assets/libs/bootstrap-growl/bootstrap-growl.min.js') }}
+
+        @if(Auth::user()->isAdmin($shop->id))
+            {{ HTML::script('assets/libs/bootstrap-tour/js/bootstrap-tour.min.js') }}
+        @endif
+
         {{ HTML::script('assets/themes/one/js/main.js') }}
 
         @section('js')

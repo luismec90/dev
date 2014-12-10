@@ -1,21 +1,13 @@
 <?php
 
+use Carbon\Carbon;
+
 class PagesController extends BaseController {
 
 
     public function test()
     {
-        $emailTitle="asd";
-        $emailBody="asdasd";
-        $to='luismec90@gmail.com';
-
-        echo "d";
-
-        Mail::send('emails.shops.notification', ['title' => 'emailTitle', 'body' => 'emailBody'], function ($message) use ($to) {
-            $message->to('luismec90@gmail.com','Luis Montoya')
-                ->subject("asdasd" . ' - Compra realizada');
-        });
-
+       return number_format((float) "14500,2",2, ',', '.');
     }
 
     public function shops()
@@ -34,7 +26,7 @@ class PagesController extends BaseController {
 
         return View::make('pages.buyers', compact('towns', 'activities'));
     }
-    
+
     public function welcome()
     {
         $towns = Town::orderBy('name')->get();
@@ -128,12 +120,30 @@ class PagesController extends BaseController {
 
         $shops = DB::table('shops')
             ->join('bills', 'shops.id', '=', 'bills.shop_id')
-            ->select(DB::raw('shops.*,shops.name,sum(bills.retribution) as retribution'))
+            ->select(DB::raw('shops.*,sum(bills.retribution) as retribution'))
             ->where('bills.user_id', Auth::user()->id)
             ->groupBy('shops.id')
             ->get();
 
-        return View::make('pages.my_sites', compact('shops', 'ownShops'));
+        $shopsIDs = [];
+
+        foreach ($shops as $shop)
+        {
+            array_push($shopsIDs, $shop->id);
+        }
+
+        $q = DB::table('shops')
+            ->join('retribution_between_shops', 'shops.id', '=', 'retribution_between_shops.shop_who_gives')
+            ->select(DB::raw('shops.*,sum(retribution_between_shops.retribution) as retribution'))
+            ->where('retribution_between_shops.user_id', Auth::user()->id);
+
+        if (!empty($shopsIDs))
+            $q = $q->whereNotIn('shops.id', $shopsIDs);
+
+        $shopsByAlliances = $q->groupBy('shops.id')
+            ->get();
+
+        return View::make('pages.my_sites', compact('ownShops', 'shops', 'shopsByAlliances'));
     }
 
 

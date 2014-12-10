@@ -8,7 +8,7 @@
     <center><h2 style="font-family: arial, Helvetica, sans-serif;">{{ $title }}</h2></center>
 @endif
 @if($shop->retribution>0)
-<center><h3 style="font-family: arial, Helvetica, sans-serif;">Te obsequimos <b style="color:rgb(232, 76, 61); font-size:25px; ">{{  Shop::showMoney($bill->retribution) }}</b> por esta compra</h3></center>
+<center><h3 style="font-family: arial, Helvetica, sans-serif;">Te obsequiamos <b style="color:rgb(232, 76, 61); font-size:25px; ">{{  Shop::showMoney($bill->retribution) }}</b> por esta compra los cuales podras usar en compras futuras </h3></center>
 @endif
 
 
@@ -54,6 +54,37 @@
                 Total compra:</td>
                 <td style="border: 1px solid #ddd; padding: 8px;"><b>{{ Shop::showMoney($bill->total_cost) }}</b></td>
             </tr>
+    </table>
+@endif
+@if($allianceRetributions->count())
+
+    <table width="540" align="center" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+             <td style="padding: 8px;">
+                <h3 style="text-align: center">Saldo ganado en establecimientos aliados</h3>
+            </td>
+        </tr>
+    </table>
+
+    <table width="540" align="center" cellpadding="0" cellspacing="0" border="0" style="border: 1px solid #ddd; border-spacing: 0; border-collapse: collapse;" class="devicewidthinner">
+        <tr style="background: #444; color:#FFFFFF">
+            <td style="border: 1px solid #ddd; padding: 8px;">Establecimiento</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">Saldo ganado en esta compra</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">Saldo Total</td>
+        </tr>
+        @foreach($allianceRetributions as $allianceRetribution)
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 8px;">
+                    {{ $allianceRetribution->shopWhoGives->name }}
+                </td>
+                <td style="border: 1px solid #ddd; padding: 8px;">
+                    {{ Currency::toFront($allianceRetribution->retribution) }}
+                </td>
+                <td style="border: 1px solid #ddd; padding: 8px;">
+                    {{ Currency::toFront($user->saldo($allianceRetribution->shopWhoGives->id)) }}
+                </td>
+            </tr>
+        @endforeach
     </table>
 @endif
 </div>

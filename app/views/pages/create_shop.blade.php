@@ -37,7 +37,7 @@
             </div>
 
             <!-- Location Form Input -->
-            <div class="form-group">
+            <div id="div-location" class="form-group obligatorio">
                 {{ Form::label('town_id','Ubicación:') }}<i class="glyphicon glyphicon-info-sign pull-right help"  data-content="Asdfg..."></i>
                 {{ Form::select('town_id',$selectTowns,null,['class'=>'form-control']) }}
 
@@ -91,6 +91,34 @@
                {{ Form::label('cell','Número celular del administrador:') }}<i class="glyphicon glyphicon-info-sign pull-right help"  data-content="first tooltip asdasd asd adsf asdf asdfasdfasdf afsd"></i>
                {{ Form::text('cell',null,['class'=>'form-control','required'=>'required']) }}
            </div>
+
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <label>Seleccione las categorias que identifiquen el establecimiento:</label>
+                </div>
+            </div>
+
+            <div id="div-activities" class="row obligatorio">
+                @foreach($activities as $activity)
+                    <div class="col-xs-3">
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label>
+                                    {{ Form::checkbox('activities[]', $activity->id) }}
+                                    {{ $activity->name }}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <hr>
+                </div>
+            </div>
 
             <div class="form-group">
                 <div class="row">

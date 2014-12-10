@@ -1,17 +1,12 @@
 @extends('shops.layouts.default')
 @section('content')
-<div class="row">
-    <div class="col-lg-12">
-       <h2 class="shop-title section-title"><span>{{ $shop->name }}</span></h2>
-    <br>
-    </div>
-</div>
+@include('shops.layouts.partials.title_page',['showTour'=>true])
 <div class="row">
     @include('shops.layouts.partials.left_menu')
   	<div class="col-md-9">
 
 
-<div id="carousel-1" class="carousel slide" data-ride="carousel">
+<div id="carousel-1" class="carousel slide one" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
     @if($shop->covers->count()>1)
@@ -61,7 +56,7 @@
     </div>
 
 
-    <div class="section row">
+    <div class="section row two">
         <div class="col-lg-12">
             <h2 class="section-title"><span>Lo más destacado</span></h2>
         </div>

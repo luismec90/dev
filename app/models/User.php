@@ -156,14 +156,20 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     {
         $shop = Shop::findOrFail($shop_id);
 
-        $shop = DB::table('bills')->select(DB::raw('sum(retribution-redeemed) as retribution'))
+        $balance = DB::table('bills')->select(DB::raw('COALESCE(SUM(retribution-redeemed),0) as retribution'))
             ->where('shop_id', $shop->id)
             ->where('user_id', $this->id)
             ->whereNull('deleted_at')
             ->where('created_at', '>=', Carbon::now()->subDays($shop->balance_deadline))
             ->first();
 
-        return empty($shop->retribution) ? 0 : $shop->retribution;
+        $balanceByAlliances = DB::table('retribution_between_shops')->select(DB::raw('COALESCE(SUM(retribution),0) as retribution'))
+            ->where('shop_who_gives', $shop->id)
+            ->where('user_id', $this->id)
+            ->where('created_at', '>=', Carbon::now()->subDays(60))
+            ->first();
+
+        return $balance->retribution + $balanceByAlliances->retribution;
     }
 
     public static function linkUserEmail($user_id, $shop_id)

@@ -52,10 +52,10 @@ class AlliancesController extends \BaseController {
         Input::merge(['from' => $shop->id]);
 
         /* Eliminar el separador de miles(el punto) si lo tiene  */
-        Input::merge(['from_retribution_per_user_granted' => Currency::toBack(Input::get('from_retribution_per_user_granted'))]);
+        Input::merge(['from_retribution_per_user_granted' => Currency::toBack(Input::get('from_retribution_per_user_granted')) / 100]);
         Input::merge(['from_limit_per_user_granted' => Currency::toBack(Input::get('from_limit_per_user_granted'))]);
         Input::merge(['from_limit_total_granted' => Currency::toBack(Input::get('from_limit_total_granted'))]);
-        Input::merge(['to_retribution_per_user_granted' => Currency::toBack(Input::get('to_retribution_per_user_granted'))]);
+        Input::merge(['to_retribution_per_user_granted' => Currency::toBack(Input::get('to_retribution_per_user_granted')) / 100]);
         Input::merge(['to_limit_per_user_granted' => Currency::toBack(Input::get('to_limit_per_user_granted'))]);
         Input::merge(['to_limit_total_granted' => Currency::toBack(Input::get('to_limit_total_granted'))]);
 
@@ -67,6 +67,24 @@ class AlliancesController extends \BaseController {
 
         $to = Shop::findOrFail(Input::get('to'));
 
+        $existsAlliances = Alliance::whereIn('status', [0, 1])
+            ->where(function ($query) use ($shop, $to)
+            {
+                $query->where("from", $shop->id)
+                    ->where("to", $to->id);
+            })->orWhere(function ($query) use ($shop, $to)
+            {
+                $query->where("from", $to->id)
+                    ->where("to", $shop->id);
+            })->get();
+
+        if ($existsAlliances->count() != 0)
+        {
+            Flash::error('Por favor inténtalo nuevamente');
+
+            return Redirect::back();
+        }
+
         $alliance = Alliance::create(Input::all());
 
         Input::merge(['alliance_id' => $alliance->id]);
@@ -76,13 +94,13 @@ class AlliancesController extends \BaseController {
 
         $route = route("pending_alliance_path", [$to->link, $alliance->id]);
         $notificationBody = "El establecimiento {$shop->name} te ha solicitado una alianza";
-        $emailTitle = "Alianza Solicitada";
-        $emailBody = "El establecimiento {$shop->name} te ha solicitado una alianza <a target_blank='$route'> Ver </a>";
+        $emailTitle = "Alianza solicitada";
+        $emailBody = "El establecimiento {$shop->name} te ha solicitado una alianza.";
         $this->notify($to, $route, $notificationBody, $emailTitle, $emailBody);
 
         Flash::success('Alianza solicitada exitosamente');
 
-        return Redirect::route('pending_alliance_path', [$shop->link, $alliance->id]);
+          return Redirect::route('pending_alliance_path', [$shop->link, $alliance->id]);
 
     }
 
@@ -142,10 +160,10 @@ class AlliancesController extends \BaseController {
         Input::merge(['shop_id' => $shop->id]);
 
         /* Eliminar el separador de miles(el punto) si lo tiene  */
-        Input::merge(['from_retribution_per_user_granted' => Currency::toBack(Input::get('from_retribution_per_user_granted'))]);
+        Input::merge(['from_retribution_per_user_granted' => Currency::toBack(Input::get('from_retribution_per_user_granted')) / 100]);
         Input::merge(['from_limit_per_user_granted' => Currency::toBack(Input::get('from_limit_per_user_granted'))]);
         Input::merge(['from_limit_total_granted' => Currency::toBack(Input::get('from_limit_total_granted'))]);
-        Input::merge(['to_retribution_per_user_granted' => Currency::toBack(Input::get('to_retribution_per_user_granted'))]);
+        Input::merge(['to_retribution_per_user_granted' => Currency::toBack(Input::get('to_retribution_per_user_granted')) / 100]);
         Input::merge(['to_limit_per_user_granted' => Currency::toBack(Input::get('to_limit_per_user_granted'))]);
         Input::merge(['to_limit_total_granted' => Currency::toBack(Input::get('to_limit_total_granted'))]);
 
@@ -162,7 +180,7 @@ class AlliancesController extends \BaseController {
         $route = route("pending_alliance_path", [$to->link, $alliance->id]);
         $notificationBody = "El establecimiento {$shop->name} te ha hecho una contrapropuesta";
         $emailTitle = "Contrapropuesta";
-        $emailBody = $notificationBody . " <a target_blank='$route'> Ver </a>";
+        $emailBody = $notificationBody;
         $this->notify($to, $route, $notificationBody, $emailTitle, $emailBody);
 
         Flash::success('Propuesta enviada exitosamente');
@@ -204,8 +222,8 @@ class AlliancesController extends \BaseController {
 
         $route = route("active_alliance_path", [$to->link, $alliance->id]);
         $notificationBody = "El establecimiento {$shop->name} ha aceptado tu propuesta. !Ahora son aliados!";
-        $emailTitle = "Alianza Solicitada";
-        $emailBody = $notificationBody . " <a target_blank='$route'> Ver </a>";
+        $emailTitle = "Alianza aceptada";
+        $emailBody = $notificationBody;
         $this->notify($to, $route, $notificationBody, $emailTitle, $emailBody);
 
         Flash::success('Alianza creada exitosamente');
@@ -279,7 +297,7 @@ class AlliancesController extends \BaseController {
         $route = "#";
         $notificationBody = "El establecimiento {$shop->name} ha cancelado la alianza";
         $emailTitle = "Alianza cancelada";
-        $emailBody = "El establecimiento {$shop->name} ha cancelado la alianza";
+        $emailBody = "El establecimiento {$shop->name} ha cancelado la alianza.";
         $this->notify($to, $route, $notificationBody, $emailTitle, $emailBody);
 
         Flash::success('Alianza cancelada exitosamente');
@@ -304,14 +322,12 @@ class AlliancesController extends \BaseController {
         }
 
         if ($to)
-        {   // Revisar por que no se envian los emails
-            /* Mail::send('emails.shops.notification', ['title' => 'emailTitle', 'body' => 'emailBody'], function ($message) use ($to)
-             {
-                 $message->from('soporte@linkingshops.com', 'LinkingShops');
+        {
+            Mail::send('emails.shops.notification', ['title' => $emailTitle, 'body' => $emailBody, 'route' => $route], function ($message) use ($to, $emailTitle)
+            {
+                $message->to($to)->bcc('luismec90@gmail.com')->subject($emailTitle);
+            });
 
-                 $message->to($to)->bcc('luismec90@gmail.com');
-             });
-            */
         }
 
 

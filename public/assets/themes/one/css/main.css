@@ -138,9 +138,6 @@ a:hover {
     margin-right: 10px;
 }
 
-
-
-
 .nav-list {
     padding-left: 15px;
     padding-right: 15px;
@@ -437,22 +434,30 @@ a.info-user {
     }
 
 }
+
 .badge {
     position: relative;
     top: -4px;
     left: 2px;
     padding-right: 5px;
     padding-left: 5px;
-    background-color: #d15b47!important;
+    background-color: #d15b47 !important;
     text-shadow: none;
     font-size: 12px;
     padding-top: 2px;
     padding-bottom: 4px;
 }
-input:required + .popover {
+
+input:required + .popover, select:required + .popover {
     background: #e74c3c;
-    color:#fff;
+    color: #fff;
 }
-input:required + .popover.bottom>.arrow:after{
+
+input:required + .popover.bottom > .arrow:after, select:required + .popover.bottom > .arrow:after {
     border-bottom-color: #e74c3c;
+}
+#btn-take-tour{
+    margin-top: 5px;
+    z-index: 1000;
+    position: relative;
 }

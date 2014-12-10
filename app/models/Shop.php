@@ -74,7 +74,7 @@ class Shop extends \Eloquent {
         if ($this->image_preview != "")
             return asset("shops/{$this->id}/{$this->image_preview}");
         else
-            return "http://dummyimage.com/200/444444/ffffff&text={$this->name}";
+            return "http://dummyimage.com/200/e74c3c/ffffff&text=LS";
     }
 
     public function users()

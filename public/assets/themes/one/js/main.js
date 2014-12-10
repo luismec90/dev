@@ -4,7 +4,7 @@ $(function () {
         coverOn();
     });
 
-    $("form").keypress(function(e) {
+    $("form").keypress(function (e) {
         //Enter key
         if (e.which == 13) {
             return false;
@@ -83,9 +83,9 @@ $(function () {
 
 
     $('#btn-ver-menu').click(function () {
-        if($('.sidebar-offcanvas').is(':visible')){
+        if ($('.sidebar-offcanvas').is(':visible')) {
             $(this).html("Ver menú");
-        }else{
+        } else {
             $(this).html("Ocultar menú");
         }
         $('.sidebar-offcanvas').toggle('ocultar-menu');
@@ -102,6 +102,18 @@ $(function () {
     $('form').on('blur', 'input[type=number]', function (e) {
         $(this).off('mousewheel.disableScroll')
     })
+
+    $("#btn-take-tour").click(function () {
+        var routeName = $(this).attr("data-route-name");
+
+        switch (routeName) {
+            case "shop_path":
+                tourShopPath.init();
+                tourShopPath.restart();
+                tourShopPath.start();
+                break;
+        }
+    });
 
 });
 
@@ -120,3 +132,63 @@ function coverOff() {
         "height": "0"
     });
 }
+
+
+function number_format(number, decimals, dec_point, thousands_sep) {
+    // http://kevin.vanzonneveld.net
+    // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +     bugfix by: Michael White (http://crestidg.com)
+    // +     bugfix by: Benjamin Lupton
+    // +     bugfix by: Allan Jensen (http://www.winternet.no)
+    // +    revised by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
+    // *     example 1: number_format(1234.5678, 2, '.', '');
+    // *     returns 1: 1234.57
+
+    var n = number, c = isNaN(decimals = Math.abs(decimals)) ? 2 : decimals;
+    var d = dec_point == undefined ? "," : dec_point;
+    var t = thousands_sep == undefined ? "." : thousands_sep, s = n < 0 ? "-" : "";
+    var i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "", j = (j = i.length) > 3 ? j % 3 : 0;
+
+    return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+}
+
+
+function rtrim(str, charlist) {
+
+    charlist = !charlist ? ' \\s\u00A0' : (charlist + '')
+        .replace(/([\[\]\(\)\.\?\/\*\{\}\+\$\^\:])/g, '\\$1');
+    var re = new RegExp('[' + charlist + ']+$', 'g');
+    return (str + '')
+        .replace(re, '');
+}
+function toFront(value) {
+    return number_format(value, 0, ',', '.');
+}
+
+function toBack(value) {
+    return parseFloat(value.replace(".", ""));
+}
+
+/* Bootstrap-tour */
+
+
+var tourShopPath = new Tour({
+    name: 'Tour',
+    steps: [
+        {
+            element: ".one",
+            title: "Title",
+            content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut ipsum felis. Aliquam molestie ultrices rhoncus. Ut scelerisque velit et sapien sodales pharetra eu eget libero. Curabitur convallis congue justo, a ornare est placerat eget.",
+            placement: "bottom"
+        },
+        {
+            element: ".two",
+            title: "Title",
+            content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut ipsum felis. Aliquam molestie ultrices rhoncus. Ut scelerisque velit et sapien sodales pharetra eu eget libero. Curabitur convallis congue justo, a ornare est placerat eget.",
+            placement: "top"
+        }
+    ],
+    backdrop: true,
+    template: "<div class='popover tour'> <div class='arrow'></div> <h3 class='popover-title'></h3> <div class='popover-content'></div> <div class='popover-navigation'> <div class='btn-group'> <button class='btn btn-sm btn-default' data-role='prev'>« Anterior</button> <button class='btn btn-sm btn-default' data-role='next'>Siguiente »</button> </div> <button class='btn btn-sm btn-default' data-role='end'>Finalizar</button> </div> </div>"
+});
