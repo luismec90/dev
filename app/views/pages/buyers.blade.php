@@ -63,25 +63,25 @@
                 <p>Comprando en nuestros <br> establecimientos recibirás<br> saldo para redimir en compras futuras.</p> 
             </div>
             <div class="col-md-4 col-sm-6">
-                <div class="icon-wrap"><img src="{{ asset('assets/images/icon-comments-flat.png') }}" alt=""></div>
+                <div class="icon-wrap"><img src="{{ asset('assets/images/redstore.png') }}" alt=""></div>
                 <h4>Intercambia saldo</h4>
-                <p>Adquiere saldo en una tienda<br> que podrás redimir en otra. Si compras en una pizzería podrás obtener saldo redmible en un establecimiento de calzado.<br></p>
+                <p>Adquiere saldo en una tienda que <br>podrás redimir en otra.<br>Si compras en una pizzería<br>podrás obtener saldo redmible <br>en un establecimiento de calzado.<br></p>
             </div>
             <div class="col-md-4 col-sm-6">
-                <div class="icon-wrap"><img src="{{ asset('assets/images/icon-delivery-flat.png') }}" alt=""></div>
-                <h4>Gana saldo</h4>
-                <p>Gana saldo con tu actividad en las redes sociales <br></p>
+                <div class="icon-wrap"><img src="{{ asset('assets/images/offer.png') }}" alt=""></div>
+                <h4>Descuentos</h4>
+                <p>Con LinkingShops obtendrás <br>descuentos exclusivos al comprar <br> en las tiendas de nuestra red.</p>
             </div>
             <!-- los mismos establecimientos-->
             
             
         </div>
         
-        <div class="row">
+        <div class="row">            
             <div class="col-md-4 col-sm-6">
-                <div class="icon-wrap"><img src="{{ asset('assets/images/offer.png') }}" alt=""></div>
-                <h4>Descuentos</h4>
-                <p>Con LinkingShops obtendrás <br>descuentos exclusivos al comprar <br> en las tiendas de nuestra red.</p>
+                <div class="icon-wrap"><img src="{{ asset('assets/images/icon-delivery-flat.png') }}" alt=""></div>
+                <h4>Gana saldo</h4>
+                <p>Gana saldo con tu actividad en las redes sociales <br></p>
             </div>
             <div class="col-md-4 col-sm-6">
                 <div class="icon-wrap"><img src="{{ asset('assets/images/icon-ticket-flat.png') }}" alt=""></div>
