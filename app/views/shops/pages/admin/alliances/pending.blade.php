@@ -64,28 +64,29 @@
                                                                         <td>Límite por usuario:</td>
                                                                         <td>Límite total:</td>
                                                                     </tr>
-                                                                    <tr>
+                                                                    <tr class="{{ ($allianceRecord->alliance->from==$shop->id) ? "success":"warning"}}">
                                                                         <td>{{ $allianceRecord->alliance->shopFrom->name }}</td>
                                                                         <td>
-                                                                            <b>{{ (float) $allianceRecord->from_retribution_per_user_granted }} %</b>
+                                                                            <b> {{ Currency::toFront($allianceRecord->from_retribution_per_user_granted,'') }} %</b>
                                                                         </td>
                                                                         <td>
-                                                                            <b>$ {{ (float) $allianceRecord->from_limit_per_user_granted }}</b>
+
+                                                                            <b> {{ Currency::toFront($allianceRecord->from_limit_per_user_granted) }}</b>
                                                                         </td>
                                                                         <td>
-                                                                            <b>$ {{ (float) $allianceRecord->from_limit_total_granted }}</b>
+                                                                            <b> {{ Currency::toFront($allianceRecord->from_limit_total_granted) }}</b>
                                                                         </td>
                                                                     </tr>
-                                                                    <tr>
+                                                                    <tr class="{{ ($allianceRecord->alliance->to==$shop->id) ? "success":"warning"}}">
                                                                         <td>{{ $allianceRecord->alliance->shopTo->name }}</td>
                                                                         <td>
-                                                                            <b>{{ (float) $allianceRecord->to_retribution_per_user_granted }} %</b>
+                                                                            <b> {{ Currency::toFront($allianceRecord->to_retribution_per_user_granted,'') }} %</b>
                                                                         </td>
                                                                         <td>
-                                                                            <b>$ {{ (float) $allianceRecord->to_limit_per_user_granted }}</b>
+                                                                            <b> {{ Currency::toFront($allianceRecord->to_limit_per_user_granted) }}</b>
                                                                         </td>
                                                                         <td>
-                                                                            <b>$ {{ (float) $allianceRecord->to_limit_total_granted }}</b>
+                                                                            <b> {{ Currency::toFront($allianceRecord->to_limit_total_granted) }}</b>
                                                                         </td>
                                                                     </tr>
                                                                 </table>
@@ -121,12 +122,12 @@
                                                 </div>
                                                 <div class="col-xs-6">
                                                     <button id="btn-contra-request-alliance" class="btn btn-danger btn-block"
-                                                    data-from-retribution-per-user-granted="{{ (float) $allianceRecord->from_retribution_per_user_granted }}"
-                                                    data-from-limit-per-user-granted="{{ (float) $allianceRecord->from_limit_per_user_granted }}"
-                                                    data-from-limit-total-granted="{{ (float) $allianceRecord->from_limit_total_granted }}"
-                                                    data-to-retribution-per-user-granted="{{ (float) $allianceRecord->to_retribution_per_user_granted }}"
-                                                    data-to-limit-per-user-granted="{{ (float) $allianceRecord->to_limit_per_user_granted }}"
-                                                    data-to-limit-total-granted="{{ (float) $allianceRecord->to_limit_total_granted }}"
+                                                    data-from-retribution-per-user-granted="{{  Currency::toFront($allianceRecord->from_retribution_per_user_granted,'') }}"
+                                                    data-from-limit-per-user-granted="{{  Currency::toFront($allianceRecord->from_limit_per_user_granted,'') }}"
+                                                    data-from-limit-total-granted="{{  Currency::toFront($allianceRecord->from_limit_total_granted,'') }}"
+                                                    data-to-retribution-per-user-granted="{{ Currency::toFront($allianceRecord->to_retribution_per_user_granted,'') }}"
+                                                    data-to-limit-per-user-granted="{{  Currency::toFront($allianceRecord->to_limit_per_user_granted,'') }}"
+                                                    data-to-limit-total-granted="{{  Currency::toFront($allianceRecord->to_limit_total_granted,'') }}"
                                                     data-shop-name="@if($pendingAlliance->from!=$shop->id)
                                                                         {{ $pendingAlliance->shopFrom->name }}
                                                                     @elseif($pendingAlliance->to!=$shop->id)

@@ -449,3 +449,10 @@ a.info-user {
     padding-top: 2px;
     padding-bottom: 4px;
 }
+input:required + .popover {
+    background: #e74c3c;
+    color:#fff;
+}
+input:required + .popover.bottom>.arrow:after{
+    border-bottom-color: #e74c3c;
+}

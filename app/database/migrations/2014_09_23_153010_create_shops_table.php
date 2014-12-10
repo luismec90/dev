@@ -17,7 +17,7 @@ class CreateShopsTable extends Migration
             $table->increments('id');
             $table->integer('town_id')->unsigned();
             $table->foreign('town_id')->references('id')->on('towns')->onDelete('cascade');
-            $table->string('name', 32)->unique();
+            $table->string('name', 32);
             $table->string('link', 64)->unique();
             $table->smallInteger('balance_deadline');//Días de vigencia del saldo
             $table->decimal('retribution', 5, 4);
@@ -26,6 +26,7 @@ class CreateShopsTable extends Migration
             $table->string('lat');
             $table->string('lng');
             $table->string('street_address');
+            $table->string('administrator_name');
             $table->string('phone');
             $table->string('cell');
             $table->string('email');

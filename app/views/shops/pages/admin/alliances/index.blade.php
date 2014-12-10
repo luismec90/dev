@@ -71,7 +71,7 @@
                                 @foreach($shops as $row)
                                     <tr>
                                         <td>
-                                            <img class="img-thumbnail" width="80" src="{{ $row->pathPreviwImage() }}">
+                                            <img class="img-thumbnail" width="120" src="{{ $row->pathPreviwImage() }}">
                                         </td>
                                         <td> {{ $row->name }} </td>
                                         <td> {{ $row->about }} </td>
@@ -93,5 +93,5 @@
 </div>
 
 <!-- Solicitar alianza Modal -->
-@include('shops.pages.admin.alliances.partials.modal_request_alliance',['title'=>'Solicitar alianza','route'=>["request_alliance_path",$shop->link]])
+@include('shops.pages.admin.alliances.partials.modal_request_alliance',['title'=>'Solicitar alianza a:','route'=>["request_alliance_path",$shop->link]])
 @stop
