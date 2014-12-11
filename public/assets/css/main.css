@@ -81,8 +81,9 @@
     top: 0;
     left: 0;
     background: #444;
-    background: rgba(68, 68, 68, 0.95);
-    overflow: hidden;
+    /* background: rgba(68, 68, 68, 0.95);*/
+    background: rgba(245, 245, 245, 0.8);
+    overflow : hidden;
     filter: alpha(opacity=0);
     opacity: 0;
     z-index: 1500;
@@ -286,4 +287,50 @@ input:required + .popover, .obligatorio + .popover {
 
 input:required + .popover.bottom > .arrow:after, .obligatorio + .popover.bottom > .arrow:after {
     border-bottom-color: #e74c3c;
+}
+
+/* Header Wrap */
+
+.headerwrap {
+    background: url("http://demo.danielyewright.com/bootstack/assets/img/header-bg.jpg") no-repeat center top;
+    background-size: cover;
+    padding-top: 80px;
+}
+.headerwrap .col-lg-2 { padding-top: 40px; }
+
+.headerwrap h1 {
+    margin-top: 30px;
+    color: white;
+    font-size: 70px;
+}
+
+.headerwrap h3 {
+    color: white;
+    font-size: 30px;
+}
+
+.headerwrap h4 {
+    padding-top: 10px;
+    padding-bottom: 20px;
+    color: #fff;
+}
+
+.headerwrap h5 {
+    color: white;
+    font-size: 15px;
+    text-align: left;
+}
+
+.headerwrap p {
+    text-align: left;
+    color: #fff;
+}
+
+@media (max-width: 480px) {
+    .headerwrap h1 { font-size: 50px; }
+
+    .headerwrap .col-lg-2 h5,
+    .headerwrap .col-lg-2 p {
+        text-align: center;
+    }
 }

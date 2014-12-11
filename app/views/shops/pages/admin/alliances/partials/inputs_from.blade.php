@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-xs-4">
         <div class="form-group">
-            {{ Form::label('from_retribution_per_user_granted','Retribución por usuario:') }} <i class="glyphicon glyphicon-info-sign pull-right help"  data-content="Asdfg..."></i>
+            {{ Form::label('from_retribution_per_user_granted','Retribución por usuario:') }} <i class="glyphicon glyphicon-info-sign pull-right help"  data-content=""></i>
             <div class="input-group">
                 {{ Form::text('from_retribution_per_user_granted',null,['class'=>'form-control','placeholder'=>'Ej: 5','required'=>true,]) }}
                 <div class="input-group-addon">%</div>

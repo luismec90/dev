@@ -14,19 +14,39 @@
 
 @section('content')
 
-<div id="carousel-1" class="carousel slide" data-ride="carousel">
-    <div class="carousel-inner">
-        <div class="item active">
-            <img src="http://www.autobodyconcept.com/sites/default/files/choosing_3.jpg" alt="First slide">
-        </div>
-        <div class="item">
-            <img src="http://4.bp.blogspot.com/-ArtLfiVq6VM/Tt997t_10UI/AAAAAAAABJw/XErHAFEn5SQ/s1600/cropped11.jpg" alt="Second slide">
-        </div>
-        <div class="item">
-            <img src="http://oldrichmondinn.com/wp-content/uploads/2012/08/cheesecake.jpg" alt="Third slide">
-        </div>
-    </div>
-</div>
+<section id="home">
+			<div class="headerwrap">
+				<div class="container">
+					<div class="row text-center">
+						<div class="col-lg-12">
+							<h1>Welcome To <b>Bootstack</b></h1>
+							<h3>Show your product with confidence.</h3>
+							<br>
+						</div>
+
+						<div class="col-lg-2 hidden-xs hidden-sm hidden-md">
+							<h5>Automate business processes</h5>
+							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+							<img src="http://demo.danielyewright.com/bootstack/assets/img/arrow-left.png" alt="">
+						</div>
+						<div class="col-lg-8">
+							<img class="img-responsive" src="{{ asset('assets/images/app-bg.png') }}" alt="">
+							<!--<h4>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h4>
+							<a href="#features" type="submit" class="btn btn-lg btn-theme smoothScroll">LEARN MORE</a>-->
+						</div>
+						<div class="col-lg-2 hidden-xs hidden-sm hidden-md">
+							<br>
+							<img class="pad-top" src="http://demo.danielyewright.com/bootstack/assets/img/arrow-right.png" alt="">
+							<h5>Collaborate in the cloud</h5>
+							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+						</div>
+					</div>
+				</div> <!-- /container -->
+			</div><!-- /headerwrap -->
+
+
+
+		</section>
 
 <!--<div class="main-text hidden-xs">
     <div class="col-md-12 text-center">
@@ -36,8 +56,8 @@
 
 <section class="section section-center section-cta">
     <div class="container">
-        <h2 class="section-title"><span>Listo para comenzar?</span></h2>
-        <p>LinkingShops es una plataforma para la fidelización de clientes y a atracción de nuevos compradores <br> através de alianzas entre establecimientos comerciales de todos los sectores.</p>
+        <h2 class="section-title"><span>Estás listo para llevar tu establecimiento a la Web?</span></h2>
+        <p>LinkingShops perimite es una plataforma para la fidelización de clientes y a atracción de nuevos compradores <br> através de alianzas entre establecimientos comerciales de todos los sectores.</p>
         <div class="main-action row text-center ">
             <div class="col-xs-12 text-center"><a href="{{ route('register_path') }}" class="smooth-scroll btn btn-lg btn-danger">Registrate de forma gratuita</a></div>
         </div>

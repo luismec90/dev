@@ -197,7 +197,8 @@ h3.no-margin {
     top: 0;
     left: 0;
     background: #444;
-    background: rgba(68, 68, 68, 0.95);
+    /* background: rgba(68, 68, 68, 0.95);*/
+    background: rgba(245, 245, 245, 0.8);
     overflow: hidden;
     filter: alpha(opacity=0);
     opacity: 0;
