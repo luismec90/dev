@@ -1,3 +1,11 @@
+body{
+    background-color: #fff;
+    font-weight: 300;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+    -webkit-overflow-scrolling: touch;
+    line-height: 22px;
+}
 #header {
     border-top: 2px solid #e74c3c;
 }
@@ -292,7 +300,7 @@ input:required + .popover.bottom > .arrow:after, .obligatorio + .popover.bottom 
 /* Header Wrap */
 
 .headerwrap {
-    background: url("http://demo.danielyewright.com/bootstack/assets/img/header-bg.jpg") no-repeat center top;
+    background: url("http://www.myshapi.com/assets/img/header-bg.jpg") no-repeat center top;
     background-size: cover;
     padding-top: 80px;
 }
@@ -317,7 +325,7 @@ input:required + .popover.bottom > .arrow:after, .obligatorio + .popover.bottom 
 
 .headerwrap h5 {
     color: white;
-    font-size: 15px;
+    font-size: 14px;
     text-align: left;
 }
 
@@ -333,4 +341,97 @@ input:required + .popover.bottom > .arrow:after, .obligatorio + .popover.bottom 
     .headerwrap .col-lg-2 p {
         text-align: center;
     }
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Raleway";
+    font-weight: 300;
+    color: #333;
+}
+#lista-beneficios{
+    padding-left: 0;
+}
+#lista-beneficios li{
+    padding-left: 0;
+    color: #fff;
+    text-align:left;
+    margin-top: 2px;
+}
+
+/* Pricing Tables */
+
+.panel {
+    text-align: center;
+}
+
+.panel-custom {
+    border-color: #06979e;
+}
+
+.panel-custom > .panel-heading {
+    background-color: #06979e;
+    color: #fff;
+}
+
+.panel-heading > .panel-title {
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.panel-body {
+    padding: 0px;
+    text-align: center;
+}
+
+.the-price {
+    background-color: rgba(220,220,220,0.17);
+    box-shadow: 0 1px 0 #dcdcdc, inset 0 1px 0 #dcdcdc;
+    padding: 20px;
+    margin: 0;
+}
+
+.the-price h2 {
+    font-size: 44px;
+    font-weight: 700;
+    line-height: 1em;
+    padding: 0;
+    margin: 0;
+}
+
+.subscript {
+    font-size: 25px;
+    font-weight: 400;
+}
+/* ---------------------------------------------- /*
+ * Time circles
+/* ---------------------------------------------- */
+
+.time_circles {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.time_circles > div {
+    position: absolute;
+    text-align: center;
+}
+
+.time_circles > div > h4 {
+    margin: 0px;
+    padding: 0px;
+}
+
+.time_circles > div > span {
+    display: block;
+    width: 100%;
+    margin-top: 0.4em;
+    font-weight: 700;
+    font-size: 300%;
+    font-family: 'Raleway', serif;
+}
+
+.i_cicle {
+    max-width: 750px;
+    margin: 0 auto;
 }

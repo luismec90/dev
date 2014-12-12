@@ -18,6 +18,8 @@
         {{-- HTML::style('//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css') --}}
         {{ HTML::style('assets/libs/jqueryui/jquery-ui.min.css') }}
         {{ HTML::style('assets/css/template.css') }}
+
+        <link href="http://fonts.googleapis.com/css?family=Raleway:400,300,700" rel="stylesheet" type="text/css">
         {{ HTML::style('assets/css/main.css') }}
 
         @section('css')
