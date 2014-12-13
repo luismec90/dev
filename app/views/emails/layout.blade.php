@@ -169,7 +169,7 @@
 									<table width="540" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
 										<tbody>
 											<tr>
-												<td align="center" valign="middle" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: rgb(153, 153, 153); text-align: center; line-height: 24px; position: relative;" class="menu" empara="menu1">
+												<td align="center" valign="middle" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: rgb(153, 153, 153); text-align: center; line-height: 24px; position: relative;">
 													<a style="text-decoration: none; color: #999999;" href="#">Para cualquier inquietud o comentario, escribenos a: <a href="mailto:soporte@linkingshops.com" style="color: rgb(153, 153, 153); ">soporte@linkingshops.com </a></a>
 												</td>
 

@@ -11,6 +11,14 @@ $(function () {
         $(this).popover('destroy');
     });
 
+    $("#town_id").change(function () {
+        $("#div-location").popover('destroy');
+    });
+
+    $("#div-activities input:checkbox").change(function (e) {
+        $("#div-activities").popover('destroy');
+    });
+
     $("#submit-form").click(function () {
         var flag = false;
 
@@ -32,6 +40,32 @@ $(function () {
             if (flag)
                 return false;
         });
+
+
+        if (!flag) {
+            if ($("#town_id").val() == "") {
+                $("#div-location").popover({
+                    'trigger': 'manual',
+                    'placement': 'bottom',
+                    'content': 'Campo obligatorio'
+                }).popover('show');
+
+                $('html, body').animate({scrollTop: $('#div-location').offset().top}, 'fast');
+                flag = true;
+            }
+        }
+
+        /*
+         if (!flag) {
+         if ($("#div-activities input:checked").length == 0) {
+         $("#div-activities").focus().popover({
+         'trigger': 'manual',
+         'placement': 'bottom',
+         'content': 'Debes seleccionar al menos una actividad'
+         }).popover('show');
+         flag = true;
+         }
+         }*/
 
         if (!flag) {
             var regexp = /^[a-zA-Z0-9-_]+$/;
@@ -62,7 +96,7 @@ $(function () {
         if (flag)
             return false;
 
-        $("#submit-form").data("loading-text", "Enviando...").button("loading");
+        coverOn();
 
         $("#form-create-shop").submit();
 

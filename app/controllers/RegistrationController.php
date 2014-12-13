@@ -1,7 +1,6 @@
 <?php
 
-class RegistrationController extends \BaseController
-{
+class RegistrationController extends \BaseController {
 
 
     public function create()
@@ -12,7 +11,8 @@ class RegistrationController extends \BaseController
     public function store()
     {
         $validation = Validator::make(Input::all(), User::$rules, User::$validationMessages);
-        if ($validation->fails()) {
+        if ($validation->fails())
+        {
             return Redirect::back()->withInput()->withErrors($validation);
         }
 
@@ -30,29 +30,34 @@ class RegistrationController extends \BaseController
         $user->confirmation_code = $confirmation_code;
         $user->save();
 
-        Mail::send('emails.verify', compact('confirmation_code', 'user'), function ($message) {
+        Mail::send('emails.verify', compact('confirmation_code', 'user'), function ($message)
+        {
             $message->to(Input::get('email'), Input::get('first_name'))
                 ->subject('Verificar email');
         });
 
 
-        Flash::success('¡Gracias por registrarse! Se ha enviado un correo de confirmación a tu email');
+        Flash::success('¡Gracias por registrarse! Se ha enviado un correo de confirmación a su email');
 
-        return Redirect::home();
+        return Redirect::route('register_path');
     }
 
     public function confirm($confirmation_code)
     {
-        if (!$confirmation_code) {
+        if (!$confirmation_code)
+        {
             Flash::error('Link inválido');
 
-        } else {
+        } else
+        {
 
             $user = User::whereConfirmationCode($confirmation_code)->first();
 
-            if (!$user) {
+            if (!$user)
+            {
                 Flash::error('Link inválido');
-            } else {
+            } else
+            {
 
                 $user->confirmed = 1;
                 $user->confirmation_code = null;
@@ -61,9 +66,9 @@ class RegistrationController extends \BaseController
 
                 Auth::login($user);
 
-                Flash::success("Gracias por verificar su cuenta");
+                Flash::success("Gracias por verificar su cuenta, ahora puede proceder a crear su establecimiento");
 
-                return Redirect::home();
+                return Redirect::route('create_shop_path');
             }
         }
 
@@ -72,21 +77,26 @@ class RegistrationController extends \BaseController
 
     public function completeRegistration($shop_link, $email, $token)
     {
-        if (Auth::check()) {
+        if (Auth::check())
+        {
             Auth::logout();
         }
 
-        if ($shop_link != "base") {
+        if ($shop_link != "base")
+        {
             $shop = Shop::where('link', $shop_link)->firstOrFail();
             $shop = $shop->link;
-        } else {
+        } else
+        {
             $shop = "base";
         }
         $user = User::where('email', $email)->where('confirmed', 0)->first();
 
-        if ($token == sha1("$email-luis5484175") && !is_null($user)) {
+        if ($token == sha1("$email-luis5484175") && !is_null($user))
+        {
             return View::make('pages.complete_registration', compact('shop', 'user', 'token'));
-        } else {
+        } else
+        {
             Flash::error("Link inválido");
 
             return Redirect::route("home");
@@ -95,17 +105,21 @@ class RegistrationController extends \BaseController
 
     public function endRegistration($shop_link, $email, $token)
     {
-        if (Auth::check()) {
+        if (Auth::check())
+        {
             Auth::logout();
         }
-        if ($shop_link != "base") {
+        if ($shop_link != "base")
+        {
             $shop = Shop::where('link', $shop_link)->firstOrFail();
         }
         $user = User::where('email', $email)->where('confirmed', 0)->first();
 
-        if ($token == sha1("$email-luis5484175") && !is_null($user)) {
+        if ($token == sha1("$email-luis5484175") && !is_null($user))
+        {
             $validation = Validator::make(Input::all(), User::$rulesCompleteRegister, User::$validationMessages);
-            if ($validation->fails()) {
+            if ($validation->fails())
+            {
                 return Redirect::back()->withInput()->withErrors($validation);
             }
 
@@ -123,13 +137,16 @@ class RegistrationController extends \BaseController
 
             Auth::attempt(['email' => $email, 'password' => Input::get('password'), 'confirmed' => '1']);
 
-            if ($shop_link != "base") {
+            if ($shop_link != "base")
+            {
                 return Redirect::route("shop_path", $shop->link);
-            } else {
+            } else
+            {
                 return Redirect::route("home");
             }
 
-        } else {
+        } else
+        {
             Flash::error("Link inválido");
 
             return Redirect::route("home");

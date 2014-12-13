@@ -1,7 +1,18 @@
-#header{
+body{
+    background-color: #fff;
+    font-weight: 300;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+    -webkit-overflow-scrolling: touch;
+    line-height: 22px;
+}
+#header {
     border-top: 2px solid #e74c3c;
 }
-
+.img-logo{
+    margin-top: -10px;
+    margin-right: 10px;
+}
 .btn-file input[type=file] {
     position: absolute;
     top: 0;
@@ -14,24 +25,27 @@
     cursor: pointer;
 }
 
-.alert  [data-growl="message"]{
+.alert [data-growl="message"] {
     margin-right: 20px;
 }
+
 .alert-success {
     background-color: #00bc8c;
     border-color: #00bc8c;
     color: #ffffff;
 }
+
 .alert-danger {
     background-color: #e74c3c;
     border-color: #e74c3c;
     color: #ffffff;
 }
-.input-group .form-control{
+
+.input-group .form-control {
     z-index: 0;
 }
-.main-text
-{
+
+.main-text {
     padding: 20px 0;
     position: absolute;
     top: 120px;
@@ -40,22 +54,26 @@
     color: #fff;
 
 }
-.main-text h1{
+
+.main-text h1 {
     font-size: 3em;
     opacity: 1;
 }
-#carousel-1 img{
+
+#carousel-1 img {
     opacity: 0.7;
     filter: alpha(opacity=40); /* For IE8 and earlier */
     min-height: 150px;
 }
+
 @media (max-width: 767px) {
     .show-xs {
         display: block !important
     }
-    .main-text{
+
+    .main-text {
         padding-top: 0;
-        top:70px;
+        top: 70px;
     }
 }
 
@@ -63,7 +81,8 @@
     .show-xs {
         display: none !important
     }
-    #carousel-1 img{
+
+    #carousel-1 img {
         min-height: 450px;
     }
 }
@@ -73,12 +92,15 @@
     top: 0;
     left: 0;
     background: #444;
-    background: rgba(68,68,68,0.95);
-    overflow: hidden;
+    /* background: rgba(68, 68, 68, 0.95);*/
+    background: rgba(245, 245, 245, 0.8);
+    overflow : hidden;
     filter: alpha(opacity=0);
-    opacity: 0;z-index: 1500;
+    opacity: 0;
+    z-index: 1500;
 }
-#imgLoading{
+
+#imgLoading {
     width: 64px;
     height: 64px;
     position: absolute;
@@ -87,7 +109,8 @@
     margin-top: -32px;
     margin-left: -32px;
 }
-#mis-sitios{
+
+#mis-sitios {
     margin-right: 20px;
 }
 
@@ -254,23 +277,202 @@
     }
 
 }
+
 .badge {
     position: relative;
     top: -4px;
     left: 2px;
     padding-right: 5px;
     padding-left: 5px;
-    background-color: #d15b47!important;
+    background-color: #d15b47 !important;
     text-shadow: none;
     font-size: 12px;
     padding-top: 2px;
     padding-bottom: 4px;
 }
 
-input:required + .popover {
+input:required + .popover, .obligatorio + .popoverm, select:required + .popover  {
     background: #e74c3c;
-    color:#fff;
+    color: #fff;
 }
-input:required + .popover.bottom>.arrow:after{
+
+input:required + .popover.bottom > .arrow:after, .obligatorio + .popover.bottom > .arrow:after,select:required + .popover.bottom > .arrow:after {
     border-bottom-color: #e74c3c;
+}
+
+/* Header Wrap */
+
+.headerwrap {
+    background: url("http://www.myshapi.com/assets/img/header-bg.jpg") no-repeat center top;
+    background-size: cover;
+    padding-top: 80px;
+}
+.headerwrap .col-lg-2 { padding-top: 40px; }
+
+.headerwrap h1 {
+    margin-top: 30px;
+    color: white;
+    font-size: 70px;
+}
+
+.headerwrap h3 {
+    color: white;
+    font-size: 30px;
+}
+
+.headerwrap h4 {
+    padding-top: 10px;
+    padding-bottom: 20px;
+    color: #fff;
+}
+
+.headerwrap h5 {
+    color: white;
+    font-size: 14px;
+    text-align: left;
+}
+
+.headerwrap p {
+    text-align: left;
+    color: #fff;
+}
+
+@media (max-width: 480px) {
+    .headerwrap h1 { font-size: 50px; }
+
+    .headerwrap .col-lg-2 h5,
+    .headerwrap .col-lg-2 p {
+        text-align: center;
+    }
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Raleway";
+    font-weight: 300;
+    color: #333;
+}
+#lista-beneficios{
+    padding-left: 0;
+}
+#lista-beneficios li{
+    padding-left: 0;
+    color: #fff;
+    text-align:left;
+    margin-top: 2px;
+}
+
+/* Pricing Tables */
+
+.panel {
+    text-align: center;
+}
+
+.panel-custom {
+    border-color: #06979e;
+}
+
+.panel-custom > .panel-heading {
+    background-color: #06979e;
+    color: #fff;
+}
+
+.panel-heading > .panel-title {
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.panel-body {
+    padding: 0px;
+    text-align: center;
+}
+
+.the-price {
+    background-color: rgba(220,220,220,0.17);
+    box-shadow: 0 1px 0 #dcdcdc, inset 0 1px 0 #dcdcdc;
+    padding: 20px;
+    margin: 0;
+}
+
+.the-price h2 {
+    font-size: 44px;
+    font-weight: 700;
+    line-height: 1em;
+    padding: 0;
+    margin: 0;
+}
+
+.subscript {
+    font-size: 25px;
+    font-weight: 400;
+}
+/* ---------------------------------------------- /*
+ * Time circles
+/* ---------------------------------------------- */
+
+.time_circles {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.time_circles > div {
+    position: absolute;
+    text-align: center;
+}
+
+.time_circles > div > h4 {
+    margin: 0px;
+    padding: 0px;
+}
+
+.time_circles > div > span {
+    display: block;
+    width: 100%;
+    margin-top: 0.4em;
+    font-weight: 700;
+    font-size: 300%;
+    font-family: 'Raleway', serif;
+}
+
+.i_cicle {
+    max-width: 750px;
+    margin: 0 auto;
+}
+.carousel {
+    margin-bottom: 0;
+    padding: 0 40px 30px 40px;
+}
+/* The controlsy */
+.carousel-control {
+    left: -12px;
+    height: 40px;
+    width: 40px;
+    background: none repeat scroll 0 0 #222222;
+    border: 4px solid #FFFFFF;
+    border-radius: 23px 23px 23px 23px;
+    margin-top: 90px;
+}
+.carousel-control.right {
+    right: -12px;
+}
+/* The indicators */
+.carousel-indicators {
+    right: 50%;
+    top: auto;
+    bottom: -10px;
+    margin-right: -19px;
+}
+/* The colour of the indicators */
+.carousel-indicators li {
+    background: #cecece;
+}
+.carousel-indicators .active {
+    background: #428bca;
+}
+a.link{
+    color:#1abc9c;
+    text-decoration: underline;
+}
+#title-support{
+    margin-top: 0;
 }

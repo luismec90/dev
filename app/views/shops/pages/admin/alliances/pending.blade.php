@@ -67,7 +67,7 @@
                                                                     <tr class="{{ ($allianceRecord->alliance->from==$shop->id) ? "success":"warning"}}">
                                                                         <td>{{ $allianceRecord->alliance->shopFrom->name }}</td>
                                                                         <td>
-                                                                            <b> {{ Currency::toFront($allianceRecord->from_retribution_per_user_granted,'') }} %</b>
+                                                                            <b> {{ Currency::toFront($allianceRecord->from_retribution_per_user_granted*100,'') }} %</b>
                                                                         </td>
                                                                         <td>
 
@@ -80,7 +80,7 @@
                                                                     <tr class="{{ ($allianceRecord->alliance->to==$shop->id) ? "success":"warning"}}">
                                                                         <td>{{ $allianceRecord->alliance->shopTo->name }}</td>
                                                                         <td>
-                                                                            <b> {{ Currency::toFront($allianceRecord->to_retribution_per_user_granted,'') }} %</b>
+                                                                            <b> {{ Currency::toFront($allianceRecord->to_retribution_per_user_granted*100,'') }} %</b>
                                                                         </td>
                                                                         <td>
                                                                             <b> {{ Currency::toFront($allianceRecord->to_limit_per_user_granted) }}</b>
@@ -122,10 +122,10 @@
                                                 </div>
                                                 <div class="col-xs-6">
                                                     <button id="btn-contra-request-alliance" class="btn btn-danger btn-block"
-                                                    data-from-retribution-per-user-granted="{{  Currency::toFront($allianceRecord->from_retribution_per_user_granted,'') }}"
+                                                    data-from-retribution-per-user-granted="{{  Currency::toFront($allianceRecord->from_retribution_per_user_granted*100,'') }}"
                                                     data-from-limit-per-user-granted="{{  Currency::toFront($allianceRecord->from_limit_per_user_granted,'') }}"
                                                     data-from-limit-total-granted="{{  Currency::toFront($allianceRecord->from_limit_total_granted,'') }}"
-                                                    data-to-retribution-per-user-granted="{{ Currency::toFront($allianceRecord->to_retribution_per_user_granted,'') }}"
+                                                    data-to-retribution-per-user-granted="{{ Currency::toFront($allianceRecord->to_retribution_per_user_granted*100,'') }}"
                                                     data-to-limit-per-user-granted="{{  Currency::toFront($allianceRecord->to_limit_per_user_granted,'') }}"
                                                     data-to-limit-total-granted="{{  Currency::toFront($allianceRecord->to_limit_total_granted,'') }}"
                                                     data-shop-name="@if($pendingAlliance->from!=$shop->id)

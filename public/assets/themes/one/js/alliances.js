@@ -62,7 +62,7 @@ $(function () {
                 $(this).focus().popover({
                     'trigger': 'manual',
                     'placement': 'bottom',
-                    'content': 'Solo se permiten números'
+                    'content': 'Valor inválido'
                 }).popover('show');
                 flag = true;
             }

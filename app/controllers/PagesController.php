@@ -1,20 +1,17 @@
 <?php
 
+use Carbon\Carbon;
+
 class PagesController extends BaseController {
 
 
     public function test()
     {
-        $emailTitle="asd";
-        $emailBody="asdasd";
-        $to='luismec90@gmail.com';
+        $user = User::first();
+        $confirmation_code = "asdas";
 
-        echo "d";
 
-        Mail::send('emails.shops.notification', ['title' => 'emailTitle', 'body' => 'emailBody'], function ($message) use ($to) {
-            $message->to('luismec90@gmail.com','Luis Montoya')
-                ->subject("asdasd" . ' - Compra realizada');
-        });
+        return View::make('emails.verify', compact('user', 'confirmation_code'));
 
     }
 
@@ -34,7 +31,7 @@ class PagesController extends BaseController {
 
         return View::make('pages.buyers', compact('towns', 'activities'));
     }
-    
+
     public function welcome()
     {
         $towns = Town::orderBy('name')->get();
@@ -128,12 +125,30 @@ class PagesController extends BaseController {
 
         $shops = DB::table('shops')
             ->join('bills', 'shops.id', '=', 'bills.shop_id')
-            ->select(DB::raw('shops.*,shops.name,sum(bills.retribution) as retribution'))
+            ->select(DB::raw('shops.*,sum(bills.retribution) as retribution'))
             ->where('bills.user_id', Auth::user()->id)
             ->groupBy('shops.id')
             ->get();
 
-        return View::make('pages.my_sites', compact('shops', 'ownShops'));
+        $shopsIDs = [];
+
+        foreach ($shops as $shop)
+        {
+            array_push($shopsIDs, $shop->id);
+        }
+
+        $q = DB::table('shops')
+            ->join('retribution_between_shops', 'shops.id', '=', 'retribution_between_shops.shop_who_gives')
+            ->select(DB::raw('shops.*,sum(retribution_between_shops.retribution) as retribution'))
+            ->where('retribution_between_shops.user_id', Auth::user()->id);
+
+        if (!empty($shopsIDs))
+            $q = $q->whereNotIn('shops.id', $shopsIDs);
+
+        $shopsByAlliances = $q->groupBy('shops.id')
+            ->get();
+
+        return View::make('pages.my_sites', compact('ownShops', 'shops', 'shopsByAlliances'));
     }
 
 
@@ -149,5 +164,28 @@ class PagesController extends BaseController {
         return View::make('pages.promo');
     }
 
+    public function recommend()
+    {
+        $name = Input::get('name');
+        $email = Input::get('email');
+        $note = Input::get('note');
 
+        if (!$name || !$email || !filter_var($email, FILTER_VALIDATE_EMAIL))
+        {
+            Flash::error('El nombre y el email son obligatorios');
+
+            return Redirect::back();
+        }
+
+        Mail::send('emails.recommend', compact('name', 'email', 'note'), function ($message) use ($name, $email)
+        {
+            $message->to($email, 'LinkingShops')
+                ->bcc('luismec90@gmail.com')
+                ->subject("$name te ha invitado a conocer LinkingShops");
+        });
+
+        Flash::success('Correo enviado exitosamente');
+
+        return Redirect::back();
+    }
 }

@@ -5,10 +5,6 @@ Route::get('/establecimientos', array('as' => 'home_shops_path', 'uses' => 'Page
 
 Route::get('/usuarios', array('as' => 'home_buyer_path', 'uses' => 'PagesController@buyers'));
 
-Route::get('/ ', array('as' => 'home_welcome_path', 'uses' => 'PagesController@welcome'));
-
-//Route::get('/promo', array('as' => 'promo_path', 'uses' => 'PagesController@promo')); ?
-
 Route::get('/test', array('as' => 'test', 'uses' => 'PagesController@test'));
 
 Route::get('/', array('as' => 'home', 'uses' => 'PagesController@shops'));
@@ -27,6 +23,9 @@ Route::post('/contacto/pionero', array('as' => 'contact_pioner_path', 'uses' => 
 
 /* Listar establecimiento */
 Route::get('listar', array('as' => 'listshops_path', 'uses' => 'PagesController@listShops'));
+
+/* Recomendar */
+Route::post('recomendar', array('as' => 'recommend_path', 'uses' => 'PagesController@recommend'));
 
 /* Create Shop */
 Route::get('/crear-establecimiento', array('before' => 'auth', 'as' => 'create_shop_path', 'uses' => 'ShopsController@create'));

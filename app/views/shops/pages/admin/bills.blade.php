@@ -7,17 +7,14 @@
 
 @section('js')
 {{ HTML::script('assets/themes/one/js/bill.js') }}
-{{-- HTML::script('assets/libs/bootstrapvalidator/js/bootstrapValidator.js') --}}
-{{-- HTML::script('assets/libs/bootstrapvalidator/js/language/es_ES.js') --}}
-{{-- HTML::script('assets/js/validation.js') --}}
 <script>
-var url_send_form="{{ route("bill_store_path",[$shop->link]) }}";
-</script>
-<script>
+    var url_send_form="{{ route("bill_store_path",[$shop->link]) }}";
 
-    var item='<div class="row item"> <div class="col-md-10"> <div class="well well-sm"> <div class="row"> <div class="col-sm-3"> <div class="form-group"> {{ Form::label("category","Categoria:") }} {{ Form::select("category",$selectCategories,null,["class"=>"form-control categoria","required"=>"true"]) }} </div> </div> <div class="col-sm-4"> <div class="form-group"> {{ Form::label("product","Producto:") }} {{ Form::select("products[]",[""=>""],null,["class"=>"form-control producto","required"=>"true","readonly"=>"true"]) }} </div> </div> <div class="col-sm-2"> <div class="form-group"> {{ Form::label("amounts","Cantidad:") }} {{ Form::number("amounts[]",1,["class"=>"form-control cantidad","required"=>"true"]) }} </div> </div> <div class="col-sm-3"> <div class="form-group"> {{ Form::label("cost","Costo:") }} <div class="input-group"> <div class="input-group-addon">$</div> {{ Form::text("costs[]",null,["class"=>"form-control costo",'required'=>'true']) }} </div> </div> </div> </div> </div> </div> <div class="col-md-2"> <a class="btn btn-danger remove"> <i class="fa fa-minus"></i> </a> </div> </div>';
+    var item='<div class="row item"> <div class="col-md-10"> <div class="well well-sm"> <div class="row"> <div class="col-sm-3"> <div class="form-group"> {{ Form::label("category","Categoria:") }} {{ Form::select("category",$selectCategories,null,["class"=>"form-control categoria","required"=>"true"]) }} </div> </div> <div class="col-sm-4"> <div class="form-group"> {{ Form::label("product","Producto:") }} {{ Form::select("products[]",[""=>""],null,["class"=>"form-control producto","required"=>"true","readonly"=>"true"]) }} </div> </div> <div class="col-sm-2"> <div class="form-group"> {{ Form::label("amounts","Cantidad:") }} {{ Form::number("amounts[]",1,["class"=>"form-control cantidad number","required"=>"true"]) }} </div> </div> <div class="col-sm-3"> <div class="form-group"> {{ Form::label("cost","Costo:") }} <div class="input-group"> <div class="input-group-addon">$</div> {{ Form::text("costs[]",null,["class"=>"form-control costo number",'required'=>'true']) }} </div> </div> </div> </div> </div> </div> <div class="col-md-2"> <a class="btn btn-danger remove"> <i class="fa fa-minus"></i> </a> </div> </div>';
 
     var retribution="{{ $shop->retribution }}";
+
+    var retribution_per_bill="{{ $shop->retribution_per_bill }}";
 
     @foreach($shop->categories as $category)
         var category_{{ $category->id }}="<option value=''>Seleccionar...</option>";
@@ -98,7 +95,11 @@ var url_send_form="{{ route("bill_store_path",[$shop->link]) }}";
                     <!-- Email Form Input -->
                     <div class="form-group">
                         {{ Form::label('balance','Saldo a redimir:') }}
-                        {{ Form::text('balance',0,['id'=>'balance','class'=>'form-control','required'=>'true']) }}
+                        <div class="input-group">
+                            <div class="input-group-addon">$</div>
+                            {{ Form::text('balance',0,['id'=>'balance','class'=>'form-control number','required'=>'true']) }}
+                        </div>
+                        <p class="help-block">El límite del saldo a redimir por cada compra es del {{ Currency::toFront($shop->retribution_per_bill*100,'')  }}% sobre el total a pagar.</p>
                     </div>
                 </div>
                 <div class="col-md-5">
@@ -106,6 +107,7 @@ var url_send_form="{{ route("bill_store_path",[$shop->link]) }}";
                     <div class="form-group">
                         {{ Form::label('code','Código de verificación') }}
                         {{ Form::text('code',0,['id'=>'code','class'=>'form-control','required'=>'true']) }}
+                        <p class="help-block">El código de verificación se le debe solicitar al cliente con el fin de comprobar si en efecto es el propietario del email ingresado.</p>
                     </div>
                 </div>
             </div>
@@ -131,7 +133,7 @@ var url_send_form="{{ route("bill_store_path",[$shop->link]) }}";
                             <div class="col-sm-2">
                                 <div class="form-group">
                                 {{ Form::label('product','Cantidad:') }}
-                                {{ Form::number('amounts[]',1,['class'=>'form-control cantidad','required'=>'true']) }}
+                                {{ Form::number('amounts[]',1,['class'=>'form-control cantidad number','required'=>'true']) }}
                                 </div>
                             </div>
                             <div class="col-sm-3">
@@ -139,7 +141,7 @@ var url_send_form="{{ route("bill_store_path",[$shop->link]) }}";
                                 {{ Form::label('cost','Costo:') }}
                                  <div class="input-group">
                                         <div class="input-group-addon">$</div>
-                                       {{ Form::text("costs[]",null,["class"=>"form-control costo",'required'=>'true']) }}
+                                       {{ Form::text("costs[]",null,["class"=>"form-control costo number",'required'=>'true']) }}
                                 </div>
                                 </div>
                             </div>
@@ -174,7 +176,7 @@ var url_send_form="{{ route("bill_store_path",[$shop->link]) }}";
                             {{ Form::label('category','Saldo ganado:') }}
                             <div class="input-group">
                                 <div class="input-group-addon">$</div>
-                                 {{ Form::number('retribution',0,['id'=>'retribution','class'=>'form-control','required'=>'true','readonly'=>'true']) }}
+                                 {{ Form::text('retribution',0,['id'=>'retribution','class'=>'form-control number','required'=>'true','readonly'=>'true']) }}
                             </div>
                         </div>
                     </div>
@@ -185,7 +187,7 @@ var url_send_form="{{ route("bill_store_path",[$shop->link]) }}";
                                 {{ Form::label('category','Total:') }}
                             <div class="input-group">
                                 <div class="input-group-addon">$</div>
-                                 {{ Form::number('subtotal',0,['id'=>'subtotal','class'=>'form-control','required'=>'true',   'readonly'=>'true']) }}
+                                 {{ Form::text('subtotal',0,['id'=>'subtotal','class'=>'form-control number','required'=>'true',   'readonly'=>'true']) }}
                             </div>
                         </div>
                     </div>
@@ -196,7 +198,7 @@ var url_send_form="{{ route("bill_store_path",[$shop->link]) }}";
                                 {{ Form::label('balance_redeemed','Saldo redimido:') }}
                             <div class="input-group">
                                 <div class="input-group-addon">$</div>
-                                 {{ Form::number('balance_redeemed',0,['id'=>'balance_redeemed','class'=>'form-control','readonly'=>'true']) }}
+                                 {{ Form::text('balance_redeemed',0,['id'=>'balance_redeemed','class'=>'form-control number','readonly'=>'true']) }}
                             </div>
                         </div>
                     </div>
@@ -207,7 +209,7 @@ var url_send_form="{{ route("bill_store_path",[$shop->link]) }}";
                             {{ Form::label('category','Total Final:',['class'=>'text-danger']) }}
                             <div class="input-group">
                                 <div class="input-group-addon">$</div>
-                                {{ Form::number('total',0,['id'=>'total','class'=>'form-control','required'=>'true','readonly'=>'true']) }}
+                                {{ Form::text('total',0,['id'=>'total','class'=>'form-control number','required'=>'true','readonly'=>'true']) }}
                             </div>
                         </div>
                     </div>

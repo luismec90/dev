@@ -18,11 +18,26 @@
         {{-- HTML::style('//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css') --}}
         {{ HTML::style('assets/libs/jqueryui/jquery-ui.min.css') }}
         {{ HTML::style('assets/themes/one/css/template.css') }}
+
+        @if(Auth::user()->isAdmin($shop->id))
+            {{ HTML::style('assets/libs/bootstrap-tour/css/bootstrap-tour.min.css') }}
+        @endif
+
         {{ HTML::style('assets/themes/one/css/main.css') }}
 
         @section('css')
         @show
 
+        <!--Start of Zopim Live Chat Script-->
+        <script type="text/javascript">
+        window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
+        d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
+        _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute('charset','utf-8');
+        $.src='//v2.zopim.com/?1bQj93EplCgGfGp7KyfkACpk2TFXEiXC';z.t=+new Date;$.
+        type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
+        </script>
+
+        <!--End of Zopim Live Chat Script-->
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
           <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -50,6 +65,11 @@
         {{ HTML::script('assets/libs/jqueryui/jquery-ui.min.js') }}
         {{ HTML::script('//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js') }}
         {{ HTML::script('assets/libs/bootstrap-growl/bootstrap-growl.min.js') }}
+
+        @if(Auth::user()->isAdmin($shop->id))
+            {{ HTML::script('assets/libs/bootstrap-tour/js/bootstrap-tour.min.js') }}
+        @endif
+
         {{ HTML::script('assets/themes/one/js/main.js') }}
 
         @section('js')

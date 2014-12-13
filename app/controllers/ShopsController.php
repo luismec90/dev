@@ -10,10 +10,11 @@ class ShopsController extends \BaseController {
         foreach ($towns as $town)
         {
             $selectTowns[$town->id] = $town->name;
-
         }
 
-        return View::make('pages.create_shop', compact('selectTowns'));
+        $activities = Activity::orderBy('name')->get();
+
+        return View::make('pages.create_shop', compact('selectTowns', 'activities'));
     }
 
     public function store()
@@ -32,7 +33,12 @@ class ShopsController extends \BaseController {
         $shop->administrator_name = Input::get('administrator_name');
         $shop->cell = Input::get('cell');
         $shop->about = "Acerca ...";
+        $shop->balance_deadline = 90;
+        $shop->retribution = 0.05;
+        $shop->retribution_per_bill = 1;
         $shop->save();
+
+        //$shop->activities()->sync(Input::get('activities'));
 
         $path = "shops/{$shop->id}";
 

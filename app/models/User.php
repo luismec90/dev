@@ -66,12 +66,15 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         'birth_date.date_format' => 'El campo fecha de nacimiento no corresponde con el formato Y-m-d.',
         'gender.required'        => 'El campo género es obligatorio',
         'gender.in'              => 'El campo género seleccionado es inválido',
+        'email.email'            => 'El campo email  es inválido',
         'email.required'         => 'El campo email es obligatorio',
+        'email.unique'           => 'El campo email ya ha sido tomado',
         'password.required'      => 'El campo contraseña es obligatorio',
         'password.confirmed'     => 'El campo confirmar contraseña no coincide',
         'code.required'          => 'El campo código de verificación es obligatorio',
         'code.integer'           => 'El campo código debe contener solo números',
         'code.digits'            => 'El campo código debe tener 4 caracteres',
+        'password.min'           => 'El campo contraseña debe tener al menos 4 caracteres',
     ];
 
 
@@ -156,14 +159,20 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     {
         $shop = Shop::findOrFail($shop_id);
 
-        $shop = DB::table('bills')->select(DB::raw('sum(retribution-redeemed) as retribution'))
+        $balance = DB::table('bills')->select(DB::raw('COALESCE(SUM(retribution-redeemed),0) as retribution'))
             ->where('shop_id', $shop->id)
             ->where('user_id', $this->id)
             ->whereNull('deleted_at')
             ->where('created_at', '>=', Carbon::now()->subDays($shop->balance_deadline))
             ->first();
 
-        return empty($shop->retribution) ? 0 : $shop->retribution;
+        $balanceByAlliances = DB::table('retribution_between_shops')->select(DB::raw('COALESCE(SUM(retribution),0) as retribution'))
+            ->where('shop_who_gives', $shop->id)
+            ->where('user_id', $this->id)
+            ->where('created_at', '>=', Carbon::now()->subDays(60))
+            ->first();
+
+        return $balance->retribution + $balanceByAlliances->retribution;
     }
 
     public static function linkUserEmail($user_id, $shop_id)

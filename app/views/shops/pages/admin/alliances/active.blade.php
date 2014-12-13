@@ -67,7 +67,7 @@
                                                                     <tr>
                                                                         <td>{{ $allianceRecord->alliance->shopFrom->name }}</td>
                                                                         <td>
-                                                                            <b> {{ Currency::toFront($allianceRecord->from_retribution_per_user_granted,'') }} %</b>
+                                                                            <b> {{ Currency::toFront($allianceRecord->from_retribution_per_user_granted*100,'') }} %</b>
                                                                         </td>
                                                                         <td>
                                                                             <b> {{ Currency::toFront($allianceRecord->from_limit_per_user_granted) }}</b>
@@ -79,7 +79,7 @@
                                                                     <tr>
                                                                         <td>{{ $allianceRecord->alliance->shopTo->name }}</td>
                                                                         <td>
-                                                                            <b> {{ Currency::toFront($allianceRecord->to_retribution_per_user_granted,'') }} %</b>
+                                                                            <b> {{ Currency::toFront($allianceRecord->to_retribution_per_user_granted*100,'') }} %</b>
                                                                         </td>
                                                                         <td>
                                                                             <b> {{ Currency::toFront($allianceRecord->to_limit_per_user_granted) }}</b>
@@ -105,7 +105,7 @@
                                     <div class="panel-footer">
                                         <div class="row">
                                             <div class="col-xs-12 text-center">
-                                                <buuton class="btn btn-primary" data-toggle="modal" data-target="#modal-suspend-alliance">Cancelar alianza</buuton>
+                                                <buuton class="btn btn-danger" data-toggle="modal" data-target="#modal-suspend-alliance">Cancelar alianza</buuton>
                                             </div>
                                         </div>
                                     </div>

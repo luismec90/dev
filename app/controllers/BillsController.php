@@ -40,9 +40,10 @@ class BillsController extends \BaseController {
         $products = Input::get('products');
         $amounts = Input::get('amounts');
         $costs = Input::get('costs');
-        $balance = Input::get('balance');
+        $balance = Currency::toBack(Input::get('balance'));
         $code = Input::get('code');
-        $total = Input::get('total');
+        $total = Currency::toBack(Input::get('total'));
+
 
         // Si no son Arrays no proceder
         if (!is_array($products) || !is_array($amounts) || !is_array($costs))
@@ -129,7 +130,7 @@ class BillsController extends \BaseController {
                     ), 400);
 
                 }
-
+                $costs[$i] = Currency::toBack($costs[$i]);
                 $product = Product::findOrFail($products[$i]);
                 $products[$i] = $product->name;
 
@@ -171,18 +172,27 @@ class BillsController extends \BaseController {
 
             // 14 querys || 5.98 ms
 
+
+            $this->alliances($shop, $bill);
+
+            $allianceRetributions = RetributionBetweenShop::with('shopWhoDistributes', 'shopWhoGives')
+                ->where('bill_id', $bill->id)
+                ->get();
+
             $title = "Gracias por elegirnos";
 
-            /* Mail::send('emails.shops.admin.bill', compact('shop', 'bill', 'title', 'user', 'is_new_user'), function ($message) use ($user, $shop)
-              {
-                  $message->to($user->email, Auth::user()->first_name)
-                      ->subject($shop->name . ' - Compra realizada');
-              }); */
+            Mail::send('emails.shops.admin.bill', compact('shop', 'bill', 'allianceRetributions', 'title', 'user', 'is_new_user'), function ($message) use ($user, $shop)
+            {
+                $message->to($user->email, Auth::user()->first_name)
+                    ->subject($shop->name . ' - Compra realizada');
+            });
         }
 
         // 15 querys || 6.11 ms
 
-        $this->updateStock($shop, $bill->id);
+        if (!Input::get('no_register_products'))// Si registro productos actualizar inventarios
+            $this->updateStock($shop, $bill->id);
+
 
         return Response::json(array(
             'messages' => ["Registro creado exitosamente"]
@@ -222,5 +232,40 @@ class BillsController extends \BaseController {
                 $stock->save();
             }
         }
+    }
+
+    public function alliances($shop, $bill)
+    {
+
+        $alliancesWhereIAmFrom = Alliance::with('shopFrom', 'shopTo')
+            ->where('status', '1')
+            ->where("from", $shop->id)
+            ->get();
+
+        foreach ($alliancesWhereIAmFrom as $alliance)
+        {
+            $this->setBalanceToAlliance($bill, $alliance->shopFrom, $alliance->shopTo, $alliance->to_retribution_per_user_granted);
+        }
+        $alliancesWhereIAmTo = Alliance::with('shopFrom', 'shopTo')
+            ->where('status', '1')
+            ->where("to", $shop->id)
+            ->get();
+
+        foreach ($alliancesWhereIAmTo as $alliance)
+        {
+            $this->setBalanceToAlliance($bill, $alliance->shopto, $alliance->shopFrom, $alliance->from_retribution_per_user_granted);
+        }
+
+    }
+
+    public function setBalanceToAlliance($bill, $shopA, $shopB, $retributionB)// El establecimiento A reliazo la venta y al cliente se le asigna  saldo en el establcimiento B
+    {
+        $retributionBetweenShop = new RetributionBetweenShop;
+        $retributionBetweenShop->shop_who_distributes = $shopA->id;
+        $retributionBetweenShop->shop_who_gives = $shopB->id;
+        $retributionBetweenShop->user_id = $bill->user_id;
+        $retributionBetweenShop->bill_id = $bill->id;
+        $retributionBetweenShop->retribution = $bill->total_cost * $retributionB;
+        $retributionBetweenShop->save();
     }
 }

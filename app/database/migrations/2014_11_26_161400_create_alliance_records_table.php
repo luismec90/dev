@@ -20,23 +20,20 @@ class CreateAllianceRecordsTable extends Migration {
             $table->integer('shop_id')->unsigned();
             $table->foreign('shop_id')->references('id')->on('shops')->onDelete('cascade');
 
-            /*
-            From=A
-            To=B
-            */
+            
 
-            /*Porcentaje de las vestas del establecimiento B que el establecimiento que A eta dispuesto a retribuir  por usuario*/
+            /*Porcentaje de las vestas del establecimiento FROM que el establecimiento que TO eta dispuesto a retribuir  por usuario*/
             $table->decimal('from_retribution_per_user_granted', 10, 2);
-            /* Limite de dinero que puede acumular un usuario en particular para gastar en el establecimiento A */
+            /* Limite de dinero que puede acumular un usuario en particular para gastar en el establecimiento TO */
             $table->decimal('from_limit_per_user_granted', 10, 2);
-            /* Limite de dinero total a entregar a los clientes del establecimiento B */
+            /* Limite de dinero total a entregar a los clientes del establecimiento FROM */
             $table->decimal('from_limit_total_granted', 10, 2)->nullable();
 
-            /*Porcentaje de las vestas del establecimiento A que el establecimiento que B eta dispuesto a retribuir  */
+            /*Porcentaje de las vestas del establecimiento TO que el establecimiento que FROM eta dispuesto a retribuir  */
             $table->decimal('to_retribution_per_user_granted', 10, 2);
-            /* Limite de dinero que puede acumular un usuario en particular para gastar en el establecimiento B */
+            /* Limite de dinero que puede acumular un usuario en particular para gastar en el establecimiento FROM */
             $table->decimal('to_limit_per_user_granted', 10, 2);
-            /* Limite de dinero total a entregar a los clientes del establecimiento B */
+            /* Limite de dinero total a entregar a los clientes del establecimiento FROM */
             $table->decimal('to_limit_total_granted', 10, 2)->nullable();
             $table->string('note');
 
