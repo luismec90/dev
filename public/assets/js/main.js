@@ -85,3 +85,20 @@ $(function () {
         }
     });*/
 });
+
+
+function coverOn() {
+    $("#coverDisplay").css({
+        "opacity": "1",
+        "width": "100%",
+        "height": "100%"
+    });
+}
+
+function coverOff() {
+    $("#coverDisplay").css({
+        "opacity": "0",
+        "width": "0",
+        "height": "0"
+    });
+}

@@ -7,7 +7,14 @@ class PagesController extends BaseController {
 
     public function test()
     {
-       return number_format((float) "14500,2",2, ',', '.');
+        $title = "Luis Montoya";
+
+        $body = "Hola";
+
+        $route="asd";
+
+        return View::make('emails.shops.notification', compact('title', 'body','route'));
+
     }
 
     public function shops()
@@ -159,5 +166,28 @@ class PagesController extends BaseController {
         return View::make('pages.promo');
     }
 
+    public function recommend()
+    {
+        $name = Input::get('name');
+        $email = Input::get('email');
+        $note = Input::get('note');
 
+        if (!$name || !$email || !filter_var($email, FILTER_VALIDATE_EMAIL))
+        {
+            Flash::error('El nombre y el email son obligatorios');
+
+            return Redirect::back();
+        }
+
+        Mail::send('emails.recommend', compact('name', 'email', 'note'), function ($message) use ($name, $email)
+        {
+            $message->to($email, 'LinkingShops')
+                ->bcc('luismec90@gmail.com')
+                ->subject("$name te ha invitado a conocer LinkingShops");
+        });
+
+        Flash::success('Correo enviado exitosamente');
+
+        return Redirect::back();
+    }
 }
