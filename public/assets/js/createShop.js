@@ -55,16 +55,17 @@ $(function () {
             }
         }
 
-        if (!flag) {
-            if ($("#div-activities input:checked").length == 0) {
-                $("#div-activities").focus().popover({
-                    'trigger': 'manual',
-                    'placement': 'bottom',
-                    'content': 'Debes seleccionar al menos una actividad'
-                }).popover('show');
-                flag = true;
-            }
-        }
+        /*
+         if (!flag) {
+         if ($("#div-activities input:checked").length == 0) {
+         $("#div-activities").focus().popover({
+         'trigger': 'manual',
+         'placement': 'bottom',
+         'content': 'Debes seleccionar al menos una actividad'
+         }).popover('show');
+         flag = true;
+         }
+         }*/
 
         if (!flag) {
             var regexp = /^[a-zA-Z0-9-_]+$/;
@@ -95,7 +96,7 @@ $(function () {
         if (flag)
             return false;
 
-        $("#submit-form").data("loading-text", "Enviando...").button("loading");
+        coverOn();
 
         $("#form-create-shop").submit();
 

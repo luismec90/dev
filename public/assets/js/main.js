@@ -1,7 +1,6 @@
 $(function () {
 
 
-
     // Smooth Hash Link Scroll
     $('.smooth-scroll').click(function () {
         if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
@@ -77,13 +76,13 @@ $(function () {
         input.parent().parent().siblings("input").val(label);
     });
 
-   /* $( "#where" ).autocomplete({
-        source: "search/autocomplete",
-        minLength: 3,
-        select: function(event, ui) {
-            $('#where').val(ui.item.value);
-        }
-    });*/
+    /* $( "#where" ).autocomplete({
+     source: "search/autocomplete",
+     minLength: 3,
+     select: function(event, ui) {
+     $('#where').val(ui.item.value);
+     }
+     });*/
 });
 
 

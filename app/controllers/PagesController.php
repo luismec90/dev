@@ -7,13 +7,11 @@ class PagesController extends BaseController {
 
     public function test()
     {
-        $title = "Luis Montoya";
+        $user = User::first();
+        $confirmation_code = "asdas";
 
-        $body = "Hola";
 
-        $route="asd";
-
-        return View::make('emails.shops.notification', compact('title', 'body','route'));
+        return View::make('emails.verify', compact('user', 'confirmation_code'));
 
     }
 

@@ -14,9 +14,19 @@
 @section('content')
 <section class="section  section-cta">
     <div class="container">
-    <h2 class="section-title"><span>Entrar</span></h2>
+    <h1 class="section-title"><span>Entrar</span></h1>
         <div class="col-sm-6">
-
+            <div id="global-authorization" class="row">
+                <div class="social-login col-xs-12">
+                    <a href="{{ route('login_facebook_path') }}" class="facebook"><i class="fa fa-facebook"></i><div>Entrar usando Facebook</div></a>
+                    <a href="{{ route('login_google_path') }}" class="google"><i class="fa fa-google-plus"></i><div>Entrar usando Google</div></a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <hr>
+                </div>
+            </div>
             @include('layouts.partials.errors')
 
             {{ Form::open(['route'=>'login_path','class'=>'validate']) }}
@@ -42,7 +52,7 @@
             </div>
 
             <div class="form-group">
-                {{ link_to('/password/remind','¿Olvidó su contraseña?') }}
+                {{ link_to('/password/remind','¿Olvidó su contraseña?',['class'=>'link']) }}
             </div>
 
             <div class="form-group">
@@ -55,12 +65,9 @@
 
             {{ Form::close() }}
         </div>
-        <div id="global-authorization" class="col-sm-6">
-            <div class="social-login">
-                <a href="{{ route('login_facebook_path') }}" class="facebook"><i class="fa fa-facebook"></i><div>Entrar usando Facebook</div></a>
-                <a href="{{ route('login_google_path') }}" class="google"><i class="fa fa-google-plus"></i><div>Entrar usando Google</div></a>
-            </div>
-        </div>
+                <div class="col-sm-6">
+                    @include('layouts/partials/support')
+                </div>
     </div>
 </section>
 

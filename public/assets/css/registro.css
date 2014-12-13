@@ -212,12 +212,7 @@
     text-decoration: none;
 }
 #global-authorization .social-login {
-    clear: both;
-    text-align: center;
-    width: 85%;
-    margin: 0 auto;
-    padding: 0 0 15px;
-    margin-bottom: 24px;
+
 }
 #global-authorization .social-login .facebook,
 #global-authorization .social-login .google {

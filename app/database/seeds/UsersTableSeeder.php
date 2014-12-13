@@ -33,19 +33,21 @@ class UsersTableSeeder extends Seeder {
             'confirmed'  => 1
         ]);
 
-        User::create([
-            'id'         => 3,
-            'first_name' => 'Juan',
-            'last_name'  => 'Montoya',
-            'birth_date' => '1990-02-22',
-            'gender'     => 'm',
-            'code'       => '123',
-            'email'      => 'lfmontoyag@unal.edu.co',
-            'avatar'     => 'default.png',
-            'password'   => Hash::make("123"),
-            'confirmed'  => 1
-        ]);
-
+        /*
+            User::create([
+                'id'         => 3,
+                'first_name' => 'Juan',
+                'last_name'  => 'Montoya',
+                'birth_date' => '1990-02-22',
+                'gender'     => 'm',
+                'code'       => '123',
+                'email'      => 'lfmontoyag@unal.edu.co',
+                'avatar'     => 'default.png',
+                'password'   => Hash::make("123"),
+                'confirmed'  => 1
+            ]);
+        */
+        
         foreach (range(1, 10) as $index)
         {
             User::create([

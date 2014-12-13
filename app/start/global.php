@@ -83,6 +83,7 @@ require app_path().'/filters.php';
 
 App::error(function($exception, $code)
 {
+    /*
     switch ($code)
     {
         case 403:
@@ -97,4 +98,5 @@ App::error(function($exception, $code)
         default:
             return Response::view('errors.404', array(), $code);
     }
+    */
 });

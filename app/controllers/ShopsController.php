@@ -38,7 +38,7 @@ class ShopsController extends \BaseController {
         $shop->retribution_per_bill = 1;
         $shop->save();
 
-        $shop->activities()->sync(Input::get('activities'));
+        //$shop->activities()->sync(Input::get('activities'));
 
         $path = "shops/{$shop->id}";
 

@@ -291,12 +291,12 @@ body{
     padding-bottom: 4px;
 }
 
-input:required + .popover, .obligatorio + .popover {
+input:required + .popover, .obligatorio + .popoverm, select:required + .popover  {
     background: #e74c3c;
     color: #fff;
 }
 
-input:required + .popover.bottom > .arrow:after, .obligatorio + .popover.bottom > .arrow:after {
+input:required + .popover.bottom > .arrow:after, .obligatorio + .popover.bottom > .arrow:after,select:required + .popover.bottom > .arrow:after {
     border-bottom-color: #e74c3c;
 }
 
@@ -468,4 +468,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 .carousel-indicators .active {
     background: #428bca;
+}
+a.link{
+    color:#1abc9c;
+    text-decoration: underline;
+}
+#title-support{
+    margin-top: 0;
 }

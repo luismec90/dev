@@ -66,12 +66,15 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         'birth_date.date_format' => 'El campo fecha de nacimiento no corresponde con el formato Y-m-d.',
         'gender.required'        => 'El campo género es obligatorio',
         'gender.in'              => 'El campo género seleccionado es inválido',
+        'email.email'            => 'El campo email  es inválido',
         'email.required'         => 'El campo email es obligatorio',
+        'email.unique'           => 'El campo email ya ha sido tomado',
         'password.required'      => 'El campo contraseña es obligatorio',
         'password.confirmed'     => 'El campo confirmar contraseña no coincide',
         'code.required'          => 'El campo código de verificación es obligatorio',
         'code.integer'           => 'El campo código debe contener solo números',
         'code.digits'            => 'El campo código debe tener 4 caracteres',
+        'password.min'           => 'El campo contraseña debe tener al menos 4 caracteres',
     ];
 
 

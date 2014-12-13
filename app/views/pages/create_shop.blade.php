@@ -23,13 +23,13 @@
 
             <!-- Nombre Form Input -->
             <div class="form-group">
-                {{ Form::label('name','Nombre del establecimiento:') }} <i class="glyphicon glyphicon-info-sign pull-right help"  data-content="first tooltip asdasd asd adsf asdf asdfasdfasdf afsd"></i>
+                {{ Form::label('name','Nombre del establecimiento:') }} <i class="glyphicon glyphicon-info-sign pull-right help"  data-content="Ejemplo: Por ejemplo: Restaurante Noma"></i>
                 {{ Form::text('name',null,['class'=>'form-control','required'=>'required']) }}
             </div>
 
             <!-- Link Form Input -->
             <div class="form-group">
-            {{ Form::label('link','Link:') }}<i class="glyphicon glyphicon-info-sign pull-right help"  data-content="first tooltip asdasd asd adsf asdf asdfasdfasdf afsd"></i>
+            {{ Form::label('link','Link:') }}<i class="glyphicon glyphicon-info-sign pull-right help"  data-content="Se recomienda que el link sea el mismo nombre del establecimiento pero en minuculas, sin espacios en blanco, tildes o signos de puntuación. Ejemplo: restaurantemoma"></i>
             <div class="input-group">
                 <div class="input-group-addon">www.linkingshops.com/</div>
                 {{ Form::text('link',null,['class'=>'form-control','required'=>'required']) }}
@@ -38,20 +38,20 @@
 
             <!-- Location Form Input -->
             <div id="div-location" class="form-group obligatorio">
-                {{ Form::label('town_id','Ubicación:') }}<i class="glyphicon glyphicon-info-sign pull-right help"  data-content="Asdfg..."></i>
+                {{ Form::label('town_id','Ubicación:') }}
                 {{ Form::select('town_id',$selectTowns,null,['class'=>'form-control']) }}
 
             </div>
 
             <!-- Dirección Form Input -->
             <div class="form-group">
-                {{ Form::label('street_address','Dirección:') }} <i class="glyphicon glyphicon-info-sign pull-right help"  data-content="first tooltip asdasd asd adsf asdf asdfasdfasdf afsd"></i>
+                {{ Form::label('street_address','Dirección:') }}
                 {{ Form::text('street_address',null,['class'=>'form-control','required'=>'required']) }}
             </div>
 
             <!-- Email Form Input -->
             <div class="form-group">
-                {{ Form::label('email','E-mail:') }} <i class="glyphicon glyphicon-info-sign pull-right help"  data-content="first tooltip asdasd asd adsf asdf asdfasdfasdf afsd"></i>
+                {{ Form::label('email','E-mail:') }}
                 {{ Form::text('email',null,['class'=>'form-control','required'=>'required']) }}
             </div>
             <!--
@@ -82,16 +82,17 @@
 
             <!-- Nombre del administrador Form Input -->
             <div class="form-group">
-                {{ Form::label('administrator_name','Nombre del administrador:') }}<i class="glyphicon glyphicon-info-sign pull-right help"  data-content="first tooltip asdasd asd adsf asdf asdfasdfasdf afsd"></i>
+                {{ Form::label('administrator_name','Nombre del administrador:') }}
                 {{ Form::text('administrator_name',null,['class'=>'form-control','required'=>true]) }}
             </div>
 
            <!-- Número celular del administrador Form Input -->
            <div class="form-group">
-               {{ Form::label('cell','Número celular del administrador:') }}<i class="glyphicon glyphicon-info-sign pull-right help"  data-content="first tooltip asdasd asd adsf asdf asdfasdfasdf afsd"></i>
+               {{ Form::label('cell','Número celular del administrador:') }}
                {{ Form::text('cell',null,['class'=>'form-control','required'=>'required']) }}
            </div>
 
+            {{--
 
             <div class="row">
                 <div class="col-xs-12">
@@ -113,7 +114,7 @@
                     </div>
                 @endforeach
             </div>
-
+        --}}
             <div class="row">
                 <div class="col-xs-12">
                     <hr>
