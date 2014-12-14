@@ -12,7 +12,11 @@
                     <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border: 1px solid #cccccc; border-collapse: collapse;">
                         <tr>
                             <td align="center" bgcolor="#ee4c50" style="padding: 40px 0 30px 0; color: #153643; font-size: 28px; font-weight: bold; font-family: Arial, sans-serif;">
-                                <img src="{{ asset('assets/images/logo-white.png') }}" width="50" height="50" style="margin-right: 20px"><label style=" color:#fff; font-size: 53px;"> LinkingShops </label>
+                                @if(isset($shop_name))
+                                    <label style=" color:#fff; font-size: 53px;">{{ $shop_name }} </label>
+                                @else
+                                    <img src="http://linkingshops.com/assets/images/logo-white.png" width="50" height="50" style="margin-right: 20px"><label style=" color:#fff; font-size: 53px;"> LinkingSh<img src="http://linkingshops.com/assets/images/loading-white.gif" width="40" height="40">ps </label>
+                                @endif
                             </td>
                         </tr>
                         <tr>
@@ -30,8 +34,8 @@
                                         												</td>
                                     </tr>
                                     <tr>
-                                        <td style="color: #CFCFCF; font-family: Arial,Helvetica,sans-serif; font-size: 14px;" width="75%">
-                                            LinkingShops  &reg;, 2014<br/>
+                                        <td style="color: #CFCFCF; font-family: Arial,Helvetica sans-serif; font-size: 14px;" width="75%">
+                                            &reg; LinkingShops, 2014<br/>
                                         </td>
                                     </tr>
                                 </table>

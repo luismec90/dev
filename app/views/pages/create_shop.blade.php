@@ -51,8 +51,8 @@
 
             <!-- Email Form Input -->
             <div class="form-group">
-                {{ Form::label('email','E-mail:') }}
-                {{ Form::text('email',null,['class'=>'form-control','required'=>'required']) }}
+                {{ Form::label('email','E-mail del establecimiento:') }}
+                {{ Form::text('email',Auth::user()->email,['class'=>'form-control','required'=>'required']) }}
             </div>
             <!--
             <div class="row">
@@ -83,12 +83,12 @@
             <!-- Nombre del administrador Form Input -->
             <div class="form-group">
                 {{ Form::label('administrator_name','Nombre del administrador:') }}
-                {{ Form::text('administrator_name',null,['class'=>'form-control','required'=>true]) }}
+                {{ Form::text('administrator_name',Auth::user()->fullName(),['class'=>'form-control','required'=>true]) }}
             </div>
 
            <!-- Número celular del administrador Form Input -->
            <div class="form-group">
-               {{ Form::label('cell','Número celular del administrador:') }}
+               {{ Form::label('cell','Número télefonico o celular de contacto:') }}
                {{ Form::text('cell',null,['class'=>'form-control','required'=>'required']) }}
            </div>
 

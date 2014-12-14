@@ -459,6 +459,6 @@ input:required + .popover.bottom > .arrow:after, select:required + .popover.bott
 }
 #btn-take-tour{
     margin-top: 5px;
-    z-index: 1000;
+    z-index: 900;
     position: relative;
 }
