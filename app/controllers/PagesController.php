@@ -179,7 +179,7 @@ class PagesController extends BaseController {
 
         Mail::send('emails.recommend', compact('name', 'email', 'note'), function ($message) use ($name, $email)
         {
-            $message->to($email, 'LinkingShops')
+            $message->to($email)
                 ->bcc('luismec90@gmail.com')
                 ->subject("$name te ha invitado a conocer LinkingShops");
         });
