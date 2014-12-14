@@ -24,11 +24,11 @@ $(document).ready(function() {
                 <div class="col-lg-2 hidden-xs hidden-sm hidden-md">
                     <h5>Multiples beneficios</h5>
                     <ul id="lista-beneficios">
-                        <li>Alianzas estrategicas entre establecimientos</li>
+                        <li>Alianzas estratégicas entre establecimientos</li>
                         <li>Fidelización de clientes</li>
                         <li>Presencia en buscadores</li>
                         <li>Base de datos de los clientes</li>
-                        <li>Sistema inventarios</li>
+                        <li>Sistema de inventarios</li>
                         <li>Sistema contable</li>
                         <li>Página web</li>
                     </ul>
@@ -43,7 +43,7 @@ $(document).ready(function() {
                     <br>
                     <img class="pad-top" src="http://demo.danielyewright.com/bootstack/assets/img/arrow-right.png" alt="">
                     <h5>Diseño Agradable y Fácil de Usar</h5>
-                    <p>Fácil de entender, con un flujo de acciones intuitivo y con informacion de cada una de las funciones.</p>
+                    <p>Fácil de entender, con un flujo de acciones intuitivo e información de cada una de las funciones.</p>
                 </div>
             </div>
         </div>
