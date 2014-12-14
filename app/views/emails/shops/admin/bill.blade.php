@@ -1,4 +1,4 @@
-@extends('emails.layout')
+@extends('emails.layouts.linkingshops',['shop_name'=>$shop->name])
 
 @section('content')
 @if(!$is_new_user)

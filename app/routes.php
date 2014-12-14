@@ -17,9 +17,14 @@ Route::get('/busqueda', array('as' => 'search_path', 'uses' => 'SearchesControll
 Route::get('/contacto', array('as' => 'contact_path', 'uses' => 'PagesController@contact'));
 Route::post('/contacto', array('as' => 'contact_path', 'uses' => 'PagesController@sendContact'));
 
+/* Terminos y condiciones */
+Route::get('terminos-y-condiciones', array('as' => 'terms_path', 'uses' => 'PagesController@showTerms'));
+
 /* Contact Pioner */
 Route::get('/contacto/pionero', array('as' => 'contact_pioner_path', 'uses' => 'PagesController@contactPioner'));
 Route::post('/contacto/pionero', array('as' => 'contact_pioner_path', 'uses' => 'PagesController@sendContactPioner'));
+
+
 
 /* Listar establecimiento */
 Route::get('listar', array('as' => 'listshops_path', 'uses' => 'PagesController@listShops'));
@@ -151,6 +156,9 @@ Route::group(array('prefix' => '{shop_link}'), function ()
         Route::get('alianzas/activas', array('before' => 'auth|admin', 'as' => 'active_alliances_path', 'uses' => 'AlliancesController@activeAlliances'));
         Route::get('alianzas/activas/{alliance_id}', array('before' => 'auth|admin', 'as' => 'active_alliance_path', 'uses' => 'AlliancesController@activeAlliance'));
         Route::post('alianzas/activas/{alliance_id}/cancelar', array('before' => 'auth|admin', 'as' => 'cancel_alliance_path', 'uses' => 'AlliancesController@cancelAlliance'));
+
+        /* Solicitar llamada  */
+        Route::post('/solicitar-llamada', array('as' => 'request_call_path', 'uses' => 'SupportController@requestCall'));
 
     });
 

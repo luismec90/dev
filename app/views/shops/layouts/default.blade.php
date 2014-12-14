@@ -19,7 +19,7 @@
         {{ HTML::style('assets/libs/jqueryui/jquery-ui.min.css') }}
         {{ HTML::style('assets/themes/one/css/template.css') }}
 
-        @if(Auth::user()->isAdmin($shop->id))
+        @if(Auth::check() && Auth::user()->isAdmin($shop->id))
             {{ HTML::style('assets/libs/bootstrap-tour/css/bootstrap-tour.min.css') }}
         @endif
 
@@ -50,6 +50,9 @@
 
             <main id="main" class="site-main">
                 <div id="contenedor" class="container">
+
+                @include('shops.layouts.partials.title_page',['showTour'=>true])
+
                 @yield('content')
                 </div>
             </main>
@@ -66,16 +69,24 @@
         {{ HTML::script('//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js') }}
         {{ HTML::script('assets/libs/bootstrap-growl/bootstrap-growl.min.js') }}
 
-        @if(Auth::user()->isAdmin($shop->id))
+        @if(Auth::check() && Auth::user()->isAdmin($shop->id))
             {{ HTML::script('assets/libs/bootstrap-tour/js/bootstrap-tour.min.js') }}
+            {{ HTML::script('assets/themes/one/js/tour.js') }}
         @endif
 
         {{ HTML::script('assets/themes/one/js/main.js') }}
-
+         @if(Session::has('new_shop'))
+             <script>
+             $(function () {
+                $("#modal-help").modal();
+             });
+             </script>
+         @endif
         @section('js')
         @show
 
         @include('layouts.partials.notify')
         @include('shops.layouts.partials.modal_info_usuario')
+        @include('shops.layouts.partials.modal_help')
     </body>
 </html>

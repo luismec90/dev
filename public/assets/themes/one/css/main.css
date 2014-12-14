@@ -457,8 +457,8 @@ input:required + .popover, select:required + .popover {
 input:required + .popover.bottom > .arrow:after, select:required + .popover.bottom > .arrow:after {
     border-bottom-color: #e74c3c;
 }
-#btn-take-tour{
-    margin-top: 5px;
-    z-index: 1000;
+#btn-take-tour,#btn-help{
+    margin-top: 3px;
+    z-index: 900;
     position: relative;
 }

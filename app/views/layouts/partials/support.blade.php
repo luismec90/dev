@@ -10,7 +10,7 @@
         <div class="col-md-7 col-sm-12">
             <div class="row">
                 <div class="col-xs-12">
-                     <h4>* Chat: (Esquina inferior derecha)</h4>
+                     <h4>* Chat: (Esquina inferior izquierda)</h4>
                      <h4>* Email: <a class="link" href="mailto:soporte@linkingshops.com">soporte@linkingshops.com</a> </h4>
                      <h4>* Celular: +(57) 311 372 77 51</h4>
                      <h4>* Skype: soporte.linkingshops</h4>

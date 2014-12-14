@@ -115,6 +115,41 @@ $(function () {
         }
     });
 
+    $("#btn-help").click(function () {
+        $("#modal-help").modal();
+    });
+
+    $("#btn-form-help").click(function () {
+
+        var flag = false;
+
+        $("#form-help [required]:visible").popover('destroy');
+
+        $("#form-help [required]:visible").each(function () {
+
+            var valor = $(this).val();
+            valor = valor.replace(",", ".");
+            if (valor == "") {
+                $(this).focus().popover({
+                    'trigger': 'manual',
+                    'placement': 'bottom',
+                    'content': 'Campo obligatorio'
+                }).popover('show').focus();;
+
+                flag = true;
+            }
+            if (flag)
+                return false;
+        });
+
+        if (flag)
+            return false;
+
+        coverOn();
+
+        $("#form-help").submit();
+    });
+
 });
 
 function coverOn() {
@@ -170,25 +205,3 @@ function toBack(value) {
     return parseFloat(value.replace(".", ""));
 }
 
-/* Bootstrap-tour */
-
-
-var tourShopPath = new Tour({
-    name: 'Tour',
-    steps: [
-        {
-            element: ".one",
-            title: "Title",
-            content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut ipsum felis. Aliquam molestie ultrices rhoncus. Ut scelerisque velit et sapien sodales pharetra eu eget libero. Curabitur convallis congue justo, a ornare est placerat eget.",
-            placement: "bottom"
-        },
-        {
-            element: ".two",
-            title: "Title",
-            content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut ipsum felis. Aliquam molestie ultrices rhoncus. Ut scelerisque velit et sapien sodales pharetra eu eget libero. Curabitur convallis congue justo, a ornare est placerat eget.",
-            placement: "top"
-        }
-    ],
-    backdrop: true,
-    template: "<div class='popover tour'> <div class='arrow'></div> <h3 class='popover-title'></h3> <div class='popover-content'></div> <div class='popover-navigation'> <div class='btn-group'> <button class='btn btn-sm btn-default' data-role='prev'>« Anterior</button> <button class='btn btn-sm btn-default' data-role='next'>Siguiente »</button> </div> <button class='btn btn-sm btn-default' data-role='end'>Finalizar</button> </div> </div>"
-});

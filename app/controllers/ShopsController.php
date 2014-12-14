@@ -131,6 +131,8 @@ class ShopsController extends \BaseController {
 
         Flash::success('Establecimiento creado exitosamente');
 
+        Session::flash('new_shop', true);
+
         return Redirect::route('shop_path', $shop->link);
 
     }

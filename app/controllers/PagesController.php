@@ -179,7 +179,7 @@ class PagesController extends BaseController {
 
         Mail::send('emails.recommend', compact('name', 'email', 'note'), function ($message) use ($name, $email)
         {
-            $message->to($email, 'LinkingShops')
+            $message->to($email)
                 ->bcc('luismec90@gmail.com')
                 ->subject("$name te ha invitado a conocer LinkingShops");
         });
@@ -187,5 +187,23 @@ class PagesController extends BaseController {
         Flash::success('Correo enviado exitosamente');
 
         return Redirect::back();
+    }
+
+    public function showTerms()
+    {
+        return View::make('pages.terms');
+    }
+
+    public function requestCall($shpo_link)
+    {
+        dd(Input::all());
+
+
+        Mail::send('emails.contact_pioner', [compact('shop')], function ($message)
+        {
+            $message->to('luismec90@gmail.com', Input::get('name'))
+                ->subject('Contacto');
+        });
+
     }
 }
