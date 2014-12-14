@@ -27,6 +27,15 @@ $(function () {
                 return false;
         });
 
+        if (!flag && !($("#checkbox-terms").is(':checked'))) {
+            $("#checkbox-terms").focus().popover({
+                'trigger': 'manual',
+                'placement': 'top',
+                'content': 'Campo obligatorio'
+            }).popover('show');
+            flag = true;
+        }
+
         if (flag)
             return false;
 

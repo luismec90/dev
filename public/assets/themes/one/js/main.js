@@ -115,6 +115,41 @@ $(function () {
         }
     });
 
+    $("#btn-help").click(function () {
+        $("#modal-help").modal();
+    });
+
+    $("#btn-form-help").click(function () {
+
+        var flag = false;
+
+        $("#form-help [required]:visible").popover('destroy');
+
+        $("#form-help [required]:visible").each(function () {
+
+            var valor = $(this).val();
+            valor = valor.replace(",", ".");
+            if (valor == "") {
+                $(this).focus().popover({
+                    'trigger': 'manual',
+                    'placement': 'bottom',
+                    'content': 'Campo obligatorio'
+                }).popover('show').focus();;
+
+                flag = true;
+            }
+            if (flag)
+                return false;
+        });
+
+        if (flag)
+            return false;
+
+        coverOn();
+
+        $("#form-help").submit();
+    });
+
 });
 
 function coverOn() {

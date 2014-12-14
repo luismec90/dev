@@ -50,6 +50,9 @@
 
             <main id="main" class="site-main">
                 <div id="contenedor" class="container">
+
+                @include('shops.layouts.partials.title_page',['showTour'=>true])
+
                 @yield('content')
                 </div>
             </main>
@@ -72,11 +75,18 @@
         @endif
 
         {{ HTML::script('assets/themes/one/js/main.js') }}
-
+         @if(Session::has('new_shop'))
+             <script>
+             $(function () {
+                $("#modal-help").modal();
+             });
+             </script>
+         @endif
         @section('js')
         @show
 
         @include('layouts.partials.notify')
         @include('shops.layouts.partials.modal_info_usuario')
+        @include('shops.layouts.partials.modal_help')
     </body>
 </html>

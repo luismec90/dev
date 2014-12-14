@@ -14,7 +14,7 @@
 @section('content')
 <section class="section  section-cta">
     <div class="container">
-        <h2 class="section-title"><span>Crear establecimiento</span></h2>
+        <h1 class="section-title"><span>Crear establecimiento</span></h1>
         <div class="col-sm-6 col-sm-offset-3">
 
             @include('layouts.partials.errors')
@@ -23,13 +23,13 @@
 
             <!-- Nombre Form Input -->
             <div class="form-group">
-                {{ Form::label('name','Nombre del establecimiento:') }} <i class="glyphicon glyphicon-info-sign pull-right help"  data-content="Ejemplo: Por ejemplo: Restaurante Noma"></i>
+                {{ Form::label('name','Nombre del establecimiento:') }} <i class="glyphicon glyphicon-info-sign pull-right help"  data-content="Ejemplo: Restaurante Noma"></i>
                 {{ Form::text('name',null,['class'=>'form-control','required'=>'required']) }}
             </div>
 
             <!-- Link Form Input -->
             <div class="form-group">
-            {{ Form::label('link','Link:') }}<i class="glyphicon glyphicon-info-sign pull-right help"  data-content="Se recomienda que el link sea el mismo nombre del establecimiento pero en minuculas, sin espacios en blanco, tildes o signos de puntuación. Ejemplo: restaurantemoma"></i>
+            {{ Form::label('link','Link:') }}<i class="glyphicon glyphicon-info-sign pull-right help"  data-content="Se recomienda que el link sea el mismo nombre del establecimiento pero en minúsculas, sin espacios en blanco, tildes o signos de puntuación. Ejemplo: restaurantemoma"></i>
             <div class="input-group">
                 <div class="input-group-addon">www.linkingshops.com/</div>
                 {{ Form::text('link',null,['class'=>'form-control','required'=>'required']) }}
@@ -38,7 +38,7 @@
 
             <!-- Location Form Input -->
             <div id="div-location" class="form-group obligatorio">
-                {{ Form::label('town_id','Ubicación:') }}
+                {{ Form::label('town_id','Ciudad:') }}
                 {{ Form::select('town_id',$selectTowns,null,['class'=>'form-control']) }}
 
             </div>

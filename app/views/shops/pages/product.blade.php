@@ -70,7 +70,7 @@
 @stop
 
 @section('content')
-@include('shops.layouts.partials.title_page',['showTour'=>true])
+
 <div class="row">
     @include('shops.layouts.partials.products_menu')
     

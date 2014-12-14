@@ -70,6 +70,15 @@
                         {{ Form::label('password_confirmation','Confirmar contraseña:') }}
                         {{ Form::password('password_confirmation',['class'=>'form-control','required'=>'required']) }}
                     </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="checkbox">
+                                <label>
+                                {{ Form::checkbox('checkbox-terms', 'true', false, ['id' => 'checkbox-terms','required'=>true]); }} Acepto los <a class="link" href="{{ route('terms_path') }}" target="_blank">Términos y condiciones de uso</a>
+                                </label>
+                              </div>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-3 col-sm-3 col-xs-12">

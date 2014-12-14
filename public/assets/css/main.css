@@ -296,8 +296,9 @@ input:required + .popover, .obligatorio + .popoverm, select:required + .popover 
     color: #fff;
 }
 
-input:required + .popover.bottom > .arrow:after, .obligatorio + .popover.bottom > .arrow:after,select:required + .popover.bottom > .arrow:after {
+input:required + .popover.bottom > .arrow:after,input:required + .popover.top > .arrow:after, .obligatorio + .popover.bottom > .arrow:after,select:required + .popover.bottom > .arrow:after {
     border-bottom-color: #e74c3c;
+    border-top-color: #e74c3c;
 }
 
 /* Header Wrap */

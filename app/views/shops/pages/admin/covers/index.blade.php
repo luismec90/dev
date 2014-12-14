@@ -14,12 +14,6 @@
 
 @section('content')
 
-<div class="row">
-    <div class="col-lg-12">
-        <h2 class="shop-title section-title"><span>{{ $shop->name }}</span></h2>
-        <br>
-    </div>
-</div>
 
 <div class="row">
     @include('shops.layouts.partials.left_menu')

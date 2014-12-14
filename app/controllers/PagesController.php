@@ -188,4 +188,22 @@ class PagesController extends BaseController {
 
         return Redirect::back();
     }
+
+    public function showTerms()
+    {
+        return View::make('pages.terms');
+    }
+
+    public function requestCall($shpo_link)
+    {
+        dd(Input::all());
+
+
+        Mail::send('emails.contact_pioner', [compact('shop')], function ($message)
+        {
+            $message->to('luismec90@gmail.com', Input::get('name'))
+                ->subject('Contacto');
+        });
+
+    }
 }
