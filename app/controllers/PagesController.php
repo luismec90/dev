@@ -11,7 +11,7 @@ class PagesController extends BaseController {
         $confirmation_code = "asdas";
 
 
-        return View::make('emails.verify', compact('user', 'confirmation_code'));
+        return View::make('emails.template_invitation', compact('user', 'confirmation_code'));
 
     }
 

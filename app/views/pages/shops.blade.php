@@ -17,7 +17,7 @@ $(document).ready(function() {
         <div class="container">
             <div class="row text-center">
                 <div class="col-lg-12">
-                    <h1>Bienvenido a <b>LinkingShops</b></h1>
+                    <h1>Bienvenido a <b>LinkingSh<img width="45" src="{{ asset('assets/images/loading-full-white.gif') }}">ps</b></h1>
                     <h3>La manera más fácil de llevar su negocio a la web</h3>
                     <br>
                 </div>
@@ -59,9 +59,9 @@ $(document).ready(function() {
 <section class="section section-center section-cta">
     <div class="container">
         <h2 class="section-title"><span>¿Estás listo para llevar tu negocio a la Web?</span></h2>
-        <p>LinkingShops es una plataforma para la fidelización de clientes y a atracción de nuevos compradores <br> através de alianzas entre establecimientos comerciales de todos los sectores. Tambien brinda las herramientas necesarias para adminsitar y posicionar su negocio.</p>
+        <p>LinkingShops es una plataforma para la fidelización de clientes y atracción de nuevos compradores <br> através de alianzas entre establecimientos comerciales de todos los sectores. También brinda las herramientas necesarias para administrar y posicionar su negocio.</p>
         <div class="col-xs-12 text-center well">
-            * Los establecimientos que se registren antes del 1 de enero del 2015 recibirán un 12 meses completamente gratis en una cuenta <b>PREMIUM</b>.
+            * Los establecimientos que se registren antes del 1 de enero del 2015 recibirán un 6 meses completamente gratis en una cuenta <b>PREMIUM</b>.
             <b>Sin trucos, sin letra pequeña, simplemente gratis! Registrate antes de que se acabe el tiempo. </b><br>
         </div>
         <div class="row">
@@ -73,14 +73,14 @@ $(document).ready(function() {
             </div>
         </div>
         <div class="main-action row text-center ">
-            <div class="col-xs-6 text-right"><a href="{{ route('register_path') }}" class="smooth-scroll btn btn-lg btn-danger">Registrate de forma gratuita</a></div>
-            <div class="col-xs-6 text-left"><a id="btn-recommend" class="smooth-scroll btn btn-lg btn-default">Recomienda esto a un amigo</a></div>
+            <div class="col-xs-12 col-sm-5 col-md-4 col-sm-offset-1 col-md-offset-2"><a href="{{ route('register_path') }}" class="smooth-scroll btn btn-lg btn-danger">Registrate de forma gratuita</a></div>
+            <div class="col-xs-12 col-sm-5 col-md-4"><a id="btn-recommend" class="smooth-scroll btn btn-lg btn-default">Recomienda esto a un amigo</a></div>
         </div>
     </div>
 </section>
 <section id="features" class="section section-center section-hilite section-features">
     <div class="container">
-        <h2 class="section-title"><span>Como funciona?</span></h2>
+        <h2 class="section-title"><span>¿Cómo funciona?</span></h2>
         <div class="row">
             <div class="col-md-4 col-sm-6">
                 <div class="icon-wrap"><img src="{{ asset('assets/images/alliances.png') }}" alt=""></div>
@@ -134,8 +134,8 @@ $(document).ready(function() {
         <br><br>
         <div class="row">
             <div class="col-xs-12">
-                * Los establecimientos que se registren antes del 1 de enero del 2015 recibirán un 12 meses completamente gratis.
-                <b>Sin trucos, sin letra pequeña, simplemente gratis!</b><br> <br> <a href="{{ route('register_path') }}" class="btn btn-danger">Entra y compruebalo</a>
+                * Los establecimientos que se registren antes del 1 de enero del 2015 recibirán un 6 meses completamente gratis.
+                <b>Sin trucos, sin letra pequeña, simplemente gratis!</b><br> <br> <a href="{{ route('register_path') }}" class="btn btn-danger">Entra y compruébalo</a>
                 <br>
                 <br>
             </div>
@@ -175,7 +175,7 @@ $(document).ready(function() {
                         </table>
                     </div>
                     <div class="panel-footer">
-                        <a href="{{ route('register_path') }}" class="btn btn-default" role="button">Proceder</a>
+                        <a href="{{ route('register_path') }}" class="btn btn-primary" role="button" disabled="true">Proceder</a>
                     </div>
                 </div>
             </div>
@@ -219,7 +219,7 @@ $(document).ready(function() {
                         </table>
                     </div>
                     <div class="panel-footer">
-                        <a href="{{ route('register_path') }}" class="btn btn-default" role="button">Proceder</a>
+                        <a href="{{ route('register_path') }}" class="btn btn-primary" role="button" disabled="true">Proceder</a>
                     </div>
                 </div>
             </div>
@@ -266,7 +266,7 @@ $(document).ready(function() {
                         </table>
                     </div>
                     <div class="panel-footer">
-                        <a href="{{ route('register_path') }}" class="btn btn-default" role="button">Proceder</a>
+                        <a href="{{ route('register_path') }}" class="btn btn-primary" role="button" disabled="true">Proceder</a>
                     </div>
                 </div>
             </div>

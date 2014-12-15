@@ -2,7 +2,7 @@
 
 @section('css')
 {{ HTML::style('assets/libs/bootstrapvalidator/css/bootstrapValidator.min.css') }}
-{{ HTML::style('assets/css/registro.css') }}
+{{ HTML::style('assets/css/profile.css') }}
 @stop
 
 @section('js')

@@ -193,7 +193,6 @@ class BillsController extends \BaseController {
         if (!Input::get('no_register_products'))// Si registro productos actualizar inventarios
             $this->updateStock($shop, $bill->id);
 
-    exit();
         return Response::json(array(
             'messages' => ["Registro creado exitosamente"]
         ), 200);

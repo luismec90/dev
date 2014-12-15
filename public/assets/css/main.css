@@ -339,7 +339,7 @@ input:required + .popover.bottom > .arrow:after,input:required + .popover.top > 
 }
 
 @media (max-width: 480px) {
-    .headerwrap h1 { font-size: 50px; }
+    .headerwrap h1 { font-size: 40px; }
 
     .headerwrap .col-lg-2 h5,
     .headerwrap .col-lg-2 p {
