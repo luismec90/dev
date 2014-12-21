@@ -18,7 +18,7 @@ $(document).ready(function() {
             <div class="row text-center">
                 <div class="col-lg-12">
                     <h1>Bienvenido a <b>LinkingSh<img width="45" src="{{ asset('assets/images/loading-full-white.gif') }}">ps</b></h1>
-                    <h3>La manera más fácil de llevar su negocio a la web</h3>
+                    <h3> La manera gratuita de llevar su negocio a la web</h3>
                     <br>
                 </div>
                 <div class="col-lg-2 hidden-xs hidden-sm hidden-md">
@@ -59,19 +59,8 @@ $(document).ready(function() {
 <section class="section section-center section-cta">
     <div class="container">
         <h2 class="section-title"><span>¿Estás listo para llevar tu negocio a la Web?</span></h2>
-        <p>LinkingShops es una plataforma para la fidelización de clientes y atracción de nuevos compradores <br> através de alianzas entre establecimientos comerciales de todos los sectores. También brinda las herramientas necesarias para administrar y posicionar su negocio.</p>
-        <div class="col-xs-12 text-center well">
-            * Los establecimientos que se registren antes del 1 de enero del 2015 recibirán un 6 meses completamente gratis en una cuenta <b>PREMIUM</b>.
-            <b>Sin trucos, sin letra pequeña, simplemente gratis! Registrate antes de que se acabe el tiempo. </b><br>
-        </div>
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="i_cicle">
-                    <!-- Timer: Your date here -->
-                    <div class="countdown-time animated bounceIn" data-date="2015-01-01 00:00:00" data-timer="100"></div>
-                </div>
-            </div>
-        </div>
+        <p>LinkingShops es una plataforma para la fidelización de clientes y atracción de nuevos compradores  <br> através de alianzas entre establecimientos comerciales de todos los sectores. También brinda las herramientas necesarias para administrar y posicionar su negocio.</p>
+
         <div class="main-action row text-center ">
             <div class="col-xs-12 col-sm-5 col-md-4 col-sm-offset-1 col-md-offset-2"><a href="{{ route('register_path') }}" class="smooth-scroll btn btn-lg btn-danger">Registrate de forma gratuita</a></div>
             <div class="col-xs-12 col-sm-5 col-md-4"><a id="btn-recommend" class="smooth-scroll btn btn-lg btn-default">Recomienda esto a un amigo</a></div>
@@ -126,6 +115,7 @@ $(document).ready(function() {
     </div>
     </div>
 </section>
+{{--
 <div class="pricingwrap">
     <div class="container text-center">
         <br>
@@ -275,7 +265,7 @@ $(document).ready(function() {
     </div>
     <!-- /container -->
 </div>
-{{--<section  class="section section-center section-hilite ">
+<section  class="section section-center section-hilite ">
     <div class="container">
          <div class="row">
         		<div class="col-md-12">
