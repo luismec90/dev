@@ -32,7 +32,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         'first_name' => 'required',
         'last_name'  => 'required',
         'birth_date' => 'sometimes|date_format:Y-m-d',
-        'gender'     => 'required|in:f,m',
+        'gender'     => 'sometimes|in:f,m',
         'email'      => 'required|email|unique:users',
         'password'   => 'required|confirmed|min:4'
     ];

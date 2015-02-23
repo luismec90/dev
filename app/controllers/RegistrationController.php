@@ -21,25 +21,32 @@ class RegistrationController extends \BaseController {
         $user = new User;
         $user->first_name = Input::get('first_name');
         $user->last_name = Input::get('last_name');
-        $user->birth_date = Input::get('birth_date');
-        $user->gender = Input::get('gender');
+        //$user->birth_date = Input::get('birth_date');
+        //$user->gender = Input::get('gender');
         $user->email = Input::get('email');
         $user->avatar = 'default.png';
         $user->password = Hash::make(Input::get('password'));
         $user->code = rand(1111, 9999);
-        $user->confirmation_code = $confirmation_code;
+        $user->confirmed = 1;
+        //$user->confirmation_code = $confirmation_code;
         $user->save();
 
-        Mail::send('emails.verify', compact('confirmation_code', 'user'), function ($message)
+        /* Mail::send('emails.verify', compact('confirmation_code', 'user'), function ($message)
         {
             $message->to(Input::get('email'), Input::get('first_name'))
                 ->subject('Verificar email');
         });
+        */
 
+        Auth::login($user);
 
-        Flash::success('¡Gracias por registrarse! Se ha enviado un correo de confirmación a su email');
+        Flash::success('¡Gracias por registrarse!');
 
-        return Redirect::route('register_path');
+        if (Input::get('checkbox-shop'))
+            return Redirect::route('create_shop_path');
+        else
+            return Redirect::route('home');
+
     }
 
     public function confirm($confirmation_code)
